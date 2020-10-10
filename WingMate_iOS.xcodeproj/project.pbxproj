@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
+		882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3225322306009E8C46 /* SceneDelegate.swift */; };
+		882EDB3525322306009E8C46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3425322306009E8C46 /* ViewController.swift */; };
+		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
+		882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB392532230A009E8C46 /* Assets.xcassets */; };
+		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
+		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
+		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		882EDB442532230A009E8C46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 882EDB2525322306009E8C46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 882EDB2C25322306009E8C46;
+			remoteInfo = WingMate_iOS;
+		};
+		882EDB4F2532230A009E8C46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 882EDB2525322306009E8C46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 882EDB2C25322306009E8C46;
+			remoteInfo = WingMate_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		882EDB2D25322306009E8C46 /* WingMate_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMate_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		882EDB3025322306009E8C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		882EDB3225322306009E8C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		882EDB3425322306009E8C46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		882EDB3725322306009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		882EDB392532230A009E8C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		882EDB3C2532230A009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		882EDB3E2532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		882EDB432532230A009E8C46 /* WingMate_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSTests.swift; sourceTree = "<group>"; };
+		882EDB492532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
+		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		882EDB2A25322306009E8C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB402532230A009E8C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB4B2532230A009E8C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		882EDB2425322306009E8C46 = {
+			isa = PBXGroup;
+			children = (
+				882EDB2F25322306009E8C46 /* WingMate_iOS */,
+				882EDB462532230A009E8C46 /* WingMate_iOSTests */,
+				882EDB512532230A009E8C46 /* WingMate_iOSUITests */,
+				882EDB2E25322306009E8C46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		882EDB2E25322306009E8C46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB2D25322306009E8C46 /* WingMate_iOS.app */,
+				882EDB432532230A009E8C46 /* WingMate_iOSTests.xctest */,
+				882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		882EDB2F25322306009E8C46 /* WingMate_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB3025322306009E8C46 /* AppDelegate.swift */,
+				882EDB3225322306009E8C46 /* SceneDelegate.swift */,
+				882EDB3425322306009E8C46 /* ViewController.swift */,
+				882EDB3625322306009E8C46 /* Main.storyboard */,
+				882EDB392532230A009E8C46 /* Assets.xcassets */,
+				882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */,
+				882EDB3E2532230A009E8C46 /* Info.plist */,
+			);
+			path = WingMate_iOS;
+			sourceTree = "<group>";
+		};
+		882EDB462532230A009E8C46 /* WingMate_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */,
+				882EDB492532230A009E8C46 /* Info.plist */,
+			);
+			path = WingMate_iOSTests;
+			sourceTree = "<group>";
+		};
+		882EDB512532230A009E8C46 /* WingMate_iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */,
+				882EDB542532230A009E8C46 /* Info.plist */,
+			);
+			path = WingMate_iOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		882EDB2C25322306009E8C46 /* WingMate_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 882EDB572532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOS" */;
+			buildPhases = (
+				882EDB2925322306009E8C46 /* Sources */,
+				882EDB2A25322306009E8C46 /* Frameworks */,
+				882EDB2B25322306009E8C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WingMate_iOS;
+			productName = WingMate_iOS;
+			productReference = 882EDB2D25322306009E8C46 /* WingMate_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		882EDB422532230A009E8C46 /* WingMate_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 882EDB5A2532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOSTests" */;
+			buildPhases = (
+				882EDB3F2532230A009E8C46 /* Sources */,
+				882EDB402532230A009E8C46 /* Frameworks */,
+				882EDB412532230A009E8C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				882EDB452532230A009E8C46 /* PBXTargetDependency */,
+			);
+			name = WingMate_iOSTests;
+			productName = WingMate_iOSTests;
+			productReference = 882EDB432532230A009E8C46 /* WingMate_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		882EDB4D2532230A009E8C46 /* WingMate_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 882EDB5D2532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOSUITests" */;
+			buildPhases = (
+				882EDB4A2532230A009E8C46 /* Sources */,
+				882EDB4B2532230A009E8C46 /* Frameworks */,
+				882EDB4C2532230A009E8C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				882EDB502532230A009E8C46 /* PBXTargetDependency */,
+			);
+			name = WingMate_iOSUITests;
+			productName = WingMate_iOSUITests;
+			productReference = 882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		882EDB2525322306009E8C46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					882EDB2C25322306009E8C46 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+					882EDB422532230A009E8C46 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 882EDB2C25322306009E8C46;
+					};
+					882EDB4D2532230A009E8C46 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 882EDB2C25322306009E8C46;
+					};
+				};
+			};
+			buildConfigurationList = 882EDB2825322306009E8C46 /* Build configuration list for PBXProject "WingMate_iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 882EDB2425322306009E8C46;
+			productRefGroup = 882EDB2E25322306009E8C46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				882EDB2C25322306009E8C46 /* WingMate_iOS */,
+				882EDB422532230A009E8C46 /* WingMate_iOSTests */,
+				882EDB4D2532230A009E8C46 /* WingMate_iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		882EDB2B25322306009E8C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
+				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
+				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB412532230A009E8C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB4C2532230A009E8C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		882EDB2925322306009E8C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882EDB3525322306009E8C46 /* ViewController.swift in Sources */,
+				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,
+				882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB3F2532230A009E8C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882EDB4A2532230A009E8C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		882EDB452532230A009E8C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 882EDB2C25322306009E8C46 /* WingMate_iOS */;
+			targetProxy = 882EDB442532230A009E8C46 /* PBXContainerItemProxy */;
+		};
+		882EDB502532230A009E8C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 882EDB2C25322306009E8C46 /* WingMate_iOS */;
+			targetProxy = 882EDB4F2532230A009E8C46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		882EDB3625322306009E8C46 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				882EDB3725322306009E8C46 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				882EDB3C2532230A009E8C46 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		882EDB552532230A009E8C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		882EDB562532230A009E8C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		882EDB582532230A009E8C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		882EDB592532230A009E8C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		882EDB5B2532230A009E8C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WingMate_iOS.app/WingMate_iOS";
+			};
+			name = Debug;
+		};
+		882EDB5C2532230A009E8C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WingMate_iOS.app/WingMate_iOS";
+			};
+			name = Release;
+		};
+		882EDB5E2532230A009E8C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WingMate_iOS;
+			};
+			name = Debug;
+		};
+		882EDB5F2532230A009E8C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WingMate_iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WingMate_iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		882EDB2825322306009E8C46 /* Build configuration list for PBXProject "WingMate_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882EDB552532230A009E8C46 /* Debug */,
+				882EDB562532230A009E8C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		882EDB572532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882EDB582532230A009E8C46 /* Debug */,
+				882EDB592532230A009E8C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		882EDB5A2532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882EDB5B2532230A009E8C46 /* Debug */,
+				882EDB5C2532230A009E8C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		882EDB5D2532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882EDB5E2532230A009E8C46 /* Debug */,
+				882EDB5F2532230A009E8C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 882EDB2525322306009E8C46 /* Project object */;
+}
