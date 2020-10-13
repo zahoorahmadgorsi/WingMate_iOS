@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
+		52F82BDD253556AD004AF1ED /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BDC253556AD004AF1ED /* SignUp.swift */; };
+		52F82BE52535587B004AF1ED /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BE42535587B004AF1ED /* SignIn.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
 		882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3225322306009E8C46 /* SceneDelegate.swift */; };
-		882EDB3525322306009E8C46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3425322306009E8C46 /* ViewController.swift */; };
+		882EDB3525322306009E8C46 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3425322306009E8C46 /* SignInViewController.swift */; };
 		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
 		882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB392532230A009E8C46 /* Assets.xcassets */; };
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
@@ -35,10 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WingMate_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F82BDC253556AD004AF1ED /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		52F82BE42535587B004AF1ED /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.release.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.debug.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		882EDB2D25322306009E8C46 /* WingMate_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMate_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB3025322306009E8C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		882EDB3225322306009E8C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		882EDB3425322306009E8C46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		882EDB3425322306009E8C46 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		882EDB3725322306009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		882EDB392532230A009E8C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882EDB3C2532230A009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +85,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52F82BD92535561D004AF1ED /* ParseBackend */ = {
+			isa = PBXGroup;
+			children = (
+				52F82BDA25355634004AF1ED /* Apis */,
+			);
+			path = ParseBackend;
+			sourceTree = "<group>";
+		};
+		52F82BDA25355634004AF1ED /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				52F82BDB25355680004AF1ED /* SignUp */,
+			);
+			path = Apis;
+			sourceTree = "<group>";
+		};
+		52F82BDB25355680004AF1ED /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				52F82BDC253556AD004AF1ED /* SignUp.swift */,
+				52F82BE42535587B004AF1ED /* SignIn.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		617C04E5A17BB69BA9445ECF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */,
+				70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		882EDB2425322306009E8C46 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +126,8 @@
 				882EDB462532230A009E8C46 /* WingMate_iOSTests */,
 				882EDB512532230A009E8C46 /* WingMate_iOSUITests */,
 				882EDB2E25322306009E8C46 /* Products */,
+				617C04E5A17BB69BA9445ECF /* Pods */,
+				8F3FF096176D80CDB0422DD6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +144,10 @@
 		882EDB2F25322306009E8C46 /* WingMate_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				52F82BD92535561D004AF1ED /* ParseBackend */,
 				882EDB3025322306009E8C46 /* AppDelegate.swift */,
 				882EDB3225322306009E8C46 /* SceneDelegate.swift */,
-				882EDB3425322306009E8C46 /* ViewController.swift */,
+				882EDB3425322306009E8C46 /* SignInViewController.swift */,
 				882EDB3625322306009E8C46 /* Main.storyboard */,
 				882EDB392532230A009E8C46 /* Assets.xcassets */,
 				882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */,
@@ -128,6 +174,14 @@
 			path = WingMate_iOSUITests;
 			sourceTree = "<group>";
 		};
+		8F3FF096176D80CDB0422DD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 882EDB572532230A009E8C46 /* Build configuration list for PBXNativeTarget "WingMate_iOS" */;
 			buildPhases = (
+				C69BB5BC682C865F17DBCE25 /* [CP] Check Pods Manifest.lock */,
 				882EDB2925322306009E8C46 /* Sources */,
 				882EDB2A25322306009E8C46 /* Frameworks */,
 				882EDB2B25322306009E8C46 /* Resources */,
+				C45D32FC43E3D3B11002F1B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,12 +309,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C45D32FC43E3D3B11002F1B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C69BB5BC682C865F17DBCE25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WingMate_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		882EDB2925322306009E8C46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				882EDB3525322306009E8C46 /* ViewController.swift in Sources */,
+				882EDB3525322306009E8C46 /* SignInViewController.swift in Sources */,
+				52F82BDD253556AD004AF1ED /* SignUp.swift in Sources */,
+				52F82BE52535587B004AF1ED /* SignIn.swift in Sources */,
 				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,
 				882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */,
 			);
@@ -433,6 +533,7 @@
 		};
 		882EDB582532230A009E8C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -451,6 +552,7 @@
 		};
 		882EDB592532230A009E8C46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
