@@ -1,3 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AAPickerView/AAPickerView.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework

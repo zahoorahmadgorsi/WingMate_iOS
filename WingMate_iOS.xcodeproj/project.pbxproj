@@ -8,16 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
-		52F82BDD253556AD004AF1ED /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BDC253556AD004AF1ED /* SignUp.swift */; };
-		52F82BE52535587B004AF1ED /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BE42535587B004AF1ED /* SignIn.swift */; };
+		52F82BDD253556AD004AF1ED /* RegisterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BDC253556AD004AF1ED /* RegisterAPI.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
-		882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3225322306009E8C46 /* SceneDelegate.swift */; };
-		882EDB3525322306009E8C46 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3425322306009E8C46 /* SignInViewController.swift */; };
 		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
 		882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB392532230A009E8C46 /* Assets.xcassets */; };
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		FA9EFD272537793700A1ED1C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Strings.swift */; };
+		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
+		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
+		FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD262537793700A1ED1C /* Enums.swift */; };
+		FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD33253779DC00A1ED1C /* String-Extension.swift */; };
+		FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD34253779DC00A1ED1C /* NSObject-Extension.swift */; };
+		FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD35253779DC00A1ED1C /* UIColor-Extension.swift */; };
+		FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD36253779DC00A1ED1C /* UIView-Extension.swift */; };
+		FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD37253779DD00A1ED1C /* UIButton-Extension.swift */; };
+		FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD38253779DD00A1ED1C /* UIApplication-Extension.swift */; };
+		FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD39253779DD00A1ED1C /* UILabel-Extension.swift */; };
+		FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3A253779DD00A1ED1C /* DateTime-Extension.swift */; };
+		FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3B253779DD00A1ED1C /* UIViewController-Extension.swift */; };
+		FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3C253779DD00A1ED1C /* FileManager-Extension.swift */; };
+		FA9EFD4B253779DD00A1ED1C /* URL-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3D253779DD00A1ED1C /* URL-Extension.swift */; };
+		FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3E253779DD00A1ED1C /* ImagePicker-Extension.swift */; };
+		FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3F253779DD00A1ED1C /* UITableView-Extension.swift */; };
+		FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD40253779DD00A1ED1C /* Double-Extension.swift */; };
+		FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD5325377A3B00A1ED1C /* ApplicationManager.swift */; };
+		FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */; };
+		FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7B25377BA200A1ED1C /* BaseTableViewCell.swift */; };
+		FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */; };
+		FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7D25377BA200A1ED1C /* BaseCollectionViewCell.swift */; };
+		FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD8825377C4300A1ED1C /* LoginVC.swift */; };
+		FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFD8925377C4300A1ED1C /* LoginVC.xib */; };
+		FA9EFDAA25377D2100A1ED1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFDA925377D2100A1ED1C /* User.swift */; };
+		FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFDB125377DA200A1ED1C /* ParseConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,14 +63,11 @@
 
 /* Begin PBXFileReference section */
 		09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WingMate_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52F82BDC253556AD004AF1ED /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
-		52F82BE42535587B004AF1ED /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		52F82BDC253556AD004AF1ED /* RegisterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPI.swift; sourceTree = "<group>"; };
 		70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.release.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.debug.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		882EDB2D25322306009E8C46 /* WingMate_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMate_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB3025322306009E8C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		882EDB3225322306009E8C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		882EDB3425322306009E8C46 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		882EDB3725322306009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		882EDB392532230A009E8C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882EDB3C2532230A009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +78,33 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA9EFD222537793700A1ED1C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		FA9EFD262537793700A1ED1C /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FA9EFD33253779DC00A1ED1C /* String-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD34253779DC00A1ED1C /* NSObject-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD35253779DC00A1ED1C /* UIColor-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD36253779DC00A1ED1C /* UIView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD37253779DD00A1ED1C /* UIButton-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD38253779DD00A1ED1C /* UIApplication-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD39253779DD00A1ED1C /* UILabel-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3A253779DD00A1ED1C /* DateTime-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateTime-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3B253779DD00A1ED1C /* UIViewController-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3C253779DD00A1ED1C /* FileManager-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3D253779DD00A1ED1C /* URL-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3E253779DD00A1ED1C /* ImagePicker-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImagePicker-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD3F253779DD00A1ED1C /* UITableView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD40253779DD00A1ED1C /* Double-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double-Extension.swift"; sourceTree = "<group>"; };
+		FA9EFD5325377A3B00A1ED1C /* ApplicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
+		FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		FA9EFD7B25377BA200A1ED1C /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		FA9EFD7D25377BA200A1ED1C /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA9EFD8825377C4300A1ED1C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		FA9EFD8925377C4300A1ED1C /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		FA9EFDA925377D2100A1ED1C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA9EFDB125377DA200A1ED1C /* ParseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,31 +133,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52F82BD92535561D004AF1ED /* ParseBackend */ = {
-			isa = PBXGroup;
-			children = (
-				52F82BDA25355634004AF1ED /* Apis */,
-			);
-			path = ParseBackend;
-			sourceTree = "<group>";
-		};
-		52F82BDA25355634004AF1ED /* Apis */ = {
-			isa = PBXGroup;
-			children = (
-				52F82BDB25355680004AF1ED /* SignUp */,
-			);
-			path = Apis;
-			sourceTree = "<group>";
-		};
-		52F82BDB25355680004AF1ED /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				52F82BDC253556AD004AF1ED /* SignUp.swift */,
-				52F82BE42535587B004AF1ED /* SignIn.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
 		617C04E5A17BB69BA9445ECF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,14 +167,14 @@
 		882EDB2F25322306009E8C46 /* WingMate_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				52F82BD92535561D004AF1ED /* ParseBackend */,
-				882EDB3025322306009E8C46 /* AppDelegate.swift */,
-				882EDB3225322306009E8C46 /* SceneDelegate.swift */,
-				882EDB3425322306009E8C46 /* SignInViewController.swift */,
-				882EDB3625322306009E8C46 /* Main.storyboard */,
-				882EDB392532230A009E8C46 /* Assets.xcassets */,
-				882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */,
-				882EDB3E2532230A009E8C46 /* Info.plist */,
+				FA9EFD212537791700A1ED1C /* Utilities */,
+				FA9EFD7A25377B7800A1ED1C /* Base Classes */,
+				FA9EFD6025377A9600A1ED1C /* Network Layer */,
+				FA9EFD5925377A7700A1ED1C /* Application */,
+				FA9EFD5825377A6700A1ED1C /* Storyboards */,
+				FA9EFD5225377A1A00A1ED1C /* Managers */,
+				FA9EFD32253779BC00A1ED1C /* Extensions */,
+				FA9EFD20253774DE00A1ED1C /* View Controllers */,
 			);
 			path = WingMate_iOS;
 			sourceTree = "<group>";
@@ -180,6 +203,119 @@
 				09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD8425377BEA00A1ED1C /* Login VC */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA9EFD212537791700A1ED1C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD262537793700A1ED1C /* Enums.swift */,
+				FA9EFD242537793700A1ED1C /* GlobalVariables.swift */,
+				FA9EFD222537793700A1ED1C /* Strings.swift */,
+				FA9EFDB125377DA200A1ED1C /* ParseConfiguration.swift */,
+				FA9EFD232537793700A1ED1C /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		FA9EFD32253779BC00A1ED1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD3A253779DD00A1ED1C /* DateTime-Extension.swift */,
+				FA9EFD40253779DD00A1ED1C /* Double-Extension.swift */,
+				FA9EFD3C253779DD00A1ED1C /* FileManager-Extension.swift */,
+				FA9EFD3E253779DD00A1ED1C /* ImagePicker-Extension.swift */,
+				FA9EFD34253779DC00A1ED1C /* NSObject-Extension.swift */,
+				FA9EFD33253779DC00A1ED1C /* String-Extension.swift */,
+				FA9EFD38253779DD00A1ED1C /* UIApplication-Extension.swift */,
+				FA9EFD37253779DD00A1ED1C /* UIButton-Extension.swift */,
+				FA9EFD35253779DC00A1ED1C /* UIColor-Extension.swift */,
+				FA9EFD39253779DD00A1ED1C /* UILabel-Extension.swift */,
+				FA9EFD3F253779DD00A1ED1C /* UITableView-Extension.swift */,
+				FA9EFD36253779DC00A1ED1C /* UIView-Extension.swift */,
+				FA9EFD3B253779DD00A1ED1C /* UIViewController-Extension.swift */,
+				FA9EFD3D253779DD00A1ED1C /* URL-Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA9EFD5225377A1A00A1ED1C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD5325377A3B00A1ED1C /* ApplicationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FA9EFD5825377A6700A1ED1C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB3625322306009E8C46 /* Main.storyboard */,
+				882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FA9EFD5925377A7700A1ED1C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				882EDB3025322306009E8C46 /* AppDelegate.swift */,
+				882EDB392532230A009E8C46 /* Assets.xcassets */,
+				882EDB3E2532230A009E8C46 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		FA9EFD6025377A9600A1ED1C /* Network Layer */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD6225377AA900A1ED1C /* Parse API Manager */,
+				FA9EFD6125377AA000A1ED1C /* Data Models */,
+			);
+			path = "Network Layer";
+			sourceTree = "<group>";
+		};
+		FA9EFD6125377AA000A1ED1C /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFDA925377D2100A1ED1C /* User.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		FA9EFD6225377AA900A1ED1C /* Parse API Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */,
+				52F82BDC253556AD004AF1ED /* RegisterAPI.swift */,
+			);
+			path = "Parse API Manager";
+			sourceTree = "<group>";
+		};
+		FA9EFD7A25377B7800A1ED1C /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD7D25377BA200A1ED1C /* BaseCollectionViewCell.swift */,
+				FA9EFD7B25377BA200A1ED1C /* BaseTableViewCell.swift */,
+				FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */,
+			);
+			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		FA9EFD8425377BEA00A1ED1C /* Login VC */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD8825377C4300A1ED1C /* LoginVC.swift */,
+				FA9EFD8925377C4300A1ED1C /* LoginVC.xib */,
+			);
+			path = "Login VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +425,7 @@
 			files = (
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
+				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,11 +493,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				882EDB3525322306009E8C46 /* SignInViewController.swift in Sources */,
-				52F82BDD253556AD004AF1ED /* SignUp.swift in Sources */,
-				52F82BE52535587B004AF1ED /* SignIn.swift in Sources */,
+				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
+				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
+				FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */,
+				FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */,
+				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
+				FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */,
+				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
+				52F82BDD253556AD004AF1ED /* RegisterAPI.swift in Sources */,
+				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
+				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
+				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
+				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
+				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
+				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
+				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
+				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
+				FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */,
+				FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */,
+				FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */,
+				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
+				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
+				FA9EFDAA25377D2100A1ED1C /* User.swift in Sources */,
+				FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */,
 				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,
-				882EDB3325322306009E8C46 /* SceneDelegate.swift in Sources */,
+				FA9EFD272537793700A1ED1C /* Strings.swift in Sources */,
+				FA9EFD4B253779DD00A1ED1C /* URL-Extension.swift in Sources */,
+				FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */,
+				FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -521,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -537,16 +697,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WingMate_iOS/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -556,16 +718,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WingMate_iOS/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
