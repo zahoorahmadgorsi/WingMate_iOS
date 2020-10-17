@@ -6,7 +6,9 @@
 //
 
 class ValidationStrings {
-    static let kFirstNameEmpty = "Please enter your first name"
+    static let kEnterEmail = "Enter your email"
+    static let kInvalidEmail = "Invalid email"
+    static let kEnterPassword = "Enter your password"
 }
 
 class UserDefaultKeys {

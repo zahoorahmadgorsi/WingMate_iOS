@@ -15,6 +15,10 @@
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		FA285E94253B663100A5303E /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285E92253B663100A5303E /* SplashVC.swift */; };
+		FA285E95253B663100A5303E /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285E93253B663100A5303E /* SplashVC.xib */; };
+		FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */; };
+		FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Strings.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
 		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
@@ -42,6 +46,9 @@
 		FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFD8925377C4300A1ED1C /* LoginVC.xib */; };
 		FA9EFDAA25377D2100A1ED1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFDA925377D2100A1ED1C /* User.swift */; };
 		FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFDB125377DA200A1ED1C /* ParseConfiguration.swift */; };
+		FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */; };
+		FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */; };
+		FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +85,10 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA285E92253B663100A5303E /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		FA285E93253B663100A5303E /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
+		FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideLoginRegisterVC.swift; sourceTree = "<group>"; };
+		FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecideLoginRegisterVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -105,6 +116,9 @@
 		FA9EFD8925377C4300A1ED1C /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		FA9EFDA925377D2100A1ED1C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA9EFDB125377DA200A1ED1C /* ParseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConfiguration.swift; sourceTree = "<group>"; };
+		FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
+		FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +181,7 @@
 		882EDB2F25322306009E8C46 /* WingMate_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				FA9EFE64253B496C00A1ED1C /* Resources */,
 				FA9EFD212537791700A1ED1C /* Utilities */,
 				FA9EFD7A25377B7800A1ED1C /* Base Classes */,
 				FA9EFD6025377A9600A1ED1C /* Network Layer */,
@@ -205,10 +220,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA285E90253B660F00A5303E /* Login VC */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFD8825377C4300A1ED1C /* LoginVC.swift */,
+				FA9EFD8925377C4300A1ED1C /* LoginVC.xib */,
+				FA9EFD8425377BEA00A1ED1C /* Login Presenter */,
+			);
+			path = "Login VC";
+			sourceTree = "<group>";
+		};
+		FA285E91253B661A00A5303E /* Splash VC */ = {
+			isa = PBXGroup;
+			children = (
+				FA285E92253B663100A5303E /* SplashVC.swift */,
+				FA285E93253B663100A5303E /* SplashVC.xib */,
+			);
+			path = "Splash VC";
+			sourceTree = "<group>";
+		};
+		FA285EAF253B71FF00A5303E /* Decide Login Register */ = {
+			isa = PBXGroup;
+			children = (
+				FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */,
+				FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */,
+			);
+			path = "Decide Login Register";
+			sourceTree = "<group>";
+		};
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA9EFD8425377BEA00A1ED1C /* Login VC */,
+				FA285EAF253B71FF00A5303E /* Decide Login Register */,
+				FA285E91253B661A00A5303E /* Splash VC */,
+				FA285E90253B660F00A5303E /* Login VC */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -309,13 +354,21 @@
 			path = "Base Classes";
 			sourceTree = "<group>";
 		};
-		FA9EFD8425377BEA00A1ED1C /* Login VC */ = {
+		FA9EFD8425377BEA00A1ED1C /* Login Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				FA9EFD8825377C4300A1ED1C /* LoginVC.swift */,
-				FA9EFD8925377C4300A1ED1C /* LoginVC.xib */,
 			);
-			path = "Login VC";
+			path = "Login Presenter";
+			sourceTree = "<group>";
+		};
+		FA9EFE64253B496C00A1ED1C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */,
+				FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */,
+				FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,9 +477,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
+				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
+				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
+				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
+				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
+				FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,8 +562,10 @@
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
 				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
+				FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
+				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,

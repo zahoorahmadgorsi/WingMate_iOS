@@ -28,30 +28,6 @@ class ApplicationManager: NSObject {
     
     
     //MARK: -Methods
-    var activityController : UIActivityViewController?;
-    func shareItems(items: [Any], viewController: UIViewController) -> Void
-    {
-        let rootVC = viewController;
-        self.activityController = UIActivityViewController(activityItems: items, applicationActivities: nil);
-        self.activityController!.popoverPresentationController?.sourceView = rootVC.view;
-        //self.activityController!.excludedActivityTypes = [ UIActivityType.saveToCameraRoll ]
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let popover = UIPopoverController(contentViewController: self.activityController!);
-            let cFrame = CGRect(x: viewController.view.frame.size.width / 2, y: viewController.view.frame.size.height / 4, width: 0, height: 0);
-            
-            popover.present(from: cFrame, in: viewController.view, permittedArrowDirections: .unknown, animated: true);
-        }
-        else
-        {
-            
-            rootVC.present(self.activityController!, animated: true, completion: nil);
-        }
-        
-        self.activityController?.completionWithItemsHandler = {
-            (a,b,c,d) in
-        }
-    }
     
     
     //MARK: - User Defaults

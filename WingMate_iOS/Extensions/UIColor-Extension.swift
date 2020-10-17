@@ -9,36 +9,13 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    static var appThemeColor: UIColor {
-        return UIColor(named: "AppThemeColor") ?? .black
+
+    static var appThemeYellowColor: UIColor {
+        return UIColor(red:247/255, green:243/255 ,blue:217/255 , alpha:1)
     }
     
-    static var buttonColor: UIColor {
-        return UIColor(named: "ButtonColor") ?? .white
-    }
-    
-    static var gradientStartColor: UIColor {
-        return UIColor(red:84/255, green:130/255 ,blue:120/255 , alpha:1)
-    }
-    
-    static var gradientEndColor: UIColor {
-        return UIColor(red:42/255, green:127/255 ,blue:153/255 , alpha:1)
-    }
-    
-    static var lightGrayBorderColor: UIColor {
-        return UIColor(red:215/255, green:215/255 ,blue:215/255 , alpha:1)
-    }
-    
-    static var grayTextColor: UIColor {
-        return UIColor(red:82/255, green:82/255 ,blue:82/255 , alpha:1)
-    }
-    
-    static var appThemeGreenColor: UIColor {
-        return UIColor(red:42/255, green:127/255 ,blue:153/255 , alpha:1)
-    }
-    
-    static var calendarDisableGrayColor: UIColor {
-        return UIColor(red:180/255, green:180/255 ,blue:180/255 , alpha:1)
+    static var textFieldGrayBackgroundColor: UIColor {
+        return UIColor(red:245/255, green:245/255 ,blue:244/255 , alpha:1)
     }
     
     convenience init(red: Int, green: Int, blue: Int) {
