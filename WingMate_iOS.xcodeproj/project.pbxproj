@@ -19,6 +19,7 @@
 		FA285E95253B663100A5303E /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285E93253B663100A5303E /* SplashVC.xib */; };
 		FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */; };
 		FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */; };
+		FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EBD253B842400A5303E /* UITextField-Extension.swift */; };
 		FA9EFD272537793700A1ED1C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Strings.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
 		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
@@ -89,6 +90,7 @@
 		FA285E93253B663100A5303E /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideLoginRegisterVC.swift; sourceTree = "<group>"; };
 		FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecideLoginRegisterVC.xib; sourceTree = "<group>"; };
+		FA285EBD253B842400A5303E /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				FA9EFD36253779DC00A1ED1C /* UIView-Extension.swift */,
 				FA9EFD3B253779DD00A1ED1C /* UIViewController-Extension.swift */,
 				FA9EFD3D253779DD00A1ED1C /* URL-Extension.swift */,
+				FA285EBD253B842400A5303E /* UITextField-Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
 				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
+				FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */,
 				FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,

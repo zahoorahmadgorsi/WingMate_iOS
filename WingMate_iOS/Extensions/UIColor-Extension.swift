@@ -14,6 +14,10 @@ extension UIColor {
         return UIColor(red:247/255, green:243/255 ,blue:217/255 , alpha:1)
     }
     
+    static var appThemeRedColor: UIColor {
+        return UIColor(red:245/255, green:91/255 ,blue:85/255 , alpha:1)
+    }
+    
     static var textFieldGrayBackgroundColor: UIColor {
         return UIColor(red:245/255, green:245/255 ,blue:244/255 , alpha:1)
     }

@@ -39,6 +39,8 @@ class LoginVC: BaseViewController {
         self.cstHeightPasswordValidationView.constant = 0
         self.labelValidationEmail.text = ""
         self.labelValidationPassword.text = ""
+        self.textFieldEmail.setTextFieldBorderClear()
+        self.textFieldPassword.setTextFieldBorderClear()
     }
 
     //MARK: - Button Actions
@@ -56,14 +58,17 @@ class LoginVC: BaseViewController {
         if self.textFieldEmail.text == "" {
             self.labelValidationEmail.text = ValidationStrings.kEnterEmail
             self.cstHeightEmailValidationView.constant = 16
+            self.textFieldEmail.setTextFieldBorderRed()
         } else {
             if self.textFieldEmail.text!.isValidEmail == false {
                 self.labelValidationEmail.text = ValidationStrings.kInvalidEmail
                 self.cstHeightEmailValidationView.constant = 16
+                self.textFieldEmail.setTextFieldBorderRed()
             } else {
                 if self.textFieldPassword.text == "" {
                     self.labelValidationPassword.text = ValidationStrings.kEnterPassword
                     self.cstHeightPasswordValidationView.constant = 16
+                    self.textFieldPassword.setTextFieldBorderRed()
                 } else {
                     //hit api
                 }
