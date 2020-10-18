@@ -50,6 +50,8 @@
 		FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */; };
 		FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */; };
 		FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */; };
+		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
+		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
 		FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,7 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAF13CEC253C244300D1499A /* Forgot Password */,
 				FA285EAF253B71FF00A5303E /* Decide Login Register */,
 				FA285E91253B661A00A5303E /* Splash VC */,
 				FA285E90253B660F00A5303E /* Login VC */,
@@ -374,6 +379,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		FAF13CEC253C244300D1499A /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */,
+				FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -481,6 +495,7 @@
 			files = (
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
+				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
@@ -568,6 +583,7 @@
 				FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */,
 				FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
+				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,

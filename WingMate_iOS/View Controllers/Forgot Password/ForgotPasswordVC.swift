@@ -1,24 +1,19 @@
 //
-//  LoginVC.swift
+//  ForgotPasswordVC.swift
 //  WingMate_iOS
 //
-//  Created by Muneeb on 14/10/2020.
+//  Created by Muneeb on 18/10/2020.
 //
 
 import UIKit
 
-class LoginVC: BaseViewController {
+class ForgotPasswordVC: BaseViewController {
 
     //MARK: - Outlets & Constraints
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var viewValidationEmail: UIView!
     @IBOutlet weak var labelValidationEmail: UILabel!
-    @IBOutlet weak var viewValidationPassword: UIView!
-    @IBOutlet weak var labelValidationPassword: UILabel!
-    @IBOutlet weak var textFieldPassword: UITextField!
     @IBOutlet weak var cstHeightEmailValidationView: NSLayoutConstraint!
-    @IBOutlet weak var cstHeightPasswordValidationView: NSLayoutConstraint!
-    var shouldShowPassword = true
     
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
@@ -29,32 +24,17 @@ class LoginVC: BaseViewController {
     //MARK: - Helper Methods
     func setLayout() {
         self.cstHeightEmailValidationView.constant = 0
-        self.cstHeightPasswordValidationView.constant = 0
     }
     
     func resetValidationViews() {
         self.textFieldEmail.backgroundColor = UIColor.textFieldGrayBackgroundColor
-        self.textFieldPassword.backgroundColor = UIColor.textFieldGrayBackgroundColor
         self.cstHeightEmailValidationView.constant = 0
-        self.cstHeightPasswordValidationView.constant = 0
         self.labelValidationEmail.text = ""
-        self.labelValidationPassword.text = ""
         self.textFieldEmail.setTextFieldBorderClear()
-        self.textFieldPassword.setTextFieldBorderClear()
     }
 
     //MARK: - Button Actions
-    @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
-        self.view.endEditing(true)
-        self.navigationController?.pushViewController(ForgotPasswordVC(), animated: true)
-    }
-    
-    @IBAction func showPasswordButtonPressed(_ sender: Any) {
-        self.shouldShowPassword = !self.shouldShowPassword
-        self.textFieldPassword.isSecureTextEntry = self.shouldShowPassword
-    }
-    
-    @IBAction func loginButtonPressed(_ sender: Any) {
+    @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         if self.textFieldEmail.text == "" {
             self.labelValidationEmail.text = ValidationStrings.kEnterEmail
@@ -66,13 +46,7 @@ class LoginVC: BaseViewController {
                 self.cstHeightEmailValidationView.constant = 16
                 self.textFieldEmail.setTextFieldBorderRed()
             } else {
-                if self.textFieldPassword.text == "" {
-                    self.labelValidationPassword.text = ValidationStrings.kEnterPassword
-                    self.cstHeightPasswordValidationView.constant = 16
-                    self.textFieldPassword.setTextFieldBorderRed()
-                } else {
-                    //hit api
-                }
+                //hit api
             }
         }
     }
@@ -83,7 +57,7 @@ class LoginVC: BaseViewController {
     }
 }
 
-extension LoginVC: UITextFieldDelegate {
+extension ForgotPasswordVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.resetValidationViews()
         textField.backgroundColor = UIColor.appThemeYellowColor
