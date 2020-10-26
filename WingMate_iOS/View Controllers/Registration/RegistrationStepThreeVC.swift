@@ -1,13 +1,13 @@
 //
-//  LoginVC.swift
+//  RegistrationStepThreeVC.swift
 //  WingMate_iOS
 //
-//  Created by Muneeb on 14/10/2020.
+//  Created by Muneeb on 22/10/2020.
 //
 
 import UIKit
 
-class LoginVC: BaseViewController {
+class RegisterStepThreeVC: BaseViewController {
 
     //MARK: - Outlets & Constraints
     @IBOutlet weak var textFieldEmail: UITextField!
@@ -44,9 +44,8 @@ class LoginVC: BaseViewController {
     }
 
     //MARK: - Button Actions
-    @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
+    @IBAction func termsAndConditionsButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        self.navigationController?.pushViewController(ForgotPasswordVC(), animated: true)
     }
     
     @IBAction func showPasswordButtonPressed(_ sender: Any) {
@@ -54,7 +53,7 @@ class LoginVC: BaseViewController {
         self.textFieldPassword.isSecureTextEntry = self.shouldShowPassword
     }
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
+    @IBAction func submitButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         if self.textFieldEmail.text == "" {
             self.labelValidationEmail.text = ValidationStrings.kEnterEmail
@@ -89,7 +88,7 @@ class LoginVC: BaseViewController {
     }
 }
 
-extension LoginVC: UITextFieldDelegate {
+extension RegisterStepThreeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.resetValidationViews()
         textField.backgroundColor = UIColor.appThemeYellowColor

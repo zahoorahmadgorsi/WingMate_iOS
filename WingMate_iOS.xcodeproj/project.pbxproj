@@ -20,6 +20,8 @@
 		FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */; };
 		FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */; };
 		FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EBD253B842400A5303E /* UITextField-Extension.swift */; };
+		FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */; };
+		FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Strings.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
 		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
@@ -50,6 +52,12 @@
 		FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */; };
 		FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */; };
 		FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */; };
+		FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA016242546C9C6004D35BB /* EmailVerificationVC.swift */; };
+		FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016252546C9C6004D35BB /* EmailVerificationVC.xib */; };
+		FAC4941025403A13007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */; };
+		FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */; };
+		FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */; };
+		FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
 		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
 /* End PBXBuildFile section */
@@ -93,6 +101,8 @@
 		FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideLoginRegisterVC.swift; sourceTree = "<group>"; };
 		FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecideLoginRegisterVC.xib; sourceTree = "<group>"; };
 		FA285EBD253B842400A5303E /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
+		FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -123,6 +133,12 @@
 		FA9EFE65253B498400A1ED1C /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
 		FA9EFE6A253B4B8300A1ED1C /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		FAA016242546C9C6004D35BB /* EmailVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationVC.swift; sourceTree = "<group>"; };
+		FAA016252546C9C6004D35BB /* EmailVerificationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailVerificationVC.xib; sourceTree = "<group>"; };
+		FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
+		FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepTwoVC.xib; sourceTree = "<group>"; };
+		FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepThreeVC.swift; sourceTree = "<group>"; };
+		FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepThreeVC.xib; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,9 +270,24 @@
 			path = "Decide Login Register";
 			sourceTree = "<group>";
 		};
+		FA84AD3D253D937300E1C558 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */,
+				FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */,
+				FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */,
+				FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */,
+				FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */,
+				FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAA016232546C9AF004D35BB /* Email Verification */,
+				FA84AD3D253D937300E1C558 /* Registration */,
 				FAF13CEC253C244300D1499A /* Forgot Password */,
 				FA285EAF253B71FF00A5303E /* Decide Login Register */,
 				FA285E91253B661A00A5303E /* Splash VC */,
@@ -379,6 +410,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		FAA016232546C9AF004D35BB /* Email Verification */ = {
+			isa = PBXGroup;
+			children = (
+				FAA016242546C9C6004D35BB /* EmailVerificationVC.swift */,
+				FAA016252546C9C6004D35BB /* EmailVerificationVC.xib */,
+			);
+			path = "Email Verification";
+			sourceTree = "<group>";
+		};
 		FAF13CEC253C244300D1499A /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,8 +537,12 @@
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
+				FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
+				FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */,
+				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
+				FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
@@ -569,8 +613,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
+				FAC4941025403A13007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */,
 				FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */,
 				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
@@ -587,7 +633,9 @@
 				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
+				FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
+				FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
 				FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */,
 				FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */,
@@ -777,16 +825,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7ZVHSW7WF2;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.greencosa.allodoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "AlloDoctor_Dev_21-08-2020";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -798,16 +847,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7ZVHSW7WF2;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "WingMate.WingMate-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.greencosa.allodoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "AlloDoctor_Dev_21-08-2020";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

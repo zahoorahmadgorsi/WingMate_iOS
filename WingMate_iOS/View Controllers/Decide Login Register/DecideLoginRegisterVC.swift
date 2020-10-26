@@ -20,6 +20,6 @@ class DecideLoginRegisterVC: UIViewController {
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
-        
+        self.navigationController?.pushViewController(RegisterStepOneVC(), animated: true)
     }
 }

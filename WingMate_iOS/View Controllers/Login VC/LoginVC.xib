@@ -31,7 +31,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFu-Dt-4uv">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="507"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="513"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="gjs-Pz-0Td">
                                     <rect key="frame" x="20" y="20" width="72" height="72"/>
@@ -93,7 +93,7 @@
                                     <color key="textColor" name="Label Gray Text Color"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-ED-oYj">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="8+ Characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-ED-oYj">
                                     <rect key="frame" x="20" y="299" width="335" height="40"/>
                                     <color key="backgroundColor" name="Text Field Bg Color"/>
                                     <constraints>
@@ -209,7 +209,7 @@
                                 <constraint firstItem="0cp-XC-6z6" firstAttribute="leading" secondItem="gFu-Dt-4uv" secondAttribute="leading" constant="20" id="uKG-Ru-sTL"/>
                                 <constraint firstItem="gjs-Pz-0Td" firstAttribute="top" secondItem="gFu-Dt-4uv" secondAttribute="top" constant="20" id="vt0-y8-8xB"/>
                                 <constraint firstItem="9oX-he-5By" firstAttribute="top" secondItem="UIc-nC-Ej8" secondAttribute="bottom" constant="36" id="wcL-HF-Yzj"/>
-                                <constraint firstAttribute="bottom" secondItem="Ejg-5f-w2l" secondAttribute="bottom" constant="2" id="wif-Rb-egC"/>
+                                <constraint firstAttribute="bottom" secondItem="Ejg-5f-w2l" secondAttribute="bottom" constant="8" id="wif-Rb-egC"/>
                                 <constraint firstItem="9oX-he-5By" firstAttribute="centerX" secondItem="gFu-Dt-4uv" secondAttribute="centerX" id="x36-Iv-k6S"/>
                                 <constraint firstItem="AV1-xx-wJH" firstAttribute="top" secondItem="0cp-XC-6z6" secondAttribute="bottom" constant="8" id="xZt-Dq-uYa"/>
                                 <constraint firstItem="Ejg-5f-w2l" firstAttribute="centerX" secondItem="gFu-Dt-4uv" secondAttribute="centerX" id="zww-zL-Pmz"/>

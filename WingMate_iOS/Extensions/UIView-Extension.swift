@@ -114,5 +114,13 @@ extension UIView {
         return vw
     }
     
+    func setViewBorderRed() {
+        self.borderColor = UIColor.appThemeRedColor
+    }
+    
+    func setViewBorderGray() {
+        self.borderColor = UIColor.textFieldGrayBackgroundColor
+    }
+    
    
 }
