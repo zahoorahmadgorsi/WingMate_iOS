@@ -79,7 +79,10 @@ class LoginVC: BaseViewController {
                         //hit api
                         //hit api
                         LoginAPI.login(email: "danishnaeem57@gmail.com", password: "123456") { (user) in
-                            
+                            print(user.email)
+                            print(user.isAuthenticated)
+                            print(user.isNew)
+                            print(user.password)
                         } onFailure: { (dictionary) in
                             
                         }
