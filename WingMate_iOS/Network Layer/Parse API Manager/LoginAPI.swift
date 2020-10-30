@@ -10,30 +10,13 @@ import Parse
 
 struct LoginAPI {
     
-    func login(email: String, password: String) {
-//        PFUser.logInWithUsername(inBackground: email, password: password)
-        
+    static func login(email: String, password: String, onSuccess: @escaping (PFUser) -> Void, onFailure:@escaping (String) -> Void) {
         PFUser.logInWithUsername(inBackground: email, password: password) { (user, error) in
-            if error == nil {
-                
-            }
-            else {
-                print(user)
+            if let user_temp = user {
+                onSuccess(user_temp)
+            } else {
+                onFailure(error?.localizedDescription ?? "Action failed. Please try again.")
             }
         }
-        
-//        logInWithUsername(inBackground: email, password: password) { (user: PFUser?, error: NSError?) in
-//
-//        }
-        
-//        PFUser.logInWithUsernameInBackground("<userName>", password:"<password>") {
-//          (user: PFUser?, error: NSError?) -> Void in
-//          if user != nil {
-//            // Do stuff after successful login.
-//          } else {
-//            // The login failed. Check error to see why.
-//          }
-//        }
     }
-    
 }

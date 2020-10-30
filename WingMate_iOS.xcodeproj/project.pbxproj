@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
+		52A35B54254C9F0D00D1A56A /* ForgotPasswordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */; };
 		52F82BDD253556AD004AF1ED /* RegisterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BDC253556AD004AF1ED /* RegisterAPI.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
 		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WingMate_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordAPI.swift; sourceTree = "<group>"; };
 		52F82BDC253556AD004AF1ED /* RegisterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPI.swift; sourceTree = "<group>"; };
 		70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.release.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.debug.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 			children = (
 				FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */,
 				52F82BDC253556AD004AF1ED /* RegisterAPI.swift */,
+				52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */,
 			);
 			path = "Parse API Manager";
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A35B54254C9F0D00D1A56A /* ForgotPasswordAPI.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,

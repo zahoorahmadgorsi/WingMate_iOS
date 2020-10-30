@@ -35,11 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureParse() {
-        _ = ParseClientConfiguration {
+        let parseConfig = ParseClientConfiguration {
             $0.applicationId = kApplicationId
             $0.clientKey = kClientKey
             $0.server = kServer
         }
+        Parse.initialize(with: parseConfig)
+
     }
     
     //MARK: - Decide RootViewController

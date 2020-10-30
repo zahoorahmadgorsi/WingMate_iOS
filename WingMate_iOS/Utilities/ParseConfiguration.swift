@@ -7,6 +7,6 @@
 
 import Foundation
 
-let kApplicationId = "14VUBC2wAyiUFwG552jL9TzgyJ2pWkXNNx74pThr"
-let kClientKey = "db0Yi0C8T7gt8zm1ICT3VqFLGMrdBlH9fm8nRlOJ"
+let kApplicationId = "D7Vyy11JKs7lpEpMwAHxKbRV0RAdFWI5SzEjZ8r3"
+let kClientKey = "1QFZvwT0KYo3VYCQ9QhTgQGMejxXXK8rlA8a8W5C"
 let kServer = "https://parseapi.back4app.com"

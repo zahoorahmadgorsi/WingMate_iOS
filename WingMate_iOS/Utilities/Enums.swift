@@ -17,6 +17,11 @@ enum DeviceType: String {
     case none = "none"
 }
 
+enum Gender: String {
+    case male = "male"
+    case female = "female"
+}
+
 enum LanguageType: String {
     case english = "en"
 }

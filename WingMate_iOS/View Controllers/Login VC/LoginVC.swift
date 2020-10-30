@@ -77,6 +77,12 @@ class LoginVC: BaseViewController {
                         self.textFieldPassword.setTextFieldBorderRed()
                     } else {
                         //hit api
+                        //hit api
+                        LoginAPI.login(email: "danishnaeem57@gmail.com", password: "123456") { (user) in
+                            
+                        } onFailure: { (dictionary) in
+                            
+                        }
                     }
                 }
             }
