@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuestionnaireSimpleOptionTableViewCell" rowHeight="62" id="KGk-i7-Jjw" customClass="QuestionnaireSimpleOptionTableViewCell" customModule="WingMate_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="868-cp-xXs">
+                        <rect key="frame" x="2" y="0.0" width="90.5" height="46"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Option" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jua-Ej-ZSW">
+                                <rect key="frame" x="24" y="8" width="42.5" height="30"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                <color key="textColor" name="Purple Theme Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="Yellow Theme Color"/>
+                        <constraints>
+                            <constraint firstItem="Jua-Ej-ZSW" firstAttribute="top" secondItem="868-cp-xXs" secondAttribute="top" constant="8" id="8is-Aj-GoL"/>
+                            <constraint firstItem="Jua-Ej-ZSW" firstAttribute="leading" secondItem="868-cp-xXs" secondAttribute="leading" constant="24" id="TnN-fe-SUz"/>
+                            <constraint firstAttribute="trailing" secondItem="Jua-Ej-ZSW" secondAttribute="trailing" constant="24" id="dhT-gl-67e"/>
+                            <constraint firstAttribute="bottom" secondItem="Jua-Ej-ZSW" secondAttribute="bottom" constant="8" id="fYx-Ei-D58"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="868-cp-xXs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="8dh-ko-ICh"/>
+                    <constraint firstAttribute="bottom" secondItem="868-cp-xXs" secondAttribute="bottom" constant="16" id="LFH-Bo-7Kn"/>
+                    <constraint firstItem="868-cp-xXs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MyH-Y8-PKt"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="868-cp-xXs" secondAttribute="trailing" constant="2" id="fSL-vh-JO7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="labelOption" destination="Jua-Ej-ZSW" id="BwB-Sd-Qi5"/>
+                <outlet property="viewBgOption" destination="868-cp-xXs" id="AAK-ks-t9D"/>
+            </connections>
+            <point key="canvasLocation" x="-97.101449275362327" y="79.017857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Purple Theme Color">
+            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Yellow Theme Color">
+            <color red="0.96899998188018799" green="0.95300000905990601" blue="0.85100001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

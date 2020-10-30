@@ -54,10 +54,16 @@
 		FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */; };
 		FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA016242546C9C6004D35BB /* EmailVerificationVC.swift */; };
 		FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016252546C9C6004D35BB /* EmailVerificationVC.xib */; };
+		FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA0162F25471818004D35BB /* QuestionnairesVC.swift */; };
+		FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA0163025471818004D35BB /* QuestionnairesVC.xib */; };
+		FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */; };
+		FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */; };
 		FAC4941025403A13007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */; };
 		FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */; };
 		FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */; };
 		FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */; };
+		FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */; };
+		FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
 		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
 /* End PBXBuildFile section */
@@ -135,10 +141,16 @@
 		FA9EFE6B253B4B8300A1ED1C /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		FAA016242546C9C6004D35BB /* EmailVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationVC.swift; sourceTree = "<group>"; };
 		FAA016252546C9C6004D35BB /* EmailVerificationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailVerificationVC.xib; sourceTree = "<group>"; };
+		FAA0162F25471818004D35BB /* QuestionnairesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnairesVC.swift; sourceTree = "<group>"; };
+		FAA0163025471818004D35BB /* QuestionnairesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnairesVC.xib; sourceTree = "<group>"; };
+		FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireSimpleOptionTableViewCell.swift; sourceTree = "<group>"; };
+		FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireSimpleOptionTableViewCell.xib; sourceTree = "<group>"; };
 		FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
 		FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepTwoVC.xib; sourceTree = "<group>"; };
 		FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepThreeVC.swift; sourceTree = "<group>"; };
 		FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepThreeVC.xib; sourceTree = "<group>"; };
+		FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountryOptionTableViewCell.swift; sourceTree = "<group>"; };
+		FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireCountryOptionTableViewCell.xib; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +298,7 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAA0162E2547106E004D35BB /* Questionnaires */,
 				FAA016232546C9AF004D35BB /* Email Verification */,
 				FA84AD3D253D937300E1C558 /* Registration */,
 				FAF13CEC253C244300D1499A /* Forgot Password */,
@@ -419,6 +432,43 @@
 			path = "Email Verification";
 			sourceTree = "<group>";
 		};
+		FAA0162E2547106E004D35BB /* Questionnaires */ = {
+			isa = PBXGroup;
+			children = (
+				FAA0162F25471818004D35BB /* QuestionnairesVC.swift */,
+				FAA0163025471818004D35BB /* QuestionnairesVC.xib */,
+				FAA0163625471FC8004D35BB /* Questionnaire Table View Cells */,
+			);
+			path = Questionnaires;
+			sourceTree = "<group>";
+		};
+		FAA0163625471FC8004D35BB /* Questionnaire Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAC77CAB254BF59F004ADA74 /* Country Option Cell */,
+				FAC77CA4254BF57E004ADA74 /* Simple Option Cell */,
+			);
+			path = "Questionnaire Table View Cells";
+			sourceTree = "<group>";
+		};
+		FAC77CA4254BF57E004ADA74 /* Simple Option Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */,
+				FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */,
+			);
+			path = "Simple Option Cell";
+			sourceTree = "<group>";
+		};
+		FAC77CAB254BF59F004ADA74 /* Country Option Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */,
+				FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */,
+			);
+			path = "Country Option Cell";
+			sourceTree = "<group>";
+		};
 		FAF13CEC253C244300D1499A /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,16 +586,19 @@
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
+				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
+				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
 				FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
+				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
 				FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,6 +686,7 @@
 				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
+				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
 				FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */,
@@ -641,7 +695,9 @@
 				FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */,
 				FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */,
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
+				FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */,
 				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
+				FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */,
 				FA9EFDAA25377D2100A1ED1C /* User.swift in Sources */,
 				FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */,
 				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,

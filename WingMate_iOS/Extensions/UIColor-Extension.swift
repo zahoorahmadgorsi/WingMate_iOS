@@ -10,16 +10,21 @@ import UIKit
 
 extension UIColor {
 
-    static var appThemeYellowColor: UIColor {
-        return UIColor(red:247/255, green:243/255 ,blue:217/255 , alpha:1)
-    }
     
     static var appThemeRedColor: UIColor {
-        return UIColor(red:245/255, green:91/255 ,blue:85/255 , alpha:1)
+        return UIColor(named: "RedThemeColor") ?? .black
+    }
+    
+    static var appThemeYellowColor: UIColor {
+        return UIColor(named: "YellowThemeColor") ?? .black
+    }
+    
+    static var appThemePurpleColor: UIColor {
+        return UIColor(named: "PurpleThemeColor") ?? .black
     }
     
     static var textFieldGrayBackgroundColor: UIColor {
-        return UIColor(red:245/255, green:245/255 ,blue:244/255 , alpha:1)
+        return UIColor(named: "TextFieldBgColor") ?? .black
     }
     
     convenience init(red: Int, green: Int, blue: Int) {
