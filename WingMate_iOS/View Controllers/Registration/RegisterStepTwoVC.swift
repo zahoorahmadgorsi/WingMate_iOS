@@ -10,6 +10,7 @@ import UIKit
 class RegisterStepTwoVC: BaseViewController {
 
     //MARK: - Outlets & Constraints
+    @IBOutlet weak var labelNickValidationMsg: UILabel!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var viewMale: UIView!
     @IBOutlet weak var viewFemale: UIView!
@@ -17,10 +18,12 @@ class RegisterStepTwoVC: BaseViewController {
     @IBOutlet weak var labelValidationName: UILabel!
     @IBOutlet weak var cstHeightNameValidationView: NSLayoutConstraint!
     var gender = 1
+    var registerPresenter = RegisterPresenter()
     
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerPresenter.attach(vc: self)
         self.setLayout()
     }
     
@@ -37,13 +40,7 @@ class RegisterStepTwoVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        if self.textFieldName.text == "" {
-            self.cstHeightNameValidationView.constant = 16
-            self.textFieldName.setTextFieldBorderRed()
-        } else {
-            //hit api
-            self.navigationController?.pushViewController(RegisterStepThreeVC(), animated: true)
-        }
+        self.registerPresenter.validateFieldsOnStepTwo(nickname: self.textFieldName.text ?? "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -82,4 +79,20 @@ extension RegisterStepTwoVC: UITextFieldDelegate {
         return true
     }
     
+}
+
+extension RegisterStepTwoVC: RegisterDelegate {
+    func register(isSuccess: Bool, nicknameValidationFailedMsg: String) {
+        if isSuccess {
+            self.navigationController?.pushViewController(RegisterStepThreeVC(gender: self.gender, nickName: self.textFieldName.text ?? ""), animated: true)
+        } else {
+            self.labelValidationName.text = nicknameValidationFailedMsg
+            self.cstHeightNameValidationView.constant = 16
+            self.textFieldName.setTextFieldBorderRed()
+        }
+    }
+    func register(emailValidationFailedMsg: String) {}
+    func register(passwordValidationFailedMsg: String) {}
+    func register(didUserRegistered: Bool, msg: String) {}
+    func register(validationSuccessStepThree: Bool) {}
 }

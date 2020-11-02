@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import NotificationBannerSwift
 
 class Utilities {
     
@@ -54,6 +55,23 @@ class Utilities {
         }
         
         return formatter.string(from: duration) ?? ""
+    }
+    
+    //MARK: - Growing Notification Banner
+    func showErrorBanner(title: String? = "\nError", msg: String) {
+        var banner = GrowingNotificationBanner()
+        banner.dismiss()
+        banner = GrowingNotificationBanner(title: title, subtitle: msg, style: .danger)
+        banner.haptic = .heavy
+        banner.show()
+    }
+    
+    func showSuccessBanner(title: String? = "\nSuccess", msg: String) {
+        var banner = GrowingNotificationBanner()
+        banner.dismiss()
+        banner = GrowingNotificationBanner(title: title, subtitle: msg, style: .success)
+        banner.haptic = .heavy
+        banner.show()
     }
 }
 

@@ -19,11 +19,15 @@ class LoginVC: BaseViewController {
     @IBOutlet weak var cstHeightEmailValidationView: NSLayoutConstraint!
     @IBOutlet weak var cstHeightPasswordValidationView: NSLayoutConstraint!
     var shouldShowPassword = true
+    var loginPresenter = LoginPresenter()
     
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginPresenter.attach(vc: self)
         self.setLayout()
+//        self.textFieldEmail.text = "danishnaeem57@gmail.com"
+//        self.textFieldPassword.text = "123456789"
     }
     
     //MARK: - Helper Methods
@@ -56,40 +60,7 @@ class LoginVC: BaseViewController {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        if self.textFieldEmail.text == "" {
-            self.labelValidationEmail.text = ValidationStrings.kEnterEmail
-            self.cstHeightEmailValidationView.constant = 16
-            self.textFieldEmail.setTextFieldBorderRed()
-        } else {
-            if self.textFieldEmail.text!.isValidEmail == false {
-                self.labelValidationEmail.text = ValidationStrings.kInvalidEmail
-                self.cstHeightEmailValidationView.constant = 16
-                self.textFieldEmail.setTextFieldBorderRed()
-            } else {
-                if self.textFieldPassword.text == "" {
-                    self.labelValidationPassword.text = ValidationStrings.kEnterPassword
-                    self.cstHeightPasswordValidationView.constant = 16
-                    self.textFieldPassword.setTextFieldBorderRed()
-                } else {
-                    if self.textFieldPassword.text!.count <= 8 {
-                        self.labelValidationPassword.text = ValidationStrings.kPasswordMinimumLength
-                        self.cstHeightPasswordValidationView.constant = 16
-                        self.textFieldPassword.setTextFieldBorderRed()
-                    } else {
-                        //hit api
-                        //hit api
-                        LoginAPI.login(email: "danishnaeem57@gmail.com", password: "123456") { (user) in
-                            print(user.email)
-                            print(user.isAuthenticated)
-                            print(user.isNew)
-                            print(user.password)
-                        } onFailure: { (dictionary) in
-                            
-                        }
-                    }
-                }
-            }
-        }
+        self.loginPresenter.checkForValidations(email: self.textFieldEmail.text ?? "", password: self.textFieldPassword.text ?? "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -111,6 +82,29 @@ extension LoginVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+    
+}
+
+extension LoginVC: LoginDelegate {
+    func login(emailValidationFailedMsg: String) {
+        self.labelValidationEmail.text = emailValidationFailedMsg
+        self.cstHeightEmailValidationView.constant = 16
+        self.textFieldEmail.setTextFieldBorderRed()
+    }
+    
+    func login(passwordValidationFailedMsg: String) {
+        self.labelValidationPassword.text = passwordValidationFailedMsg
+        self.cstHeightPasswordValidationView.constant = 16
+        self.textFieldPassword.setTextFieldBorderRed()
+    }
+    
+    func login(didUserLoggedIn: Bool, msg: String) {
+        if didUserLoggedIn {
+            print(msg)
+        } else {
+            print(msg)
+        }
     }
     
 }

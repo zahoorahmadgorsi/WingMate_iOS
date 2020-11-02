@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class RegisterStepThreeVC: BaseViewController {
 
@@ -19,10 +20,20 @@ class RegisterStepThreeVC: BaseViewController {
     @IBOutlet weak var cstHeightEmailValidationView: NSLayoutConstraint!
     @IBOutlet weak var cstHeightPasswordValidationView: NSLayoutConstraint!
     var shouldShowPassword = true
+    var genderType = -1
+    var nickName = ""
+    var registerPresenter = RegisterPresenter()
+    
+    convenience init(gender: Int, nickName: String) {
+        self.init()
+        self.genderType = gender
+        self.nickName = nickName
+    }
     
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerPresenter.attach(vc: self)
         self.setLayout()
     }
     
@@ -55,32 +66,7 @@ class RegisterStepThreeVC: BaseViewController {
     
     @IBAction func submitButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        if self.textFieldEmail.text == "" {
-            self.labelValidationEmail.text = ValidationStrings.kEnterEmail
-            self.cstHeightEmailValidationView.constant = 16
-            self.textFieldEmail.setTextFieldBorderRed()
-        } else {
-            if self.textFieldEmail.text!.isValidEmail == false {
-                self.labelValidationEmail.text = ValidationStrings.kInvalidEmail
-                self.cstHeightEmailValidationView.constant = 16
-                self.textFieldEmail.setTextFieldBorderRed()
-            } else {
-                if self.textFieldPassword.text == "" {
-                    self.labelValidationPassword.text = ValidationStrings.kEnterPassword
-                    self.cstHeightPasswordValidationView.constant = 16
-                    self.textFieldPassword.setTextFieldBorderRed()
-                } else {
-                    if self.textFieldPassword.text!.count <= 8 {
-                        self.labelValidationPassword.text = ValidationStrings.kPasswordMinimumLength
-                        self.cstHeightPasswordValidationView.constant = 16
-                        self.textFieldPassword.setTextFieldBorderRed()
-                    } else {
-                        //hit api
-                        self.navigationController?.pushViewController(EmailVerificationVC(), animated: true)
-                    }
-                }
-            }
-        }
+        self.registerPresenter.validateFieldsOnStepThree(email: self.textFieldEmail.text ?? "", password: self.textFieldPassword.text ?? "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -104,4 +90,45 @@ extension RegisterStepThreeVC: UITextFieldDelegate {
         return true
     }
     
+}
+
+extension RegisterStepThreeVC: RegisterDelegate {
+    func register(isSuccess: Bool, nicknameValidationFailedMsg: String) {}
+    
+    func register(emailValidationFailedMsg: String) {
+        self.labelValidationEmail.text = emailValidationFailedMsg
+        self.cstHeightEmailValidationView.constant = 16
+        self.textFieldEmail.setTextFieldBorderRed()
+    }
+    
+    func register(passwordValidationFailedMsg: String) {
+        self.labelValidationPassword.text = passwordValidationFailedMsg
+        self.cstHeightPasswordValidationView.constant = 16
+        self.textFieldPassword.setTextFieldBorderRed()
+    }
+    
+    func register(validationSuccessStepThree: Bool) {
+        if validationSuccessStepThree {
+            let user = PFUser()
+            user.email = self.textFieldEmail.text ?? ""
+            user.password = self.textFieldPassword.text ?? ""
+            user.username = self.textFieldEmail.text ?? ""
+            user.setValue(self.nickName, forKey: "nick")
+            user.setValue(false, forKey: "isPaidUser")
+//            user.setValue(true, forKey: "questionnaireFilled")
+            user.setValue(false, forKey: "isMandatoryQuestionnairesFilled")
+            user.setValue(false, forKey: "isOptionalQuestionnairesFilled")
+            user.setValue(self.genderType == 1 ? "male" : "female", forKey: "gender")
+            self.registerPresenter.registerAPI(user: PFUser())
+        }
+    }
+    
+    func register(didUserRegistered: Bool, msg: String) {
+        if didUserRegistered {
+            Utilities.shared.showSuccessBanner(msg: msg)
+            self.navigationController?.popToRootViewController(animated: true)
+        } else {
+            Utilities.shared.showErrorBanner(msg: msg)
+        }
+    }
 }

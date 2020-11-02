@@ -35,7 +35,14 @@ class BaseViewController: UIViewController {
         }
     }
     
-    
+    func popToController(vc: AnyClass) {
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: vc) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
+    }
     
 
 }

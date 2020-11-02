@@ -11,6 +11,9 @@ class ValidationStrings {
     static let kEnterPassword = "Enter your password"
     static let kPasswordMinimumLength = "Password should be more than 8 characters"
     static let kEnterName = "Enter your name"
+    static let kEnterNickname = "Please type your name or nick name"
+    static let kEmailSentToVerifyUser = "Email activation link has been sent to your email"
+    static let kEmailSentToResetPassword = "Reset password link sent to your email"
 }
 
 class UserDefaultKeys {

@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
-		52A35B54254C9F0D00D1A56A /* ForgotPasswordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */; };
-		52F82BDD253556AD004AF1ED /* RegisterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F82BDC253556AD004AF1ED /* RegisterAPI.swift */; };
+		52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
 		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
 		882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB392532230A009E8C46 /* Assets.xcassets */; };
@@ -21,6 +20,9 @@
 		FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */; };
 		FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */; };
 		FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EBD253B842400A5303E /* UITextField-Extension.swift */; };
+		FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB48525501DE1002465B3 /* LoginPresenter.swift */; };
+		FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */; };
+		FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */; };
 		FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */; };
 		FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Strings.swift */; };
@@ -42,7 +44,6 @@
 		FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD3F253779DD00A1ED1C /* UITableView-Extension.swift */; };
 		FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD40253779DD00A1ED1C /* Double-Extension.swift */; };
 		FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD5325377A3B00A1ED1C /* ApplicationManager.swift */; };
-		FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */; };
 		FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7B25377BA200A1ED1C /* BaseTableViewCell.swift */; };
 		FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */; };
 		FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD7D25377BA200A1ED1C /* BaseCollectionViewCell.swift */; };
@@ -88,8 +89,7 @@
 
 /* Begin PBXFileReference section */
 		09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WingMate_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordAPI.swift; sourceTree = "<group>"; };
-		52F82BDC253556AD004AF1ED /* RegisterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPI.swift; sourceTree = "<group>"; };
+		52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPIManager.swift; sourceTree = "<group>"; };
 		70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.release.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8668EF29CD881BF614A1E3F9 /* Pods-WingMate_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.debug.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		882EDB2D25322306009E8C46 /* WingMate_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMate_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +109,9 @@
 		FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideLoginRegisterVC.swift; sourceTree = "<group>"; };
 		FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecideLoginRegisterVC.xib; sourceTree = "<group>"; };
 		FA285EBD253B842400A5303E /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		FA5DB48525501DE1002465B3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
+		FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -130,7 +133,6 @@
 		FA9EFD3F253779DD00A1ED1C /* UITableView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView-Extension.swift"; sourceTree = "<group>"; };
 		FA9EFD40253779DD00A1ED1C /* Double-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double-Extension.swift"; sourceTree = "<group>"; };
 		FA9EFD5325377A3B00A1ED1C /* ApplicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
-		FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		FA9EFD7B25377BA200A1ED1C /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		FA9EFD7D25377BA200A1ED1C /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -259,9 +261,9 @@
 		FA285E90253B660F00A5303E /* Login VC */ = {
 			isa = PBXGroup;
 			children = (
+				FA5DB48525501DE1002465B3 /* LoginPresenter.swift */,
 				FA9EFD8825377C4300A1ED1C /* LoginVC.swift */,
 				FA9EFD8925377C4300A1ED1C /* LoginVC.xib */,
-				FA9EFD8425377BEA00A1ED1C /* Login Presenter */,
 			);
 			path = "Login VC";
 			sourceTree = "<group>";
@@ -293,6 +295,7 @@
 				FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */,
 				FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */,
 				FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */,
+				FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -392,9 +395,7 @@
 		FA9EFD6225377AA900A1ED1C /* Parse API Manager */ = {
 			isa = PBXGroup;
 			children = (
-				FA9EFD6F25377B4F00A1ED1C /* LoginAPI.swift */,
-				52F82BDC253556AD004AF1ED /* RegisterAPI.swift */,
-				52A35B53254C9F0D00D1A56A /* ForgotPasswordAPI.swift */,
+				52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */,
 			);
 			path = "Parse API Manager";
 			sourceTree = "<group>";
@@ -407,13 +408,6 @@
 				FA9EFD7C25377BA200A1ED1C /* BaseVC.swift */,
 			);
 			path = "Base Classes";
-			sourceTree = "<group>";
-		};
-		FA9EFD8425377BEA00A1ED1C /* Login Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Login Presenter";
 			sourceTree = "<group>";
 		};
 		FA9EFE64253B496C00A1ED1C /* Resources */ = {
@@ -476,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */,
+				FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */,
 				FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */,
 			);
 			path = "Forgot Password";
@@ -669,7 +664,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A35B54254C9F0D00D1A56A /* ForgotPasswordAPI.swift in Sources */,
+				FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */,
+				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
@@ -679,7 +675,6 @@
 				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
 				FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */,
 				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
-				52F82BDD253556AD004AF1ED /* RegisterAPI.swift in Sources */,
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
 				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
@@ -687,7 +682,6 @@
 				FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
-				FA9EFD7025377B4F00A1ED1C /* LoginAPI.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
@@ -696,6 +690,7 @@
 				FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
 				FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */,
+				FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */,
 				FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */,
 				FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */,
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
@@ -706,6 +701,7 @@
 				FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */,
 				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,
 				FA9EFD272537793700A1ED1C /* Strings.swift in Sources */,
+				FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */,
 				FA9EFD4B253779DD00A1ED1C /* URL-Extension.swift in Sources */,
 				FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */,
 				FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */,

@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterStepTwoVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="cstHeightNameValidationView" destination="gCj-sn-Wzq" id="0aP-Hj-uIk"/>
+                <outlet property="labelNickValidationMsg" destination="FwY-dG-KQi" id="ZfG-Nm-XO9"/>
                 <outlet property="labelValidationName" destination="FwY-dG-KQi" id="rrS-zu-dd0"/>
                 <outlet property="textFieldName" destination="oIb-hg-xjF" id="tu8-cH-NS9"/>
                 <outlet property="view" destination="DDa-EY-YcI" id="5Nf-tB-8Hy"/>

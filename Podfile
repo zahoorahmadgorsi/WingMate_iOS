@@ -9,4 +9,5 @@ target 'WingMate_iOS' do
   pod 'SDWebImage'
   pod 'IQKeyboardManager'
   pod 'AAPickerView'
+  pod 'NotificationBannerSwift'
 end

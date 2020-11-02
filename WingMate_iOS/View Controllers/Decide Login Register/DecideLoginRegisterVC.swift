@@ -16,7 +16,7 @@ class DecideLoginRegisterVC: UIViewController {
     
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(QuestionnairesVC(), animated: true)
+        self.navigationController?.pushViewController(LoginVC(), animated: true)
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {

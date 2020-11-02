@@ -14,10 +14,12 @@ class ForgotPasswordVC: BaseViewController {
     @IBOutlet weak var viewValidationEmail: UIView!
     @IBOutlet weak var labelValidationEmail: UILabel!
     @IBOutlet weak var cstHeightEmailValidationView: NSLayoutConstraint!
+    let forgotPasswordPresenter = ForgotPasswordPresenter()
     
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.forgotPasswordPresenter.attach(vc: self)
         self.setLayout()
     }
     
@@ -36,19 +38,7 @@ class ForgotPasswordVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        if self.textFieldEmail.text == "" {
-            self.labelValidationEmail.text = ValidationStrings.kEnterEmail
-            self.cstHeightEmailValidationView.constant = 16
-            self.textFieldEmail.setTextFieldBorderRed()
-        } else {
-            if self.textFieldEmail.text!.isValidEmail == false {
-                self.labelValidationEmail.text = ValidationStrings.kInvalidEmail
-                self.cstHeightEmailValidationView.constant = 16
-                self.textFieldEmail.setTextFieldBorderRed()
-            } else {
-                //hit api
-            }
-        }
+        self.forgotPasswordPresenter.checkForValidations(email: self.textFieldEmail.text ?? "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -70,6 +60,23 @@ extension ForgotPasswordVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+}
+
+extension ForgotPasswordVC: ForgotPasswordDelegate {
+    func forgotPassword(emailValidationFailedMsg: String) {
+        self.labelValidationEmail.text = emailValidationFailedMsg
+        self.cstHeightEmailValidationView.constant = 16
+        self.textFieldEmail.setTextFieldBorderRed()
+    }
+    
+    func forgotPassword(isSuccess: Bool, msg: String) {
+        if isSuccess {
+            Utilities.shared.showSuccessBanner(msg: msg)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            Utilities.shared.showErrorBanner(msg: msg)
+        }
     }
     
 }

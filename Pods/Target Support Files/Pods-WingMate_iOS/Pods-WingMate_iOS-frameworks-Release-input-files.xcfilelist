@@ -2,6 +2,9 @@ ${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks
 ${BUILT_PRODUCTS_DIR}/AAPickerView/AAPickerView.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
+${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
+${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
