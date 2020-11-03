@@ -94,6 +94,7 @@ extension RegisterStepThreeVC: UITextFieldDelegate {
 
 extension RegisterStepThreeVC: RegisterDelegate {
     func register(isSuccess: Bool, nicknameValidationFailedMsg: String) {}
+    func register(didUserRegistered: Bool, msg: String) {}
     
     func register(emailValidationFailedMsg: String) {
         self.labelValidationEmail.text = emailValidationFailedMsg
@@ -109,6 +110,7 @@ extension RegisterStepThreeVC: RegisterDelegate {
     
     func register(validationSuccessStepThree: Bool) {
         if validationSuccessStepThree {
+            //make user object and pass to terms and conditions
             let user = PFUser()
             user.email = self.textFieldEmail.text ?? ""
             user.password = self.textFieldPassword.text ?? ""
@@ -119,16 +121,9 @@ extension RegisterStepThreeVC: RegisterDelegate {
             user.setValue(false, forKey: "isMandatoryQuestionnairesFilled")
             user.setValue(false, forKey: "isOptionalQuestionnairesFilled")
             user.setValue(self.genderType == 1 ? "male" : "female", forKey: "gender")
-            self.registerPresenter.registerAPI(user: PFUser())
+            self.navigationController?.pushViewController(TermsAndConditionsVC(user: user), animated: true)
         }
     }
     
-    func register(didUserRegistered: Bool, msg: String) {
-        if didUserRegistered {
-            Utilities.shared.showSuccessBanner(msg: msg)
-            self.navigationController?.popToRootViewController(animated: true)
-        } else {
-            Utilities.shared.showErrorBanner(msg: msg)
-        }
-    }
+    
 }

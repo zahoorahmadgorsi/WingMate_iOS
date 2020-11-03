@@ -15,10 +15,12 @@
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */; };
+		FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */; };
 		FA285E94253B663100A5303E /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285E92253B663100A5303E /* SplashVC.swift */; };
 		FA285E95253B663100A5303E /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285E93253B663100A5303E /* SplashVC.xib */; };
-		FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */; };
-		FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */; };
+		FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* PreLoginVC.swift */; };
+		FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* PreLoginVC.xib */; };
 		FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EBD253B842400A5303E /* UITextField-Extension.swift */; };
 		FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB48525501DE1002465B3 /* LoginPresenter.swift */; };
 		FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */; };
@@ -104,10 +106,12 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
+		FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionsVC.xib; sourceTree = "<group>"; };
 		FA285E92253B663100A5303E /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		FA285E93253B663100A5303E /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
-		FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideLoginRegisterVC.swift; sourceTree = "<group>"; };
-		FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecideLoginRegisterVC.xib; sourceTree = "<group>"; };
+		FA285EB0253B721600A5303E /* PreLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginVC.swift; sourceTree = "<group>"; };
+		FA285EB1253B721600A5303E /* PreLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreLoginVC.xib; sourceTree = "<group>"; };
 		FA285EBD253B842400A5303E /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		FA5DB48525501DE1002465B3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
@@ -258,6 +262,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA192D3F2551281C005A55DD /* Terms And Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */,
+				FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */,
+			);
+			path = "Terms And Conditions";
+			sourceTree = "<group>";
+		};
 		FA285E90253B660F00A5303E /* Login VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,13 +290,13 @@
 			path = "Splash VC";
 			sourceTree = "<group>";
 		};
-		FA285EAF253B71FF00A5303E /* Decide Login Register */ = {
+		FA285EAF253B71FF00A5303E /* Pre Login VC */ = {
 			isa = PBXGroup;
 			children = (
-				FA285EB0253B721600A5303E /* DecideLoginRegisterVC.swift */,
-				FA285EB1253B721600A5303E /* DecideLoginRegisterVC.xib */,
+				FA285EB0253B721600A5303E /* PreLoginVC.swift */,
+				FA285EB1253B721600A5303E /* PreLoginVC.xib */,
 			);
-			path = "Decide Login Register";
+			path = "Pre Login VC";
 			sourceTree = "<group>";
 		};
 		FA84AD3D253D937300E1C558 /* Registration */ = {
@@ -303,11 +316,12 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA192D3F2551281C005A55DD /* Terms And Conditions */,
 				FAA0162E2547106E004D35BB /* Questionnaires */,
 				FAA016232546C9AF004D35BB /* Email Verification */,
 				FA84AD3D253D937300E1C558 /* Registration */,
 				FAF13CEC253C244300D1499A /* Forgot Password */,
-				FA285EAF253B71FF00A5303E /* Decide Login Register */,
+				FA285EAF253B71FF00A5303E /* Pre Login VC */,
 				FA285E91253B661A00A5303E /* Splash VC */,
 				FA285E90253B660F00A5303E /* Login VC */,
 			);
@@ -595,9 +609,10 @@
 				FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
+				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
 				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
-				FA285EB3253B721600A5303E /* DecideLoginRegisterVC.xib in Resources */,
+				FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */,
 				FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
@@ -679,7 +695,7 @@
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
 				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
 				FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */,
-				FA285EB2253B721600A5303E /* DecideLoginRegisterVC.swift in Sources */,
+				FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,

@@ -7,11 +7,18 @@
 
 import UIKit
 
-class DecideLoginRegisterVC: UIViewController {
+class PreLoginVC: BaseViewController {
 
     //MARK: - View Controller Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if didPressedLoginNowOnEmailVerification {
+            didPressedLoginNowOnEmailVerification = false
+            self.navigationController?.pushViewController(LoginVC(), animated: false)
+        }
     }
     
     //MARK: - Button Actions

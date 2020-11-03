@@ -13,7 +13,7 @@ class SplashVC: BaseViewController {
         super.viewDidLoad()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let vc = DecideLoginRegisterVC()
+            let vc = PreLoginVC()
             let navigationController = UINavigationController(rootViewController: vc)
             navigationController.navigationBar.isHidden = true
             APP_DELEGATE.window?.rootViewController = navigationController

@@ -64,7 +64,7 @@
                         <constraint firstAttribute="height" constant="50" id="ra5-ca-jZJ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
-                    <state key="normal" title="Continue">
+                    <state key="normal" title="LOGIN NOW">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -73,7 +73,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="B60-RJ-TbH"/>
+                        <action selector="loginNowButtonPressed:" destination="-1" eventType="touchUpInside" id="B60-RJ-TbH"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email verification for" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8y-q4-1MM">

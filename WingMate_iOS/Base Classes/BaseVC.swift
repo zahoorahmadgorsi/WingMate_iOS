@@ -42,6 +42,14 @@ class BaseViewController: UIViewController {
                 break
             }
         }
+        
+//        if let controllers = self.navigationController?.viewControllers {
+//            for i in 0..<controllers.count {
+//                if controllers[i].isKind(of: RegisterStepThreeVC.self) {
+//                    print("Here: \(i)")
+//                }
+//            }
+//        }
     }
     
 
