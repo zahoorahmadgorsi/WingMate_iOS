@@ -14,6 +14,7 @@ class ValidationStrings {
     static let kEnterNickname = "Please type your name or nick name"
     static let kEmailSentToVerifyUser = "Email activation link has been sent to your email"
     static let kEmailSentToResetPassword = "Reset password link sent to your email"
+    static let kEmailResent = "Email resent successfully"
 }
 
 class UserDefaultKeys {

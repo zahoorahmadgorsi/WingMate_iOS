@@ -41,9 +41,7 @@ extension TermsAndConditionsVC: RegisterDelegate {
     
     func register(didUserRegistered: Bool, msg: String) {
         if didUserRegistered {
-            let email = self.user.value(forKey: "email") as? String ?? ""
-            let nickName = self.user.value(forKey: "nick") as? String ?? ""
-            self.navigationController?.pushViewController(EmailVerificationVC(email: email, nickName: nickName), animated: true)
+            self.navigationController?.pushViewController(EmailVerificationVC(user: self.user), animated: true)
         } else {
             Utilities.shared.showErrorBanner(msg: msg)
         }

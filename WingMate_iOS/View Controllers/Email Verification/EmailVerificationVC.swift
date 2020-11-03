@@ -6,26 +6,31 @@
 //
 
 import UIKit
+import Parse
 
-class EmailVerificationVC: UIViewController {
+class EmailVerificationVC: BaseViewController {
 
     //MARK: - Outlets & Constraints
     @IBOutlet weak var labelEmail: UILabel!
     @IBOutlet weak var labelMessage: UILabel!
     
-    var nickName = ""
-    var email = ""
+    var emailVerificationPresenter = EmailVerificationPresenter()
+    var user = PFUser()
     
-    convenience init(email: String, nickName: String) {
+    convenience init(user: PFUser) {
         self.init()
-        self.nickName = nickName
-        self.email = email
+        self.user = user
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.emailVerificationPresenter.attach(vc: self)
+        let email = self.user.value(forKey: "email") as? String ?? ""
+        let nickName = self.user.value(forKey: "nick") as? String ?? ""
+        
         self.labelEmail.text = email
-        self.labelMessage.text = "Hi \(self.nickName)! You're almost ready to start enjoying Wingmate! Simply click on the link which has been sent to your email to verify your email address."
+        self.labelMessage.text = "Hi \(nickName)! You're almost ready to start enjoying Wingmate! Simply click on the link which has been sent to your email to verify your email address."
     }
     
     //MARK: - Button Actions
@@ -39,7 +44,15 @@ class EmailVerificationVC: UIViewController {
     }
     
     @IBAction func sendEmailAgainButtonPressed(_ sender: Any) {
-        
+        self.emailVerificationPresenter.resendEmailAPI(user: self.user)
     }
 
+}
+
+extension EmailVerificationVC: EmailVerificationDelegate {
+    func emailVerification(didResendEmailSuccessfully: Bool) {
+        if didResendEmailSuccessfully {
+            self.showToast(message: ValidationStrings.kEmailResent)
+        }
+    }
 }
