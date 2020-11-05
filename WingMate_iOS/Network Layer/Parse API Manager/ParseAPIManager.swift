@@ -48,4 +48,23 @@ struct ParseAPIManager {
             }
         }
     }
+    
+    //MARK: - Logout User API
+    static func logoutUser(onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        SVProgressHUD.show()
+        PFUser.logOutInBackground { (error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                onSuccess(true)
+            }
+        }
+    }
+    
+    //MARK: - Resend Password API
+//    static func resendPassword(email: String, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+//        SVProgressHUD.show()
+//        ParseAPIManager.forgotUserPassword(email: email, onSuccess: onSuccess, onFailure: onFailure)
+//    }
 }

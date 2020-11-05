@@ -117,7 +117,6 @@ extension RegisterStepThreeVC: RegisterDelegate {
             user.username = self.textFieldEmail.text ?? ""
             user.setValue(self.nickName, forKey: "nick")
             user.setValue(false, forKey: "isPaidUser")
-//            user.setValue(true, forKey: "questionnaireFilled")
             user.setValue(false, forKey: "isMandatoryQuestionnairesFilled")
             user.setValue(false, forKey: "isOptionalQuestionnairesFilled")
             user.setValue(self.genderType == 1 ? "male" : "female", forKey: "gender")

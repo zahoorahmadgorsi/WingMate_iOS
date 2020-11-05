@@ -24,7 +24,7 @@ class TermsAndConditionsVC: UIViewController {
     }
 
     @IBAction func agreeButtonPressed(_ sender: Any) {
-        self.registerPresenter.registerAPI(user: PFUser())
+        self.registerPresenter.registerAPI(user: self.user)
     }
     
     @IBAction func dontAgreeButtonPressed(_ sender: Any) {
