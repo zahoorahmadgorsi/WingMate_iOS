@@ -40,3 +40,7 @@ enum AttachmentType: String {
     case camera, photoLibrary
 }
 
+enum QuestionType: String {
+    case mandatory = "Mandatory"
+    case optional = "Optional"
+}

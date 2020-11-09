@@ -15,10 +15,13 @@ class QuestionnairesVC: BaseViewController {
     @IBOutlet weak var buttonContinue: UIButton!
     @IBOutlet weak var buttonBack: UIButton!
     
+    var questionnairePresenter = QuestionnairePresenter()
+    var data = [Question]()
+    
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
     
-    var data: [Questionnaire] = [
+    var dataold: [Questionnaire] = [
         Questionnaire(question: "We know age is just a number?", options: [
                         Option(title: "21 - 26"),
                         Option(title: "27 - 32"),
@@ -47,15 +50,25 @@ class QuestionnairesVC: BaseViewController {
     //MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.questionnairePresenter.attach(vc: self)
+        self.setLayout()
+        self.registerTableViewCells()
+        self.setQuestion()
+        if self.isMandatoryQuestionnaires {
+            self.questionnairePresenter.getAllQuestions(questionType: .mandatory)
+        } else {
+            self.questionnairePresenter.getAllQuestions(questionType: .optional)
+        }
+    }
+    
+    //MARK: - Helping Methods
+    func setLayout() {
         self.tableViewOptions.delegate = self
         self.tableViewOptions.dataSource = self
         self.buttonContinue.alpha = 0.3
         self.buttonContinue.isEnabled = false
-        self.registerTableViewCells()
-        self.setQuestion()
     }
     
-    //MARK: - Helping Methods
     func registerTableViewCells() {
         self.tableViewOptions.register(UINib(nibName: QuestionnaireSimpleOptionTableViewCell.className, bundle: nil), forCellReuseIdentifier: QuestionnaireSimpleOptionTableViewCell.className)
         if self.isMandatoryQuestionnaires {
@@ -64,11 +77,11 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func setQuestion() {
-        self.labelQuestion.text = self.data[self.questionIndex].question
+        self.labelQuestion.text = self.dataold[self.questionIndex].question
     }
     
     func enableButtonIfAnyOptionIsMarked() {
-        for i in self.data[self.questionIndex].options {
+        for i in self.dataold[self.questionIndex].options {
             if i.isSelected == true {
                 self.buttonContinue.alpha = 1
                 self.buttonContinue.isEnabled = true
@@ -80,7 +93,7 @@ class QuestionnairesVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        if self.questionIndex < self.data.count - 1 {
+        if self.questionIndex < self.dataold.count - 1 {
             self.questionIndex = self.questionIndex + 1
             self.setQuestion()
             self.buttonContinue.alpha = 0.3
@@ -112,19 +125,19 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
         if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
             //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
-            cell.data = self.data[self.questionIndex].options[indexPath.row]
+            cell.data = self.dataold[self.questionIndex].options[indexPath.row]
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireSimpleOptionTableViewCell.className, for: indexPath) as! QuestionnaireSimpleOptionTableViewCell
-        cell.data = self.data[self.questionIndex].options[indexPath.row]
+        cell.data = self.dataold[self.questionIndex].options[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        for i in self.data[self.questionIndex].options {
+        for i in self.dataold[self.questionIndex].options {
             i.isSelected = false
         }
-        self.data[self.questionIndex].options[indexPath.row].isSelected = true
+        self.dataold[self.questionIndex].options[indexPath.row].isSelected = true
         self.tableViewOptions.reloadData()
         self.buttonContinue.alpha = 1
         self.buttonContinue.isEnabled = true
@@ -138,8 +151,32 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data[self.questionIndex].options.count
+        return self.dataold[self.questionIndex].options.count
     }
+}
+
+extension QuestionnairesVC: QuestionnaireDelegate {
+    func questionnaire(isSuccess: Bool, questionData: [Question], msg: String) {
+        if isSuccess {
+            self.data = questionData
+            self.showToast(message: msg)
+            self.questionnairePresenter.getAllOptionsOfQuestion(questionObjectId: self.data[self.questionIndex].questionObjectId, questionIndex: self.questionIndex)
+        } else {
+            self.showToast(message: msg)
+        }
+    }
+    
+    func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String) {
+        if isSuccess {
+            self.data = questionOptionsData
+            self.showToast(message: msg)
+            print(questionOptionsData)
+        } else {
+            self.showToast(message: msg)
+        }
+    }
+    
+    
 }
 
 class Questionnaire {

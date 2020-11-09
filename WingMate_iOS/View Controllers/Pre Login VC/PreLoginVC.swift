@@ -10,6 +10,7 @@ import UIKit
 class PreLoginVC: BaseViewController {
 
     //MARK: - View Controller Life Cycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,7 +24,7 @@ class PreLoginVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(LoginVC(), animated: true)
+        self.navigationController?.pushViewController(QuestionnairesVC(), animated: true)
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {

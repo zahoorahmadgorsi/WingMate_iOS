@@ -42,7 +42,8 @@ class LoginPresenter {
     }
     
     func loginAPI(email: String, password: String) {
-        ParseAPIManager.login(email: "danishnaeem57@gmail.com", password: "123456") { (user) in
+        ParseAPIManager.login(email: email, password: password) { (user) in
+            let userId = user.value(forKey: "objectId") as? String ?? ""
             let email = user.value(forKey: "email") as? String ?? ""
             let isEmailVerified = user.value(forKey: "emailVerified") as? Bool ?? false
             let gender = user.value(forKey: "gender") as? String ?? ""
@@ -51,7 +52,7 @@ class LoginPresenter {
             let isMandatoryQuestionnairesFilled = user.value(forKey: "isMandatoryQuestionnairesFilled") as? Bool ?? false
             let isOptionalQuestionnairesFilled = user.value(forKey: "isOptionalQuestionnairesFilled") as? Bool ?? false
             
-            APP_MANAGER.session = User(email: email, isEmailVerified: isEmailVerified, gender: gender, nickName: nick, isPaidUser: isPaidUser, isMandatoryQuestionnairesFilled: isMandatoryQuestionnairesFilled, isOptionalQuestionnairesFilled: isOptionalQuestionnairesFilled)
+            APP_MANAGER.session = User(userId: userId, email: email, isEmailVerified: isEmailVerified, gender: gender, nickName: nick, isPaidUser: isPaidUser, isMandatoryQuestionnairesFilled: isMandatoryQuestionnairesFilled, isOptionalQuestionnairesFilled: isOptionalQuestionnairesFilled)
             APP_MANAGER.isLoggedIn = true
             
             self.delegate?.login(didUserLoggedIn: true, msg: "User logged in successfully")

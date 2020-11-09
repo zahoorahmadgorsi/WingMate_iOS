@@ -7,6 +7,7 @@
 import Foundation
 
 struct User : Codable {
+    let userId : String?
     let email : String?
     let isEmailVerified : Bool?
     let gender : String?
@@ -15,7 +16,8 @@ struct User : Codable {
     let isMandatoryQuestionnairesFilled : Bool?
     let isOptionalQuestionnairesFilled : Bool?
     
-    init(email: String, isEmailVerified: Bool, gender: String, nickName: String, isPaidUser: Bool, isMandatoryQuestionnairesFilled: Bool, isOptionalQuestionnairesFilled: Bool) {
+    init(userId: String, email: String, isEmailVerified: Bool, gender: String, nickName: String, isPaidUser: Bool, isMandatoryQuestionnairesFilled: Bool, isOptionalQuestionnairesFilled: Bool) {
+        self.userId = userId
         self.email = email
         self.isEmailVerified = isEmailVerified
         self.gender = gender
