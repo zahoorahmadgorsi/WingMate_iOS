@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DatabaseColumnKey {
+class DatabaseColumn {
     static let objectId = "objectId"
     static let questionType = "questionType"
     static let displayOrder = "displayOrder"
@@ -15,4 +15,10 @@ class DatabaseColumnKey {
     static let questionId = "questionId"
     static let optionId = "optionId"
     static let countryFlagImage = "countryFlagImage"
+}
+
+class DatabaseTable {
+    static let question  = "Question"
+    static let questionOption  = "QuestionOption"
+    static let userAnswer  = "UserAnswer"
 }

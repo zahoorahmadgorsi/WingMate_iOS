@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class QuestionnaireSimpleOptionTableViewCell: UITableViewCell {
     
@@ -20,9 +21,9 @@ class QuestionnaireSimpleOptionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    var data: Option? {
+    var data: QuestionnaireOptionNew? {
         didSet {
-            self.labelOption.text = data?.title ?? ""
+            self.labelOption.text = data?.questionOptionObject!.value(forKey: DatabaseColumn.title) as? String ?? ""
             self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
             self.labelOption.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
         }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class QuestionnaireCountryOptionTableViewCell: UITableViewCell {
     
@@ -21,11 +22,25 @@ class QuestionnaireCountryOptionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    var data: Option? {
+//    var data: Option? {
+//        didSet {
+//            self.labelCountry.text = data?.title ?? ""
+//            self.imageViewCountry.image = UIImage(named: data?.flagImage ?? "")
+//            self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.textFieldGrayBackgroundColor
+//            self.labelCountry.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
+//        }
+//    }
+    
+    var data: QuestionnaireOptionNew? {
         didSet {
-            self.labelCountry.text = data?.title ?? ""
-            self.imageViewCountry.image = UIImage(named: data?.flagImage ?? "")
-            self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.textFieldGrayBackgroundColor
+            self.labelCountry.text = data?.questionOptionObject!.value(forKey: DatabaseColumn.title) as? String ?? ""
+            let thumbnail = self.data?.questionOptionObject?["countryFlagImage"] as? PFFileObject
+            thumbnail?.getDataInBackground (block: { (data, error) -> Void in
+                if let image = UIImage(data: data!) {
+                    self.imageViewCountry.image = image
+                }
+            })
+            self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
             self.labelCountry.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
         }
     }

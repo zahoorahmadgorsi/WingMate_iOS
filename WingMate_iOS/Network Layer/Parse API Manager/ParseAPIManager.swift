@@ -70,9 +70,14 @@ struct ParseAPIManager {
 //    }
     
     //MARK: - Get Questionnaire
-    static func getAllData(from tableName: String, whereKeyName: String, whereKeyValue: String, orderByKey: String, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+    static func getAllData(from tableName: String, whereKeyName: String, whereKeyValue: String? = "", whereKeyObject: PFObject? = nil, orderByKey: String, isWhereKeyObjectType: Bool, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         SVProgressHUD.show()
-        let query = PFQuery(className: tableName).whereKey(whereKeyName, equalTo: whereKeyValue).order(byAscending: orderByKey)
+        var query = PFQuery()
+        if isWhereKeyObjectType {
+            query = PFQuery(className: tableName).whereKey(whereKeyName, equalTo: whereKeyObject ?? PFObject()).order(byAscending: orderByKey)
+        } else {
+            query = PFQuery(className: tableName).whereKey(whereKeyName, equalTo: whereKeyValue ?? "").order(byAscending: orderByKey)
+        }
         query.findObjectsInBackground {(objects, error) in
             SVProgressHUD.dismiss()
             if let error = error {

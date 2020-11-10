@@ -27,7 +27,7 @@
                                 <color key="textColor" name="Space Green Text Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bahrain-flag" translatesAutoresizingMaskIntoConstraints="NO" id="7kY-9D-IiG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kY-9D-IiG">
                                 <rect key="frame" x="16" y="17" width="24" height="16"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -67,7 +67,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bahrain-flag" width="24" height="24"/>
         <namedColor name="Space Green Text Color">
             <color red="0.098039215686274508" green="0.19607843137254902" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
