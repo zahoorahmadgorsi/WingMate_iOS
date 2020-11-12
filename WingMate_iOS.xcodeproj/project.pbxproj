@@ -28,6 +28,7 @@
 		FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */; };
 		FA70023B255C76D4000052F4 /* TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700239255C76D4000052F4 /* TutorialVC.swift */; };
 		FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70023A255C76D4000052F4 /* TutorialVC.xib */; };
+		FA700299255D37B3000052F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700298255D37B3000052F4 /* User.swift */; };
 		FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */; };
 		FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Constants.swift */; };
@@ -123,6 +124,7 @@
 		FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		FA700239255C76D4000052F4 /* TutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVC.swift; sourceTree = "<group>"; };
 		FA70023A255C76D4000052F4 /* TutorialVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialVC.xib; sourceTree = "<group>"; };
+		FA700298255D37B3000052F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		FA9EFD6125377AA000A1ED1C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA700298255D37B3000052F4 /* User.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
+				FA700299255D37B3000052F4 /* User.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
 				FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */,
