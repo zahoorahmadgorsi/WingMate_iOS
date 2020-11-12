@@ -26,8 +26,8 @@ class LoginVC: BaseViewController {
         super.viewDidLoad()
         self.loginPresenter.attach(vc: self)
         self.setLayout()
-//        self.textFieldEmail.text = "danishnaeem57@gmail.com"
-//        self.textFieldPassword.text = "123456789"
+        self.textFieldEmail.text = "danishnaeem57@gmail.com"
+        self.textFieldPassword.text = "1234567890"
     }
     
     //MARK: - Helper Methods
@@ -101,9 +101,9 @@ extension LoginVC: LoginDelegate {
     
     func login(didUserLoggedIn: Bool, msg: String) {
         if didUserLoggedIn {
-            print(msg)
+            self.navigationController?.pushViewController(QuestionnairesVC(), animated: true)
         } else {
-            print(msg)
+            Utilities.shared.showErrorBanner(msg: msg)
         }
     }
     

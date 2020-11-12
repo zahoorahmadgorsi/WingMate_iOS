@@ -113,10 +113,10 @@ struct ParseAPIManager {
     }
     
     //MARK: - Save Questionnaire
-    static func saveUserQuestionnaireOption(questionId: String, selectedOptionIds: [String], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+    static func saveUserQuestionnaireOption(questionObject: PFObject, selectedOptionIds: [String], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         let userAnswer = PFObject(className:"UserAnswer")
-        userAnswer["userId"] = ApplicationManager.shared.session?.userId
-        userAnswer["questionId"] = questionId
+        userAnswer["userId"] = ApplicationManager.shared.session
+        userAnswer["questionId"] = questionObject
         userAnswer["selectedOptionIds"] = selectedOptionIds
         userAnswer.saveInBackground {
             (success: Bool, error: Error?) in
@@ -131,31 +131,4 @@ struct ParseAPIManager {
     
     
     
-}
-
-class Question {
-    var title = ""
-    var questionObjectId = ""
-    var questionOptions = [QuestionOption()]
-    init() {}
-    init(title: String, questionObjectId: String, questionOptions: [QuestionOption]) {
-        self.title = title
-        self.questionObjectId = questionObjectId
-        self.questionOptions = questionOptions
-    }
-}
-
-class QuestionOption {
-    var title = ""
-    var questionObjectId = ""
-    var optionObjectId = ""
-    var countryFlag = ""
-    var isUserSelected = false
-    init() {}
-    init(title: String, questionObjectId: String, optionObjectId: String, countryFlag: String) {
-        self.title = title
-        self.questionObjectId = questionObjectId
-        self.optionObjectId = optionObjectId
-        self.countryFlag = countryFlag
-    }
 }

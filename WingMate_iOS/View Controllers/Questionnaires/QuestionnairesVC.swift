@@ -72,6 +72,19 @@ class QuestionnairesVC: BaseViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         if self.questionIndex < self.data.count - 1 {
+            var answersIds = [String]()
+            for i in self.data[self.questionIndex].questionOptionObjects {
+                if i.isSelected {
+                    answersIds.append(i.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? "")
+                }
+            }
+            ParseAPIManager.saveUserQuestionnaireOption(questionObject: self.data[self.questionIndex].questionObject!, selectedOptionIds: answersIds) { (success) in
+                print(success)
+            } onFailure: { (error) in
+                print(error)
+            }
+
+            
             self.questionIndex = self.questionIndex + 1
             self.getOptions()
             self.buttonContinue.alpha = 0.3

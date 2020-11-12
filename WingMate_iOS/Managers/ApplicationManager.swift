@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Parse
+
 class ApplicationManager: NSObject {
     
     static let shared = ApplicationManager()
@@ -19,7 +21,7 @@ class ApplicationManager: NSObject {
     {
         #if targetEnvironment(simulator)
         // Simulator
-            return "IOS_Simulator1"
+        return "IOS_Simulator1"
         #else
         return (UIDevice.current.identifierForVendor?.uuidString ?? "UNIQUE_UDID")
         #endif
@@ -32,8 +34,8 @@ class ApplicationManager: NSObject {
     
     //MARK: - User Defaults
     let kSESSION_KEY = "kSessionKey"
-    private var _session : User?
-    var session : User?
+    private var _session : PFUser?
+    var session : PFUser?
     {
         set {
             _session = newValue
@@ -43,17 +45,17 @@ class ApplicationManager: NSObject {
                 return;
             }
             
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(_session), forKey:kSESSION_KEY)
-            UserDefaults.standard.synchronize();
             
+            
+            UserDefaults.standard.setValue(session, forKey: kSESSION_KEY)
         }
         
         get {
             _session = nil;
-            if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? Data {
-                _session = try? PropertyListDecoder().decode(User.self, from: data)
+            if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? PFUser {
+                _session = data
             }
-            return _session;
+            return _session
             
         }
     }
@@ -72,3 +74,4 @@ class ApplicationManager: NSObject {
         }
     }
 }
+

@@ -24,10 +24,10 @@ class PreLoginVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(QuestionnairesVC(), animated: true)
+        self.navigationController?.pushViewController(LoginVC(), animated: true)
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(RegisterStepOneVC(), animated: true)
+        self.navigationController?.pushViewController(TutorialVC(), animated: true)
     }
 }

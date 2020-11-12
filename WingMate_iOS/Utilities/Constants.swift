@@ -8,6 +8,7 @@
 class ValidationStrings {
     static let kEnterEmail = "Enter your email"
     static let kInvalidEmail = "Invalid email"
+    static let kInvalidPassword = "Invalid password"
     static let kEnterPassword = "Enter your password"
     static let kPasswordMinimumLength = "Password should be more than 8 characters"
     static let kEnterName = "Enter your name"

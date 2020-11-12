@@ -43,7 +43,7 @@ class RegisterPresenter {
                     self.delegate?.register(passwordValidationFailedMsg: ValidationStrings.kEnterPassword)
                 } else {
                     if password.count <= 8 {
-                        self.delegate?.register(passwordValidationFailedMsg: ValidationStrings.kPasswordMinimumLength)
+                        self.delegate?.register(passwordValidationFailedMsg: ValidationStrings.kInvalidPassword)
                     } else {
                         self.delegate?.register(validationSuccessStepThree: true)
                     }

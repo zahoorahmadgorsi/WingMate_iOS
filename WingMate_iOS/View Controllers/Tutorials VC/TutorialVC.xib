@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialVC" customModule="WingMate_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonContinue" destination="kPL-wQ-cug" id="28W-tq-lt7"/>
+                <outlet property="view" destination="rZd-Kp-kEw" id="0KK-bK-K8h"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rZd-Kp-kEw">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="E2f-Ew-jdh">
+                    <rect key="frame" x="20" y="20" width="72" height="72"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPL-wQ-cug">
+                    <rect key="frame" x="82.666666666666671" y="620" width="248.66666666666663" height="50"/>
+                    <color key="backgroundColor" name="PurpleThemeColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="OFG-F9-iDZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="C5o-kh-08F"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9n-eE-InY">
+                    <rect key="frame" x="94.666666666666671" y="678" width="224.66666666666663" height="50"/>
+                    <state key="normal" image="backbutton"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="V3N-fo-ztw"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Tutorials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rl-ML-hlF">
+                    <rect key="frame" x="119.33333333333333" y="350.66666666666669" width="175.66666666666669" height="35"/>
+                    <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="9D6-lx-ipk">
+                    <rect key="frame" x="137" y="582.66666666666663" width="140.33333333333337" height="27.333333333333371"/>
+                    <color key="pageIndicatorTintColor" name="VCBackgroundColor"/>
+                    <color key="currentPageIndicatorTintColor" name="RedThemeColor"/>
+                </pageControl>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register-step1-progress" translatesAutoresizingMaskIntoConstraints="NO" id="r9U-3T-YqB">
+                    <rect key="frame" x="354" y="36" width="40" height="40"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Sua-S3-FWK"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="0rl-ML-hlF" firstAttribute="centerX" secondItem="Sua-S3-FWK" secondAttribute="centerX" id="1eG-Sk-BTy"/>
+                <constraint firstItem="r9U-3T-YqB" firstAttribute="centerY" secondItem="E2f-Ew-jdh" secondAttribute="centerY" id="GEI-pA-7UB"/>
+                <constraint firstItem="0rl-ML-hlF" firstAttribute="centerY" secondItem="Sua-S3-FWK" secondAttribute="centerY" id="I1s-rz-KrN"/>
+                <constraint firstItem="Sua-S3-FWK" firstAttribute="bottom" secondItem="q9n-eE-InY" secondAttribute="bottom" constant="8" id="IM1-Kw-2iG"/>
+                <constraint firstItem="q9n-eE-InY" firstAttribute="width" secondItem="kPL-wQ-cug" secondAttribute="width" multiplier="0.904826" id="YKm-bp-mbv"/>
+                <constraint firstItem="q9n-eE-InY" firstAttribute="centerX" secondItem="rZd-Kp-kEw" secondAttribute="centerX" id="YlV-SJ-jw7"/>
+                <constraint firstItem="kPL-wQ-cug" firstAttribute="centerX" secondItem="rZd-Kp-kEw" secondAttribute="centerX" id="bTT-BY-nZw"/>
+                <constraint firstItem="Sua-S3-FWK" firstAttribute="trailing" secondItem="r9U-3T-YqB" secondAttribute="trailing" constant="20" id="ihp-2h-NHC"/>
+                <constraint firstItem="q9n-eE-InY" firstAttribute="height" secondItem="kPL-wQ-cug" secondAttribute="height" id="iw1-RU-DcP"/>
+                <constraint firstItem="q9n-eE-InY" firstAttribute="top" secondItem="kPL-wQ-cug" secondAttribute="bottom" constant="8" id="nZb-Kt-tuw"/>
+                <constraint firstItem="E2f-Ew-jdh" firstAttribute="top" secondItem="Sua-S3-FWK" secondAttribute="top" constant="20" id="oVn-pV-OhP"/>
+                <constraint firstItem="9D6-lx-ipk" firstAttribute="centerX" secondItem="rZd-Kp-kEw" secondAttribute="centerX" id="rri-tQ-70A"/>
+                <constraint firstItem="kPL-wQ-cug" firstAttribute="width" secondItem="rZd-Kp-kEw" secondAttribute="width" multiplier="0.6" id="tm3-SD-QfD"/>
+                <constraint firstItem="E2f-Ew-jdh" firstAttribute="leading" secondItem="Sua-S3-FWK" secondAttribute="leading" constant="20" id="xQp-d9-t5T"/>
+                <constraint firstItem="kPL-wQ-cug" firstAttribute="top" secondItem="9D6-lx-ipk" secondAttribute="bottom" constant="10" id="zVJ-d3-tOW"/>
+            </constraints>
+            <point key="canvasLocation" x="-191.30434782608697" y="65.217391304347828"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backbutton" width="47.333332061767578" height="24"/>
+        <image name="login-heart" width="72" height="72"/>
+        <image name="register-step1-progress" width="40" height="40"/>
+        <namedColor name="PurpleThemeColor">
+            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedThemeColor">
+            <color red="0.96100002527236938" green="0.35699999332427979" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VCBackgroundColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

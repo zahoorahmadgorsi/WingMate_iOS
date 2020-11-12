@@ -32,7 +32,7 @@ class LoginPresenter {
                     self.delegate?.login(passwordValidationFailedMsg: ValidationStrings.kEnterPassword)
                 } else {
                     if password.count <= 8 {
-                        self.delegate?.login(passwordValidationFailedMsg: ValidationStrings.kPasswordMinimumLength)
+                        self.delegate?.login(passwordValidationFailedMsg: ValidationStrings.kInvalidPassword)
                     } else {
                         self.loginAPI(email: email, password: password)
                     }
@@ -43,20 +43,9 @@ class LoginPresenter {
     
     func loginAPI(email: String, password: String) {
         ParseAPIManager.login(email: email, password: password) { (user) in
-            let userId = user.value(forKey: "objectId") as? String ?? ""
-            let email = user.value(forKey: "email") as? String ?? ""
-            let isEmailVerified = user.value(forKey: "emailVerified") as? Bool ?? false
-            let gender = user.value(forKey: "gender") as? String ?? ""
-            let nick = user.value(forKey: "nick") as? String ?? ""
-            let isPaidUser = user.value(forKey: "isPaidUser") as? Bool ?? false
-            let isMandatoryQuestionnairesFilled = user.value(forKey: "isMandatoryQuestionnairesFilled") as? Bool ?? false
-            let isOptionalQuestionnairesFilled = user.value(forKey: "isOptionalQuestionnairesFilled") as? Bool ?? false
-            
-            APP_MANAGER.session = User(userId: userId, email: email, isEmailVerified: isEmailVerified, gender: gender, nickName: nick, isPaidUser: isPaidUser, isMandatoryQuestionnairesFilled: isMandatoryQuestionnairesFilled, isOptionalQuestionnairesFilled: isOptionalQuestionnairesFilled)
             APP_MANAGER.isLoggedIn = true
-            
+            APP_MANAGER.session = user
             self.delegate?.login(didUserLoggedIn: true, msg: "User logged in successfully")
-        
         } onFailure: { (msg) in
             self.delegate?.login(didUserLoggedIn: false, msg: msg)
         }
