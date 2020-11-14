@@ -16,6 +16,10 @@ class ValidationStrings {
     static let kEmailSentToVerifyUser = "Email activation link has been sent to your email"
     static let kEmailSentToResetPassword = "Reset password link sent to your email"
     static let kEmailResent = "Email resent successfully"
+    static let kQuestionnaireOptionSaved = "Questionnaire option saved"
+    static let kSelectAnyOption = "Select any option"
+    static let kSelectOneBelowOption = "Select one of the below options"
+    static let kSelectMultipleBelowOption = "Select one or multiple of the below options"
 }
 
 class UserDefaultKeys {

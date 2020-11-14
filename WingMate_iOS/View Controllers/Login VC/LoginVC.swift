@@ -101,7 +101,7 @@ extension LoginVC: LoginDelegate {
     
     func login(didUserLoggedIn: Bool, msg: String) {
         if didUserLoggedIn {
-            self.navigationController?.pushViewController(QuestionnairesVC(), animated: true)
+            self.navigationController?.pushViewController(DashboardVC(), animated: true)
         } else {
             Utilities.shared.showErrorBanner(msg: msg)
         }

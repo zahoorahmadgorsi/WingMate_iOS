@@ -71,7 +71,6 @@ struct ParseAPIManager {
     
     //MARK: - Get Questionnaire
     static func getAllData(from tableName: String, whereKeyName: String, whereKeyValue: String? = "", whereKeyObject: PFObject? = nil, orderByKey: String, isWhereKeyObjectType: Bool, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
-        SVProgressHUD.show()
         var query = PFQuery()
         if isWhereKeyObjectType {
             query = PFQuery(className: tableName).whereKey(whereKeyName, equalTo: whereKeyObject ?? PFObject()).order(byAscending: orderByKey)
@@ -79,7 +78,6 @@ struct ParseAPIManager {
             query = PFQuery(className: tableName).whereKey(whereKeyName, equalTo: whereKeyValue ?? "").order(byAscending: orderByKey)
         }
         query.findObjectsInBackground {(objects, error) in
-            SVProgressHUD.dismiss()
             if let error = error {
                 onFailure(error.localizedDescription)
             }
@@ -94,11 +92,10 @@ struct ParseAPIManager {
     }
     
     static func getAllDataWithObject(questionId: String, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
-        SVProgressHUD.show()
         let obj = PFObject(withoutDataWithClassName: "QuestionOption", objectId: questionId)
         let query = PFQuery(className: "QuestionOption").whereKey("questionId", equalTo: obj)
         query.findObjectsInBackground {(objects, error) in
-            SVProgressHUD.dismiss()
+            
             if let error = error {
                 onFailure(error.localizedDescription)
             }
@@ -114,16 +111,37 @@ struct ParseAPIManager {
     
     //MARK: - Save Questionnaire
     static func saveUserQuestionnaireOption(questionObject: PFObject, selectedOptionIds: [String], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
-        let userAnswer = PFObject(className:"UserAnswer")
-        userAnswer["userId"] = ApplicationManager.shared.session
-        userAnswer["questionId"] = questionObject
-        userAnswer["selectedOptionIds"] = selectedOptionIds
-        userAnswer.saveInBackground {
-            (success: Bool, error: Error?) in
+        let userAnswer = PFObject(className: DatabaseTable.userAnswer)
+        userAnswer[DatabaseColumn.userId] = ApplicationManager.shared.session
+        userAnswer[DatabaseColumn.questionId] = questionObject
+        userAnswer[DatabaseColumn.selectedOptionIds] = selectedOptionIds
+        userAnswer.saveEventually { (success, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
             } else {
-                print("Option Saved")
+                onSuccess(true)
+            }
+        }
+    }
+    
+    //MARK: - Update Query
+    static func updateObject(object: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        object.saveInBackground { (success, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true)
+            }
+        }
+    }
+    
+    //MARK: - Update user object
+    static func updateUserObject(onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        
+        PFUser.current()?.saveInBackground() { (success, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
                 onSuccess(true)
             }
         }

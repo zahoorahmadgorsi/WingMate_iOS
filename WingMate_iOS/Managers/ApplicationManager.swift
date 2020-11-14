@@ -35,34 +35,83 @@ class ApplicationManager: NSObject {
     //MARK: - User Defaults
     let kSESSION_KEY = "kSessionKey"
     private var _session : PFUser?
-    var session : PFUser?
-    {
+    var session : PFUser? {
         set {
             _session = newValue
-            if _session == nil
-            {
+            if _session == nil {
                 UserDefaults.standard.removeObject(forKey: kSESSION_KEY);
                 return;
             }
             
-            
-            
-            UserDefaults.standard.setValue(session, forKey: kSESSION_KEY)
+            var user = User()
+            user.objectId = newValue?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
+            user.gender = newValue?.value(forKey: DatabaseColumn.gender) as? String ?? "male"
+            user.nick = newValue?.value(forKey: DatabaseColumn.nick) as? String ?? ""
+            user.emailVerified = newValue?.value(forKey: DatabaseColumn.emailVerified) as? Bool ?? false
+            user.username = newValue?.value(forKey: DatabaseColumn.username) as? String ?? ""
+            user.email = newValue?.value(forKey: DatabaseColumn.email) as? String ?? ""
+            user.isPaidUser = newValue?.value(forKey: DatabaseColumn.isPaidUser) as? Bool ?? false
+            user.isMandatoryQuestionnairesFilled = newValue?.value(forKey: DatabaseColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
+            user.isOptionalQuestionnairesFilled = newValue?.value(forKey: DatabaseColumn.isOptionalQuestionnairesFilled) as? Bool ?? false
+         
+            UserDefaults.standard.set(try! PropertyListEncoder().encode(user), forKey:kSESSION_KEY)
+            UserDefaults.standard.synchronize();
         }
         
         get {
             _session = nil;
-            if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? PFUser {
-                _session = data
+            var user = User()
+            if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? Data {
+                user = try! PropertyListDecoder().decode(User.self, from: data)
+                _session = PFUser()
+                _session?.setValue(user.objectId, forKey: DatabaseColumn.objectId)
+                _session?.setValue(user.gender, forKey: DatabaseColumn.gender)
+                _session?.setValue(user.nick, forKey: DatabaseColumn.nick)
+                _session?.setValue(user.emailVerified, forKey: DatabaseColumn.emailVerified)
+                _session?.setValue(user.username, forKey: DatabaseColumn.username)
+                _session?.setValue(user.email, forKey: DatabaseColumn.email)
+                _session?.setValue(user.isPaidUser, forKey: DatabaseColumn.isPaidUser)
+                _session?.setValue(user.isMandatoryQuestionnairesFilled, forKey: DatabaseColumn.isMandatoryQuestionnairesFilled)
+                _session?.setValue(user.isOptionalQuestionnairesFilled, forKey: DatabaseColumn.isOptionalQuestionnairesFilled)
             }
-            return _session
+            return _session;
             
         }
     }
+    
+    /*
+     let kSESSION_KEY = "kSessionKey"
+     private var _session : User?
+     var session : User?
+     {
+         set {
+             _session = newValue
+             if _session == nil
+             {
+                 UserDefaults.standard.removeObject(forKey: kSESSION_KEY);
+                 return;
+             }
+             
+             UserDefaults.standard.set(try? PropertyListEncoder().encode(_session), forKey:kSESSION_KEY)
+             UserDefaults.standard.synchronize();
+             
+         }
+         
+         get {
+             _session = nil;
+             if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? Data {
+                 _session = try? PropertyListDecoder().decode(User.self, from: data)
+             }
+             return _session;
+             
+         }
+     }
+     */
+    
+    
     //Login status
     let kIsLoggedInKey = "kIsLoggedInKey"
-    var isLoggedIn : Bool?
-    {
+    var isLoggedIn : Bool? {
         set {
             UserDefaults.standard.setValue(newValue, forKey: kIsLoggedInKey)
         }

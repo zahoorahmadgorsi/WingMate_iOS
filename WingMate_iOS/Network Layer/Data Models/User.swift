@@ -7,25 +7,50 @@
 import Foundation
 
 struct User : Codable {
-    let objectId : String?
-    let gender : String?
-    let nick : String?
-    let emailVerified : String?
-    let username : String?
-    let email : String?
-    let isPaidUser : Bool?
-    let isMandatoryQuestionnairesFilled : Bool?
-    let isOptionalQuestionnairesFilled : Bool?
-//
-//    init(userId: String, email: String, isEmailVerified: Bool, gender: String, nickName: String, isPaidUser: Bool, isMandatoryQuestionnairesFilled: Bool, isOptionalQuestionnairesFilled: Bool) {
-//        self.userId = userId
+    var objectId : String?
+    var gender : String?
+    var nick : String?
+    var emailVerified : Bool?
+    var username : String?
+    var email : String?
+    var isPaidUser : Bool?
+    var isMandatoryQuestionnairesFilled : Bool?
+    var isOptionalQuestionnairesFilled : Bool?
+    
+    init(){
+        self.objectId = ""
+        self.gender = "male"
+        self.nick = ""
+        self.emailVerified = false
+        self.username = ""
+        self.email = ""
+        self.isPaidUser = false
+        self.isMandatoryQuestionnairesFilled = false
+        self.isOptionalQuestionnairesFilled = false
+
+    }
+    
+//    init(objectId: String, email: String, emailVerified: Bool, gender: String, nick: String, isPaidUser: Bool, isMandatoryQuestionnairesFilled: Bool, isOptionalQuestionnairesFilled: Bool) {
+//        self.objectId = objectId
 //        self.email = email
-//        self.isEmailVerified = isEmailVerified
+//        self.emailVerified = emailVerified
 //        self.gender = gender
-//        self.nickName = nickName
+//        self.nick = nick
 //        self.isPaidUser = isPaidUser
 //        self.isMandatoryQuestionnairesFilled = isMandatoryQuestionnairesFilled
 //        self.isOptionalQuestionnairesFilled = isOptionalQuestionnairesFilled
 //    }
+    
+    enum CodingKeys: String, CodingKey {
+        case objectId = "objectId"
+        case gender = "gender"
+        case nick = "nick"
+        case emailVerified = "emailVerified"
+        case username = "username"
+        case email = "email"
+        case isPaidUser = "isPaidUser"
+        case isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
+        case isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
+    }
 
 }

@@ -29,6 +29,8 @@
 		FA70023B255C76D4000052F4 /* TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700239255C76D4000052F4 /* TutorialVC.swift */; };
 		FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70023A255C76D4000052F4 /* TutorialVC.xib */; };
 		FA700299255D37B3000052F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700298255D37B3000052F4 /* User.swift */; };
+		FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7003EC255F2708000052F4 /* DashboardVC.swift */; };
+		FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7003ED255F2708000052F4 /* DashboardVC.xib */; };
 		FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */; };
 		FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Constants.swift */; };
@@ -125,6 +127,8 @@
 		FA700239255C76D4000052F4 /* TutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVC.swift; sourceTree = "<group>"; };
 		FA70023A255C76D4000052F4 /* TutorialVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialVC.xib; sourceTree = "<group>"; };
 		FA700298255D37B3000052F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA7003EC255F2708000052F4 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		FA7003ED255F2708000052F4 /* DashboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardVC.xib; sourceTree = "<group>"; };
 		FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -318,6 +322,15 @@
 			path = "Tutorials VC";
 			sourceTree = "<group>";
 		};
+		FA7003EB255F26E8000052F4 /* Dashboard VC */ = {
+			isa = PBXGroup;
+			children = (
+				FA7003EC255F2708000052F4 /* DashboardVC.swift */,
+				FA7003ED255F2708000052F4 /* DashboardVC.xib */,
+			);
+			path = "Dashboard VC";
+			sourceTree = "<group>";
+		};
 		FA84AD3D253D937300E1C558 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +348,7 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA7003EB255F26E8000052F4 /* Dashboard VC */,
 				FA700238255C76AB000052F4 /* Tutorials VC */,
 				FA192D3F2551281C005A55DD /* Terms And Conditions */,
 				FAA0162E2547106E004D35BB /* Questionnaires */,
@@ -619,6 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
+				FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
@@ -728,6 +743,7 @@
 				FA700299255D37B3000052F4 /* User.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
+				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,
 				FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */,

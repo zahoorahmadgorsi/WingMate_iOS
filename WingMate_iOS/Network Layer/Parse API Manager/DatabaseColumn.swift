@@ -22,13 +22,15 @@ class DatabaseColumn {
     static let isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
     static let isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
     
-    //questions
+    //questionnaires
     static let questionType = "questionType"
     static let displayOrder = "displayOrder"
     static let title = "title"
     static let questionId = "questionId"
     static let optionId = "optionId"
     static let countryFlagImage = "countryFlagImage"
+    static let userId = "userId"
+    static let selectedOptionIds = "selectedOptionIds"
 }
 
 class DatabaseTable {

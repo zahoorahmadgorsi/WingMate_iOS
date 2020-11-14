@@ -1,0 +1,66 @@
+//
+//  DashboardVC.swift
+//  WingMate_iOS
+//
+//  Created by Muneeb on 14/11/2020.
+//
+
+import UIKit
+import SVProgressHUD
+import Parse
+
+class DashboardVC: BaseViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    //MARK: - Button Actions
+    @IBAction func payNowButtonPressed(_ sender: Any) {
+        if APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool ?? false {
+            self.showToast(message: "You're already a paid user")
+        } else {
+            PFUser.current()?.setValue(true, forKey: DatabaseColumn.isPaidUser)
+            SVProgressHUD.show()
+            ParseAPIManager.updateUserObject() { (success) in
+                SVProgressHUD.dismiss()
+                if success {
+                    APP_MANAGER.session = PFUser.current()
+                    self.showToast(message: "Congrats on becoming a paid user")
+                } else {
+                    self.showToast(message: "Failed to update to paid user")
+                }
+            } onFailure: { (error) in
+                self.showToast(message: error)
+            }
+        }
+    }
+    
+    @IBAction func mandatoryQuestionnaireButtonPressed(_ sender: Any) {
+        let isPaidUser = APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool
+        if isPaidUser ?? false {
+            self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: true), animated: true)
+        } else {
+            self.showToast(message: "You are not a paid user")
+        }
+    }
+    
+    @IBAction func optionalQuestionnaireButtonPressed(_ sender: Any) {
+        let isPaidUser = APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool
+        if isPaidUser ?? false {
+            self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: false), animated: true)
+        } else {
+            self.showToast(message: "You are not a paid user")
+        }
+    }
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        ParseAPIManager.logoutUser { (success) in
+            APP_MANAGER.session = nil
+            self.navigationController?.popToRootViewController(animated: true)
+        } onFailure: { (error) in
+            self.showToast(message: error)
+        }
+    }
+}

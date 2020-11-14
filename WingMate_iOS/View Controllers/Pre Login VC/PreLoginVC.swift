@@ -20,6 +20,9 @@ class PreLoginVC: BaseViewController {
             didPressedLoginNowOnEmailVerification = false
             self.navigationController?.pushViewController(LoginVC(), animated: false)
         }
+        if APP_MANAGER.session != nil {
+            self.navigationController?.pushViewController(DashboardVC(), animated: false)
+        }
     }
     
     //MARK: - Button Actions

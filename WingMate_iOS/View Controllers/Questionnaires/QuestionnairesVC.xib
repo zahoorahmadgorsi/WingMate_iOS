@@ -14,7 +14,9 @@
             <connections>
                 <outlet property="buttonBack" destination="GMq-Ez-3qw" id="kSh-oj-ISV"/>
                 <outlet property="buttonContinue" destination="HGO-aE-5gx" id="88k-zE-YVk"/>
+                <outlet property="buttonSkip" destination="Mg5-0y-ZRZ" id="oAI-Q3-TWq"/>
                 <outlet property="labelQuestion" destination="F9R-db-1Ri" id="G7x-qg-qJ7"/>
+                <outlet property="labelSubHeading" destination="Hl4-63-ExC" id="QuD-kl-BGC"/>
                 <outlet property="tableViewOptions" destination="xq0-pP-sMs" id="TL1-rW-VCp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -73,6 +75,24 @@
                         <outlet property="delegate" destination="-1" id="5DP-us-0zk"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg5-0y-ZRZ">
+                    <rect key="frame" x="352" y="31" width="62" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="wef-wc-AgX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Skip">
+                        <color key="titleColor" name="RedThemeColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="skipButtonPressed:" destination="-1" eventType="touchUpInside" id="b85-cb-ANr"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -82,6 +102,7 @@
                 <constraint firstItem="Nqs-zq-VGy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="AVj-oX-Stw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xq0-pP-sMs" secondAttribute="trailing" constant="20" id="Cbk-nl-xVM"/>
                 <constraint firstItem="F9R-db-1Ri" firstAttribute="top" secondItem="Nqs-zq-VGy" secondAttribute="bottom" constant="20" id="EgK-Ah-rlz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mg5-0y-ZRZ" secondAttribute="trailing" id="L24-rS-7C7"/>
                 <constraint firstItem="F9R-db-1Ri" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NWi-0h-4Ym"/>
                 <constraint firstItem="xq0-pP-sMs" firstAttribute="top" secondItem="Hl4-63-ExC" secondAttribute="bottom" constant="32" id="RNi-zD-TYr"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="height" secondItem="HGO-aE-5gx" secondAttribute="height" id="Rs7-9S-t1z"/>
@@ -93,10 +114,12 @@
                 <constraint firstItem="Hl4-63-ExC" firstAttribute="top" secondItem="F9R-db-1Ri" secondAttribute="bottom" constant="20" id="eeZ-e4-JvT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GMq-Ez-3qw" secondAttribute="bottom" constant="8" id="gaq-nU-dZV"/>
                 <constraint firstItem="Nqs-zq-VGy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="h8i-t5-3v1"/>
+                <constraint firstItem="Mg5-0y-ZRZ" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.15" id="ndz-LW-lSl"/>
+                <constraint firstItem="Mg5-0y-ZRZ" firstAttribute="centerY" secondItem="Nqs-zq-VGy" secondAttribute="centerY" id="qAG-3f-mAd"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qLF-qB-60g"/>
                 <constraint firstItem="HGO-aE-5gx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rff-wp-DlU"/>
             </constraints>
-            <point key="canvasLocation" x="-96" y="74"/>
+            <point key="canvasLocation" x="-97.101449275362327" y="73.369565217391312"/>
         </view>
     </objects>
     <resources>
@@ -107,6 +130,9 @@
         </namedColor>
         <namedColor name="Purple Theme Color">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedThemeColor">
+            <color red="0.96100002527236938" green="0.35699999332427979" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
