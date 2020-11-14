@@ -7,9 +7,10 @@
 
 import Foundation
 import Parse
+import SVProgressHUD
 
 protocol EmailVerificationDelegate {
-    func emailVerification(didResendEmailSuccessfully: Bool)
+    func emailVerification(didResendEmailSuccessfully: Bool, msg: String)
 }
 
 class EmailVerificationPresenter {
@@ -20,12 +21,14 @@ class EmailVerificationPresenter {
         self.delegate = vc
     }
     
-    func resendEmailAPI(user: PFUser) {
-        let email = user.value(forKey: "email") as? String ?? ""
-        print(email)
-        //call parse api manager method of resend email here
-        //on success, call -> self.delegate?.emailVerification(didResendEmailSuccessfully: true)
-        
+    func resendEmailAPI(email: String) {
+        SVProgressHUD.show()
+        ParseAPIManager.resendEmail(email: email) { (success) in
+            SVProgressHUD.dismiss()
+            self.delegate?.emailVerification(didResendEmailSuccessfully: true, msg: ValidationStrings.kEmailResent)
+        } onFailure: { (error) in
+            self.delegate?.emailVerification(didResendEmailSuccessfully: false, msg: error)
+        }
     }
     
 }

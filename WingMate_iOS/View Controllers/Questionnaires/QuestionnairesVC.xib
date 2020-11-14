@@ -15,8 +15,11 @@
                 <outlet property="buttonBack" destination="GMq-Ez-3qw" id="kSh-oj-ISV"/>
                 <outlet property="buttonContinue" destination="HGO-aE-5gx" id="88k-zE-YVk"/>
                 <outlet property="buttonSkip" destination="Mg5-0y-ZRZ" id="oAI-Q3-TWq"/>
+                <outlet property="imageViewHeart" destination="Nqs-zq-VGy" id="f3T-jp-5gY"/>
+                <outlet property="labelProgress" destination="0XP-xs-Wr8" id="l4a-yi-NT1"/>
                 <outlet property="labelQuestion" destination="F9R-db-1Ri" id="G7x-qg-qJ7"/>
                 <outlet property="labelSubHeading" destination="Hl4-63-ExC" id="QuD-kl-BGC"/>
+                <outlet property="progressView" destination="KEC-Zu-94C" id="MHF-kA-IqW"/>
                 <outlet property="tableViewOptions" destination="xq0-pP-sMs" id="TL1-rW-VCp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -76,11 +79,11 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg5-0y-ZRZ">
-                    <rect key="frame" x="352" y="31" width="62" height="50"/>
+                    <rect key="frame" x="176" y="31" width="62" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="wef-wc-AgX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                     <state key="normal" title="Skip">
                         <color key="titleColor" name="RedThemeColor"/>
                     </state>
@@ -93,6 +96,56 @@
                         <action selector="skipButtonPressed:" destination="-1" eventType="touchUpInside" id="b85-cb-ANr"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEC-Zu-94C" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                    <rect key="frame" x="354" y="36" width="40" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XP-xs-Wr8">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
+                            <color key="textColor" name="LabelGrayTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="0XP-xs-Wr8" secondAttribute="bottom" id="7DL-eL-MIm"/>
+                        <constraint firstItem="0XP-xs-Wr8" firstAttribute="top" secondItem="KEC-Zu-94C" secondAttribute="top" id="Rth-aW-oVM"/>
+                        <constraint firstAttribute="trailing" secondItem="0XP-xs-Wr8" secondAttribute="trailing" id="abY-LT-1oU"/>
+                        <constraint firstItem="0XP-xs-Wr8" firstAttribute="leading" secondItem="KEC-Zu-94C" secondAttribute="leading" id="ht2-b8-UVp"/>
+                        <constraint firstAttribute="height" constant="40" id="oOA-FB-oic"/>
+                        <constraint firstAttribute="width" constant="40" id="og9-yf-I3S"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="value">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="fullCircle" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                            <color key="value" name="RedThemeColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isClockwise" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                            <color key="value" name="VCBackgroundColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldDrawMinValueKnob" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -102,13 +155,14 @@
                 <constraint firstItem="Nqs-zq-VGy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="AVj-oX-Stw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xq0-pP-sMs" secondAttribute="trailing" constant="20" id="Cbk-nl-xVM"/>
                 <constraint firstItem="F9R-db-1Ri" firstAttribute="top" secondItem="Nqs-zq-VGy" secondAttribute="bottom" constant="20" id="EgK-Ah-rlz"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mg5-0y-ZRZ" secondAttribute="trailing" id="L24-rS-7C7"/>
+                <constraint firstItem="Mg5-0y-ZRZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IcS-Yu-PTJ"/>
                 <constraint firstItem="F9R-db-1Ri" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NWi-0h-4Ym"/>
                 <constraint firstItem="xq0-pP-sMs" firstAttribute="top" secondItem="Hl4-63-ExC" secondAttribute="bottom" constant="32" id="RNi-zD-TYr"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="height" secondItem="HGO-aE-5gx" secondAttribute="height" id="Rs7-9S-t1z"/>
                 <constraint firstItem="xq0-pP-sMs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="XL2-ao-ysP"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="top" secondItem="HGO-aE-5gx" secondAttribute="bottom" constant="2" id="XSS-ye-ain"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="width" secondItem="HGO-aE-5gx" secondAttribute="width" id="Y4O-Xd-PaN"/>
+                <constraint firstItem="KEC-Zu-94C" firstAttribute="centerY" secondItem="Nqs-zq-VGy" secondAttribute="centerY" id="cWt-xS-Yu1"/>
                 <constraint firstItem="Hl4-63-ExC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="cip-ON-JaP"/>
                 <constraint firstItem="HGO-aE-5gx" firstAttribute="top" secondItem="xq0-pP-sMs" secondAttribute="bottom" constant="8" id="dpY-QO-tw3"/>
                 <constraint firstItem="Hl4-63-ExC" firstAttribute="top" secondItem="F9R-db-1Ri" secondAttribute="bottom" constant="20" id="eeZ-e4-JvT"/>
@@ -118,6 +172,7 @@
                 <constraint firstItem="Mg5-0y-ZRZ" firstAttribute="centerY" secondItem="Nqs-zq-VGy" secondAttribute="centerY" id="qAG-3f-mAd"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qLF-qB-60g"/>
                 <constraint firstItem="HGO-aE-5gx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rff-wp-DlU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KEC-Zu-94C" secondAttribute="trailing" constant="20" id="sm9-89-SEI"/>
             </constraints>
             <point key="canvasLocation" x="-97.101449275362327" y="73.369565217391312"/>
         </view>
@@ -128,11 +183,17 @@
         <namedColor name="Label Gray Text Color">
             <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="LabelGrayTextColor">
+            <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Purple Theme Color">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="RedThemeColor">
             <color red="0.96100002527236938" green="0.35699999332427979" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VCBackgroundColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

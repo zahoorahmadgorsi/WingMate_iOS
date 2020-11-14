@@ -31,8 +31,6 @@
 		FA700299255D37B3000052F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700298255D37B3000052F4 /* User.swift */; };
 		FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7003EC255F2708000052F4 /* DashboardVC.swift */; };
 		FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7003ED255F2708000052F4 /* DashboardVC.xib */; };
-		FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */; };
-		FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */; };
 		FA9EFD272537793700A1ED1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Constants.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
 		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
@@ -67,10 +65,10 @@
 		FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA0163025471818004D35BB /* QuestionnairesVC.xib */; };
 		FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */; };
 		FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */; };
-		FAC4941025403A13007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */; };
-		FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */; };
-		FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */; };
-		FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */; };
+		FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */; };
+		FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */; };
+		FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */; };
+		FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC494192540C2E5007E993B /* RegisterStepTwoVC.xib */; };
 		FAC5FEFC2558309B00F06B33 /* QuestionnairePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FEFB2558309B00F06B33 /* QuestionnairePresenter.swift */; };
 		FAC5FF012559142A00F06B33 /* DatabaseColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FF002559142A00F06B33 /* DatabaseColumn.swift */; };
 		FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */; };
@@ -129,8 +127,6 @@
 		FA700298255D37B3000052F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA7003EC255F2708000052F4 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		FA7003ED255F2708000052F4 /* DashboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardVC.xib; sourceTree = "<group>"; };
-		FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
-		FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -165,10 +161,10 @@
 		FAA0163025471818004D35BB /* QuestionnairesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnairesVC.xib; sourceTree = "<group>"; };
 		FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireSimpleOptionTableViewCell.swift; sourceTree = "<group>"; };
 		FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireSimpleOptionTableViewCell.xib; sourceTree = "<group>"; };
-		FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
-		FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepTwoVC.xib; sourceTree = "<group>"; };
-		FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepThreeVC.swift; sourceTree = "<group>"; };
-		FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepThreeVC.xib; sourceTree = "<group>"; };
+		FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
+		FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
+		FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
+		FAC494192540C2E5007E993B /* RegisterStepTwoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepTwoVC.xib; sourceTree = "<group>"; };
 		FAC5FEFB2558309B00F06B33 /* QuestionnairePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnairePresenter.swift; sourceTree = "<group>"; };
 		FAC5FF002559142A00F06B33 /* DatabaseColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseColumn.swift; sourceTree = "<group>"; };
 		FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountryOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -334,12 +330,10 @@
 		FA84AD3D253D937300E1C558 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				FA84AD3E253D93EA00E1C558 /* RegisterStepOneVC.swift */,
-				FA84AD3F253D93EA00E1C558 /* RegisterStepOneVC.xib */,
-				FAC4940E25403A13007E993B /* RegisterStepTwoVC.swift */,
-				FAC4940F25403A13007E993B /* RegisterStepTwoVC.xib */,
-				FAC494182540C2E5007E993B /* RegisterStepThreeVC.swift */,
-				FAC494192540C2E5007E993B /* RegisterStepThreeVC.xib */,
+				FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */,
+				FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */,
+				FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */,
+				FAC494192540C2E5007E993B /* RegisterStepTwoVC.xib */,
 				FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */,
 			);
 			path = Registration;
@@ -638,13 +632,12 @@
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
-				FAC4941B2540C2E5007E993B /* RegisterStepThreeVC.xib in Resources */,
+				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
-				FAC4941125403A13007E993B /* RegisterStepTwoVC.xib in Resources */,
+				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
-				FA84AD41253D93EA00E1C558 /* RegisterStepOneVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
 				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
@@ -725,7 +718,7 @@
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
 				FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */,
-				FAC4941025403A13007E993B /* RegisterStepTwoVC.swift in Sources */,
+				FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */,
 				FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */,
 				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
@@ -744,9 +737,8 @@
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
 				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,
-				FA84AD40253D93EA00E1C558 /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
-				FAC4941A2540C2E5007E993B /* RegisterStepThreeVC.swift in Sources */,
+				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
 				FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */,
 				FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */,

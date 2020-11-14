@@ -12,6 +12,7 @@ protocol RegisterDelegate {
     func register(isSuccess: Bool, nicknameValidationFailedMsg: String)
     func register(emailValidationFailedMsg: String)
     func register(passwordValidationFailedMsg: String)
+    func register(ageValidationFailedMsg: String)
     func register(didUserRegistered: Bool, msg: String)
     func register(validationSuccessStepThree: Bool)
 }
@@ -32,7 +33,7 @@ class RegisterPresenter {
         }
     }
     
-    func validateFieldsOnStepThree(email: String, password: String) {
+    func validateFieldsOnStepThree(email: String, password: String, isValidAge: Bool) {
         if email == "" {
             self.delegate?.register(emailValidationFailedMsg: ValidationStrings.kEnterEmail)
         } else {
@@ -42,10 +43,14 @@ class RegisterPresenter {
                 if password == "" {
                     self.delegate?.register(passwordValidationFailedMsg: ValidationStrings.kEnterPassword)
                 } else {
-                    if password.count <= 8 {
+                    if password.count < 6 {
                         self.delegate?.register(passwordValidationFailedMsg: ValidationStrings.kInvalidPassword)
                     } else {
-                        self.delegate?.register(validationSuccessStepThree: true)
+                        if isValidAge == false {
+                            self.delegate?.register(ageValidationFailedMsg: ValidationStrings.kInvalidAge)
+                        } else {
+                            self.delegate?.register(validationSuccessStepThree: true)
+                        }
                     }
                 }
             }

@@ -11,9 +11,20 @@ import Parse
 
 class DashboardVC: BaseViewController {
 
+    //MARK: - Outlets & Constraints
+    @IBOutlet weak var labelName: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.labelName.text = "Hi, \(APP_MANAGER.session?.value(forKey: DatabaseColumn.nick) as? String ?? "")"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     //MARK: - Button Actions

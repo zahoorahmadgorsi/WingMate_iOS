@@ -26,9 +26,9 @@ class QuestionnairePresenter {
         self.delegate = vc
     }
     
-    func getAllQuestions(questionType: QuestionType) {
+    func getQuestions(questionType: QuestionType) {
         SVProgressHUD.show()
-        ParseAPIManager.getAllData(from: DatabaseTable.question, whereKeyName: DatabaseColumn.questionType, whereKeyValue: questionType.rawValue, orderByKey: DatabaseColumn.displayOrder, isWhereKeyObjectType: false) { (success, data) in
+        ParseAPIManager.getQuestions(questionType: questionType.rawValue) { (success, data) in
             SVProgressHUD.dismiss()
             if success {
                 for obj in data {
@@ -45,9 +45,9 @@ class QuestionnairePresenter {
         }
     }
     
-    func getAllOptionsOfQuestion(questionObject: PFObject, questionIndex: Int) {
+    func getQuestionOptions(questionObject: PFObject, questionIndex: Int) {
         SVProgressHUD.show()
-        ParseAPIManager.getAllData(from: DatabaseTable.questionOption, whereKeyName: DatabaseColumn.questionId, whereKeyObject: questionObject, orderByKey: DatabaseColumn.optionId, isWhereKeyObjectType: true) { (success, data) in
+        ParseAPIManager.getQuestionOptions(questionObject: questionObject) { (success, data) in
             if success {
                 for obj in data {
                     let qo = QuestionnaireOptionNew(questionOptionObject: obj)
@@ -63,9 +63,9 @@ class QuestionnairePresenter {
     }
     
     func getUserSavedOptions(questionObject: PFObject, questionIndex: Int) {
-        ParseAPIManager.getAllData(from: DatabaseTable.userAnswer, whereKeyName: DatabaseColumn.questionId, whereKeyObject: questionObject, orderByKey: DatabaseColumn.optionId, isWhereKeyObjectType: true) { (success, data) in
+        ParseAPIManager.getUserSavedOptions(questionObject: questionObject) { (sucess, data) in
             SVProgressHUD.dismiss()
-            if success {
+            if sucess {
                 if data.count > 0 {
                     self.dataQuestionnaire[questionIndex].userSavedOptions = data[0]
                 }
@@ -80,7 +80,7 @@ class QuestionnairePresenter {
     
     func saveQuestionnaireOption(questionObject: PFObject, answersIds: [String]) {
         SVProgressHUD.show()
-        ParseAPIManager.saveUserQuestionnaireOption(questionObject: questionObject, selectedOptionIds: answersIds) { (success) in
+        ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds) { (success) in
             SVProgressHUD.dismiss()
             self.delegate?.questionnaire(isSaved: true, msg: ValidationStrings.kQuestionnaireOptionSaved)
         } onFailure: { (error) in
@@ -90,7 +90,7 @@ class QuestionnairePresenter {
     
     func updateUserOptions(userAnswerObject: PFObject) {
         SVProgressHUD.show()
-        ParseAPIManager.updateObject(object: userAnswerObject) { (isSuccess) in
+        ParseAPIManager.updateUserQuestionOptions(object: userAnswerObject) { (isSuccess) in
             SVProgressHUD.dismiss()
             self.delegate?.questionnaire(isUpdated: true, msg: "Option updated")
         } onFailure: { (error) in

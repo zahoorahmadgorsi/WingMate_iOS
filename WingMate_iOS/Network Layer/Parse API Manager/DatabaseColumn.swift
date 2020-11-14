@@ -31,6 +31,10 @@ class DatabaseColumn {
     static let countryFlagImage = "countryFlagImage"
     static let userId = "userId"
     static let selectedOptionIds = "selectedOptionIds"
+    
+    //cloud function names
+    static let cloudFunctionResendVerificationEmail = "resendVerificationEmail"
+    static let cloudFunctionUpdateWrongEmail = "updateWrongEmail"
 }
 
 class DatabaseTable {

@@ -31,7 +31,7 @@ class LoginPresenter {
                 if password == "" {
                     self.delegate?.login(passwordValidationFailedMsg: ValidationStrings.kEnterPassword)
                 } else {
-                    if password.count <= 8 {
+                    if password.count < 6 {
                         self.delegate?.login(passwordValidationFailedMsg: ValidationStrings.kInvalidPassword)
                     } else {
                         self.loginAPI(email: email, password: password)

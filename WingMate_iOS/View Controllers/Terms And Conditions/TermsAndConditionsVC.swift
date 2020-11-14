@@ -8,7 +8,7 @@
 import UIKit
 import Parse
 
-class TermsAndConditionsVC: UIViewController {
+class TermsAndConditionsVC: BaseViewController {
     
     var user = PFUser()
     var registerPresenter = RegisterPresenter()
@@ -38,12 +38,14 @@ extension TermsAndConditionsVC: RegisterDelegate {
     func register(emailValidationFailedMsg: String) {}
     func register(passwordValidationFailedMsg: String) {}
     func register(validationSuccessStepThree: Bool) {}
+    func register(ageValidationFailedMsg: String) {}
     
     func register(didUserRegistered: Bool, msg: String) {
         if didUserRegistered {
             self.navigationController?.pushViewController(EmailVerificationVC(user: self.user), animated: true)
         } else {
-            Utilities.shared.showErrorBanner(msg: msg)
+            self.navigationController?.popViewController(animated: true)
+            self.showToast(message: msg)
         }
     }
 }

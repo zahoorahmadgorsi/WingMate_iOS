@@ -10,4 +10,5 @@ target 'WingMate_iOS' do
   pod 'IQKeyboardManager'
   pod 'AAPickerView'
   pod 'NotificationBannerSwift'
+  pod 'UICircularProgressRing'
 end

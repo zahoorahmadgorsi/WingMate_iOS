@@ -71,11 +71,11 @@ extension ForgotPasswordVC: ForgotPasswordDelegate {
     }
     
     func forgotPassword(isSuccess: Bool, msg: String) {
+        self.showToast(message: msg)
         if isSuccess {
-            Utilities.shared.showSuccessBanner(msg: msg)
             self.navigationController?.popViewController(animated: true)
         } else {
-            Utilities.shared.showErrorBanner(msg: msg)
+            
         }
     }
     

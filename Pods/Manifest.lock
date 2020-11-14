@@ -15,6 +15,7 @@ PODS:
   - SDWebImage/Core (5.9.2)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
+  - UICircularProgressRing (7.0.0)
 
 DEPENDENCIES:
   - AAPickerView
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - Parse
   - SDWebImage
   - SVProgressHUD
+  - UICircularProgressRing
 
 SPEC REPOS:
   trunk:
@@ -35,6 +37,7 @@ SPEC REPOS:
     - SDWebImage
     - SnapKit
     - SVProgressHUD
+    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   AAPickerView: 98fefdd9610a982e1a344e09192906154f868e1f
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  UICircularProgressRing: 738b48db0ec1fbbd8482d727979392bb8c272e8d
 
-PODFILE CHECKSUM: bbe76e2ab467b1982b7fac5f49273b1d1a900660
+PODFILE CHECKSUM: d42e8be7ec5222625b0e142b9f737ccbd5b165fa
 
 COCOAPODS: 1.9.3

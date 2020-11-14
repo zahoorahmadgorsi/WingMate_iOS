@@ -40,19 +40,17 @@ class EmailVerificationVC: BaseViewController {
     }
     
     @IBAction func wrongEmailButtonPressed(_ sender: Any) {
-        self.navigationController?.popToViewController ((self.navigationController?.viewControllers[3]) as! RegisterStepThreeVC, animated: true)
+        self.navigationController?.popToViewController ((self.navigationController?.viewControllers[3]) as! RegisterStepTwoVC, animated: true)
     }
     
-    @IBAction func sendEmailAgainButtonPressed(_ sender: Any) {
-        self.emailVerificationPresenter.resendEmailAPI(user: self.user)
+    @IBAction func resendEmailButtonPressed(_ sender: Any) {
+        self.emailVerificationPresenter.resendEmailAPI(email: self.user.value(forKey: DatabaseColumn.email) as? String ?? "")
     }
 
 }
 
 extension EmailVerificationVC: EmailVerificationDelegate {
-    func emailVerification(didResendEmailSuccessfully: Bool) {
-        if didResendEmailSuccessfully {
-            self.showToast(message: ValidationStrings.kEmailResent)
-        }
+    func emailVerification(didResendEmailSuccessfully: Bool, msg: String) {
+        self.showToast(message: msg)
     }
 }
