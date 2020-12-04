@@ -96,4 +96,7 @@ extension RegisterStepOneVC: RegisterDelegate {
     func register(didUserRegistered: Bool, msg: String) {}
     func register(validationSuccessStepThree: Bool) {}
     func register(ageValidationFailedMsg: String) {}
+    func register(isWrongEmailSent: Bool, msg: String) {
+        
+    }
 }

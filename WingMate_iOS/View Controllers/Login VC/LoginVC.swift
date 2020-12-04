@@ -30,8 +30,15 @@ class LoginVC: BaseViewController {
         super.viewDidLoad()
         self.loginPresenter.attach(vc: self)
         self.setLayout()
-//        self.textFieldEmail.text = "danishnaeem57@gmail.com"
-//        self.textFieldPassword.text = "1234567890"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.textFieldEmail.text = APP_MANAGER.userEmail ?? ""
+        self.textFieldPassword.text = APP_MANAGER.userPassword ?? ""
+        if APP_MANAGER.userEmail ?? "" != "" {
+            self.shouldShowPassword = true
+            self.imageViewCheckBox.image = UIImage(named: "checked")
+        }
     }
     
     //MARK: - Helper Methods
@@ -117,6 +124,13 @@ extension LoginVC: LoginDelegate {
     
     func login(didUserLoggedIn: Bool, msg: String) {
         if didUserLoggedIn {
+            if self.isRememberMe {
+                APP_MANAGER.userEmail = self.textFieldEmail.text!
+                APP_MANAGER.userPassword = self.textFieldPassword.text!
+            } else {
+                APP_MANAGER.userEmail = ""
+                APP_MANAGER.userPassword = ""
+            }
             self.navigationController?.pushViewController(DashboardVC(), animated: true)
         } else {
             self.showToast(message: msg)

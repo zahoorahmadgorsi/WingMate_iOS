@@ -24,10 +24,16 @@ class TermsAndConditionsVC: BaseViewController {
     }
 
     @IBAction func agreeButtonPressed(_ sender: Any) {
-        self.registerPresenter.registerAPI(user: self.user)
+        if isWrongEmailPressed {
+            self.registerPresenter.wrongEmailAPI(emailWrong: oldEmail, emailNew: self.user.value(forKey: DatabaseColumn.email) as? String ?? "")
+        } else {
+            self.registerPresenter.registerAPI(user: self.user)
+        }
     }
     
     @IBAction func dontAgreeButtonPressed(_ sender: Any) {
+        isWrongEmailPressed = false
+        oldEmail = ""
         self.navigationController?.popToRootViewController(animated: true)
     }
 
@@ -42,6 +48,15 @@ extension TermsAndConditionsVC: RegisterDelegate {
     
     func register(didUserRegistered: Bool, msg: String) {
         if didUserRegistered {
+            self.navigationController?.pushViewController(EmailVerificationVC(user: self.user), animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+            self.showToast(message: msg)
+        }
+    }
+    
+    func register(isWrongEmailSent: Bool, msg: String) {
+        if isWrongEmailSent {
             self.navigationController?.pushViewController(EmailVerificationVC(user: self.user), animated: true)
         } else {
             self.navigationController?.popViewController(animated: true)

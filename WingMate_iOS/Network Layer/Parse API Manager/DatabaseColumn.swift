@@ -21,6 +21,8 @@ class DatabaseColumn {
     static let isPaidUser = "isPaidUser"
     static let isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
     static let isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
+    static let emailWrong = "emailWrong"
+    static let emailNew = "emailNew"
     
     //questionnaires
     static let questionType = "questionType"

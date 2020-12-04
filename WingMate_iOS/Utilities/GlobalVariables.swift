@@ -15,3 +15,5 @@ var SERVER_DATE_FORMAT: String = "yyyy-MM-dd hh:mm:ss"
 var OUTPUT_DATE_FORMAT: String = "E dd/MMM hh:mm a"
 var APP_NAME = "WingMate"
 var didPressedLoginNowOnEmailVerification = false
+var isWrongEmailPressed = false
+var oldEmail = ""

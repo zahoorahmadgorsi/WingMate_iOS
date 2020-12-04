@@ -25,6 +25,9 @@ class EmailVerificationVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isWrongEmailPressed = false
+        oldEmail = ""
+        
         self.emailVerificationPresenter.attach(vc: self)
         let email = self.user.value(forKey: "email") as? String ?? ""
         let nickName = self.user.value(forKey: "nick") as? String ?? ""
@@ -40,6 +43,8 @@ class EmailVerificationVC: BaseViewController {
     }
     
     @IBAction func wrongEmailButtonPressed(_ sender: Any) {
+        isWrongEmailPressed = true
+        oldEmail = self.user.value(forKey: DatabaseColumn.email) as? String ?? ""
         self.navigationController?.popToViewController ((self.navigationController?.viewControllers[3]) as! RegisterStepTwoVC, animated: true)
     }
     

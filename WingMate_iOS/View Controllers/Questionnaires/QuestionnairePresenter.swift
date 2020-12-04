@@ -29,7 +29,6 @@ class QuestionnairePresenter {
     func getQuestions(questionType: QuestionType) {
         SVProgressHUD.show()
         ParseAPIManager.getQuestions(questionType: questionType.rawValue) { (success, data) in
-            SVProgressHUD.dismiss()
             if success {
                 for obj in data {
                     let qs = QuestionnaireNew(questionObject: obj)

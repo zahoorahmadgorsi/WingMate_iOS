@@ -79,36 +79,6 @@ class ApplicationManager: NSObject {
         }
     }
     
-    /*
-     let kSESSION_KEY = "kSessionKey"
-     private var _session : User?
-     var session : User?
-     {
-         set {
-             _session = newValue
-             if _session == nil
-             {
-                 UserDefaults.standard.removeObject(forKey: kSESSION_KEY);
-                 return;
-             }
-             
-             UserDefaults.standard.set(try? PropertyListEncoder().encode(_session), forKey:kSESSION_KEY)
-             UserDefaults.standard.synchronize();
-             
-         }
-         
-         get {
-             _session = nil;
-             if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? Data {
-                 _session = try? PropertyListDecoder().decode(User.self, from: data)
-             }
-             return _session;
-             
-         }
-     }
-     */
-    
-    
     //Login status
     let kIsLoggedInKey = "kIsLoggedInKey"
     var isLoggedIn : Bool? {
@@ -122,5 +92,43 @@ class ApplicationManager: NSObject {
             return false
         }
     }
+    
+    //Email key
+    let kEmailKey = "kEmailKey"
+    var userEmail: String? {
+        set {
+            if newValue == nil {
+                UserDefaults.standard.removeObject(forKey: kEmailKey)
+                return
+            }
+            UserDefaults.standard.set(newValue, forKey: kEmailKey)
+        }
+        get {
+            
+            if let password = UserDefaults.standard.value(forKey: kEmailKey) {
+                return password as? String
+            }
+            return ""
+        }
+    }
+    
+    //Password key
+    let kPasswordKey = "kPasswordKey"
+    var userPassword: String? {
+        set {
+            if newValue == nil {
+                UserDefaults.standard.removeObject(forKey: kPasswordKey)
+                return
+            }
+            UserDefaults.standard.set(newValue, forKey: kPasswordKey)
+        }
+        get {
+            if let password = UserDefaults.standard.value(forKey: kPasswordKey) {
+                return password as? String
+            }
+            return ""
+        }
+    }
+    
 }
 

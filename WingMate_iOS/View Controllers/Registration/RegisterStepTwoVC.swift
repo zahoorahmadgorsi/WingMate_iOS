@@ -13,6 +13,7 @@ class RegisterStepTwoVC: BaseViewController {
     //MARK: - Outlets & Constraints
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var viewValidationEmail: UIView!
+    @IBOutlet weak var labelGreetings: UILabel!
     @IBOutlet weak var labelValidationEmail: UILabel!
     @IBOutlet weak var viewValidationPassword: UIView!
     @IBOutlet weak var labelValidationPassword: UILabel!
@@ -43,6 +44,7 @@ class RegisterStepTwoVC: BaseViewController {
     
     //MARK: - Helper Methods
     func setLayout() {
+        self.labelGreetings.text = "Hi, \(self.nickName)"
         self.cstHeightEmailValidationView.constant = 0
         self.cstHeightPasswordValidationView.constant = 0
         self.cstTopPasswordValidationView.constant = 0
@@ -81,7 +83,15 @@ class RegisterStepTwoVC: BaseViewController {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        
+        if isWrongEmailPressed {
+            isWrongEmailPressed = false
+            oldEmail = ""
+            self.navigationController?.popToRootViewController(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
 }
 
@@ -137,6 +147,10 @@ extension RegisterStepTwoVC: RegisterDelegate {
             user.setValue(self.genderType == 1 ? "male" : "female", forKey: "gender")
             self.navigationController?.pushViewController(TermsAndConditionsVC(user: user), animated: true)
         }
+    }
+    
+    func register(isWrongEmailSent: Bool, msg: String) {
+        
     }
     
     

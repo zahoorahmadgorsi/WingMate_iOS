@@ -16,6 +16,7 @@
                 <outlet property="cstHeightPasswordValidationView" destination="if5-T4-ink" id="Pzs-kl-EDN"/>
                 <outlet property="cstTopPasswordValidationView" destination="4rQ-6w-nuI" id="bkI-uY-xjL"/>
                 <outlet property="imageViewCheckBox" destination="xeE-a1-7Bv" id="Syx-D5-DFx"/>
+                <outlet property="labelGreetings" destination="2tc-T1-Lhl" id="HoK-d0-dzY"/>
                 <outlet property="labelValidationEmail" destination="lNv-GE-apE" id="EDe-jq-Er9"/>
                 <outlet property="labelValidationPassword" destination="gLk-HE-rGU" id="Mnd-Ux-Z5b"/>
                 <outlet property="textFieldEmail" destination="eVK-er-38q" id="aM3-YK-D2g"/>

@@ -81,6 +81,22 @@ struct ParseAPIManager {
         }
     }
     
+    static func wrongEmail(emailWrong: String, emailNew: String, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        SVProgressHUD.show()
+        let params = [
+            DatabaseColumn.emailWrong: emailWrong,
+            DatabaseColumn.emailNew: emailNew
+        ]
+        PFCloud.callFunction(inBackground: DatabaseColumn.cloudFunctionUpdateWrongEmail, withParameters: params) { (data, error) in
+            SVProgressHUD.dismiss()
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true)
+            }
+        }
+    }
+    
     //MARK: - Questionnaire Flow APIs
     static func getQuestions(questionType: String? = "", onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()

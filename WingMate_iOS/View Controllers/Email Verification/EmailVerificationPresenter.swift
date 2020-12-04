@@ -30,5 +30,4 @@ class EmailVerificationPresenter {
             self.delegate?.emailVerification(didResendEmailSuccessfully: false, msg: error)
         }
     }
-    
 }

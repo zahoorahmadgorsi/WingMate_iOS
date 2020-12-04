@@ -15,6 +15,7 @@ protocol RegisterDelegate {
     func register(ageValidationFailedMsg: String)
     func register(didUserRegistered: Bool, msg: String)
     func register(validationSuccessStepThree: Bool)
+    func register(isWrongEmailSent: Bool, msg: String)
 }
 
 class RegisterPresenter {
@@ -62,6 +63,14 @@ class RegisterPresenter {
             self.delegate?.register(didUserRegistered: true, msg: ValidationStrings.kEmailSentToVerifyUser)
         } onFailure: { (msg) in
             self.delegate?.register(didUserRegistered: false, msg: msg)
+        }
+    }
+    
+    func wrongEmailAPI(emailWrong: String, emailNew: String) {
+        ParseAPIManager.wrongEmail(emailWrong: emailWrong, emailNew: emailNew) { (success) in
+            self.delegate?.register(isWrongEmailSent: true, msg: ValidationStrings.kEmailResent)
+        } onFailure: { (error) in
+            self.delegate?.register(isWrongEmailSent: false, msg: ValidationStrings.kEmailResent)
         }
     }
 }
