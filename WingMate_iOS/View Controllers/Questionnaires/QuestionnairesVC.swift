@@ -21,17 +21,15 @@ class QuestionnairesVC: BaseViewController {
     @IBOutlet weak var imageViewHeart: UIImageView!
     @IBOutlet weak var progressView: UICircularProgressRing!
     @IBOutlet weak var labelProgress: UILabel!
-    @IBOutlet weak var constraintTopSearchView: NSLayoutConstraint!
     @IBOutlet weak var constraintHeightSearchView: NSLayoutConstraint!
+    @IBOutlet weak var constraintTopSearchView: NSLayoutConstraint!
     @IBOutlet weak var textFieldSearch: UITextField!
     
     var questionnairePresenter = QuestionnairePresenter()
     var data = [QuestionnaireNew]()
-    var dataCopy = [QuestionnaireNew]()
     
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
-    var isFilterActivated = false
     
     convenience init(isMandatoryQuestionnaires: Bool) {
         self.init()
@@ -49,6 +47,8 @@ class QuestionnairesVC: BaseViewController {
         } else {
             self.questionnairePresenter.getQuestions(questionType: .optional)
         }
+        
+        
     }
     
     //MARK: - Helping Methods
@@ -64,7 +64,6 @@ class QuestionnairesVC: BaseViewController {
         self.imageViewHeart.isHidden = true
         self.buttonBack.isHidden = true
         self.buttonContinue.isHidden = true
-        self.shouldShowSearchView(status: false)
     }
     
     func setInitialProgressView() {
@@ -75,20 +74,9 @@ class QuestionnairesVC: BaseViewController {
         self.setProgress()
     }
     
-    func shouldShowSearchView(status: Bool) {
-        self.constraintTopSearchView.constant = status ? 40 : 0
-        self.constraintHeightSearchView.constant = status ? 40 : 0
-    }
-    
     func setProgress() {
         self.labelProgress.text = "\(self.questionIndex+1)/\(self.data.count)"
         self.progressView.startProgress(to: CGFloat(self.questionIndex+1), duration: 0.1)
-        if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
-            self.shouldShowSearchView(status: true)
-        } else {
-            self.shouldShowSearchView(status: false)
-        }
-//        self.data = self.dataCopy
     }
     
     func registerTableViewCells() {
@@ -102,8 +90,6 @@ class QuestionnairesVC: BaseViewController {
         self.labelQuestion.text = self.data[self.questionIndex].questionObject?.value(forKey: DatabaseColumn.title) as? String ?? ""
         if self.data[self.questionIndex].questionOptionObjects.count == 0 { //if already fetched then don't fetch again
             self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
-        } else {
-            self.mapAllSelectedValuesToMainData()
         }
     }
     
@@ -117,28 +103,9 @@ class QuestionnairesVC: BaseViewController {
         }
     }
     
-    func mapAllSelectedValuesToMainData() {
-        for (i, dataMainItem) in self.dataCopy[self.questionIndex].questionOptionObjects.enumerated() {
-            self.dataCopy[self.questionIndex].questionOptionObjects[i].isSelected = false
-            for (j, dataItem) in self.data[self.questionIndex].questionOptionObjects.enumerated() {
-                let objectIdDataItem = dataItem.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
-                let objectIdDataMainItem = dataMainItem.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
-                if (objectIdDataItem == objectIdDataMainItem) && (dataItem.isSelected) {
-                    self.dataCopy[self.questionIndex].questionOptionObjects[i].isSelected = true
-                }
-            }
-        }
-        
-//        for (i, dataItem) in self.dataCopy[self.questionIndex].questionOptionObjects.enumerated() {
-//            for (j, dataMainItem) in self.data[self.questionIndex].questionOptionObjects.enumerated() {
-//                let objectIdDataItem = dataItem.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
-//                let objectIdDataMainItem = dataMainItem.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
-//                if (objectIdDataItem == objectIdDataMainItem) && (dataItem.isSelected) {
-//                    self.dataCopy[self.questionIndex].questionOptionObjects[j].isSelected = true
-//                }
-//            }
-//        }
-    }
+//    if self.isMandatoryQuestionnaires == false {
+//        self.buttonSkip.isHidden = false
+//    }
     
     //MARK: - Button Actions
     @IBAction func continueButtonPressed(_ sender: Any) {
@@ -233,7 +200,7 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
         if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
             //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
-//            let dta = self.isFilterActivated ? self.data[self.questionIndex].questionOptionObjects[indexPath.row] : self.dataCopy[self.questionIndex].questionOptionObjects[indexPath.row]
+            //            cell.data = self.dataold[self.questionIndex].options[indexPath.row]
             cell.data = self.data[self.questionIndex].questionOptionObjects[indexPath.row]
             return cell
         }
@@ -244,15 +211,10 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isMandatoryQuestionnaires {
-            for (i, _) in self.data[self.questionIndex].questionOptionObjects.enumerated() {
-                self.data[self.questionIndex].questionOptionObjects[i].isSelected = false
+            for i in self.data[self.questionIndex].questionOptionObjects {
+                i.isSelected = false
             }
             self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected = true
-            print("abc")
-            if isFilterActivated {
-                //map all data value to dataMain as well because once filter will be inactive it data will be replaced with dataMain to get all values
-                self.mapAllSelectedValuesToMainData()
-            }
         } else {
             self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected = !self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected
         }
@@ -273,54 +235,11 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension QuestionnairesVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.isFilterActivated = true
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.isFilterActivated = false
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var searchText  = self.textFieldSearch.text! + string
-        if string == "" {
-            if searchText.count > 0 {
-                searchText.removeLast()
-                if searchText.count == 0 {
-                    self.textFieldSearch.text = ""
-                    
-                    self.data[self.questionIndex].questionOptionObjects = self.dataCopy[self.questionIndex].questionOptionObjects
-                    self.view.endEditing(true)
-                }
-            }
-        }
-
-        if searchText.count == 0 {
-//            self.data = self.dataCopy
-            self.isFilterActivated = false
-//            self.data[self.questionIndex].questionOptionObjects = self.dataCopy[self.questionIndex].questionOptionObjects
-            self.tableViewOptions.reloadData()
-        } else {
-            self.isFilterActivated = true
-            
-            self.data[self.questionIndex].questionOptionObjects = self.dataCopy[self.questionIndex].questionOptionObjects.filter { dta in
-                let isMatchingSearchText = (dta.questionOptionObject?.value(forKey: DatabaseColumn.title) as? String ?? "").lowercased().contains(searchText.lowercased())
-                return isMatchingSearchText
-            }
-            
-            self.tableViewOptions.reloadData()
-        }
-        return true
-    }
-}
-
 extension QuestionnairesVC: QuestionnaireDelegate {
     //all questions response
     func questionnaire(isSuccess: Bool, questionData: [QuestionnaireNew], msg: String) {
         if isSuccess {
             self.data = questionData
-            self.dataCopy = questionData
             self.setInitialProgressView()
             self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
         } else {
@@ -332,7 +251,6 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     func questionnaire(isSuccess: Bool, questionOptionsData: [QuestionnaireNew], msg: String) {
         if isSuccess {
             self.data = questionOptionsData
-            self.dataCopy = questionOptionsData
             self.questionnairePresenter.getUserSavedOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
@@ -345,24 +263,22 @@ extension QuestionnairesVC: QuestionnaireDelegate {
             if self.isMandatoryQuestionnaires == false {
                 self.buttonSkip.isHidden = false
             }
-            self.data = userSavedOptions
-            self.dataCopy = userSavedOptions
-            let optionsArray = self.data[questionIndex].userSavedOptions?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
             
-            for (i, item) in self.data[self.questionIndex].questionOptionObjects.enumerated() {
+            
+            //            self.showToast(message: msg)
+            self.data = userSavedOptions
+            let optionsArray = self.data[questionIndex].userSavedOptions?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
+            for i in self.data[self.questionIndex].questionOptionObjects {
                 for j in optionsArray ?? [] {
-                    let questionOptionId = item.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
+                    let questionOptionId = i.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
                     let userSelectedOptionId = j
                     if questionOptionId == userSelectedOptionId {
                         self.buttonContinue.alpha = 1
                         self.buttonContinue.isEnabled = true
-                        self.data[self.questionIndex].questionOptionObjects[i].isSelected = true
-//                        i.isSelected = true
+                        i.isSelected = true
                     }
                 }
             }
-            
-            self.mapAllSelectedValuesToMainData()
             
             self.labelQuestion.text = self.data[self.questionIndex].questionObject?.value(forKey: DatabaseColumn.title) as? String ?? ""
             
@@ -401,7 +317,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     }
 }
 
-struct QuestionnaireNew {
+class QuestionnaireNew {
     var questionObject: PFObject?
     var questionOptionObjects = [QuestionnaireOptionNew]()
     var userSavedOptions: PFObject?
@@ -411,7 +327,7 @@ struct QuestionnaireNew {
     }
 }
 
-struct QuestionnaireOptionNew {
+class QuestionnaireOptionNew {
     var isSelected = false
     var questionOptionObject: PFObject?
     
