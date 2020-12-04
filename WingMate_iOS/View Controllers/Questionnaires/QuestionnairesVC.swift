@@ -26,7 +26,7 @@ class QuestionnairesVC: BaseViewController {
     @IBOutlet weak var textFieldSearch: UITextField!
     
     var questionnairePresenter = QuestionnairePresenter()
-    var data = [QuestionnaireNew]()
+    var data = [Question]()
     
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
@@ -47,8 +47,6 @@ class QuestionnairesVC: BaseViewController {
         } else {
             self.questionnairePresenter.getQuestions(questionType: .optional)
         }
-        
-        
     }
     
     //MARK: - Helping Methods
@@ -64,7 +62,9 @@ class QuestionnairesVC: BaseViewController {
         self.imageViewHeart.isHidden = true
         self.buttonBack.isHidden = true
         self.buttonContinue.isHidden = true
+        self.shouldShowSearchView(status: false)
     }
+    
     
     func setInitialProgressView() {
         self.progressView.style = .ontop
@@ -74,9 +74,20 @@ class QuestionnairesVC: BaseViewController {
         self.setProgress()
     }
     
+    func shouldShowSearchView(status: Bool) {
+        self.constraintTopSearchView.constant = status ? 40 : 0
+        self.constraintHeightSearchView.constant = status ? 40 : 0
+    }
+    
     func setProgress() {
         self.labelProgress.text = "\(self.questionIndex+1)/\(self.data.count)"
         self.progressView.startProgress(to: CGFloat(self.questionIndex+1), duration: 0.1)
+        if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
+            self.shouldShowSearchView(status: true)
+        } else {
+            self.shouldShowSearchView(status: false)
+        }
+//        self.data = self.dataCopy
     }
     
     func registerTableViewCells() {
@@ -87,14 +98,14 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func getOptions() {
-        self.labelQuestion.text = self.data[self.questionIndex].questionObject?.value(forKey: DatabaseColumn.title) as? String ?? ""
-        if self.data[self.questionIndex].questionOptionObjects.count == 0 { //if already fetched then don't fetch again
-            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
+        self.labelQuestion.text = self.data[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
+        if self.data[self.questionIndex].options.count == 0 { //if already fetched then don't fetch again
+            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
         }
     }
     
     func enableButtonIfAnyOptionIsMarked() {
-        for i in self.data[self.questionIndex].questionOptionObjects {
+        for i in self.data[self.questionIndex].options {
             if i.isSelected == true {
                 self.buttonContinue.alpha = 1
                 self.buttonContinue.isEnabled = true
@@ -103,29 +114,25 @@ class QuestionnairesVC: BaseViewController {
         }
     }
     
-//    if self.isMandatoryQuestionnaires == false {
-//        self.buttonSkip.isHidden = false
-//    }
-    
     //MARK: - Button Actions
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         var answersIds = [String]()
-        for i in self.data[self.questionIndex].questionOptionObjects {
+        for i in self.data[self.questionIndex].options {
             if i.isSelected {
-                answersIds.append(i.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? "")
+                answersIds.append(i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "")
             }
         }
-        if self.data[self.questionIndex].userSavedOptions != nil {
+        if self.data[self.questionIndex].userSavedOptionObject != nil {
             //already saved, so update it
             if answersIds.count > 0 || self.isMandatoryQuestionnaires == false {
-                let obj = self.data[self.questionIndex].userSavedOptions
+                let obj = self.data[self.questionIndex].userSavedOptionObject
                 let userSavedOptions = obj?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
                 var isOptionsUpdated = false
-                for i in self.data[self.questionIndex].questionOptionObjects {
+                for i in self.data[self.questionIndex].options {
                     if i.isSelected {
                         for j in userSavedOptions ?? [] {
-                            if j != i.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
+                            if j != i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
                                 isOptionsUpdated = true
                                 break
                             }
@@ -134,8 +141,8 @@ class QuestionnairesVC: BaseViewController {
                 }
                 
                 if isOptionsUpdated || self.isMandatoryQuestionnaires == false {
-                    self.data[self.questionIndex].userSavedOptions?[DatabaseColumn.selectedOptionIds] = answersIds
-                    self.questionnairePresenter.updateUserOptions(userAnswerObject: self.data[self.questionIndex].userSavedOptions!)
+                    self.data[self.questionIndex].userSavedOptionObject?[DatabaseColumn.selectedOptionIds] = answersIds
+                    self.questionnairePresenter.updateUserOptions(userAnswerObject: self.data[self.questionIndex].userSavedOptionObject!)
                 } else {
                     self.moveToNextQuestion()
                 }
@@ -145,7 +152,7 @@ class QuestionnairesVC: BaseViewController {
         } else {
             //not saved, save it
             if answersIds.count > 0 {
-                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.data[self.questionIndex].questionObject!, answersIds: answersIds)
+                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.data[self.questionIndex].object!, answersIds: answersIds)
             } else {
                 self.showToast(message: ValidationStrings.kSelectAnyOption)
             }
@@ -201,22 +208,22 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
             //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
             //            cell.data = self.dataold[self.questionIndex].options[indexPath.row]
-            cell.data = self.data[self.questionIndex].questionOptionObjects[indexPath.row]
+            cell.data = self.data[self.questionIndex].options[indexPath.row]
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireSimpleOptionTableViewCell.className, for: indexPath) as! QuestionnaireSimpleOptionTableViewCell
-        cell.data = self.data[self.questionIndex].questionOptionObjects[indexPath.row]
+        cell.data = self.data[self.questionIndex].options[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isMandatoryQuestionnaires {
-            for i in self.data[self.questionIndex].questionOptionObjects {
+            for i in self.data[self.questionIndex].options {
                 i.isSelected = false
             }
-            self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected = true
+            self.data[self.questionIndex].options[indexPath.row].isSelected = true
         } else {
-            self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected = !self.data[self.questionIndex].questionOptionObjects[indexPath.row].isSelected
+            self.data[self.questionIndex].options[indexPath.row].isSelected = !self.data[self.questionIndex].options[indexPath.row].isSelected
         }
         self.tableViewOptions.reloadData()
         self.buttonContinue.alpha = 1
@@ -231,34 +238,34 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.count > 0 ? self.data[self.questionIndex].questionOptionObjects.count : 0
+        return self.data.count > 0 ? self.data[self.questionIndex].options.count : 0
     }
 }
 
 extension QuestionnairesVC: QuestionnaireDelegate {
     //all questions response
-    func questionnaire(isSuccess: Bool, questionData: [QuestionnaireNew], msg: String) {
+    func questionnaire(isSuccess: Bool, questionData: [Question], msg: String) {
         if isSuccess {
             self.data = questionData
             self.setInitialProgressView()
-            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
+            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
         }
     }
     
     //options response
-    func questionnaire(isSuccess: Bool, questionOptionsData: [QuestionnaireNew], msg: String) {
+    func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String) {
         if isSuccess {
             self.data = questionOptionsData
-            self.questionnairePresenter.getUserSavedOptions(questionObject: self.data[self.questionIndex].questionObject!, questionIndex: self.questionIndex)
+            self.questionnairePresenter.getUserSavedOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
         }
     }
     
     //get user saved options response
-    func questionnaire(isSuccess: Bool, userSavedOptions: [QuestionnaireNew], msg: String) {
+    func questionnaire(isSuccess: Bool, userSavedOptions: [Question], msg: String) {
         if isSuccess {
             if self.isMandatoryQuestionnaires == false {
                 self.buttonSkip.isHidden = false
@@ -267,10 +274,10 @@ extension QuestionnairesVC: QuestionnaireDelegate {
             
             //            self.showToast(message: msg)
             self.data = userSavedOptions
-            let optionsArray = self.data[questionIndex].userSavedOptions?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
-            for i in self.data[self.questionIndex].questionOptionObjects {
+            let optionsArray = self.data[questionIndex].userSavedOptionObject?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
+            for i in self.data[self.questionIndex].options {
                 for j in optionsArray ?? [] {
-                    let questionOptionId = i.questionOptionObject?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
+                    let questionOptionId = i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
                     let userSelectedOptionId = j
                     if questionOptionId == userSelectedOptionId {
                         self.buttonContinue.alpha = 1
@@ -280,7 +287,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
                 }
             }
             
-            self.labelQuestion.text = self.data[self.questionIndex].questionObject?.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelQuestion.text = self.data[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
             
             self.tableViewOptions.reloadData()
             self.progressView.isHidden = false
@@ -314,25 +321,5 @@ extension QuestionnairesVC: QuestionnaireDelegate {
         } else {
             self.showToast(message: msg)
         }
-    }
-}
-
-class QuestionnaireNew {
-    var questionObject: PFObject?
-    var questionOptionObjects = [QuestionnaireOptionNew]()
-    var userSavedOptions: PFObject?
-    init() {}
-    init(questionObject: PFObject) {
-        self.questionObject = questionObject
-    }
-}
-
-class QuestionnaireOptionNew {
-    var isSelected = false
-    var questionOptionObject: PFObject?
-    
-    init() {}
-    init(questionOptionObject: PFObject) {
-        self.questionOptionObject = questionOptionObject
     }
 }

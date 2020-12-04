@@ -21,9 +21,9 @@ class QuestionnaireSimpleOptionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    var data: QuestionnaireOptionNew? {
+    var data: Option? {
         didSet {
-            self.labelOption.text = data?.questionOptionObject!.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelOption.text = data?.object!.value(forKey: DatabaseColumn.title) as? String ?? ""
             self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
             self.labelOption.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
         }

@@ -31,10 +31,10 @@ class QuestionnaireCountryOptionTableViewCell: UITableViewCell {
 //        }
 //    }
     
-    var data: QuestionnaireOptionNew? {
+    var data: Option? {
         didSet {
-            self.labelCountry.text = data?.questionOptionObject!.value(forKey: DatabaseColumn.title) as? String ?? ""
-            let thumbnail = self.data?.questionOptionObject?["countryFlagImage"] as? PFFileObject
+            self.labelCountry.text = data?.object!.value(forKey: DatabaseColumn.title) as? String ?? ""
+            let thumbnail = self.data?.object?["countryFlagImage"] as? PFFileObject
             thumbnail?.getDataInBackground (block: { (data, error) -> Void in
                 if let image = UIImage(data: data!) {
                     self.imageViewCountry.image = image

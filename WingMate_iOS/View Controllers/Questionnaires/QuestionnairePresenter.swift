@@ -10,9 +10,9 @@ import Parse
 import SVProgressHUD
 
 protocol QuestionnaireDelegate {
-    func questionnaire(isSuccess: Bool, questionData: [QuestionnaireNew], msg: String)
-    func questionnaire(isSuccess: Bool, questionOptionsData: [QuestionnaireNew], msg: String)
-    func questionnaire(isSuccess: Bool, userSavedOptions: [QuestionnaireNew], msg: String)
+    func questionnaire(isSuccess: Bool, questionData: [Question], msg: String)
+    func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String)
+    func questionnaire(isSuccess: Bool, userSavedOptions: [Question], msg: String)
     func questionnaire(isSaved: Bool, msg: String)
     func questionnaire(isUpdated: Bool, msg: String)
 }
@@ -20,7 +20,7 @@ protocol QuestionnaireDelegate {
 class QuestionnairePresenter {
     
     var delegate: QuestionnaireDelegate?
-    var dataQuestionnaire = [QuestionnaireNew]()
+    var dataQuestionnaire = [Question]()
     
     func attach(vc: QuestionnaireDelegate) {
         self.delegate = vc
@@ -31,7 +31,7 @@ class QuestionnairePresenter {
         ParseAPIManager.getQuestions(questionType: questionType.rawValue) { (success, data) in
             if success {
                 for obj in data {
-                    let qs = QuestionnaireNew(questionObject: obj)
+                    let qs = Question(questionObject: obj)
                     self.dataQuestionnaire.append(qs)
                 }
                 self.delegate?.questionnaire(isSuccess: true, questionData: self.dataQuestionnaire, msg: "Questions fetched")
@@ -49,8 +49,8 @@ class QuestionnairePresenter {
         ParseAPIManager.getQuestionOptions(questionObject: questionObject) { (success, data) in
             if success {
                 for obj in data {
-                    let qo = QuestionnaireOptionNew(questionOptionObject: obj)
-                    self.dataQuestionnaire[questionIndex].questionOptionObjects.append(qo)
+                    let qo = Option(questionOptionObject: obj)
+                    self.dataQuestionnaire[questionIndex].options.append(qo)
                 }
                 self.delegate?.questionnaire(isSuccess: true, questionOptionsData: self.dataQuestionnaire, msg: "Options fetched")
             } else {
@@ -66,7 +66,7 @@ class QuestionnairePresenter {
             SVProgressHUD.dismiss()
             if sucess {
                 if data.count > 0 {
-                    self.dataQuestionnaire[questionIndex].userSavedOptions = data[0]
+                    self.dataQuestionnaire[questionIndex].userSavedOptionObject = data[0]
                 }
                 self.delegate?.questionnaire(isSuccess: true, userSavedOptions: self.dataQuestionnaire, msg: "User saved options fetched")
             } else {

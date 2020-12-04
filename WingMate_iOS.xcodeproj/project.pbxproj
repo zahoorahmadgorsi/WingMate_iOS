@@ -31,6 +31,7 @@
 		FA700299255D37B3000052F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700298255D37B3000052F4 /* User.swift */; };
 		FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7003EC255F2708000052F4 /* DashboardVC.swift */; };
 		FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7003ED255F2708000052F4 /* DashboardVC.xib */; };
+		FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */; };
 		FA9EFD272537793700A1ED1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Constants.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
 		FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD242537793700A1ED1C /* GlobalVariables.swift */; };
@@ -127,6 +128,7 @@
 		FA700298255D37B3000052F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA7003EC255F2708000052F4 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		FA7003ED255F2708000052F4 /* DashboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardVC.xib; sourceTree = "<group>"; };
+		FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireModel.swift; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA9EFD242537793700A1ED1C /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				FA700298255D37B3000052F4 /* User.swift */,
+				FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
+				FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
 				FA9EFD4E253779DD00A1ED1C /* Double-Extension.swift in Sources */,
 				FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */,
