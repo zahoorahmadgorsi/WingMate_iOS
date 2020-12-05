@@ -26,7 +26,8 @@ class QuestionnairesVC: BaseViewController {
     @IBOutlet weak var textFieldSearch: UITextField!
     
     var questionnairePresenter = QuestionnairePresenter()
-    var data = [Question]()
+    var filteredData = [Question]()
+    var mainData = [Question]()
     
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
@@ -69,7 +70,7 @@ class QuestionnairesVC: BaseViewController {
     func setInitialProgressView() {
         self.progressView.style = .ontop
         self.progressView.minValue = 1
-        self.progressView.maxValue = CGFloat(self.data.count)
+        self.progressView.maxValue = CGFloat(self.filteredData.count)
         self.progressView.startAngle = -90
         self.setProgress()
     }
@@ -80,7 +81,7 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func setProgress() {
-        self.labelProgress.text = "\(self.questionIndex+1)/\(self.data.count)"
+        self.labelProgress.text = "\(self.questionIndex+1)/\(self.filteredData.count)"
         self.progressView.startProgress(to: CGFloat(self.questionIndex+1), duration: 0.1)
         if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
             self.shouldShowSearchView(status: true)
@@ -98,14 +99,14 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func getOptions() {
-        self.labelQuestion.text = self.data[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
-        if self.data[self.questionIndex].options.count == 0 { //if already fetched then don't fetch again
-            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
+        self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
+        if self.filteredData[self.questionIndex].options.count == 0 { //if already fetched then don't fetch again
+            self.questionnairePresenter.getQuestionOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         }
     }
     
     func enableButtonIfAnyOptionIsMarked() {
-        for i in self.data[self.questionIndex].options {
+        for i in self.filteredData[self.questionIndex].options {
             if i.isSelected == true {
                 self.buttonContinue.alpha = 1
                 self.buttonContinue.isEnabled = true
@@ -118,18 +119,18 @@ class QuestionnairesVC: BaseViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         var answersIds = [String]()
-        for i in self.data[self.questionIndex].options {
+        for i in self.filteredData[self.questionIndex].options {
             if i.isSelected {
                 answersIds.append(i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "")
             }
         }
-        if self.data[self.questionIndex].userSavedOptionObject != nil {
+        if self.filteredData[self.questionIndex].userSavedOptionObject != nil {
             //already saved, so update it
             if answersIds.count > 0 || self.isMandatoryQuestionnaires == false {
-                let obj = self.data[self.questionIndex].userSavedOptionObject
+                let obj = self.filteredData[self.questionIndex].userSavedOptionObject
                 let userSavedOptions = obj?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
                 var isOptionsUpdated = false
-                for i in self.data[self.questionIndex].options {
+                for i in self.filteredData[self.questionIndex].options {
                     if i.isSelected {
                         for j in userSavedOptions ?? [] {
                             if j != i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
@@ -141,8 +142,8 @@ class QuestionnairesVC: BaseViewController {
                 }
                 
                 if isOptionsUpdated || self.isMandatoryQuestionnaires == false {
-                    self.data[self.questionIndex].userSavedOptionObject?[DatabaseColumn.selectedOptionIds] = answersIds
-                    self.questionnairePresenter.updateUserOptions(userAnswerObject: self.data[self.questionIndex].userSavedOptionObject!)
+                    self.filteredData[self.questionIndex].userSavedOptionObject?[DatabaseColumn.selectedOptionIds] = answersIds
+                    self.questionnairePresenter.updateUserOptions(userAnswerObject: self.filteredData[self.questionIndex].userSavedOptionObject!)
                 } else {
                     self.moveToNextQuestion()
                 }
@@ -152,7 +153,7 @@ class QuestionnairesVC: BaseViewController {
         } else {
             //not saved, save it
             if answersIds.count > 0 {
-                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.data[self.questionIndex].object!, answersIds: answersIds)
+                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.filteredData[self.questionIndex].object!, answersIds: answersIds)
             } else {
                 self.showToast(message: ValidationStrings.kSelectAnyOption)
             }
@@ -160,7 +161,7 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func moveToNextQuestion() {
-        if self.questionIndex < self.data.count - 1 {
+        if self.questionIndex < self.filteredData.count - 1 {
             self.questionIndex = self.questionIndex + 1
             self.getOptions()
             self.buttonContinue.alpha = self.isMandatoryQuestionnaires ? 0.3 : 1
@@ -169,7 +170,7 @@ class QuestionnairesVC: BaseViewController {
             self.tableViewOptions.reloadData()
             
             //if optional questionnaires last question, then hide skip button
-            if (self.questionIndex == self.data.count-1) && (self.isMandatoryQuestionnaires == false) {
+            if (self.questionIndex == self.filteredData.count-1) && (self.isMandatoryQuestionnaires == false) {
                 self.buttonSkip.isHidden = true
             }
             
@@ -208,22 +209,22 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
             //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
             //            cell.data = self.dataold[self.questionIndex].options[indexPath.row]
-            cell.data = self.data[self.questionIndex].options[indexPath.row]
+            cell.data = self.filteredData[self.questionIndex].options[indexPath.row]
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireSimpleOptionTableViewCell.className, for: indexPath) as! QuestionnaireSimpleOptionTableViewCell
-        cell.data = self.data[self.questionIndex].options[indexPath.row]
+        cell.data = self.filteredData[self.questionIndex].options[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isMandatoryQuestionnaires {
-            for i in self.data[self.questionIndex].options {
+            for i in self.filteredData[self.questionIndex].options {
                 i.isSelected = false
             }
-            self.data[self.questionIndex].options[indexPath.row].isSelected = true
+            self.filteredData[self.questionIndex].options[indexPath.row].isSelected = true
         } else {
-            self.data[self.questionIndex].options[indexPath.row].isSelected = !self.data[self.questionIndex].options[indexPath.row].isSelected
+            self.filteredData[self.questionIndex].options[indexPath.row].isSelected = !self.filteredData[self.questionIndex].options[indexPath.row].isSelected
         }
         self.tableViewOptions.reloadData()
         self.buttonContinue.alpha = 1
@@ -238,7 +239,7 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.count > 0 ? self.data[self.questionIndex].options.count : 0
+        return self.filteredData.count > 0 ? self.filteredData[self.questionIndex].options.count : 0
     }
 }
 
@@ -246,9 +247,10 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     //all questions response
     func questionnaire(isSuccess: Bool, questionData: [Question], msg: String) {
         if isSuccess {
-            self.data = questionData
+            self.filteredData = questionData
+            self.mainData = questionData
             self.setInitialProgressView()
-            self.questionnairePresenter.getQuestionOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
+            self.questionnairePresenter.getQuestionOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
         }
@@ -257,8 +259,9 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     //options response
     func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String) {
         if isSuccess {
-            self.data = questionOptionsData
-            self.questionnairePresenter.getUserSavedOptions(questionObject: self.data[self.questionIndex].object!, questionIndex: self.questionIndex)
+            self.filteredData = questionOptionsData
+            self.mainData = questionOptionsData
+            self.questionnairePresenter.getUserSavedOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
         }
@@ -273,9 +276,10 @@ extension QuestionnairesVC: QuestionnaireDelegate {
             
             
             //            self.showToast(message: msg)
-            self.data = userSavedOptions
-            let optionsArray = self.data[questionIndex].userSavedOptionObject?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
-            for i in self.data[self.questionIndex].options {
+            self.filteredData = userSavedOptions
+            self.mainData = userSavedOptions
+            let optionsArray = self.filteredData[questionIndex].userSavedOptionObject?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
+            for i in self.filteredData[self.questionIndex].options {
                 for j in optionsArray ?? [] {
                     let questionOptionId = i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
                     let userSelectedOptionId = j
@@ -287,12 +291,12 @@ extension QuestionnairesVC: QuestionnaireDelegate {
                 }
             }
             
-            self.labelQuestion.text = self.data[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
             
             self.tableViewOptions.reloadData()
             self.progressView.isHidden = false
             self.labelSubHeading.isHidden = false
-            if (self.questionIndex == self.data.count-1) && (self.isMandatoryQuestionnaires == false) {
+            if (self.questionIndex == self.filteredData.count-1) && (self.isMandatoryQuestionnaires == false) {
                 self.buttonSkip.isHidden = true
             }
             self.imageViewHeart.isHidden = false
