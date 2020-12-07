@@ -8,7 +8,7 @@
 import Foundation
 import Parse
 
-class Question {
+struct Question {
     var object: PFObject?
     var options = [Option]()
     var userSavedOptionObject: PFObject?
@@ -18,7 +18,7 @@ class Question {
     }
 }
 
-class Option {
+struct Option {
     var isSelected = false
     var object: PFObject?
     

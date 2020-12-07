@@ -31,6 +31,7 @@ class QuestionnairesVC: BaseViewController {
     
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
+    var isFilterActivated = false
     
     convenience init(isMandatoryQuestionnaires: Bool) {
         self.init()
@@ -76,7 +77,7 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func shouldShowSearchView(status: Bool) {
-        self.constraintTopSearchView.constant = status ? 40 : 0
+        self.constraintTopSearchView.constant = status ? 20 : 0
         self.constraintHeightSearchView.constant = status ? 40 : 0
     }
     
@@ -111,6 +112,20 @@ class QuestionnairesVC: BaseViewController {
                 self.buttonContinue.alpha = 1
                 self.buttonContinue.isEnabled = true
                 return
+            }
+        }
+    }
+    
+    func mapValuesToMainData() {
+        for i in filteredData[questionIndex].options {
+            if i.isSelected {
+                for (j, item) in mainData[questionIndex].options.enumerated() {
+                    if item.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" == i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
+                        self.mainData[questionIndex].options[j].isSelected = true
+                        break
+                    }
+                }
+                break
             }
         }
     }
@@ -203,6 +218,35 @@ class QuestionnairesVC: BaseViewController {
     
 }
 
+extension QuestionnairesVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.isFilterActivated = true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.isFilterActivated = false
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let searchText  = self.textFieldSearch.text! + string
+        if string == "" && searchText.count == 1 {
+            self.textFieldSearch.text = ""
+//            self.mapValuesToMainData()
+            self.filteredData[self.questionIndex].options = self.mainData[self.questionIndex].options
+            self.isFilterActivated = false
+            self.view.endEditing(true)
+        } else {
+            self.isFilterActivated = true
+            self.filteredData[self.questionIndex].options = self.mainData[self.questionIndex].options.filter { dta in
+                let isMatchingSearchText = (dta.object?.value(forKey: DatabaseColumn.title) as? String ?? "").lowercased().contains(searchText.lowercased())
+                return isMatchingSearchText
+            }
+        }
+        self.tableViewOptions.reloadData()
+        return true
+    }
+}
+
 extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
@@ -219,10 +263,14 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isMandatoryQuestionnaires {
-            for i in self.filteredData[self.questionIndex].options {
-                i.isSelected = false
+            for i in 0..<self.filteredData[self.questionIndex].options.count {
+                self.filteredData[self.questionIndex].options[i].isSelected = false
+            }
+            for i in 0..<self.mainData[self.questionIndex].options.count {
+                self.mainData[self.questionIndex].options[i].isSelected = false
             }
             self.filteredData[self.questionIndex].options[indexPath.row].isSelected = true
+            self.mapValuesToMainData()
         } else {
             self.filteredData[self.questionIndex].options[indexPath.row].isSelected = !self.filteredData[self.questionIndex].options[indexPath.row].isSelected
         }
@@ -257,10 +305,10 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     }
     
     //options response
-    func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String) {
+    func questionnaire(isSuccess: Bool, questionOptionsData: [Option], msg: String) {
         if isSuccess {
-            self.filteredData = questionOptionsData
-            self.mainData = questionOptionsData
+            self.filteredData[self.questionIndex].options = questionOptionsData
+            self.mainData[self.questionIndex].options = questionOptionsData
             self.questionnairePresenter.getUserSavedOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
@@ -268,25 +316,22 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     }
     
     //get user saved options response
-    func questionnaire(isSuccess: Bool, userSavedOptions: [Question], msg: String) {
+    func questionnaire(isSuccess: Bool, userSavedOptions: PFObject?, msg: String) {
         if isSuccess {
             if self.isMandatoryQuestionnaires == false {
                 self.buttonSkip.isHidden = false
             }
-            
-            
-            //            self.showToast(message: msg)
-            self.filteredData = userSavedOptions
-            self.mainData = userSavedOptions
+            self.filteredData[questionIndex].userSavedOptionObject = userSavedOptions
+            self.mainData[questionIndex].userSavedOptionObject = userSavedOptions
             let optionsArray = self.filteredData[questionIndex].userSavedOptionObject?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
-            for i in self.filteredData[self.questionIndex].options {
+            for i in 0..<self.filteredData[self.questionIndex].options.count {
                 for j in optionsArray ?? [] {
-                    let questionOptionId = i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
+                    let questionOptionId = self.filteredData[self.questionIndex].options[i].object?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
                     let userSelectedOptionId = j
                     if questionOptionId == userSelectedOptionId {
                         self.buttonContinue.alpha = 1
                         self.buttonContinue.isEnabled = true
-                        i.isSelected = true
+                        self.filteredData[self.questionIndex].options[i].isSelected = true
                     }
                 }
             }

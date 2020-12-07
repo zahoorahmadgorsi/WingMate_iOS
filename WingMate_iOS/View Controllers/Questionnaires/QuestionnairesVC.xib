@@ -74,7 +74,7 @@
                     <rect key="frame" x="20" y="20" width="72" height="72"/>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="xq0-pP-sMs">
-                    <rect key="frame" x="20" y="251.33333333333334" width="374" height="366.66666666666663"/>
+                    <rect key="frame" x="20" y="227.33333333333334" width="374" height="390.66666666666663"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="wdL-ej-Sxs"/>
@@ -150,7 +150,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6e0-hV-u3L">
-                    <rect key="frame" x="20" y="179.33333333333334" width="374" height="40"/>
+                    <rect key="frame" x="20" y="167.33333333333334" width="374" height="40"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="yHe-gg-Hah">
                             <rect key="frame" x="10" y="10" width="20" height="20"/>
@@ -206,7 +206,7 @@
                 <constraint firstItem="xq0-pP-sMs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="XL2-ao-ysP"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="top" secondItem="HGO-aE-5gx" secondAttribute="bottom" constant="2" id="XSS-ye-ain"/>
                 <constraint firstItem="GMq-Ez-3qw" firstAttribute="width" secondItem="HGO-aE-5gx" secondAttribute="width" id="Y4O-Xd-PaN"/>
-                <constraint firstItem="6e0-hV-u3L" firstAttribute="top" secondItem="Hl4-63-ExC" secondAttribute="bottom" constant="32" id="c4T-a5-Oon" userLabel="cstTop"/>
+                <constraint firstItem="6e0-hV-u3L" firstAttribute="top" secondItem="Hl4-63-ExC" secondAttribute="bottom" constant="20" id="c4T-a5-Oon" userLabel="cstTop"/>
                 <constraint firstItem="KEC-Zu-94C" firstAttribute="centerY" secondItem="Nqs-zq-VGy" secondAttribute="centerY" id="cWt-xS-Yu1"/>
                 <constraint firstItem="Hl4-63-ExC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="cip-ON-JaP"/>
                 <constraint firstItem="HGO-aE-5gx" firstAttribute="top" secondItem="xq0-pP-sMs" secondAttribute="bottom" constant="8" id="dpY-QO-tw3"/>
@@ -219,7 +219,7 @@
                 <constraint firstItem="HGO-aE-5gx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rff-wp-DlU"/>
                 <constraint firstItem="6e0-hV-u3L" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="rjR-dq-DPD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KEC-Zu-94C" secondAttribute="trailing" constant="20" id="sm9-89-SEI"/>
-                <constraint firstItem="xq0-pP-sMs" firstAttribute="top" secondItem="6e0-hV-u3L" secondAttribute="bottom" constant="32" id="svi-Iz-B2C"/>
+                <constraint firstItem="xq0-pP-sMs" firstAttribute="top" secondItem="6e0-hV-u3L" secondAttribute="bottom" constant="20" id="svi-Iz-B2C"/>
             </constraints>
             <point key="canvasLocation" x="-97.101449275362327" y="73.369565217391312"/>
         </view>

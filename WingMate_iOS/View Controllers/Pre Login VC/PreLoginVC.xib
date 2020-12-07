@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-ZG-CfQ">
-                    <rect key="frame" x="132.66666666666666" y="639.66666666666663" width="148.99999999999997" height="16.333333333333371"/>
+                    <rect key="frame" x="132.66666666666666" y="659.66666666666663" width="148.99999999999997" height="16.333333333333371"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                     <color key="textColor" name="Label Gray Text Color"/>
                     <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdI-Zx-eIn">
-                    <rect key="frame" x="145" y="656" width="124" height="40"/>
+                    <rect key="frame" x="145" y="676" width="124" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="mtH-Ti-FYE"/>
                     </constraints>
@@ -69,7 +69,7 @@
                 <constraint firstItem="pME-bz-d0Z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="48V-bT-nzN"/>
                 <constraint firstItem="pnq-z6-cmn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="KGC-dU-8rv"/>
                 <constraint firstItem="pnq-z6-cmn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.6" id="O9i-09-axb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PdI-Zx-eIn" secondAttribute="bottom" constant="40" id="RJI-Yv-683"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PdI-Zx-eIn" secondAttribute="bottom" constant="20" id="RJI-Yv-683"/>
                 <constraint firstItem="cO2-ZG-CfQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SX6-Vd-uNS"/>
                 <constraint firstItem="pnq-z6-cmn" firstAttribute="top" secondItem="pME-bz-d0Z" secondAttribute="bottom" constant="50" id="lK0-jQ-jrM"/>
                 <constraint firstItem="PdI-Zx-eIn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.3" id="luO-v9-5HK"/>

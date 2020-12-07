@@ -11,8 +11,8 @@ import SVProgressHUD
 
 protocol QuestionnaireDelegate {
     func questionnaire(isSuccess: Bool, questionData: [Question], msg: String)
-    func questionnaire(isSuccess: Bool, questionOptionsData: [Question], msg: String)
-    func questionnaire(isSuccess: Bool, userSavedOptions: [Question], msg: String)
+    func questionnaire(isSuccess: Bool, questionOptionsData: [Option], msg: String)
+    func questionnaire(isSuccess: Bool, userSavedOptions: PFObject?, msg: String)
     func questionnaire(isSaved: Bool, msg: String)
     func questionnaire(isUpdated: Bool, msg: String)
 }
@@ -52,7 +52,7 @@ class QuestionnairePresenter {
                     let qo = Option(questionOptionObject: obj)
                     self.dataQuestionnaire[questionIndex].options.append(qo)
                 }
-                self.delegate?.questionnaire(isSuccess: true, questionOptionsData: self.dataQuestionnaire, msg: "Options fetched")
+                self.delegate?.questionnaire(isSuccess: true, questionOptionsData: self.dataQuestionnaire[questionIndex].options, msg: "Options fetched")
             } else {
                 self.delegate?.questionnaire(isSuccess: false, questionOptionsData: [], msg: "Question options not found")
             }
@@ -68,12 +68,12 @@ class QuestionnairePresenter {
                 if data.count > 0 {
                     self.dataQuestionnaire[questionIndex].userSavedOptionObject = data[0]
                 }
-                self.delegate?.questionnaire(isSuccess: true, userSavedOptions: self.dataQuestionnaire, msg: "User saved options fetched")
+                self.delegate?.questionnaire(isSuccess: true, userSavedOptions: self.dataQuestionnaire[questionIndex].userSavedOptionObject ?? nil, msg: "User saved options fetched")
             } else {
-                self.delegate?.questionnaire(isSuccess: false, userSavedOptions: [], msg: "No saved options found")
+                self.delegate?.questionnaire(isSuccess: false, userSavedOptions: nil, msg: "No saved options found")
             }
         } onFailure: { (error) in
-            self.delegate?.questionnaire(isSuccess: false, userSavedOptions: [], msg: error)
+            self.delegate?.questionnaire(isSuccess: false, userSavedOptions: nil, msg: error)
         }
     }
     
