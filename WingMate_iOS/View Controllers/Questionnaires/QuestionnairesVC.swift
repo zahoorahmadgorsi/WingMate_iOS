@@ -100,7 +100,7 @@ class QuestionnairesVC: BaseViewController {
     }
     
     func getOptions() {
-        self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
+        self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DBColumn.title) as? String ?? ""
         if self.filteredData[self.questionIndex].options.count == 0 { //if already fetched then don't fetch again
             self.questionnairePresenter.getQuestionOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         }
@@ -120,7 +120,7 @@ class QuestionnairesVC: BaseViewController {
         for i in filteredData[questionIndex].options {
             if i.isSelected {
                 for (j, item) in mainData[questionIndex].options.enumerated() {
-                    if item.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" == i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
+                    if item.object?.value(forKey: DBColumn.objectId) as? String ?? "" == i.object?.value(forKey: DBColumn.objectId) as? String ?? "" {
                         self.mainData[questionIndex].options[j].isSelected = true
                         break
                     }
@@ -136,19 +136,19 @@ class QuestionnairesVC: BaseViewController {
         var answersIds = [String]()
         for i in self.filteredData[self.questionIndex].options {
             if i.isSelected {
-                answersIds.append(i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "")
+                answersIds.append(i.object?.value(forKey: DBColumn.objectId) as? String ?? "")
             }
         }
         if self.filteredData[self.questionIndex].userSavedOptionObject != nil {
             //already saved, so update it
             if answersIds.count > 0 || self.isMandatoryQuestionnaires == false {
                 let obj = self.filteredData[self.questionIndex].userSavedOptionObject
-                let userSavedOptions = obj?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
+                let userSavedOptions = obj?.value(forKey: DBColumn.selectedOptionIds) as? [String]
                 var isOptionsUpdated = false
                 for i in self.filteredData[self.questionIndex].options {
                     if i.isSelected {
                         for j in userSavedOptions ?? [] {
-                            if j != i.object?.value(forKey: DatabaseColumn.objectId) as? String ?? "" {
+                            if j != i.object?.value(forKey: DBColumn.objectId) as? String ?? "" {
                                 isOptionsUpdated = true
                                 break
                             }
@@ -157,7 +157,7 @@ class QuestionnairesVC: BaseViewController {
                 }
                 
                 if isOptionsUpdated || self.isMandatoryQuestionnaires == false {
-                    self.filteredData[self.questionIndex].userSavedOptionObject?[DatabaseColumn.selectedOptionIds] = answersIds
+                    self.filteredData[self.questionIndex].userSavedOptionObject?[DBColumn.selectedOptionIds] = answersIds
                     self.questionnairePresenter.updateUserOptions(userAnswerObject: self.filteredData[self.questionIndex].userSavedOptionObject!)
                 } else {
                     self.moveToNextQuestion()
@@ -238,7 +238,7 @@ extension QuestionnairesVC: UITextFieldDelegate {
         } else {
             self.isFilterActivated = true
             self.filteredData[self.questionIndex].options = self.mainData[self.questionIndex].options.filter { dta in
-                let isMatchingSearchText = (dta.object?.value(forKey: DatabaseColumn.title) as? String ?? "").lowercased().contains(searchText.lowercased())
+                let isMatchingSearchText = (dta.object?.value(forKey: DBColumn.title) as? String ?? "").lowercased().contains(searchText.lowercased())
                 return isMatchingSearchText
             }
         }
@@ -323,10 +323,10 @@ extension QuestionnairesVC: QuestionnaireDelegate {
             }
             self.filteredData[questionIndex].userSavedOptionObject = userSavedOptions
             self.mainData[questionIndex].userSavedOptionObject = userSavedOptions
-            let optionsArray = self.filteredData[questionIndex].userSavedOptionObject?.value(forKey: DatabaseColumn.selectedOptionIds) as? [String]
+            let optionsArray = self.filteredData[questionIndex].userSavedOptionObject?.value(forKey: DBColumn.selectedOptionIds) as? [String]
             for i in 0..<self.filteredData[self.questionIndex].options.count {
                 for j in optionsArray ?? [] {
-                    let questionOptionId = self.filteredData[self.questionIndex].options[i].object?.value(forKey: DatabaseColumn.objectId) as? String ?? ""
+                    let questionOptionId = self.filteredData[self.questionIndex].options[i].object?.value(forKey: DBColumn.objectId) as? String ?? ""
                     let userSelectedOptionId = j
                     if questionOptionId == userSelectedOptionId {
                         self.buttonContinue.alpha = 1
@@ -336,7 +336,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
                 }
             }
             
-            self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelQuestion.text = self.filteredData[self.questionIndex].object?.value(forKey: DBColumn.title) as? String ?? ""
             
             self.tableViewOptions.reloadData()
             self.progressView.isHidden = false

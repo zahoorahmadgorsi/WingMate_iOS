@@ -33,7 +33,7 @@ class QuestionnaireCountryOptionTableViewCell: UITableViewCell {
     
     var data: Option? {
         didSet {
-            self.labelCountry.text = data?.object!.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelCountry.text = data?.object!.value(forKey: DBColumn.title) as? String ?? ""
             let thumbnail = self.data?.object?["countryFlagImage"] as? PFFileObject
             thumbnail?.getDataInBackground (block: { (data, error) -> Void in
                 if let image = UIImage(data: data!) {

@@ -71,7 +71,7 @@
 		FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */; };
 		FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC494192540C2E5007E993B /* RegisterStepTwoVC.xib */; };
 		FAC5FEFC2558309B00F06B33 /* QuestionnairePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FEFB2558309B00F06B33 /* QuestionnairePresenter.swift */; };
-		FAC5FF012559142A00F06B33 /* DatabaseColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FF002559142A00F06B33 /* DatabaseColumn.swift */; };
+		FAC5FF012559142A00F06B33 /* DBColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FF002559142A00F06B33 /* DBColumn.swift */; };
 		FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */; };
 		FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
@@ -168,7 +168,7 @@
 		FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
 		FAC494192540C2E5007E993B /* RegisterStepTwoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepTwoVC.xib; sourceTree = "<group>"; };
 		FAC5FEFB2558309B00F06B33 /* QuestionnairePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnairePresenter.swift; sourceTree = "<group>"; };
-		FAC5FF002559142A00F06B33 /* DatabaseColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseColumn.swift; sourceTree = "<group>"; };
+		FAC5FF002559142A00F06B33 /* DBColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBColumn.swift; sourceTree = "<group>"; };
 		FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountryOptionTableViewCell.swift; sourceTree = "<group>"; };
 		FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireCountryOptionTableViewCell.xib; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */,
-				FAC5FF002559142A00F06B33 /* DatabaseColumn.swift */,
+				FAC5FF002559142A00F06B33 /* DBColumn.swift */,
 			);
 			path = "Parse API Manager";
 			sourceTree = "<group>";
@@ -748,7 +748,7 @@
 				FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */,
 				FA9EFD41253779DD00A1ED1C /* String-Extension.swift in Sources */,
 				FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */,
-				FAC5FF012559142A00F06B33 /* DatabaseColumn.swift in Sources */,
+				FAC5FF012559142A00F06B33 /* DBColumn.swift in Sources */,
 				FA70023B255C76D4000052F4 /* TutorialVC.swift in Sources */,
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
 				FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */,

@@ -25,7 +25,7 @@ class TermsAndConditionsVC: BaseViewController {
 
     @IBAction func agreeButtonPressed(_ sender: Any) {
         if isWrongEmailPressed {
-            self.registerPresenter.wrongEmailAPI(emailWrong: oldEmail, emailNew: self.user.value(forKey: DatabaseColumn.email) as? String ?? "")
+            self.registerPresenter.wrongEmailAPI(emailWrong: oldEmail, emailNew: self.user.value(forKey: DBColumn.email) as? String ?? "")
         } else {
             self.registerPresenter.registerAPI(user: self.user)
         }

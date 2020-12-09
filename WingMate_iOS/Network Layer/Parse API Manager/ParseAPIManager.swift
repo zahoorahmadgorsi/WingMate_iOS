@@ -72,7 +72,7 @@ struct ParseAPIManager {
     }
     
     static func resendEmail(email: String, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
-        PFCloud.callFunction(inBackground: DatabaseColumn.cloudFunctionResendVerificationEmail, withParameters: [DatabaseColumn.email: email]) { (data, error) in
+        PFCloud.callFunction(inBackground: DBCloudFunction.cloudFunctionResendVerificationEmail, withParameters: [DBColumn.email: email]) { (data, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
             } else {
@@ -84,10 +84,10 @@ struct ParseAPIManager {
     static func wrongEmail(emailWrong: String, emailNew: String, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         SVProgressHUD.show()
         let params = [
-            DatabaseColumn.emailWrong: emailWrong,
-            DatabaseColumn.emailNew: emailNew
+            DBColumn.emailWrong: emailWrong,
+            DBColumn.emailNew: emailNew
         ]
-        PFCloud.callFunction(inBackground: DatabaseColumn.cloudFunctionUpdateWrongEmail, withParameters: params) { (data, error) in
+        PFCloud.callFunction(inBackground: DBCloudFunction.cloudFunctionUpdateWrongEmail, withParameters: params) { (data, error) in
             SVProgressHUD.dismiss()
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -100,7 +100,7 @@ struct ParseAPIManager {
     //MARK: - Questionnaire Flow APIs
     static func getQuestions(questionType: String? = "", onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DatabaseTable.question).whereKey(DatabaseColumn.questionType, equalTo: questionType ?? "").order(byAscending: DatabaseColumn.displayOrder)
+        query = PFQuery(className: DBTable.question).whereKey(DBColumn.questionType, equalTo: questionType ?? "").order(byAscending: DBColumn.displayOrder)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -117,7 +117,7 @@ struct ParseAPIManager {
     
     static func getQuestionOptions(questionObject: PFObject? = nil, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DatabaseTable.questionOption).whereKey(DatabaseColumn.questionId, equalTo: questionObject ?? PFObject()).order(byAscending: DatabaseColumn.optionId)
+        query = PFQuery(className: DBTable.questionOption).whereKey(DBColumn.questionId, equalTo: questionObject ?? PFObject()).order(byAscending: DBColumn.optionId)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -134,7 +134,7 @@ struct ParseAPIManager {
     
     static func getUserSavedOptions(questionObject: PFObject, whereKeyValue: String? = "", onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DatabaseTable.userAnswer).whereKey(DatabaseColumn.questionId, equalTo: questionObject).whereKey(DatabaseColumn.userId, equalTo: APP_MANAGER.session!)
+        query = PFQuery(className: DBTable.userAnswer).whereKey(DBColumn.questionId, equalTo: questionObject).whereKey(DBColumn.userId, equalTo: APP_MANAGER.session!)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -150,10 +150,10 @@ struct ParseAPIManager {
     }
     
     static func saveUserQuestionOptions(questionObject: PFObject, selectedOptionIds: [String], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
-        let userAnswer = PFObject(className: DatabaseTable.userAnswer)
-        userAnswer[DatabaseColumn.userId] = ApplicationManager.shared.session
-        userAnswer[DatabaseColumn.questionId] = questionObject
-        userAnswer[DatabaseColumn.selectedOptionIds] = selectedOptionIds
+        let userAnswer = PFObject(className: DBTable.userAnswer)
+        userAnswer[DBColumn.userId] = ApplicationManager.shared.session
+        userAnswer[DBColumn.questionId] = questionObject
+        userAnswer[DBColumn.selectedOptionIds] = selectedOptionIds
         userAnswer.saveEventually { (success, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

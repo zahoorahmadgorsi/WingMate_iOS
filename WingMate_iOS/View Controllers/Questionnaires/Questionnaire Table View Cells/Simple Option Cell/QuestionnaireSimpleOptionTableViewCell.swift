@@ -23,7 +23,7 @@ class QuestionnaireSimpleOptionTableViewCell: UITableViewCell {
     
     var data: Option? {
         didSet {
-            self.labelOption.text = data?.object!.value(forKey: DatabaseColumn.title) as? String ?? ""
+            self.labelOption.text = data?.object!.value(forKey: DBColumn.title) as? String ?? ""
             self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
             self.labelOption.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
         }

@@ -44,12 +44,12 @@ class EmailVerificationVC: BaseViewController {
     
     @IBAction func wrongEmailButtonPressed(_ sender: Any) {
         isWrongEmailPressed = true
-        oldEmail = self.user.value(forKey: DatabaseColumn.email) as? String ?? ""
+        oldEmail = self.user.value(forKey: DBColumn.email) as? String ?? ""
         self.navigationController?.popToViewController ((self.navigationController?.viewControllers[3]) as! RegisterStepTwoVC, animated: true)
     }
     
     @IBAction func resendEmailButtonPressed(_ sender: Any) {
-        self.emailVerificationPresenter.resendEmailAPI(email: self.user.value(forKey: DatabaseColumn.email) as? String ?? "")
+        self.emailVerificationPresenter.resendEmailAPI(email: self.user.value(forKey: DBColumn.email) as? String ?? "")
     }
 
 }

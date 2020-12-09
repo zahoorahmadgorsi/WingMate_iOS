@@ -16,7 +16,7 @@ class DashboardVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.labelName.text = "Hi, \(APP_MANAGER.session?.value(forKey: DatabaseColumn.nick) as? String ?? "")"
+        self.labelName.text = "Hi, \(APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? "")"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,10 +29,10 @@ class DashboardVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func payNowButtonPressed(_ sender: Any) {
-        if APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool ?? false {
+        if APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false {
             self.showToast(message: "You're already a paid user")
         } else {
-            PFUser.current()?.setValue(true, forKey: DatabaseColumn.isPaidUser)
+            PFUser.current()?.setValue(true, forKey: DBColumn.isPaidUser)
             SVProgressHUD.show()
             ParseAPIManager.updateUserObject() { (success) in
                 SVProgressHUD.dismiss()
@@ -49,7 +49,7 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func mandatoryQuestionnaireButtonPressed(_ sender: Any) {
-        let isPaidUser = APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool
+        let isPaidUser = APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool
         if isPaidUser ?? false {
             self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: true), animated: true)
         } else {
@@ -58,7 +58,7 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func optionalQuestionnaireButtonPressed(_ sender: Any) {
-        let isPaidUser = APP_MANAGER.session?.value(forKey: DatabaseColumn.isPaidUser) as? Bool
+        let isPaidUser = APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool
         if isPaidUser ?? false {
             self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: false), animated: true)
         } else {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DatabaseColumn {
+class DBColumn {
     //general
     static let objectId = "objectId"
     
@@ -33,13 +33,14 @@ class DatabaseColumn {
     static let countryFlagImage = "countryFlagImage"
     static let userId = "userId"
     static let selectedOptionIds = "selectedOptionIds"
-    
-    //cloud function names
+}
+
+class DBCloudFunction {
     static let cloudFunctionResendVerificationEmail = "resendVerificationEmail"
     static let cloudFunctionUpdateWrongEmail = "updateWrongEmail"
 }
 
-class DatabaseTable {
+class DBTable {
     static let question  = "Question"
     static let questionOption  = "QuestionOption"
     static let userAnswer  = "UserAnswer"
