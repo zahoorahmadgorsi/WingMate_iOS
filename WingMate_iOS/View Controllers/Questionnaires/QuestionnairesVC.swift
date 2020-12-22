@@ -252,7 +252,6 @@ extension QuestionnairesVC: UITableViewDelegate, UITableViewDataSource {
         if self.isMandatoryQuestionnaires && self.questionIndex == 2 {
             //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
-            //            cell.data = self.dataold[self.questionIndex].options[indexPath.row]
             cell.data = self.filteredData[self.questionIndex].options[indexPath.row]
             return cell
         }
@@ -357,7 +356,6 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     func questionnaire(isSaved: Bool, msg: String) {
         if isSaved {
             self.moveToNextQuestion()
-            //            self.showToast(message: msg)
         } else {
             self.showToast(message: msg)
         }
@@ -366,7 +364,6 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     func questionnaire(isUpdated: Bool, msg: String) {
         if isUpdated {
             self.moveToNextQuestion()
-            //            self.showToast(message: msg)
         } else {
             self.showToast(message: msg)
         }
