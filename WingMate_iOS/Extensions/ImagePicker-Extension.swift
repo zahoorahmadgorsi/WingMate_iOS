@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func addImagePicker(title: String, msg: String, imagePicker: UIImagePickerController) {
+    func addImagePicker(title: String?, msg: String?, imagePicker: UIImagePickerController) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in

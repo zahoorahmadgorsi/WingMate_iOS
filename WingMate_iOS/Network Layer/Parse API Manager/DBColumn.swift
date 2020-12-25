@@ -33,6 +33,12 @@ class DBColumn {
     static let countryFlagImage = "countryFlagImage"
     static let userId = "userId"
     static let selectedOptionIds = "selectedOptionIds"
+    
+    //terms conditions
+    static let isDo = "isDo"
+    static let termsType = "termsType"
+    static let text = "text"
+    static let file = "file"
 }
 
 class DBCloudFunction {
@@ -44,4 +50,5 @@ class DBTable {
     static let question  = "Question"
     static let questionOption  = "QuestionOption"
     static let userAnswer  = "UserAnswer"
+    static let termsConditions  = "TermsConditions"
 }

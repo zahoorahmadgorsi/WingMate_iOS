@@ -1,69 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "F951E8F2-B0AC-42A3-9E69-63B6290617B3"
+   uuid = "1BE009B5-6D08-4FB3-A77A-D8444008A3A8"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "190172BC-F873-46DB-A61E-B1F5281D1B78"
+            uuid = "37C3E925-5279-4176-B2DA-47417F44FF9F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Email Verification/EmailVerificationVC.swift"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "resendEmailButtonPressed(_:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "setTermsViewsHeight()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D1DF3E7F-09CA-4650-9A47-274EFF13A56B"
+            uuid = "8B8BFA06-94FB-4628-8D43-E59012480F8B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4DCCCCF-D8D3-40B2-A783-426FFC1C7DE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E28B641-F459-4332-9E72-DADC6F6DB9DC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7837E8EA-A267-49CD-A728-D1931ACBB2D3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "resendEmail(email:onSuccess:onFailure:)"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D1DF3E7F-09CA-4650-9A47-274EFF13A56B - 8779bee08df837a4"
+                  uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B - 17fddf5976370153"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static WingMate_iOS.ParseAPIManager.resendEmail(email: Swift.String, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "static WingMate_iOS.ParseAPIManager.getTermsAndConditions(onSuccess: (Swift.Bool, Swift.Array&lt;__C.PFObject&gt;) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "WingMate_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "50">
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "328">
                </Location>
                <Location
-                  uuid = "D1DF3E7F-09CA-4650-9A47-274EFF13A56B - 3762080a17bcca8b"
+                  uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B - 5168c8a8e6439eac"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static WingMate_iOS.ParseAPIManager.resendEmail(email: Swift.String, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.PFObject&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static WingMate_iOS.ParseAPIManager.getTermsAndConditions(onSuccess: (Swift.Bool, Swift.Array&lt;__C.PFObject&gt;) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "WingMate_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "243">
+                  startingLineNumber = "181"
+                  endingLineNumber = "181"
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -71,272 +135,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D7C21C62-71FA-4984-A22A-5165805A494F"
+            uuid = "C7A26BA8-A4F1-432B-9931-6D694388D1A9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "resendEmail(email:onSuccess:onFailure:)"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "37D11439-044E-425E-83EB-F019F38C1246"
+            uuid = "92F387CD-30AB-4850-9A64-D6CE2ADC77ED"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Login VC/LoginVC.swift"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "showPasswordButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F2825504-2D08-4E95-A9C1-5B56A1FC8F9A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "wrongEmail(emailWrong:emailNew:onSuccess:onFailure:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F2825504-2D08-4E95-A9C1-5B56A1FC8F9A - fdaf500ee75fdc5f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WingMate_iOS.ParseAPIManager.wrongEmail(emailWrong: Swift.String, emailNew: Swift.String, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "526">
-               </Location>
-               <Location
-                  uuid = "F2825504-2D08-4E95-A9C1-5B56A1FC8F9A - 412f9d408840f26e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static WingMate_iOS.ParseAPIManager.wrongEmail(emailWrong: Swift.String, emailNew: Swift.String, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "243">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FFA282CB-A9D1-4115-B84B-245AB8FDB0FD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Registration/RegisterPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "wrongEmailAPI(emailWrong:emailNew:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FFA282CB-A9D1-4115-B84B-245AB8FDB0FD - fae1ebf088e399df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WingMate_iOS.RegisterPresenter.wrongEmailAPI(emailWrong: Swift.String, emailNew: Swift.String) -&gt; ()"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Registration/RegisterPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  uuid = "FFA282CB-A9D1-4115-B84B-245AB8FDB0FD - 9395c8e452be9adc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WingMate_iOS.RegisterPresenter.wrongEmailAPI(emailWrong: Swift.String, emailNew: Swift.String) -&gt; ()"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Registration/RegisterPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "85">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BAA34FF6-596C-4A25-AC29-0B61618F7143"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "wrongEmail(emailWrong:emailNew:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "90F08DA5-1A6D-4D18-ABD3-FC1FC9837578"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Registration/RegisterStepTwoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "backButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "772025CE-34F9-47ED-ADBA-294BB8BAB3C1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B6B59E9B-AA82-4132-9E80-C9DCCDECF080"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "48BB6458-AAA6-469D-8B2E-F1C180E7E2CE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "48BB6458-AAA6-469D-8B2E-F1C180E7E2CE - b2f2f312cf25c0fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WingMate_iOS.QuestionnairesVC.textField(_: __C.UITextField, shouldChangeCharactersIn: __C._NSRange, replacementString: Swift.String) -&gt; Swift.Bool"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Questionnaires/QuestionnairesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "240"
-                  endingLineNumber = "240"
-                  offsetFromSymbolStart = "2006">
-               </Location>
-               <Location
-                  uuid = "48BB6458-AAA6-469D-8B2E-F1C180E7E2CE - 7c9f1a8cba16338d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WingMate_iOS.Option) -&gt; Swift.Bool in WingMate_iOS.QuestionnairesVC.textField(_: __C.UITextField, shouldChangeCharactersIn: __C._NSRange, replacementString: Swift.String) -&gt; Swift.Bool"
-                  moduleName = "WingMate_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Questionnaires/QuestionnairesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "241"
-                  endingLineNumber = "241"
-                  offsetFromSymbolStart = "178">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0CAF5EA1-344A-4E42-A2A5-ACB96A2998B8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairePresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "getUserSavedOptions(questionObject:questionIndex:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C8D8DC8F-065F-4BEE-B542-2B52788BF026"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "questionnaire(isSuccess:userSavedOptions:msg:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getTermsConditions()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

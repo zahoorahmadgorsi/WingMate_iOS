@@ -15,9 +15,12 @@
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */; };
+		FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */; };
 		FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */; };
 		FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */; };
 		FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */; };
+		FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */; };
 		FA285E94253B663100A5303E /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285E92253B663100A5303E /* SplashVC.swift */; };
 		FA285E95253B663100A5303E /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285E93253B663100A5303E /* SplashVC.xib */; };
 		FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* PreLoginVC.swift */; };
@@ -66,6 +69,8 @@
 		FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA0163025471818004D35BB /* QuestionnairesVC.xib */; };
 		FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */; };
 		FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */; };
+		FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */; };
+		FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */; };
 		FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */; };
 		FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */; };
 		FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */; };
@@ -74,6 +79,10 @@
 		FAC5FF012559142A00F06B33 /* DBColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FF002559142A00F06B33 /* DBColumn.swift */; };
 		FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */; };
 		FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */; };
+		FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8BE6425919B34009AA7AB /* UploadPhotoVideoVC.swift */; };
+		FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */; };
+		FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */; };
+		FAD8BE9E2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8BE9C2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
 		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
 /* End PBXBuildFile section */
@@ -112,9 +121,12 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsTableViewCell.swift; sourceTree = "<group>"; };
+		FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsTableViewCell.xib; sourceTree = "<group>"; };
 		FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
 		FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionsVC.xib; sourceTree = "<group>"; };
 		FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationPresenter.swift; sourceTree = "<group>"; };
+		FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoPresenter.swift; sourceTree = "<group>"; };
 		FA285E92253B663100A5303E /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		FA285E93253B663100A5303E /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		FA285EB0253B721600A5303E /* PreLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginVC.swift; sourceTree = "<group>"; };
@@ -163,6 +175,8 @@
 		FAA0163025471818004D35BB /* QuestionnairesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnairesVC.xib; sourceTree = "<group>"; };
 		FAA016442547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireSimpleOptionTableViewCell.swift; sourceTree = "<group>"; };
 		FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireSimpleOptionTableViewCell.xib; sourceTree = "<group>"; };
+		FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsCollectionViewCell.xib; sourceTree = "<group>"; };
 		FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
@@ -171,6 +185,10 @@
 		FAC5FF002559142A00F06B33 /* DBColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBColumn.swift; sourceTree = "<group>"; };
 		FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountryOptionTableViewCell.swift; sourceTree = "<group>"; };
 		FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireCountryOptionTableViewCell.xib; sourceTree = "<group>"; };
+		FAD8BE6425919B34009AA7AB /* UploadPhotoVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoVC.swift; sourceTree = "<group>"; };
+		FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoVideoVC.xib; sourceTree = "<group>"; };
+		FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAD8BE9C2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +292,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA076534259441E900D48366 /* Upload Photo Video Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */,
+				FAD8BE9C2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib */,
+			);
+			path = "Upload Photo Video Collection View Cell";
+			sourceTree = "<group>";
+		};
+		FA0765352594420100D48366 /* Terms Conditions Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */,
+				FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */,
+			);
+			path = "Terms Conditions Table View Cell";
+			sourceTree = "<group>";
+		};
 		FA192D3F2551281C005A55DD /* Terms And Conditions */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,50 +319,50 @@
 			path = "Terms And Conditions";
 			sourceTree = "<group>";
 		};
-		FA285E90253B660F00A5303E /* Login VC */ = {
+		FA285E90253B660F00A5303E /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				FA5DB48525501DE1002465B3 /* LoginPresenter.swift */,
 				FA9EFD8825377C4300A1ED1C /* LoginVC.swift */,
 				FA9EFD8925377C4300A1ED1C /* LoginVC.xib */,
 			);
-			path = "Login VC";
+			path = Login;
 			sourceTree = "<group>";
 		};
-		FA285E91253B661A00A5303E /* Splash VC */ = {
+		FA285E91253B661A00A5303E /* Splash */ = {
 			isa = PBXGroup;
 			children = (
 				FA285E92253B663100A5303E /* SplashVC.swift */,
 				FA285E93253B663100A5303E /* SplashVC.xib */,
 			);
-			path = "Splash VC";
+			path = Splash;
 			sourceTree = "<group>";
 		};
-		FA285EAF253B71FF00A5303E /* Pre Login VC */ = {
+		FA285EAF253B71FF00A5303E /* Pre Login */ = {
 			isa = PBXGroup;
 			children = (
 				FA285EB0253B721600A5303E /* PreLoginVC.swift */,
 				FA285EB1253B721600A5303E /* PreLoginVC.xib */,
 			);
-			path = "Pre Login VC";
+			path = "Pre Login";
 			sourceTree = "<group>";
 		};
-		FA700238255C76AB000052F4 /* Tutorials VC */ = {
+		FA700238255C76AB000052F4 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
 				FA700239255C76D4000052F4 /* TutorialVC.swift */,
 				FA70023A255C76D4000052F4 /* TutorialVC.xib */,
 			);
-			path = "Tutorials VC";
+			path = Tutorials;
 			sourceTree = "<group>";
 		};
-		FA7003EB255F26E8000052F4 /* Dashboard VC */ = {
+		FA7003EB255F26E8000052F4 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				FA7003EC255F2708000052F4 /* DashboardVC.swift */,
 				FA7003ED255F2708000052F4 /* DashboardVC.xib */,
 			);
-			path = "Dashboard VC";
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		FA84AD3D253D937300E1C558 /* Registration */ = {
@@ -344,16 +380,17 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA7003EB255F26E8000052F4 /* Dashboard VC */,
-				FA700238255C76AB000052F4 /* Tutorials VC */,
+				FAD8BE4E25919AE6009AA7AB /* Upload Photo Video */,
+				FA7003EB255F26E8000052F4 /* Dashboard */,
+				FA700238255C76AB000052F4 /* Tutorials */,
 				FA192D3F2551281C005A55DD /* Terms And Conditions */,
 				FAA0162E2547106E004D35BB /* Questionnaires */,
 				FAA016232546C9AF004D35BB /* Email Verification */,
 				FA84AD3D253D937300E1C558 /* Registration */,
 				FAF13CEC253C244300D1499A /* Forgot Password */,
-				FA285EAF253B71FF00A5303E /* Pre Login VC */,
-				FA285E91253B661A00A5303E /* Splash VC */,
-				FA285E90253B660F00A5303E /* Login VC */,
+				FA285EAF253B71FF00A5303E /* Pre Login */,
+				FA285E91253B661A00A5303E /* Splash */,
+				FA285E90253B660F00A5303E /* Login */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -496,6 +533,15 @@
 			path = "Questionnaire Table View Cells";
 			sourceTree = "<group>";
 		};
+		FAA4115C259475BA00DD9177 /* Terms Conditions Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */,
+				FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */,
+			);
+			path = "Terms Conditions Collection View Cell";
+			sourceTree = "<group>";
+		};
 		FAC77CA4254BF57E004ADA74 /* Simple Option Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +558,27 @@
 				FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */,
 			);
 			path = "Country Option Cell";
+			sourceTree = "<group>";
+		};
+		FAD8BE4E25919AE6009AA7AB /* Upload Photo Video */ = {
+			isa = PBXGroup;
+			children = (
+				FAD8BE6425919B34009AA7AB /* UploadPhotoVideoVC.swift */,
+				FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */,
+				FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */,
+				FAD8BE9A2591A5E2009AA7AB /* Cells */,
+			);
+			path = "Upload Photo Video";
+			sourceTree = "<group>";
+		};
+		FAD8BE9A2591A5E2009AA7AB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAA4115C259475BA00DD9177 /* Terms Conditions Collection View Cell */,
+				FA0765352594420100D48366 /* Terms Conditions Table View Cell */,
+				FA076534259441E900D48366 /* Upload Photo Video Collection View Cell */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FAF13CEC253C244300D1499A /* Forgot Password */ = {
@@ -629,11 +696,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD8BE9E2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib in Resources */,
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
 				FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
+				FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
@@ -642,11 +711,13 @@
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
+				FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
 				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
 				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
 				FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */,
+				FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */,
 				FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,6 +787,7 @@
 			files = (
 				FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */,
 				FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */,
+				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
@@ -728,6 +800,7 @@
 				FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */,
 				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
+				FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */,
 				FAC5FEFC2558309B00F06B33 /* QuestionnairePresenter.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
 				FA9EFD2B2537793700A1ED1C /* Enums.swift in Sources */,
@@ -752,6 +825,9 @@
 				FA70023B255C76D4000052F4 /* TutorialVC.swift in Sources */,
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
 				FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */,
+				FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */,
+				FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */,
+				FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */,
 				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
 				FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */,
 				FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */,

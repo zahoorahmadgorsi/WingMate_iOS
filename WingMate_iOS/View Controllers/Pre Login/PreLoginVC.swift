@@ -27,7 +27,7 @@ class PreLoginVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(LoginVC(), animated: true)
+        self.navigationController?.pushViewController(UploadPhotoVideoVC(), animated: true)
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {

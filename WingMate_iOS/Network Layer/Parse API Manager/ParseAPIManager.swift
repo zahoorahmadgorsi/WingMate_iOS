@@ -173,6 +173,23 @@ struct ParseAPIManager {
         }
     }
     
+    //MARK: - Terms Conditions APIs
+    static func getTermsAndConditions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        var query = PFQuery()
+        query = PFQuery(className: DBTable.termsConditions)
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
     
     
     

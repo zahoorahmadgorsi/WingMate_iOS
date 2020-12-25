@@ -44,3 +44,10 @@ enum QuestionType: String {
     case mandatory = "Mandatory"
     case optional = "Optional"
 }
+
+enum TermsType: String {
+    case photo = "Photo"
+    case video = "Video"
+    case photoText = "PhotoText"
+    case videoText = "VideoText"
+}
