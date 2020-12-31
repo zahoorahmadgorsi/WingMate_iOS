@@ -7,7 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "37C3E925-5279-4176-B2DA-47417F44FF9F"
+            uuid = "1C9BD8AE-F41D-443E-8979-1C8BE9E5C7F0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -16,118 +16,86 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
-            landmarkName = "setTermsViewsHeight()"
+            landmarkName = "saveButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B8BFA06-94FB-4628-8D43-E59012480F8B"
+            uuid = "D4D3036B-A86B-482B-B5D3-4A39B6022AB7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "saveButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4DCCCCF-D8D3-40B2-A783-426FFC1C7DE9"
+            uuid = "06DA87E7-2F90-4E1F-BC54-9B85B77E41A5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "savePhotoVideoFileToServer(pickedImage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9E28B641-F459-4332-9E72-DADC6F6DB9DC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7837E8EA-A267-49CD-A728-D1931ACBB2D3"
+            uuid = "2D600915-498D-4C2F-8437-D674AD46A96E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "uploadPhotoVideoFile(obj:onSuccess:onFailure:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B - 17fddf5976370153"
+                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 600707d9ec61ca42"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static WingMate_iOS.ParseAPIManager.getTermsAndConditions(onSuccess: (Swift.Bool, Swift.Array&lt;__C.PFObject&gt;) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "static WingMate_iOS.ParseAPIManager.uploadPhotoVideoFile(obj: __C.PFObject, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "WingMate_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
-                  offsetFromSymbolStart = "328">
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "188">
                </Location>
                <Location
-                  uuid = "F502851C-85AC-4C42-AAFB-DA26CC2B911B - 5168c8a8e6439eac"
+                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 95b64633dda63b15"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.PFObject&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static WingMate_iOS.ParseAPIManager.getTermsAndConditions(onSuccess: (Swift.Bool, Swift.Array&lt;__C.PFObject&gt;) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static WingMate_iOS.ParseAPIManager.uploadPhotoVideoFile(obj: __C.PFObject, onSuccess: (Swift.Bool) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "WingMate_iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "181"
-                  endingLineNumber = "181"
-                  offsetFromSymbolStart = "80">
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -135,32 +103,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C7A26BA8-A4F1-432B-9931-6D694388D1A9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "getTermsAndConditions(onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "92F387CD-30AB-4850-9A64-D6CE2ADC77ED"
+            uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "getTermsConditions()"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "savePhotoVideoFileToServer(pickedImage:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 8de2c228cc33562d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WingMate_iOS.UploadPhotoVideoPresenter.savePhotoVideoFileToServer(pickedImage: __C.UIImage) -&gt; ()"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 64ff78205f99f49"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WingMate_iOS.UploadPhotoVideoPresenter.savePhotoVideoFileToServer(pickedImage: __C.UIImage) -&gt; ()"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1D89E1C-D807-4B3A-A52A-FF996D80D091"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "uploadPhotoVideoFile(obj:onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "210B8549-232D-4CE9-AEFF-1297E1265F73"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "savePhotoVideoFileToServer(pickedImage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

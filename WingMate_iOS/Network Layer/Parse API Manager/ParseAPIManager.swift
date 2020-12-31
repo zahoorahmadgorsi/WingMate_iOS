@@ -175,9 +175,11 @@ struct ParseAPIManager {
     
     //MARK: - Terms Conditions APIs
     static func getTermsAndConditions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        SVProgressHUD.show()
         var query = PFQuery()
         query = PFQuery(className: DBTable.termsConditions)
         query.findObjectsInBackground {(objects, error) in
+            SVProgressHUD.dismiss()
             if let error = error {
                 onFailure(error.localizedDescription)
             }
@@ -191,9 +193,29 @@ struct ParseAPIManager {
         }
     }
     
+    //MARK: - Upload Photo Video APIs
+    static func uploadPhotoVideoFile(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        SVProgressHUD.show()
+        obj.saveInBackground { (success, error) in
+            SVProgressHUD.dismiss()
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true)
+            }
+        }
+    }
     
-    
-    
-    
+    static func removePhotoVideoFile(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        SVProgressHUD.show()
+        obj.deleteInBackground { (success, error) in
+            SVProgressHUD.dismiss()
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true)
+            }
+        }
+    }
     
 }

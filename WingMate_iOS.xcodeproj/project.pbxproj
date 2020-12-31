@@ -21,6 +21,8 @@
 		FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */; };
 		FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */; };
 		FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */; };
+		FA1C5F3C25998DED008C7BFE /* UploadPhotoVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F3B25998DED008C7BFE /* UploadPhotoVideoModel.swift */; };
+		FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F40259B8013008C7BFE /* UIScrollView-Extension.swift */; };
 		FA285E94253B663100A5303E /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285E92253B663100A5303E /* SplashVC.swift */; };
 		FA285E95253B663100A5303E /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285E93253B663100A5303E /* SplashVC.xib */; };
 		FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* PreLoginVC.swift */; };
@@ -71,6 +73,7 @@
 		FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */; };
 		FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */; };
 		FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */; };
+		FABEC622259D7E1F0025B6C1 /* UserPhotoVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */; };
 		FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */; };
 		FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */; };
 		FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */; };
@@ -127,6 +130,8 @@
 		FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionsVC.xib; sourceTree = "<group>"; };
 		FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationPresenter.swift; sourceTree = "<group>"; };
 		FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoPresenter.swift; sourceTree = "<group>"; };
+		FA1C5F3B25998DED008C7BFE /* UploadPhotoVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoModel.swift; sourceTree = "<group>"; };
+		FA1C5F40259B8013008C7BFE /* UIScrollView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView-Extension.swift"; sourceTree = "<group>"; };
 		FA285E92253B663100A5303E /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		FA285E93253B663100A5303E /* SplashVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		FA285EB0253B721600A5303E /* PreLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginVC.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireSimpleOptionTableViewCell.xib; sourceTree = "<group>"; };
 		FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsCollectionViewCell.xib; sourceTree = "<group>"; };
+		FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoVideoModel.swift; sourceTree = "<group>"; };
 		FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
@@ -425,6 +431,7 @@
 				FA9EFD3B253779DD00A1ED1C /* UIViewController-Extension.swift */,
 				FA9EFD3D253779DD00A1ED1C /* URL-Extension.swift */,
 				FA285EBD253B842400A5303E /* UITextField-Extension.swift */,
+				FA1C5F40259B8013008C7BFE /* UIScrollView-Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +477,8 @@
 			children = (
 				FA700298255D37B3000052F4 /* User.swift */,
 				FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */,
+				FA1C5F3B25998DED008C7BFE /* UploadPhotoVideoModel.swift */,
+				FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -790,6 +799,7 @@
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
+				FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
 				FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */,
@@ -807,9 +817,11 @@
 				FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */,
 				FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */,
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
+				FA1C5F3C25998DED008C7BFE /* UploadPhotoVideoModel.swift in Sources */,
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA700299255D37B3000052F4 /* User.swift in Sources */,
+				FABEC622259D7E1F0025B6C1 /* UserPhotoVideoModel.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
 				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,

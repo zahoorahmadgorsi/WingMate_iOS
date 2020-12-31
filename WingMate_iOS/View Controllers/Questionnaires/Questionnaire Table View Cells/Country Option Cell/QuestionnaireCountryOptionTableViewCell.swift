@@ -22,15 +22,6 @@ class QuestionnaireCountryOptionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-//    var data: Option? {
-//        didSet {
-//            self.labelCountry.text = data?.title ?? ""
-//            self.imageViewCountry.image = UIImage(named: data?.flagImage ?? "")
-//            self.viewBgOption.backgroundColor = data?.isSelected ?? false ? UIColor.appThemeRedColor : UIColor.textFieldGrayBackgroundColor
-//            self.labelCountry.textColor = data?.isSelected ?? false ? UIColor.white : UIColor.appThemePurpleColor
-//        }
-//    }
-    
     var data: Option? {
         didSet {
             self.labelCountry.text = data?.object!.value(forKey: DBColumn.title) as? String ?? ""

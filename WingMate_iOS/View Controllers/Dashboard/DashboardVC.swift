@@ -74,4 +74,10 @@ class DashboardVC: BaseViewController {
             self.showToast(message: error)
         }
     }
+    
+    @IBAction func photoVideoButtonPressed(_ sender: Any) {
+        self.navigationController?.pushViewController(UploadPhotoVideoVC(), animated: true)
+    }
+    
+    
 }

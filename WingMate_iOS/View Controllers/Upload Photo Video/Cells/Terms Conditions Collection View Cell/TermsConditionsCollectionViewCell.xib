@@ -28,13 +28,22 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="big-green-tick" translatesAutoresizingMaskIntoConstraints="NO" id="YNs-2c-WN4">
                         <rect key="frame" x="65.5" y="66" width="38.5" height="38"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play-video" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-6c-VgN">
+                        <rect key="frame" x="45" y="41" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="J85-qO-890"/>
+                            <constraint firstAttribute="width" constant="30" id="hAe-kV-Z9N"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="Jcq-6c-VgN" firstAttribute="centerY" secondItem="CFq-22-4YR" secondAttribute="centerY" id="DYJ-LF-ykJ"/>
                 <constraint firstAttribute="trailing" secondItem="CFq-22-4YR" secondAttribute="trailing" constant="8" id="QbL-xp-M7S"/>
                 <constraint firstAttribute="bottom" secondItem="CFq-22-4YR" secondAttribute="bottom" constant="8" id="XeU-Mb-240"/>
                 <constraint firstItem="CFq-22-4YR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="aR8-oR-Dp2"/>
+                <constraint firstItem="Jcq-6c-VgN" firstAttribute="centerX" secondItem="CFq-22-4YR" secondAttribute="centerX" id="bW0-zh-CSu"/>
                 <constraint firstAttribute="bottom" secondItem="YNs-2c-WN4" secondAttribute="bottom" constant="16" id="k8P-4b-3tt"/>
                 <constraint firstItem="CFq-22-4YR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kBd-al-1sR"/>
                 <constraint firstAttribute="trailing" secondItem="YNs-2c-WN4" secondAttribute="trailing" constant="16" id="q8w-ZU-2Te"/>
@@ -43,6 +52,7 @@
             <connections>
                 <outlet property="imageViewIsDo" destination="YNs-2c-WN4" id="8R3-Xh-uv6"/>
                 <outlet property="imageViewPhoto" destination="CFq-22-4YR" id="VIG-Rn-35t"/>
+                <outlet property="imageViewPlayIcon" destination="Jcq-6c-VgN" id="v1Y-ec-6sH"/>
             </connections>
             <point key="canvasLocation" x="-71.739130434782609" y="95.758928571428569"/>
         </collectionViewCell>
@@ -50,5 +60,6 @@
     <resources>
         <image name="big-green-tick" width="38.333332061767578" height="38"/>
         <image name="man" width="208.66667175292969" height="194.33332824707031"/>
+        <image name="play-video" width="56" height="56"/>
     </resources>
 </document>

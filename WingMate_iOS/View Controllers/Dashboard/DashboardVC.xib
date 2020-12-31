@@ -40,6 +40,25 @@
                         <action selector="mandatoryQuestionnaireButtonPressed:" destination="-1" eventType="touchUpInside" id="1jz-Gi-CbN"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-yh-eJq">
+                    <rect key="frame" x="62" y="288" width="290" height="50"/>
+                    <color key="backgroundColor" name="PurpleThemeColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="UUw-CA-VG8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Photo / Video">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="photoVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="8Yd-ti-HJj"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEZ-8r-tog">
                     <rect key="frame" x="62" y="358" width="290" height="50"/>
                     <color key="backgroundColor" name="PurpleThemeColor"/>
@@ -110,16 +129,19 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fSJ-yh-eJq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3oA-fQ-OTB"/>
                 <constraint firstItem="K5n-hI-rot" firstAttribute="top" secondItem="CIK-Ig-KUo" secondAttribute="bottom" constant="20" id="9NY-yB-yUg"/>
                 <constraint firstItem="CIK-Ig-KUo" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="EHK-tA-zJg"/>
                 <constraint firstItem="s6L-8K-hvF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Eje-xR-m0i"/>
                 <constraint firstItem="CIK-Ig-KUo" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="FI3-wH-Ga7"/>
+                <constraint firstItem="fSJ-yh-eJq" firstAttribute="width" secondItem="cEZ-8r-tog" secondAttribute="width" id="Iq3-kK-bya"/>
                 <constraint firstItem="CIK-Ig-KUo" firstAttribute="top" secondItem="cEZ-8r-tog" secondAttribute="bottom" constant="20" id="JwR-xk-iuQ"/>
                 <constraint firstItem="ebj-QM-XgB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="LBI-Jg-XCf"/>
                 <constraint firstItem="Nf5-vk-Q2V" firstAttribute="width" secondItem="CIK-Ig-KUo" secondAttribute="width" id="LIz-iA-dlQ"/>
                 <constraint firstItem="cEZ-8r-tog" firstAttribute="width" secondItem="CIK-Ig-KUo" secondAttribute="width" id="LSK-eh-eA6"/>
                 <constraint firstItem="cEZ-8r-tog" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S7L-vn-5Sl"/>
                 <constraint firstItem="Nf5-vk-Q2V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UAB-gf-GGF"/>
+                <constraint firstItem="cEZ-8r-tog" firstAttribute="top" secondItem="fSJ-yh-eJq" secondAttribute="bottom" constant="20" id="VK1-4S-Hx6"/>
                 <constraint firstItem="s6L-8K-hvF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Z58-dz-hc1"/>
                 <constraint firstItem="CIK-Ig-KUo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="fjv-gG-zr1"/>
                 <constraint firstItem="K5n-hI-rot" firstAttribute="width" secondItem="CIK-Ig-KUo" secondAttribute="width" id="g8w-hA-0Ef"/>

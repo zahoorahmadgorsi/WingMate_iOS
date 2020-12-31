@@ -35,6 +35,8 @@ class LoginVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.textFieldEmail.text = APP_MANAGER.userEmail ?? ""
         self.textFieldPassword.text = APP_MANAGER.userPassword ?? ""
+        self.textFieldEmail.text = "muneebrehman758@gmail.com"
+        self.textFieldPassword.text = "qqqqqq"
         if APP_MANAGER.userEmail ?? "" != "" {
             self.shouldShowPassword = true
             self.imageViewCheckBox.image = UIImage(named: "checked")

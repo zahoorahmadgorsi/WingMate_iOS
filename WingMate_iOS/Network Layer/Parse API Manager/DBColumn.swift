@@ -51,4 +51,5 @@ class DBTable {
     static let questionOption  = "QuestionOption"
     static let userAnswer  = "UserAnswer"
     static let termsConditions  = "TermsConditions"
+    static let userProfilePhotoVideo = "UserProfilePhotoVideo2"
 }
