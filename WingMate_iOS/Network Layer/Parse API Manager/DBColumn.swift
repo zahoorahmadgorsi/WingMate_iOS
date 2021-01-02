@@ -10,6 +10,7 @@ import Foundation
 class DBColumn {
     //general
     static let objectId = "objectId"
+    static let createdAt = "createdAt"
     
     //user
     static let gender = "gender"
@@ -39,6 +40,9 @@ class DBColumn {
     static let termsType = "termsType"
     static let text = "text"
     static let file = "file"
+    
+    //photo video
+    static let isPhoto = "isPhoto"
 }
 
 class DBCloudFunction {
@@ -51,5 +55,5 @@ class DBTable {
     static let questionOption  = "QuestionOption"
     static let userAnswer  = "UserAnswer"
     static let termsConditions  = "TermsConditions"
-    static let userProfilePhotoVideo = "UserProfilePhotoVideo2"
+    static let userProfilePhotoVideo = "UserProfilePhotoVideo"
 }

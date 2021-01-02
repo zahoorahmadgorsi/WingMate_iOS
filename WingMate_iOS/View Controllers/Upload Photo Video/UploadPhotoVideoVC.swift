@@ -274,6 +274,17 @@ extension UploadPhotoVideoVC: UIImagePickerControllerDelegate, UINavigationContr
 //MARK: - Network Call Backs
 extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     
+    func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
+        if isSuccess {
+//            for i in userFilesData {
+//                self.dataUserPhotoVideo.insert(UserPhotoVideoModel(image: pickedImage!, videoUrl: "", object: obj), at: self.dataUserPhotoVideo.count-1)
+//                self.setPhotosCollectionViewHeight()
+//            }
+        } else {
+            
+        }
+    }
+    
     func uploadPhotoVideo(isSuccess: Bool, termsData: [PFObject], msg: String) {
         if isSuccess {
             self.dataTermsConditions = termsData

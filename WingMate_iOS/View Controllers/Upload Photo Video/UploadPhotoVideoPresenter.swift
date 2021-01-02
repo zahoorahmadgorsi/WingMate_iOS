@@ -9,6 +9,7 @@ import Foundation
 import Parse
 
 protocol UploadPhotoVideoDelegate {
+    func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String)
     func uploadPhotoVideo(isSuccess: Bool, termsData: [PFObject], msg: String)
     func uploadPhotoVideo(isFileUploaded: Bool, msg: String, pickedImage: UIImage?, obj: PFObject)
     func uploadPhotoVideo(isFileDeleted: Bool, msg: String, index: Int)
@@ -20,6 +21,50 @@ class UploadPhotoVideoPresenter {
     
     func attach(vc: UploadPhotoVideoDelegate) {
         self.delegate = vc
+    }
+    
+    func getAllUploadedFilesForUser() {
+        ParseAPIManager.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "") { (success, data)  in
+            if success {
+                self.delegate?.uploadPhotoVideo(isSuccess: true, userFilesData: data, msg: "")
+            } else {
+                self.delegate?.uploadPhotoVideo(isSuccess: false, userFilesData: data, msg: "")
+            }
+        } onFailure: { (error) in
+            self.delegate?.uploadPhotoVideo(isSuccess: false, userFilesData: [], msg: "")
+        }
+    }
+    
+    func savePhotoVideoFileToServer(pickedImage: UIImage) {
+        let pngData = pickedImage.pngData()
+        if let dta = pngData {
+            let file = try! PFFileObject(name: "image", data: dta, contentType: "image/jpeg")
+            let parseObj = PFObject(className: DBTable.userProfilePhotoVideo)
+            parseObj[DBColumn.userId] = APP_MANAGER.session?.objectId ?? ""
+            parseObj[DBColumn.file] = file
+            parseObj[DBColumn.isPhoto] = true
+            ParseAPIManager.uploadPhotoVideoFile(obj: parseObj) { (success) in
+                if success {
+                    self.delegate?.uploadPhotoVideo(isFileUploaded: true, msg: "Image Uploaded", pickedImage: pickedImage, obj: parseObj)
+                } else {
+                    self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: "Image Uploaded Failed", pickedImage: nil, obj: parseObj)
+                }
+            } onFailure: { (error) in
+                self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: error, pickedImage: nil, obj: PFObject(className: "abc"))
+            }
+        }
+    }
+    
+    func removePhotoVideoFileFromServer(obj: PFObject, index: Int) {
+        ParseAPIManager.removePhotoVideoFile(obj: obj) { (success) in
+            if success {
+                self.delegate?.uploadPhotoVideo(isFileDeleted: true, msg: "Successfully removed", index: index)
+            } else {
+                self.delegate?.uploadPhotoVideo(isFileDeleted: false, msg: "Failed to remove", index: index)
+            }
+        } onFailure: { (error) in
+            self.delegate?.uploadPhotoVideo(isFileDeleted: false, msg: error, index: index)
+        }
     }
     
     func getTermsConditions() {
@@ -82,39 +127,6 @@ class UploadPhotoVideoPresenter {
         }
     }
     
-    func savePhotoVideoFileToServer(pickedImage: UIImage) {
-        let pngData = pickedImage.pngData()
-        if let dta = pngData {
-            let file = try! PFFileObject(name: "image", data: dta, contentType: "image/jpeg")
-            let parseObj = PFObject(className: DBTable.userProfilePhotoVideo)
-            parseObj[DBColumn.userId] = APP_MANAGER.session
-            parseObj["Abcd"] = "test"
-//            parseObj[DBColumn.file] = file
-            ParseAPIManager.uploadPhotoVideoFile(obj: parseObj) { (success) in
-                if success {
-                    self.delegate?.uploadPhotoVideo(isFileUploaded: true, msg: "Image Uploaded", pickedImage: pickedImage, obj: parseObj)
-                } else {
-                    self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: "Image Uploaded Failed", pickedImage: nil, obj: parseObj)
-                }
-            } onFailure: { (error) in
-                self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: error, pickedImage: nil, obj: PFObject(className: "abc"))
-            }
-        }
-    }
-    
-    func removePhotoVideoFileFromServer(obj: PFObject, index: Int) {
-        ParseAPIManager.removePhotoVideoFile(obj: obj) { (success) in
-            if success {
-                self.delegate?.uploadPhotoVideo(isFileDeleted: true, msg: "Successfully removed", index: index)
-            } else {
-                self.delegate?.uploadPhotoVideo(isFileDeleted: false, msg: "Failed to remove", index: index)
-            }
-        } onFailure: { (error) in
-            self.delegate?.uploadPhotoVideo(isFileDeleted: false, msg: error, index: index)
-        }
-
-    }
     
     
 }
-

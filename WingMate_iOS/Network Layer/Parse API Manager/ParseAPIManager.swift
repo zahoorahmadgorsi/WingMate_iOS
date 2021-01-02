@@ -194,9 +194,26 @@ struct ParseAPIManager {
     }
     
     //MARK: - Upload Photo Video APIs
+    static func getAllUploadedFilesForUser(currentUserId: String, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        var query = PFQuery()
+        query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt)
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
+    
     static func uploadPhotoVideoFile(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         SVProgressHUD.show()
-        obj.saveEventually { (success, error) in
+        obj.saveInBackground { (success, error) in
             SVProgressHUD.dismiss()
             if let error = error {
                 onFailure(error.localizedDescription)
