@@ -196,7 +196,7 @@ struct ParseAPIManager {
     //MARK: - Upload Photo Video APIs
     static func uploadPhotoVideoFile(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         SVProgressHUD.show()
-        obj.saveInBackground { (success, error) in
+        obj.saveEventually { (success, error) in
             SVProgressHUD.dismiss()
             if let error = error {
                 onFailure(error.localizedDescription)

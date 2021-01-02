@@ -88,7 +88,8 @@ class UploadPhotoVideoPresenter {
             let file = try! PFFileObject(name: "image", data: dta, contentType: "image/jpeg")
             let parseObj = PFObject(className: DBTable.userProfilePhotoVideo)
             parseObj[DBColumn.userId] = APP_MANAGER.session
-            parseObj[DBColumn.file] = file
+            parseObj["Abcd"] = "test"
+//            parseObj[DBColumn.file] = file
             ParseAPIManager.uploadPhotoVideoFile(obj: parseObj) { (success) in
                 if success {
                     self.delegate?.uploadPhotoVideo(isFileUploaded: true, msg: "Image Uploaded", pickedImage: pickedImage, obj: parseObj)
