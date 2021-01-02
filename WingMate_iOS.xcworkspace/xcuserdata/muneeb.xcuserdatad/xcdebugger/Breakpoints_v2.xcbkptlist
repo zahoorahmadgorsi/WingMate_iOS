@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "06DA87E7-2F90-4E1F-BC54-9B85B77E41A5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "savePhotoVideoFileToServer(pickedImage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2D600915-498D-4C2F-8437-D674AD46A96E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -68,7 +52,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 600707d9ec61ca42"
+                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 600707d9ec61c9ed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -78,12 +62,12 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "196"
-                  endingLineNumber = "196"
-                  offsetFromSymbolStart = "188">
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 95b64633dda63b15"
+                  uuid = "2D600915-498D-4C2F-8437-D674AD46A96E - 95b64633dda638f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -93,9 +77,9 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/Network%20Layer/Parse%20API%20Manager/ParseAPIManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "197"
-                  endingLineNumber = "197"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "92">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -116,7 +100,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 8de2c228cc33562d"
+                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 8de2c228cc3356a9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -126,12 +110,12 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "928">
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "896">
                </Location>
                <Location
-                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 64ff78205f99f49"
+                  uuid = "AC55B068-E28B-4CF0-BCDF-63641525D6E0 - 64ff78205f99fcd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -141,9 +125,9 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "64">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

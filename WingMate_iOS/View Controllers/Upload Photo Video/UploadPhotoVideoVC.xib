@@ -233,6 +233,40 @@
             </constraints>
             <point key="canvasLocation" x="-97.101449275362327" y="72.554347826086968"/>
         </view>
+        <viewController id="jEO-ll-89i">
+            <view key="view" contentMode="scaleToFill" id="ybQ-vG-pS1">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-ur-UD9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                        <color key="backgroundColor" name="PurpleThemeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="Zvj-vw-3Zq"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RK2-Wn-Dwe">
+                        <rect key="frame" x="0.0" y="207" width="414" height="120"/>
+                        <color key="backgroundColor" name="PurpleThemeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="DLX-qH-5U2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <viewLayoutGuide key="safeArea" id="z70-sp-Ukb"/>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="RK2-Wn-Dwe" firstAttribute="trailing" secondItem="z70-sp-Ukb" secondAttribute="trailing" id="FsY-r5-pxT"/>
+                    <constraint firstItem="zTF-ur-UD9" firstAttribute="leading" secondItem="z70-sp-Ukb" secondAttribute="leading" id="Mnq-VG-Bex"/>
+                    <constraint firstItem="zTF-ur-UD9" firstAttribute="bottom" secondItem="RK2-Wn-Dwe" secondAttribute="bottom" id="alU-cW-Inl"/>
+                    <constraint firstItem="RK2-Wn-Dwe" firstAttribute="top" secondItem="ybQ-vG-pS1" secondAttribute="top" id="cX1-st-eFy"/>
+                    <constraint firstItem="zTF-ur-UD9" firstAttribute="top" secondItem="z70-sp-Ukb" secondAttribute="top" id="dy6-Z9-DVk"/>
+                    <constraint firstItem="RK2-Wn-Dwe" firstAttribute="leading" secondItem="z70-sp-Ukb" secondAttribute="leading" id="ePo-hk-AEU"/>
+                    <constraint firstItem="z70-sp-Ukb" firstAttribute="trailing" secondItem="zTF-ur-UD9" secondAttribute="trailing" id="mkU-Wd-T8O"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="581" y="-22"/>
+        </viewController>
     </objects>
     <resources>
         <image name="backbutton" width="47.333332061767578" height="24"/>
