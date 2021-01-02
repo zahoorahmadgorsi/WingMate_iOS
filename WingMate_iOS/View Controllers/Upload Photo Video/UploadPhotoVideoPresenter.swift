@@ -93,7 +93,7 @@ class UploadPhotoVideoPresenter {
         return data
     }
     
-    func getTermsConditionsImages(isPhotoMode: Bool, dataTermsConditions: [PFObject]?, completionHandler: @escaping ([PhotoVideoTypeTerms]) -> Void) {
+    func getTermsConditionsImages(isPhotoMode: Bool, dataTermsConditions: [PFObject]?) -> [PhotoVideoTypeTerms] {
         var photosData = [PhotoVideoTypeTerms]()
         var imagesCount = 0
         for i in dataTermsConditions ?? [] {
@@ -102,31 +102,18 @@ class UploadPhotoVideoPresenter {
                     imagesCount = imagesCount + 1
                     let isDo = i.value(forKey: DBColumn.isDo) as? Bool ?? false
                     let thumbnail = i["file"] as? PFFileObject
-                    thumbnail?.getDataInBackground (block: { (data, error) -> Void in
-                        if let image = UIImage(data: data!) {
-                            photosData.append(PhotoVideoTypeTerms(image: image, isDo: isDo))
-                            if photosData.count == imagesCount {
-                                completionHandler(photosData)
-                            }
-                        }
-                    })
+                    photosData.append(PhotoVideoTypeTerms(isDo: isDo, fileUrl: thumbnail?.url ?? ""))
                 }
             } else {
                 if i.value(forKey: DBColumn.termsType) as? String ?? "" == TermsType.video.rawValue {
                     imagesCount = imagesCount + 1
                     let isDo = i.value(forKey: DBColumn.isDo) as? Bool ?? false
                     let videoFile = i["file"] as? PFFileObject
-                    photosData.append(PhotoVideoTypeTerms(image: UIImage(named: "video_placeholder")!, isDo: isDo, videoUrl: videoFile?.url ?? ""))
-                }
-            }
-            if !isPhotoMode {
-                if photosData.count == imagesCount {
-                    completionHandler(photosData)
+                    photosData.append(PhotoVideoTypeTerms(isDo: isDo, fileUrl: videoFile?.url ?? ""))
                 }
             }
         }
+        return photosData
     }
-    
-    
     
 }

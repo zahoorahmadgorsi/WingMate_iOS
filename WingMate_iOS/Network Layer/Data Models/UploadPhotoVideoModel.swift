@@ -17,12 +17,12 @@ struct TextTypeTerms {
 }
 
 struct PhotoVideoTypeTerms {
-    var image = UIImage(named: "")
+//    var image = UIImage(named: "")
     var isDo = false
-    var videoUrl: String?
-    init(image: UIImage, isDo: Bool, videoUrl: String? = "") {
-        self.image = image
+    var fileUrl: String?
+    init(isDo: Bool, fileUrl: String? = "") {
+//        self.image = image
         self.isDo = isDo
-        self.videoUrl = videoUrl
+        self.fileUrl = fileUrl
     }
 }

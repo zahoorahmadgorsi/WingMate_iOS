@@ -105,12 +105,9 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.isPhotoMode = false
         self.dataTextTerms = self.presenter.getTermsConditionsText(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
-        self.setTermsViewsHeight()
         self.scrollViewMain.scrollToTop()
-        self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions) { (data) in
-            self.dataPhotoTerms = data
-            self.setTermsViewsHeight()
-        }
+        self.dataPhotoTerms = self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
+        self.setTermsViewsHeight()
         
         self.setProgress()
     }
@@ -170,7 +167,7 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
         } else { //terms conditions collection view
             if !self.isPhotoMode {
                 //play video
-                let player = AVPlayer(url: URL(fileURLWithPath: (self.dataPhotoTerms?[indexPath.item].videoUrl!)!))
+                let player = AVPlayer(url: URL(fileURLWithPath: (self.dataPhotoTerms?[indexPath.item].fileUrl!)!))
                 let playerController = AVPlayerViewController()
                 playerController.player = player
                 present(playerController, animated: true) {
@@ -251,17 +248,6 @@ extension UploadPhotoVideoVC: UIImagePickerControllerDelegate, UINavigationContr
             self.videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL
             print("videoURL:\(String(describing: self.videoUrl))")
             self.dataUserPhotoVideo[0].image = UIImage(named: "video_placeholder")
-            /*do {
-                let asset = AVURLAsset(url: self.videoUrl!, options: nil)
-                let imgGenerator = AVAssetImageGenerator(asset: asset)
-                imgGenerator.appliesPreferredTrackTransform = true
-                let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-                let thumbnail = UIImage(cgImage: cgImage)
-                self.dataUserPhotoVideo[0].image = thumbnail
-                self.setPhotosCollectionViewHeight()
-            } catch let error {
-                print("*** Error generating thumbnail: \(error.localizedDescription)")
-            }*/
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -276,10 +262,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     
     func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
         if isSuccess {
-//            for i in userFilesData {
-//                self.dataUserPhotoVideo.insert(UserPhotoVideoModel(image: pickedImage!, videoUrl: "", object: obj), at: self.dataUserPhotoVideo.count-1)
-//                self.setPhotosCollectionViewHeight()
-//            }
+            
         } else {
             
         }
@@ -289,10 +272,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
         if isSuccess {
             self.dataTermsConditions = termsData
             self.dataTextTerms = self.presenter.getTermsConditionsText(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
-            self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions) { (data) in
-                self.dataPhotoTerms = data
-                self.setTermsViewsHeight()
-            }
+            self.dataPhotoTerms = self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
             self.setTermsViewsHeight()
         } else {
             self.showToast(message: msg)
@@ -302,7 +282,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     func uploadPhotoVideo(isFileUploaded: Bool, msg: String, pickedImage: UIImage?, obj: PFObject) {
         self.showToast(message: msg)
         if isFileUploaded {
-            self.dataUserPhotoVideo.insert(UserPhotoVideoModel(image: pickedImage!, videoUrl: "", object: obj), at: self.dataUserPhotoVideo.count-1)
+            self.dataUserPhotoVideo.insert(UserPhotoVideoModel(image: pickedImage!, uploadFileUrl: "", object: obj), at: self.dataUserPhotoVideo.count-1)
             self.setPhotosCollectionViewHeight()
         }
     }
