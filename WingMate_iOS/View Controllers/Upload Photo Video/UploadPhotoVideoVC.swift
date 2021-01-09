@@ -26,15 +26,17 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBOutlet weak var constraintHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var scrollViewMain: UIScrollView!
     var isPhotoMode = true
-    var videoUrl: URL?
+//    var videoUrl: URL?
 
     let imagePicker = UIImagePickerController()
     var selectedImageIndex = 0
+    let maximumNumberOfPhotosAllowed = 3
     
     var dataTermsConditions: [PFObject]?
     var dataTextTerms: [TextTypeTerms]?
     var dataPhotoTerms: [PhotoVideoTypeTerms]?
     var dataUserPhotoVideo = [UserPhotoVideoModel()]
+    var mainDataUserPhotoVideo = [UserPhotoVideoModel()]
     var presenter = UploadPhotoVideoPresenter()
     
     override func viewDidLoad() {
@@ -42,6 +44,7 @@ class UploadPhotoVideoVC: BaseViewController {
         self.presenter.attach(vc: self)
         self.registerCells()
         self.initialLayout()
+        self.presenter.getAllUploadedFilesForUser()
         self.presenter.getTermsConditions()
     }
     
@@ -74,12 +77,6 @@ class UploadPhotoVideoVC: BaseViewController {
         self.progressView.startProgress(to: self.isPhotoMode ? 1 : 2, duration: 0.1)
         self.labelHeading.text = self.isPhotoMode ? "Upload Photos" : "Upload Videos"
         self.labelSubHeading.text = self.isPhotoMode ? "Minimum 1 photo is required" : "Video is required"
-        if !self.isPhotoMode {
-            self.imagePicker.mediaTypes = ["public.movie"]
-            self.dataUserPhotoVideo = [UserPhotoVideoModel()]
-            self.setPhotosCollectionViewHeight()
-            self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
     }
     
     func setPhotosCollectionViewHeight() {
@@ -101,19 +98,53 @@ class UploadPhotoVideoVC: BaseViewController {
         })
     }
     
-    //MARK: - Button Actions
-    @IBAction func saveButtonPressed(_ sender: Any) {
+    func goToVideos() {
         self.isPhotoMode = false
+        self.getTermsConditions()
+        self.setProgress()
+        
+        self.imagePicker.mediaTypes = ["public.movie"]
+        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+        if self.dataUserPhotoVideo.count == 0 {
+            self.dataUserPhotoVideo = [UserPhotoVideoModel()]
+        }
+        self.setPhotosCollectionViewHeight()
+        self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func goToPhotos() {
+        self.isPhotoMode = true
+        self.getTermsConditions()
+        self.setProgress()
+        
+        self.imagePicker.mediaTypes.removeAll()
+        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+        self.setPhotosCollectionViewHeight()
+        self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func getTermsConditions() {
         self.dataTextTerms = self.presenter.getTermsConditionsText(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
         self.scrollViewMain.scrollToTop()
         self.dataPhotoTerms = self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
         self.setTermsViewsHeight()
-        
-        self.setProgress()
+    }
+    
+    //MARK: - Button Actions
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        if self.isPhotoMode {
+            self.goToVideos()
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if self.isPhotoMode {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.goToPhotos()
+        }
     }
     
 }
@@ -126,7 +157,7 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UploadPhotoVideoCollectionViewCell.className, for: indexPath) as! UploadPhotoVideoCollectionViewCell
             cell.indexPath = indexPath
             cell.isPhotoMode = self.isPhotoMode
-            cell.data = self.dataUserPhotoVideo[indexPath.item].image
+            cell.data = self.dataUserPhotoVideo[indexPath.item]
             cell.removeImageButtonPressed = { [weak self] buttonTag in
                 self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
             }
@@ -145,13 +176,13 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionViewPhotos {
             if !self.isPhotoMode {
-                if self.dataUserPhotoVideo[indexPath.item].image == nil {
+                if self.dataUserPhotoVideo[indexPath.item].uploadFileUrl == nil {
                     self.selectedImageIndex = indexPath.item
 //                    imagePicker.allowsEditing = true
                     imagePicker.sourceType = .photoLibrary
                     self.present(imagePicker, animated: true, completion: nil)
                 } else {
-                    let player = AVPlayer(url: self.videoUrl!)
+                    let player = AVPlayer(url: URL(fileURLWithPath: self.dataUserPhotoVideo[0].uploadFileUrl ?? ""))
                     let playerController = AVPlayerViewController()
                     playerController.player = player
                     present(playerController, animated: true) {
@@ -159,7 +190,7 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
                     }
                 }
             } else {
-                if self.dataUserPhotoVideo[indexPath.item].image == nil {
+                if self.dataUserPhotoVideo[indexPath.item].uploadFileUrl == nil {
                     self.selectedImageIndex = indexPath.item
                     self.addImagePicker(title: nil, msg: nil, imagePicker: self.imagePicker)
                 }
@@ -245,9 +276,9 @@ extension UploadPhotoVideoVC: UIImagePickerControllerDelegate, UINavigationContr
                 self.presenter.savePhotoVideoFileToServer(pickedImage: pickedImage)
             }
         } else {
-            self.videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL
-            print("videoURL:\(String(describing: self.videoUrl))")
-            self.dataUserPhotoVideo[0].image = UIImage(named: "video_placeholder")
+            let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
+            print("videoURL:\(String(describing: videoURL))")
+            self.presenter.savePhotoVideoFileToServer(videoUrl: videoURL)
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -262,7 +293,16 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     
     func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
         if isSuccess {
-            
+            self.mainDataUserPhotoVideo.removeAll()
+            for i in userFilesData {
+                let uploadedFile = i[DBColumn.file] as? PFFileObject
+                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
+//                self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
+                self.mainDataUserPhotoVideo.append(model)
+//                self.setPhotosCollectionViewHeight()
+            }
+            self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+            self.setPhotosCollectionViewHeight()
         } else {
             
         }
@@ -279,10 +319,24 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
         }
     }
     
-    func uploadPhotoVideo(isFileUploaded: Bool, msg: String, pickedImage: UIImage?, obj: PFObject) {
+    func uploadPhotoVideo(isFileUploaded: Bool, msg: String, fileUrl: String?, obj: PFObject) {
         self.showToast(message: msg)
         if isFileUploaded {
-            self.dataUserPhotoVideo.insert(UserPhotoVideoModel(image: pickedImage!, uploadFileUrl: "", object: obj), at: self.dataUserPhotoVideo.count-1)
+            if self.isPhotoMode {
+                if fileUrl != nil { //image uploaded
+                    let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
+                    if self.maximumNumberOfPhotosAllowed == self.dataUserPhotoVideo.count {
+                        self.dataUserPhotoVideo[self.maximumNumberOfPhotosAllowed-1] = model
+                    } else {
+                        self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
+                    }
+                } else {
+                    self.showToast(message: "Nil photo file url")
+                }
+            } else {
+                self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
+                self.dataUserPhotoVideo[0].image = UIImage(named: "video_placeholder")
+            }
             self.setPhotosCollectionViewHeight()
         }
     }
@@ -293,7 +347,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
             if self.isPhotoMode {
                 self.dataUserPhotoVideo.remove(at: index)
             } else {
-                self.dataUserPhotoVideo[0].image = UIImage(named: "")
+                self.dataUserPhotoVideo[0].image = UIImage()
             }
             self.setPhotosCollectionViewHeight()
         }

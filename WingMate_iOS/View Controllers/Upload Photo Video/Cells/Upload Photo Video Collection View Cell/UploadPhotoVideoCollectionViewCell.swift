@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UploadPhotoVideoCollectionViewCell: UICollectionViewCell {
+class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
     
     @IBOutlet weak var imageViewPhoto: UIImageView!
     @IBOutlet weak var labelStaticTitle: UILabel!
@@ -19,19 +19,30 @@ class UploadPhotoVideoCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     var indexPath: IndexPath!
     var isPhotoMode = true
-    var data: UIImage? {
+    var data: UserPhotoVideoModel? {
         didSet {
-            self.imageViewPhoto.image = data ?? UIImage()
+            if self.isPhotoMode {
+                if data?.uploadFileUrl != nil {
+                    self.setImageWithUrl(imgUrl: data?.uploadFileUrl ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
+                } else {
+                    self.imageViewPhoto.image = UIImage()
+                }
+            } else {
+                if data?.uploadFileUrl != nil {
+                    self.imageViewPhoto.image = UIImage(named: "video_placeholder")
+                } else {
+                    self.imageViewPhoto.image = UIImage()
+                }
+            }
             self.labelStaticTitle.text = self.indexPath.item != 0 ? "" : isPhotoMode ? "Photos" : "Video"
-            self.viewAddPhotos.isHidden = data == nil ? false : true
-            self.labelCross.isHidden = data == nil ? true : false
-            self.buttonRemove.isHidden = data == nil ? true : false
-            self.imageViewPlay.isHidden = self.isPhotoMode ? true : data == nil ? true : false
+            self.viewAddPhotos.isHidden = data?.uploadFileUrl == nil ? false : true
+            self.labelCross.isHidden = data?.uploadFileUrl == nil ? true : false
+            self.buttonRemove.isHidden = data?.uploadFileUrl == nil ? true : false
+            self.imageViewPlay.isHidden = self.isPhotoMode ? true : data?.uploadFileUrl == nil ? true : false
         }
     }
     

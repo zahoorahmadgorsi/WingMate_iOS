@@ -51,5 +51,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires camera permission to update profile picture</string>
 </dict>
 </plist>

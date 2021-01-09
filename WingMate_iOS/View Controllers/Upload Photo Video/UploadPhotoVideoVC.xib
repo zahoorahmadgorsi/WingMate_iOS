@@ -52,7 +52,7 @@
                         <constraint firstAttribute="height" constant="50" id="b9F-FO-3XZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
-                    <state key="normal" title="Save &amp; Continue">
+                    <state key="normal" title="Continue">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

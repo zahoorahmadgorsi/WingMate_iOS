@@ -21,7 +21,8 @@ class TermsConditionsCollectionViewCell: BaseCollectionViewCell {
     var isPhotoMode = true
     var data: PhotoVideoTypeTerms? {
         didSet {
-            self.setImageWithUrl(imgUrl: data?.fileUrl ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
+            let defaultPlaceholder = self.isPhotoMode ? "default_placeholder" : "video_placeholder"
+            self.setImageWithUrl(imgUrl: data?.fileUrl ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: defaultPlaceholder))
             self.imageViewIsDo.image = data?.isDo ?? false ? UIImage(named: "big-green-tick") : UIImage(named: "big-red-cross")
             self.imageViewPlayIcon.isHidden = self.isPhotoMode ? true : false
         }
