@@ -53,6 +53,7 @@ class ApplicationManager: NSObject {
             user.isPaidUser = newValue?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
             user.isMandatoryQuestionnairesFilled = newValue?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
             user.isOptionalQuestionnairesFilled = newValue?.value(forKey: DBColumn.isOptionalQuestionnairesFilled) as? Bool ?? false
+            user.aboutMe = newValue?.value(forKey: DBColumn.aboutMe) as? String ?? ""
          
             UserDefaults.standard.set(try! PropertyListEncoder().encode(user), forKey:kSESSION_KEY)
             UserDefaults.standard.synchronize();
@@ -73,6 +74,7 @@ class ApplicationManager: NSObject {
                 _session?.setValue(user.isPaidUser, forKey: DBColumn.isPaidUser)
                 _session?.setValue(user.isMandatoryQuestionnairesFilled, forKey: DBColumn.isMandatoryQuestionnairesFilled)
                 _session?.setValue(user.isOptionalQuestionnairesFilled, forKey: DBColumn.isOptionalQuestionnairesFilled)
+                _session?.setValue(user.aboutMe, forKey: DBColumn.aboutMe)
             }
             return _session;
             

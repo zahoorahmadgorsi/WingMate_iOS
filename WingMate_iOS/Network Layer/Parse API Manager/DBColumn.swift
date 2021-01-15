@@ -24,6 +24,7 @@ class DBColumn {
     static let isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
     static let emailWrong = "emailWrong"
     static let emailNew = "emailNew"
+    static let aboutMe = "aboutMe"
     
     //questionnaires
     static let questionType = "questionType"
@@ -34,6 +35,9 @@ class DBColumn {
     static let countryFlagImage = "countryFlagImage"
     static let userId = "userId"
     static let selectedOptionIds = "selectedOptionIds"
+    static let questionOptionsRelation = "questionOptionsRelation"
+    static let shortTitle = "shortTitle"
+    static let optionsObjArray = "optionsObjArray"
     
     //terms conditions
     static let isDo = "isDo"
@@ -56,4 +60,12 @@ class DBTable {
     static let userAnswer  = "UserAnswer"
     static let termsConditions  = "TermsConditions"
     static let userProfilePhotoVideo = "UserProfilePhotoVideo"
+}
+
+class QuestionShortTitle {
+    static let age  = "Age"
+    static let height  = "Height"
+    static let lookingFor  = "Looking for"
+    static let nationality  = "Nationality"
+    static let relationshipStatus = "Relationship status"
 }

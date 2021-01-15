@@ -77,9 +77,9 @@ class QuestionnairePresenter {
         }
     }
     
-    func saveQuestionnaireOption(questionObject: PFObject, answersIds: [String]) {
+    func saveQuestionnaireOption(questionObject: PFObject, answersIds: [String], answersObjects: [PFObject]) {
         SVProgressHUD.show()
-        ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds) { (success) in
+        ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds, savedOptionsObjects: answersObjects) { (success) in
             SVProgressHUD.dismiss()
             self.delegate?.questionnaire(isSaved: true, msg: ValidationStrings.kQuestionnaireOptionSaved)
         } onFailure: { (error) in

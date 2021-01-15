@@ -9,7 +9,6 @@ import Foundation
 import Parse
 
 protocol UploadPhotoVideoDelegate {
-    func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String)
     func uploadPhotoVideo(isSuccess: Bool, termsData: [PFObject], msg: String)
     func uploadPhotoVideo(isFileUploaded: Bool, msg: String, fileUrl: String?, obj: PFObject)
     func uploadPhotoVideo(isFileDeleted: Bool, msg: String, index: Int)
@@ -21,18 +20,6 @@ class UploadPhotoVideoPresenter {
     
     func attach(vc: UploadPhotoVideoDelegate) {
         self.delegate = vc
-    }
-    
-    func getAllUploadedFilesForUser() {
-        ParseAPIManager.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "") { (success, data)  in
-            if success {
-                self.delegate?.uploadPhotoVideo(isSuccess: true, userFilesData: data, msg: "")
-            } else {
-                self.delegate?.uploadPhotoVideo(isSuccess: false, userFilesData: data, msg: "")
-            }
-        } onFailure: { (error) in
-            self.delegate?.uploadPhotoVideo(isSuccess: false, userFilesData: [], msg: "")
-        }
     }
     
     func getUserFiles(isPhotoMode: Bool, data: [UserPhotoVideoModel], maxPhotosAllowed: Int) -> [UserPhotoVideoModel] {

@@ -76,7 +76,7 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func photoVideoButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(UploadPhotoVideoVC(), animated: true)
+        self.navigationController?.pushViewController(ProfileVC(), animated: true)
     }
     
     

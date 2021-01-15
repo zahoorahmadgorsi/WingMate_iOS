@@ -16,6 +16,7 @@ struct User : Codable {
     var isPaidUser : Bool?
     var isMandatoryQuestionnairesFilled : Bool?
     var isOptionalQuestionnairesFilled : Bool?
+    var aboutMe : String?
     
     init(){
         self.objectId = ""
@@ -27,6 +28,7 @@ struct User : Codable {
         self.isPaidUser = false
         self.isMandatoryQuestionnairesFilled = false
         self.isOptionalQuestionnairesFilled = false
+        self.aboutMe = ""
 
     }
     
@@ -51,6 +53,7 @@ struct User : Codable {
         case isPaidUser = "isPaidUser"
         case isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
         case isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
+        case aboutMe = "aboutMe"
     }
 
 }

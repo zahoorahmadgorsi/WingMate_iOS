@@ -134,9 +134,11 @@ class QuestionnairesVC: BaseViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         var answersIds = [String]()
+        var answersObjects = [PFObject]()
         for i in self.filteredData[self.questionIndex].options {
             if i.isSelected {
                 answersIds.append(i.object?.value(forKey: DBColumn.objectId) as? String ?? "")
+                answersObjects.append(i.object!)
             }
         }
         if self.filteredData[self.questionIndex].userSavedOptionObject != nil {
@@ -158,6 +160,7 @@ class QuestionnairesVC: BaseViewController {
                 
                 if isOptionsUpdated || self.isMandatoryQuestionnaires == false {
                     self.filteredData[self.questionIndex].userSavedOptionObject?[DBColumn.selectedOptionIds] = answersIds
+                    self.filteredData[self.questionIndex].userSavedOptionObject?[DBColumn.optionsObjArray] = answersObjects
                     self.questionnairePresenter.updateUserOptions(userAnswerObject: self.filteredData[self.questionIndex].userSavedOptionObject!)
                 } else {
                     self.moveToNextQuestion()
@@ -168,7 +171,7 @@ class QuestionnairesVC: BaseViewController {
         } else {
             //not saved, save it
             if answersIds.count > 0 {
-                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.filteredData[self.questionIndex].object!, answersIds: answersIds)
+                self.questionnairePresenter.saveQuestionnaireOption(questionObject: self.filteredData[self.questionIndex].object!, answersIds: answersIds, answersObjects: answersObjects)
             } else {
                 self.showToast(message: ValidationStrings.kSelectAnyOption)
             }

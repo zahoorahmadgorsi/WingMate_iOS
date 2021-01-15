@@ -149,11 +149,18 @@ struct ParseAPIManager {
         }
     }
     
-    static func saveUserQuestionOptions(questionObject: PFObject, selectedOptionIds: [String], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+    static func saveUserQuestionOptions(questionObject: PFObject, selectedOptionIds: [String], savedOptionsObjects: [PFObject], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         let userAnswer = PFObject(className: DBTable.userAnswer)
         userAnswer[DBColumn.userId] = ApplicationManager.shared.session
         userAnswer[DBColumn.questionId] = questionObject
         userAnswer[DBColumn.selectedOptionIds] = selectedOptionIds
+        userAnswer[DBColumn.optionsObjArray] = savedOptionsObjects
+        
+        /*let relation = userAnswer.relation(forKey: DBColumn.questionOptionsRelation)
+        for i in savedOptionsObjects {
+            relation.add(i)
+        }*/
+        
         userAnswer.saveEventually { (success, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -231,6 +238,25 @@ struct ParseAPIManager {
                 onFailure(error.localizedDescription)
             } else {
                 onSuccess(true)
+            }
+        }
+    }
+    
+    //MARK: - Profile
+    static func getUserSavedQuestions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        var query = PFQuery()
+        query = PFQuery(className: DBTable.userAnswer).whereKey(DBColumn.userId, equalTo: APP_MANAGER.session!)
+        query.includeKeys([DBColumn.questionId, DBColumn.optionsObjArray])
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
             }
         }
     }

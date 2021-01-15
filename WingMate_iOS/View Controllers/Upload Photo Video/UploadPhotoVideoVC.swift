@@ -26,7 +26,6 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBOutlet weak var constraintHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var scrollViewMain: UIScrollView!
     var isPhotoMode = true
-//    var videoUrl: URL?
 
     let imagePicker = UIImagePickerController()
     var selectedImageIndex = 0
@@ -39,12 +38,17 @@ class UploadPhotoVideoVC: BaseViewController {
     var mainDataUserPhotoVideo = [UserPhotoVideoModel()]
     var presenter = UploadPhotoVideoPresenter()
     
+    convenience init(data: [UserPhotoVideoModel]) {
+        self.init()
+        self.mainDataUserPhotoVideo = data
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
         self.registerCells()
         self.initialLayout()
-        self.presenter.getAllUploadedFilesForUser()
+        self.goToPhotos()
         self.presenter.getTermsConditions()
     }
     
@@ -117,7 +121,6 @@ class UploadPhotoVideoVC: BaseViewController {
         self.getTermsConditions()
         self.setProgress()
         
-        self.imagePicker.mediaTypes.removeAll()
         self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
         self.setPhotosCollectionViewHeight()
         self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -290,23 +293,6 @@ extension UploadPhotoVideoVC: UIImagePickerControllerDelegate, UINavigationContr
 
 //MARK: - Network Call Backs
 extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
-    
-    func uploadPhotoVideo(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
-        if isSuccess {
-            self.mainDataUserPhotoVideo.removeAll()
-            for i in userFilesData {
-                let uploadedFile = i[DBColumn.file] as? PFFileObject
-                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
-//                self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
-                self.mainDataUserPhotoVideo.append(model)
-//                self.setPhotosCollectionViewHeight()
-            }
-            self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
-            self.setPhotosCollectionViewHeight()
-        } else {
-            
-        }
-    }
     
     func uploadPhotoVideo(isSuccess: Bool, termsData: [PFObject], msg: String) {
         if isSuccess {
