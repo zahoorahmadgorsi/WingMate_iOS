@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.configureParse()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.rootViewController = SplashVC()
-        self.window!.backgroundColor = UIColor.white
-        self.window!.makeKeyAndVisible()
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        self.window!.rootViewController = SplashVC()
+//        self.window!.backgroundColor = UIColor.white
+//        self.window!.makeKeyAndVisible()
         IQKeyboardManager.shared().isEnabled = true
         self.setSVProgressHUD()
         return true
