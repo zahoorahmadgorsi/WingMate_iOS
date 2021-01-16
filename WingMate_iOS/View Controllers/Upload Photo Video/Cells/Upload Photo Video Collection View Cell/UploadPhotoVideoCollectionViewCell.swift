@@ -33,7 +33,7 @@ class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
                 }
             } else {
                 if data?.uploadFileUrl != nil {
-                    self.imageViewPhoto.image = UIImage(named: "video_placeholder")
+                    self.imageViewPhoto.image = data?.image ?? UIImage()
                 } else {
                     self.imageViewPhoto.image = UIImage()
                 }

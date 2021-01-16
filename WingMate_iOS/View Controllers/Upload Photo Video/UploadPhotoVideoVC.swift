@@ -25,6 +25,7 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBOutlet weak var progressView: UICircularProgressRing!
     @IBOutlet weak var constraintHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var scrollViewMain: UIScrollView!
+    @IBOutlet weak var testimageview: UIImageView!
     var isPhotoMode = true
 
     let imagePicker = UIImagePickerController()
@@ -321,7 +322,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                 }
             } else {
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
-                self.dataUserPhotoVideo[0].image = UIImage(named: "video_placeholder")
+                self.dataUserPhotoVideo[0].image = self.getVideoThumbnailImage(fileUrl: fileUrl!)
             }
             self.setPhotosCollectionViewHeight()
         }

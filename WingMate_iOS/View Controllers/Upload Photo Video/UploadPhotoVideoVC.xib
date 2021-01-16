@@ -25,6 +25,7 @@
                 <outlet property="progressView" destination="nb5-pl-f0r" id="AKb-7g-qUP"/>
                 <outlet property="scrollViewMain" destination="e62-fw-mbR" id="oh0-vb-jPk"/>
                 <outlet property="tableViewTerms" destination="iJ8-Ao-GKd" id="xeo-aM-htZ"/>
+                <outlet property="testimageview" destination="8wc-mh-PCa" id="Ccw-BW-z4s"/>
                 <outlet property="view" destination="2OQ-4d-Zmt" id="80c-ia-YOF"/>
             </connections>
         </placeholder>
@@ -207,6 +208,13 @@
                         <constraint firstItem="753-BC-VvU" firstAttribute="top" secondItem="e62-fw-mbR" secondAttribute="top" id="ofx-x1-BGh"/>
                     </constraints>
                 </scrollView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8wc-mh-PCa">
+                    <rect key="frame" x="314" y="0.0" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="7ip-Sj-uoR"/>
+                        <constraint firstAttribute="width" constant="100" id="gKL-YG-ygd"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="hkJ-bi-8Ps"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -227,7 +235,9 @@
                 <constraint firstItem="M4Z-65-OuM" firstAttribute="top" secondItem="3Ja-7Z-bDC" secondAttribute="bottom" constant="2" id="e3y-Rx-Dg4"/>
                 <constraint firstItem="xCd-fR-58r" firstAttribute="leading" secondItem="hkJ-bi-8Ps" secondAttribute="leading" constant="20" id="e7H-em-yR5"/>
                 <constraint firstItem="M4Z-65-OuM" firstAttribute="centerX" secondItem="2OQ-4d-Zmt" secondAttribute="centerX" id="hhg-Xd-WSI"/>
+                <constraint firstItem="8wc-mh-PCa" firstAttribute="top" secondItem="hkJ-bi-8Ps" secondAttribute="top" id="iya-BF-vVb"/>
                 <constraint firstItem="xCd-fR-58r" firstAttribute="top" secondItem="hkJ-bi-8Ps" secondAttribute="top" constant="20" id="kYK-Pd-w17"/>
+                <constraint firstItem="hkJ-bi-8Ps" firstAttribute="trailing" secondItem="8wc-mh-PCa" secondAttribute="trailing" id="oak-bw-Xqg"/>
                 <constraint firstItem="wZz-N3-kJe" firstAttribute="top" secondItem="xCd-fR-58r" secondAttribute="bottom" constant="20" id="pjw-XV-OGG"/>
                 <constraint firstItem="hkJ-bi-8Ps" firstAttribute="trailing" secondItem="nb5-pl-f0r" secondAttribute="trailing" constant="20" id="vax-sw-bwI"/>
             </constraints>

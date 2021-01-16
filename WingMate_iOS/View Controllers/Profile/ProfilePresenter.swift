@@ -50,11 +50,11 @@ class ProfilePresenter {
         }
     }
     
-    func getUserPhotos(data: [UserPhotoVideoModel]) -> [UserPhotoVideoModel] {
+    func getUserPhotosVideos(data: [UserPhotoVideoModel], isPhotos: Bool) -> [UserPhotoVideoModel] {
         var userFilesData = [UserPhotoVideoModel]()
         for i in data {
             let photoStatus = i.object!.value(forKey: DBColumn.isPhoto) as! Bool
-            if photoStatus == true {
+            if photoStatus == isPhotos {
                 userFilesData.append(i)
             }
         }

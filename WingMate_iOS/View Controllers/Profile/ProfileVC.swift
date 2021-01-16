@@ -17,6 +17,7 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var imageViewProfile1: UIImageView!
     @IBOutlet weak var imageViewProfile2: UIImageView!
     @IBOutlet weak var imageViewProfile3: UIImageView!
+    @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var labelNationality: UILabel!
     @IBOutlet weak var labelAge: UILabel!
     @IBOutlet weak var labelHeight: UILabel!
@@ -24,6 +25,8 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var labelAboutMe: UILabel!
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var cstHeightStackView: NSLayoutConstraint!
+    @IBOutlet weak var stackViewMyProfileButtons: UIStackView!
+    @IBOutlet weak var stackViewOthersProfileButtons: UIStackView!
     @IBOutlet weak var progressView: UICircularProgressRing!
     @IBOutlet weak var labelMatchPercentage: UILabel!
     var mainDataUserPhotosVideo = [UserPhotoVideoModel]()
@@ -43,7 +46,6 @@ class ProfileVC: BaseViewController {
     //MARK: - Helper Methods
     func setData() {
         self.cstHeightStackView.constant = 0 //or 80 if other profile view
-        self.labelDistance.isHidden = true
         self.progressView.isHidden = true
         self.progressView.startAngle = -90
         self.progressView.style = .ontop
@@ -51,6 +53,7 @@ class ProfileVC: BaseViewController {
         
         self.labelName.text = APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? ""
         self.labelDistance.text = "0 km away"
+        self.labelDistance.isHidden = true
         self.labelMatchPercentage.text = "95%"
         
         let userProfileData = self.presenter.getUserQuestionAndAnswer(data: self.dataUserSavedQuestions)
@@ -100,7 +103,14 @@ class ProfileVC: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func editButtonPressed(_ sender: Any) {
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func editProfileButtonPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func editMultimediaButtonPressed(_ sender: Any) {
         self.navigationController?.pushViewController(UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo), animated: true)
     }
     
@@ -115,7 +125,10 @@ extension ProfileVC: ProfileDelegate {
                 let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
                 self.mainDataUserPhotosVideo.append(model)
             }
-            self.dataUserPhotosVideo = self.presenter.getUserPhotos(data: self.mainDataUserPhotosVideo)
+            self.dataUserPhotosVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: true)
+            let userVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: false)
+            self.imageViewVideo.image = self.getVideoThumbnailImage(fileUrl: userVideo[0].uploadFileUrl!)
+            self.imageViewVideo.image = UIImage(named: "man")
             self.presenter.getUserSavedQuestions()
         }
     }
