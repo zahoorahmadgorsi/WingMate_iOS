@@ -8,6 +8,7 @@
 import UIKit
 import UICircularProgressRing
 import Parse
+import AVKit
 
 class ProfileVC: BaseViewController {
     
@@ -18,25 +19,24 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var imageViewProfile2: UIImageView!
     @IBOutlet weak var imageViewProfile3: UIImageView!
     @IBOutlet weak var imageViewVideo: UIImageView!
-    @IBOutlet weak var labelNationality: UILabel!
-    @IBOutlet weak var labelAge: UILabel!
-    @IBOutlet weak var labelHeight: UILabel!
-    @IBOutlet weak var labelLookingFor: UILabel!
     @IBOutlet weak var labelAboutMe: UILabel!
-    @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var cstHeightStackView: NSLayoutConstraint!
     @IBOutlet weak var stackViewMyProfileButtons: UIStackView!
     @IBOutlet weak var stackViewOthersProfileButtons: UIStackView!
+    @IBOutlet weak var tableViewUserQuestions: UITableView!
+    @IBOutlet weak var cstHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var progressView: UICircularProgressRing!
     @IBOutlet weak var labelMatchPercentage: UILabel!
     var mainDataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserSavedQuestions = [PFObject]()
     var presenter = ProfilePresenter()
+    var videoUrl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
+        self.registerTableViewCells()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +44,10 @@ class ProfileVC: BaseViewController {
     }
 
     //MARK: - Helper Methods
+    func registerTableViewCells() {
+        self.tableViewUserQuestions.register(UINib(nibName: MyProfileTableViewCell.className, bundle: nil), forCellReuseIdentifier: MyProfileTableViewCell.className)
+    }
+    
     func setData() {
         self.cstHeightStackView.constant = 0 //or 80 if other profile view
         self.progressView.isHidden = true
@@ -56,12 +60,15 @@ class ProfileVC: BaseViewController {
         self.labelDistance.isHidden = true
         self.labelMatchPercentage.text = "95%"
         
-        let userProfileData = self.presenter.getUserQuestionAndAnswer(data: self.dataUserSavedQuestions)
-        self.labelAge.text = "\(userProfileData.age.shortQuestionTitle): \(userProfileData.age.optionSelected)"
-        self.labelHeight.text = "\(userProfileData.height.shortQuestionTitle): \(userProfileData.height.optionSelected)"
-        self.labelNationality.text = "\(userProfileData.nationality.shortQuestionTitle): \(userProfileData.nationality.optionSelected)"
-        self.labelLookingFor.text = "\(userProfileData.lookingFor.shortQuestionTitle): \(userProfileData.lookingFor.optionSelected)"
-        self.labelAboutMe.text = userProfileData.aboutMe
+        self.tableViewUserQuestions.reloadData {
+            self.cstHeightTableView.constant = self.tableViewUserQuestions.contentSize.height
+            self.tableViewUserQuestions.layoutIfNeeded()
+            self.cstHeightTableView.constant = self.tableViewUserQuestions.contentSize.height
+        }
+        
+        let aboutMeText = APP_MANAGER.session?.value(forKey: DBColumn.aboutMe) as? String ?? ""
+        let stringToDisplay = aboutMeText == "" ? "" : "About Me: \(aboutMeText)"
+        self.labelAboutMe.attributedText = self.attributedText(withString: stringToDisplay, boldString: "About Me:", font: UIFont(name: "OpenSans-Regular", size: 14)!)
         
         //set photos
         switch self.dataUserPhotosVideo.count {
@@ -107,13 +114,33 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func editProfileButtonPressed(_ sender: Any) {
-        
+        self.navigationController?.pushViewController(EditProfileVC(userSavedOptions: self.dataUserSavedQuestions), animated: true)
     }
     
     @IBAction func editMultimediaButtonPressed(_ sender: Any) {
         self.navigationController?.pushViewController(UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo), animated: true)
     }
     
+    @IBAction func videoButtonPressed(_ sender: Any) {
+        self.playVideo(filePath: self.videoUrl)
+    }
+    
+}
+
+extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyProfileTableViewCell.className, for: indexPath) as! MyProfileTableViewCell
+        cell.data = self.dataUserSavedQuestions[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataUserSavedQuestions.count
+    }
 }
 
 extension ProfileVC: ProfileDelegate {
@@ -127,8 +154,11 @@ extension ProfileVC: ProfileDelegate {
             }
             self.dataUserPhotosVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: true)
             let userVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: false)
-            self.imageViewVideo.image = self.getVideoThumbnailImage(fileUrl: userVideo[0].uploadFileUrl!)
-            self.imageViewVideo.image = UIImage(named: "man")
+            self.videoUrl = userVideo[0].uploadFileUrl!
+            
+            if let img = self.getVideoThumbnail(from: self.videoUrl) {
+                self.imageViewVideo.image = img
+            }
             self.presenter.getUserSavedQuestions()
         }
     }

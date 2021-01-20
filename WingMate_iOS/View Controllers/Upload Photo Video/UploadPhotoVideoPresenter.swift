@@ -75,6 +75,7 @@ class UploadPhotoVideoPresenter {
                 parseObj[DBColumn.userId] = APP_MANAGER.session?.objectId ?? ""
                 parseObj[DBColumn.file] = file
                 parseObj[DBColumn.isPhoto] = false
+                parseObj[DBColumn.videoThumbnail] = false
             } else {
                 self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: "Upload Failed", fileUrl: nil, obj: parseObj)
             }

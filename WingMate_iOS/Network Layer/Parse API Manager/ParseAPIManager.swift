@@ -261,4 +261,33 @@ struct ParseAPIManager {
         }
     }
     
+    //MARK: - Edit Profile
+    static func getAllQuestions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        var query = PFQuery()
+        query = PFQuery(className: DBTable.question).order(byAscending: DBColumn.profileDisplayOrder)
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
+    
+    //MARK: - Backend Work
+    static func updateQuestionOptions(questionObject: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+        questionObject.saveInBackground { (success, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true)
+            }
+        }
+    }
+    
 }

@@ -15,6 +15,13 @@
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		FA06695725B686D900D0786E /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06695625B686D900D0786E /* EditProfilePresenter.swift */; };
+		FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */; };
+		FA0669BF25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */; };
+		FA0669D225B6DF6D00D0786E /* EditProfileSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */; };
+		FA0669D325B6DF6D00D0786E /* EditProfileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */; };
+		FA0669E025B7CE5700D0786E /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669DE25B7CE5700D0786E /* EditNameVC.swift */; };
+		FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669DF25B7CE5700D0786E /* EditNameVC.xib */; };
 		FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */; };
 		FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */; };
 		FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */; };
@@ -91,6 +98,10 @@
 		FAE553B525A987F400C765F2 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE553B425A987F400C765F2 /* ProfilePresenter.swift */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
 		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
+		FAF4EF6E25B287B8006E0830 /* MyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4EF6C25B287B8006E0830 /* MyProfileTableViewCell.swift */; };
+		FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */; };
+		FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */; };
+		FAF4EF7725B2B267006E0830 /* EditProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4EF7525B2B267006E0830 /* EditProfileVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +138,13 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA06695625B686D900D0786E /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
+		FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUserQuestionTableViewCell.swift; sourceTree = "<group>"; };
+		FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileUserQuestionTableViewCell.xib; sourceTree = "<group>"; };
+		FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSelectionVC.swift; sourceTree = "<group>"; };
+		FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileSelectionViewController.xib; sourceTree = "<group>"; };
+		FA0669DE25B7CE5700D0786E /* EditNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameVC.swift; sourceTree = "<group>"; };
+		FA0669DF25B7CE5700D0786E /* EditNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNameVC.xib; sourceTree = "<group>"; };
 		FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsTableViewCell.swift; sourceTree = "<group>"; };
 		FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsTableViewCell.xib; sourceTree = "<group>"; };
 		FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
@@ -203,6 +221,10 @@
 		FAE553B425A987F400C765F2 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
+		FAF4EF6C25B287B8006E0830 /* MyProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewCell.swift; sourceTree = "<group>"; };
+		FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileTableViewCell.xib; sourceTree = "<group>"; };
+		FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		FAF4EF7525B2B267006E0830 /* EditProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +326,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA0669BB25B6B51400D0786E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */,
+				FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FA0669CF25B6DF4500D0786E /* Edit Profile Selection */ = {
+			isa = PBXGroup;
+			children = (
+				FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */,
+				FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */,
+			);
+			path = "Edit Profile Selection";
+			sourceTree = "<group>";
+		};
+		FA0669DD25B7CE0700D0786E /* Edit Name */ = {
+			isa = PBXGroup;
+			children = (
+				FA0669DE25B7CE5700D0786E /* EditNameVC.swift */,
+				FA0669DF25B7CE5700D0786E /* EditNameVC.xib */,
+			);
+			path = "Edit Name";
+			sourceTree = "<group>";
+		};
 		FA076534259441E900D48366 /* Upload Photo Video Collection View Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +441,9 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA0669DD25B7CE0700D0786E /* Edit Name */,
+				FA0669CF25B6DF4500D0786E /* Edit Profile Selection */,
+				FAF4EF7325B2B24E006E0830 /* Edit Profile */,
 				FAE553A625A95AE300C765F2 /* Profile */,
 				FAD8BE4E25919AE6009AA7AB /* Upload Photo Video */,
 				FA7003EB255F26E8000052F4 /* Dashboard */,
@@ -603,6 +655,7 @@
 				FAE553A725A95B0500C765F2 /* ProfileVC.swift */,
 				FAE553A825A95B0500C765F2 /* ProfileVC.xib */,
 				FAE553B425A987F400C765F2 /* ProfilePresenter.swift */,
+				FAF4EF6B25B28778006E0830 /* Cells */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -615,6 +668,26 @@
 				FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */,
 			);
 			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
+		FAF4EF6B25B28778006E0830 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAF4EF6C25B287B8006E0830 /* MyProfileTableViewCell.swift */,
+				FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FAF4EF7325B2B24E006E0830 /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */,
+				FA06695625B686D900D0786E /* EditProfilePresenter.swift */,
+				FAF4EF7525B2B267006E0830 /* EditProfileVC.xib */,
+				FA0669BB25B6B51400D0786E /* Cells */,
+			);
+			path = "Edit Profile";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -733,17 +806,22 @@
 				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
+				FA0669D325B6DF6D00D0786E /* EditProfileSelectionViewController.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
+				FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */,
 				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
 				FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */,
 				FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */,
+				FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */,
+				FAF4EF7725B2B267006E0830 /* EditProfileVC.xib in Resources */,
 				FA9EFE6C253B4B8300A1ED1C /* OpenSans-Regular.ttf in Resources */,
 				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
 				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
 				FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */,
+				FA0669BF25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib in Resources */,
 				FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */,
 				FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */,
 			);
@@ -817,6 +895,7 @@
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
+				FA0669D225B6DF6D00D0786E /* EditProfileSelectionVC.swift in Sources */,
 				FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
@@ -827,6 +906,7 @@
 				FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */,
 				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
 				FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */,
+				FA0669E025B7CE5700D0786E /* EditNameVC.swift in Sources */,
 				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
 				FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */,
@@ -840,10 +920,12 @@
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA700299255D37B3000052F4 /* User.swift in Sources */,
+				FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */,
 				FABEC622259D7E1F0025B6C1 /* UserPhotoVideoModel.swift in Sources */,
 				FA9EFD46253779DD00A1ED1C /* UIApplication-Extension.swift in Sources */,
 				FAA0163125471819004D35BB /* QuestionnairesVC.swift in Sources */,
 				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,
+				FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */,
@@ -863,9 +945,11 @@
 				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
 				FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */,
 				FA9EFD5425377A3B00A1ED1C /* ApplicationManager.swift in Sources */,
+				FAF4EF6E25B287B8006E0830 /* MyProfileTableViewCell.swift in Sources */,
 				882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */,
 				FA9EFD272537793700A1ED1C /* Constants.swift in Sources */,
 				FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */,
+				FA06695725B686D900D0786E /* EditProfilePresenter.swift in Sources */,
 				FA9EFD4B253779DD00A1ED1C /* URL-Extension.swift in Sources */,
 				FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */,
 				FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */,

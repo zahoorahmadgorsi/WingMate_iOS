@@ -227,7 +227,7 @@
     <resources>
         <image name="backbutton" width="47.333332061767578" height="24"/>
         <image name="login-heart" width="72" height="72"/>
-        <image name="search" width="76" height="76"/>
+        <image name="search" width="43" height="42"/>
         <namedColor name="Label Gray Text Color">
             <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

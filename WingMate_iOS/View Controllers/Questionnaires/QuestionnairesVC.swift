@@ -311,9 +311,25 @@ extension QuestionnairesVC: QuestionnaireDelegate {
         if isSuccess {
             self.filteredData[self.questionIndex].options = questionOptionsData
             self.mainData[self.questionIndex].options = questionOptionsData
+//            self.saveOptionsToBackend()
+
             self.questionnairePresenter.getUserSavedOptions(questionObject: self.filteredData[self.questionIndex].object!, questionIndex: self.questionIndex)
         } else {
             self.showToast(message: msg)
+        }
+    }
+    
+    func saveOptionsToBackend() {
+        var optionsObjArray = [PFObject]()
+        for i in self.mainData[self.questionIndex].options {
+            optionsObjArray.append(i.object!)
+        }
+        let qstnObj = self.mainData[self.questionIndex].object!
+        qstnObj[DBColumn.optionsObjArray] = optionsObjArray
+        ParseAPIManager.updateQuestionOptions(questionObject: qstnObj) { (success) in
+            self.showToast(message: "OPTIONS ADDED: \(success)")
+        } onFailure: { (error) in
+            self.showToast(message: "FAILED: \(error)")
         }
     }
     

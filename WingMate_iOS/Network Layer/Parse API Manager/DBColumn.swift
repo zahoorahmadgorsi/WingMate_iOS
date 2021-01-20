@@ -38,6 +38,7 @@ class DBColumn {
     static let questionOptionsRelation = "questionOptionsRelation"
     static let shortTitle = "shortTitle"
     static let optionsObjArray = "optionsObjArray"
+    static let profileDisplayOrder = "profileDisplayOrder"
     
     //terms conditions
     static let isDo = "isDo"
@@ -47,6 +48,7 @@ class DBColumn {
     
     //photo video
     static let isPhoto = "isPhoto"
+    static let videoThumbnail = "videoThumbnail"
 }
 
 class DBCloudFunction {

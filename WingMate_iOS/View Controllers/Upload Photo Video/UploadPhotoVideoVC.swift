@@ -7,7 +7,6 @@
 
 import UIKit
 import UICircularProgressRing
-import AVKit
 import Parse
 
 class UploadPhotoVideoVC: BaseViewController {
@@ -186,12 +185,7 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
                     imagePicker.sourceType = .photoLibrary
                     self.present(imagePicker, animated: true, completion: nil)
                 } else {
-                    let player = AVPlayer(url: URL(fileURLWithPath: self.dataUserPhotoVideo[0].uploadFileUrl ?? ""))
-                    let playerController = AVPlayerViewController()
-                    playerController.player = player
-                    present(playerController, animated: true) {
-                        player.play()
-                    }
+                    self.playVideo(filePath: self.dataUserPhotoVideo[0].uploadFileUrl ?? "")
                 }
             } else {
                 if self.dataUserPhotoVideo[indexPath.item].uploadFileUrl == nil {
@@ -201,13 +195,7 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
             }
         } else { //terms conditions collection view
             if !self.isPhotoMode {
-                //play video
-                let player = AVPlayer(url: URL(fileURLWithPath: (self.dataPhotoTerms?[indexPath.item].fileUrl!)!))
-                let playerController = AVPlayerViewController()
-                playerController.player = player
-                present(playerController, animated: true) {
-                    player.play()
-                }
+                self.playVideo(filePath: (self.dataPhotoTerms?[indexPath.item].fileUrl!)!)
             }
         }
     }
@@ -322,7 +310,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                 }
             } else {
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
-                self.dataUserPhotoVideo[0].image = self.getVideoThumbnailImage(fileUrl: fileUrl!)
+                self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
             }
             self.setPhotosCollectionViewHeight()
         }

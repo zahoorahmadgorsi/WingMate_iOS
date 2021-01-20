@@ -33,7 +33,7 @@ class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
                 }
             } else {
                 if data?.uploadFileUrl != nil {
-                    self.imageViewPhoto.image = data?.image ?? UIImage()
+                    self.imageViewPhoto.image = self.getVideoThumbnail(from: data?.uploadFileUrl ?? "")
                 } else {
                     self.imageViewPhoto.image = UIImage()
                 }
