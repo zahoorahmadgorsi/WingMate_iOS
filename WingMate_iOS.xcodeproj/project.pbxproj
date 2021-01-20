@@ -93,6 +93,7 @@
 		FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */; };
 		FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */; };
 		FAD8BE9E2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8BE9C2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib */; };
+		FADF223725B82E9200BB8E4C /* EditNamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF223625B82E9200BB8E4C /* EditNamePresenter.swift */; };
 		FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE553A725A95B0500C765F2 /* ProfileVC.swift */; };
 		FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE553A825A95B0500C765F2 /* ProfileVC.xib */; };
 		FAE553B525A987F400C765F2 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE553B425A987F400C765F2 /* ProfilePresenter.swift */; };
@@ -216,6 +217,7 @@
 		FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoVideoVC.xib; sourceTree = "<group>"; };
 		FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAD8BE9C2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoVideoCollectionViewCell.xib; sourceTree = "<group>"; };
+		FADF223625B82E9200BB8E4C /* EditNamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNamePresenter.swift; sourceTree = "<group>"; };
 		FAE553A725A95B0500C765F2 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FAE553A825A95B0500C765F2 /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		FAE553B425A987F400C765F2 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				FA0669DE25B7CE5700D0786E /* EditNameVC.swift */,
 				FA0669DF25B7CE5700D0786E /* EditNameVC.xib */,
+				FADF223625B82E9200BB8E4C /* EditNamePresenter.swift */,
 			);
 			path = "Edit Name";
 			sourceTree = "<group>";
@@ -939,6 +942,7 @@
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
 				FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */,
 				FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */,
+				FADF223725B82E9200BB8E4C /* EditNamePresenter.swift in Sources */,
 				FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */,
 				FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */,
 				FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */,

@@ -278,7 +278,7 @@ struct ParseAPIManager {
             }
         }
     }
-    
+
     //MARK: - Backend Work
     static func updateQuestionOptions(questionObject: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         questionObject.saveInBackground { (success, error) in

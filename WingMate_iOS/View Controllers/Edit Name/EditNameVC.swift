@@ -15,6 +15,7 @@ class EditNameVC: BaseViewController {
     @IBOutlet weak var textViewAboutMe: UITextView!
     var isAboutmeEdit = false
     var dataEdited: ((String)-> Void)?
+    var presenter = EditNamePresenter()
     
     convenience init(isAboutmeEdit: Bool) {
         self.init()
@@ -23,6 +24,7 @@ class EditNameVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.presenter.attach(vc: self)
         self.setInitialLayout()
     }
     
@@ -40,20 +42,33 @@ class EditNameVC: BaseViewController {
             if self.textViewAboutMe.text == "" {
                 self.showToast(message: "Enter any text to save")
             } else {
-                self.dataEdited!(self.textViewAboutMe.text!)
-                self.dismiss(animated: true, completion: nil)
+                self.presenter.updateNickOrAboutme(text: self.textViewAboutMe.text!, isAboutme: true)
             }
         } else {
             if self.textFieldNickName.text == "" {
                 self.showToast(message: "Enter any text to save")
             } else {
-                self.dataEdited!(self.textFieldNickName.text!)
-                self.dismiss(animated: true, completion: nil)
+                self.presenter.updateNickOrAboutme(text: self.textFieldNickName.text!, isAboutme: false)
             }
         }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditNameVC: EditNameDelegate {
+    func editName(isSuccess: Bool, msg: String) {
+        self.showToast(message: msg)
+        if isSuccess {
+            self.view.endEditing(true)
+            if self.isAboutmeEdit {
+                self.dataEdited!(APP_MANAGER.session?.value(forKey: DBColumn.aboutMe) as? String ?? "")
+            } else {
+                self.dataEdited!(APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? "")
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

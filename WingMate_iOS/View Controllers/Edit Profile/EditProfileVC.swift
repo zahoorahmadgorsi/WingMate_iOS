@@ -35,6 +35,10 @@ class EditProfileVC: BaseViewController {
         self.presenter.getQuestions()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
     //MARK: - Helping Methods
     func setInitialLayout() {
         self.textFieldName.text = APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? ""
