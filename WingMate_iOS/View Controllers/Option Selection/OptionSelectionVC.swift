@@ -41,7 +41,7 @@ class OptionSelectionVC: BaseViewController {
     
     //MARK: - Helping Methods
     func setLayout() {
-        self.labelSubHeading.text = self.data?.questionObject?.value(forKey: DBColumn.questionType) as? String ?? "" == QuestionType.mandatory.rawValue ? ValidationStrings.kSelectOneBelowOption : ValidationStrings.kSelectMultipleBelowOption
+        self.labelSubHeading.text = self.presenter.isMandatoryQuestion(data: self.data!) ? ValidationStrings.kSelectOneBelowOption : ValidationStrings.kSelectMultipleBelowOption
         self.labelQuestion.text = self.data?.questionObject?.value(forKey: DBColumn.shortTitle) as? String ?? ""
         self.shouldShowSearchView(status: false)
     }
@@ -73,16 +73,34 @@ class OptionSelectionVC: BaseViewController {
 extension OptionSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (self.data?.questionObject?.value(forKey: DBColumn.objectId) as? String ?? "") == APP_MANAGER.countryQuestionId { //country question object id
-            //country cell
             let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireCountryOptionTableViewCell.className, for: indexPath) as! QuestionnaireCountryOptionTableViewCell
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireSimpleOptionTableViewCell.className, for: indexPath) as! QuestionnaireSimpleOptionTableViewCell
-        cell.isUserSelectedOption = self.presenter.isSelectedOption()
+        cell.isUserSelectedOption = self.presenter.isSelectedOption(option: self.options[indexPath.row], userSelectedOption: self.data?.userSelectedOptions ?? [])
         cell.dataOption = self.options[indexPath.row]
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.presenter.isMandatoryQuestion(data: self.data!) {
+            self.data?.userSelectedOptions?.removeAll()
+            self.data?.userSelectedOptions?.append(self.options[indexPath.row])
+        } else {
+            if let userOptions = self.data?.userSelectedOptions {
+                let deleteIndex = self.presenter.getIndexOfSelectedOptionalQuestion(userOptions: userOptions, questionOption: self.options[indexPath.row])
+                if deleteIndex == -1 {
+                    //-1 is returned, it means this option wasn't selected before
+                    self.data?.userSelectedOptions?.append(self.options[indexPath.row])
+                } else {
+                    //option is already selected so it needs to be deleted now.
+                    self.data?.userSelectedOptions?.remove(at: deleteIndex)
+                }
+            }
+        }
+        self.tableViewOptions.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (self.data?.questionObject?.value(forKey: DBColumn.objectId) as? String ?? "") == APP_MANAGER.countryQuestionId {
             return 56 //country cell
