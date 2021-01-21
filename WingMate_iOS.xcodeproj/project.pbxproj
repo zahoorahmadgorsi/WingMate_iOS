@@ -18,8 +18,8 @@
 		FA06695725B686D900D0786E /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06695625B686D900D0786E /* EditProfilePresenter.swift */; };
 		FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */; };
 		FA0669BF25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */; };
-		FA0669D225B6DF6D00D0786E /* EditProfileSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */; };
-		FA0669D325B6DF6D00D0786E /* EditProfileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */; };
+		FA0669D225B6DF6D00D0786E /* OptionSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669D025B6DF6D00D0786E /* OptionSelectionVC.swift */; };
+		FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669D125B6DF6D00D0786E /* OptionSelectionVC.xib */; };
 		FA0669E025B7CE5700D0786E /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0669DE25B7CE5700D0786E /* EditNameVC.swift */; };
 		FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669DF25B7CE5700D0786E /* EditNameVC.xib */; };
 		FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */; };
@@ -35,6 +35,7 @@
 		FA285EB2253B721600A5303E /* PreLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EB0253B721600A5303E /* PreLoginVC.swift */; };
 		FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA285EB1253B721600A5303E /* PreLoginVC.xib */; };
 		FA285EBE253B842400A5303E /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA285EBD253B842400A5303E /* UITextField-Extension.swift */; };
+		FA385E6E25B9275000D1AEAF /* OptionSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA385E6D25B9275000D1AEAF /* OptionSelectionPresenter.swift */; };
 		FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB48525501DE1002465B3 /* LoginPresenter.swift */; };
 		FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */; };
 		FA5DB4DE25503322002465B3 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */; };
@@ -142,8 +143,8 @@
 		FA06695625B686D900D0786E /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUserQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileUserQuestionTableViewCell.xib; sourceTree = "<group>"; };
-		FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSelectionVC.swift; sourceTree = "<group>"; };
-		FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileSelectionViewController.xib; sourceTree = "<group>"; };
+		FA0669D025B6DF6D00D0786E /* OptionSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionVC.swift; sourceTree = "<group>"; };
+		FA0669D125B6DF6D00D0786E /* OptionSelectionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionSelectionVC.xib; sourceTree = "<group>"; };
 		FA0669DE25B7CE5700D0786E /* EditNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameVC.swift; sourceTree = "<group>"; };
 		FA0669DF25B7CE5700D0786E /* EditNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNameVC.xib; sourceTree = "<group>"; };
 		FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 		FA285EB0253B721600A5303E /* PreLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginVC.swift; sourceTree = "<group>"; };
 		FA285EB1253B721600A5303E /* PreLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreLoginVC.xib; sourceTree = "<group>"; };
 		FA285EBD253B842400A5303E /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		FA385E6D25B9275000D1AEAF /* OptionSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectionPresenter.swift; sourceTree = "<group>"; };
 		FA5DB48525501DE1002465B3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		FA5DB49825502BB5002465B3 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		FA5DB4DD25503322002465B3 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
@@ -337,13 +339,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		FA0669CF25B6DF4500D0786E /* Edit Profile Selection */ = {
+		FA0669CF25B6DF4500D0786E /* Option Selection */ = {
 			isa = PBXGroup;
 			children = (
-				FA0669D025B6DF6D00D0786E /* EditProfileSelectionVC.swift */,
-				FA0669D125B6DF6D00D0786E /* EditProfileSelectionViewController.xib */,
+				FA0669D025B6DF6D00D0786E /* OptionSelectionVC.swift */,
+				FA0669D125B6DF6D00D0786E /* OptionSelectionVC.xib */,
+				FA385E6D25B9275000D1AEAF /* OptionSelectionPresenter.swift */,
 			);
-			path = "Edit Profile Selection";
+			path = "Option Selection";
 			sourceTree = "<group>";
 		};
 		FA0669DD25B7CE0700D0786E /* Edit Name */ = {
@@ -444,8 +447,8 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA0669CF25B6DF4500D0786E /* Option Selection */,
 				FA0669DD25B7CE0700D0786E /* Edit Name */,
-				FA0669CF25B6DF4500D0786E /* Edit Profile Selection */,
 				FAF4EF7325B2B24E006E0830 /* Edit Profile */,
 				FAE553A625A95AE300C765F2 /* Profile */,
 				FAD8BE4E25919AE6009AA7AB /* Upload Photo Video */,
@@ -809,7 +812,7 @@
 				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
-				FA0669D325B6DF6D00D0786E /* EditProfileSelectionViewController.xib in Resources */,
+				FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
@@ -898,7 +901,7 @@
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
-				FA0669D225B6DF6D00D0786E /* EditProfileSelectionVC.swift in Sources */,
+				FA0669D225B6DF6D00D0786E /* OptionSelectionVC.swift in Sources */,
 				FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
@@ -930,6 +933,7 @@
 				FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */,
 				FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
+				FA385E6E25B9275000D1AEAF /* OptionSelectionPresenter.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,

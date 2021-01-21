@@ -265,6 +265,7 @@ struct ParseAPIManager {
     static func getAllQuestions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
         query = PFQuery(className: DBTable.question).order(byAscending: DBColumn.profileDisplayOrder)
+        query.includeKeys([DBColumn.optionsObjArray])
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

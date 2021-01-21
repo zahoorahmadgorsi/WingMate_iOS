@@ -33,9 +33,8 @@ class QuestionnaireSimpleOptionTableViewCell: UITableViewCell {
     var dataOption: PFObject? {
         didSet {
             self.labelOption.text = dataOption?.value(forKey: DBColumn.title) as? String ?? ""
-//            for (i, item) in dataop
-//            self.viewBgOption.backgroundColor = isUserSelectedOption ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
-//            self.labelOption.textColor = isUserSelectedOption ? UIColor.white : UIColor.appThemePurpleColor
+            self.viewBgOption.backgroundColor = isUserSelectedOption ? UIColor.appThemeRedColor : UIColor.appThemeYellowColor
+            self.labelOption.textColor = isUserSelectedOption ? UIColor.white : UIColor.appThemePurpleColor
         }
     }
     

@@ -12,6 +12,8 @@ import Parse
 class ApplicationManager: NSObject {
     
     static let shared = ApplicationManager()
+    var countryQuestionId = "C5dYcH5GNx"
+    
     var appVersion : String {
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         return versionNumber ?? "";
