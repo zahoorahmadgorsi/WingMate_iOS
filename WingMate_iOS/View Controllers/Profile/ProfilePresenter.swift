@@ -25,6 +25,7 @@ class ProfilePresenter {
     func getAllUploadedFilesForUser() {
         SVProgressHUD.show()
         ParseAPIManager.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "") { (success, data)  in
+            SVProgressHUD.dismiss()
             if success {
                 self.delegate?.profile(isSuccess: true, userFilesData: data, msg: "")
             } else {
@@ -37,6 +38,7 @@ class ProfilePresenter {
     }
     
     func getUserSavedQuestions() {
+        SVProgressHUD.show()
         ParseAPIManager.getUserSavedQuestions { (success, data) in
             SVProgressHUD.dismiss()
             if success {

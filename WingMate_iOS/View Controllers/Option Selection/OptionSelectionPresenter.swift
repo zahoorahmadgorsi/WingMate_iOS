@@ -7,7 +7,7 @@
 
 
 protocol OptionSelectionDelegate {
-    func optionSelection()
+    func optionSelection(isSuccess: Bool, msg: String, updatedUserAnswerObject: PFObject)
 }
 
 import Foundation
@@ -22,12 +22,15 @@ class OptionSelectionPresenter {
         self.delegate = vc
     }
     
-    func isSelectedOption(option: PFObject, userSelectedOption: [PFObject]) -> Bool {
-        for i in userSelectedOption {
-            let optionObjId = option.value(forKey: DBColumn.objectId) as? String ?? ""
-            let userOptionObjId = i.value(forKey: DBColumn.objectId) as? String ?? ""
-            if optionObjId == userOptionObjId {
-                return true
+    func isSelectedOption(option: PFObject, userAnswerObject: PFObject?) -> Bool {
+        if let obj = userAnswerObject {
+            let userSelectedOptions = obj.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+            for i in userSelectedOptions {
+                let optionObjId = option.value(forKey: DBColumn.objectId) as? String ?? ""
+                let userOptionObjId = i.value(forKey: DBColumn.objectId) as? String ?? ""
+                if optionObjId == userOptionObjId {
+                    return true
+                }
             }
         }
         return false
@@ -64,9 +67,9 @@ class OptionSelectionPresenter {
         SVProgressHUD.show()
         ParseAPIManager.updateUserQuestionOptions(object: userAnswerObject) { (isSuccess) in
             SVProgressHUD.dismiss()
-//            self.delegate?.questionnaire(isUpdated: true, msg: "Option updated")
+            self.delegate?.optionSelection(isSuccess: true, msg: "Updated Successfully", updatedUserAnswerObject: userAnswerObject)
         } onFailure: { (error) in
-//            self.delegate?.questionnaire(isUpdated: false, msg: error)
+            self.delegate?.optionSelection(isSuccess: false, msg: "", updatedUserAnswerObject: PFObject())
         }
     }
     

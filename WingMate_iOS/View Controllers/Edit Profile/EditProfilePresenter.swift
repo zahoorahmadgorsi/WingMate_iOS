@@ -52,12 +52,9 @@ class EditProfilePresenter {
                let userSelectedOptionQuestionObjectIdString = userSelectedOptionQuestionObjectId?.value(forKey: DBColumn.objectId) as? String ?? ""
                 
                 if qstnObjectIdString == userSelectedOptionQuestionObjectIdString {
-                    data[i].userSelectedOptions = [PFObject]()
-                    
-                     let selectedOptionsObjArray = userSelectedOption.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
-                    data[i].userSelectedOptions?.append(contentsOf: selectedOptionsObjArray)
+                    data[i].userAnswerObject = userSelectedOption
+                    data[i].userAnswerInitialSelected = userSelectedOption
                 }
-                
             }
         }
         return data
@@ -67,7 +64,8 @@ class EditProfilePresenter {
 
 struct UserProfileQuestion {
     var questionObject: PFObject?
-    var userSelectedOptions: [PFObject]?
+    var userAnswerObject: PFObject?
+    var userAnswerInitialSelected: PFObject?
     
     init(){}
     

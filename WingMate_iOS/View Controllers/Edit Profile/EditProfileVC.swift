@@ -19,7 +19,10 @@ class EditProfileVC: BaseViewController {
     
     var presenter = EditProfilePresenter()
     var data: [UserProfileQuestion]?
+    var questions: [PFObject]?
     var userSavedOptions: [PFObject]?
+    var isProfileUpdated = false
+    var isAnyInfoUpdated: ((Bool)->Void)?
     
     convenience init(userSavedOptions: [PFObject]) {
         self.init()
@@ -71,6 +74,7 @@ class EditProfileVC: BaseViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
+        self.isAnyInfoUpdated?(self.isProfileUpdated)
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -85,6 +89,12 @@ extension EditProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = OptionSelectionVC(data: self.data![indexPath.row])
+        vc.userAnswerUpdated = { [weak self] updatedUserAnswer in
+            self?.data![indexPath.row].userAnswerObject = updatedUserAnswer
+            self?.data![indexPath.row].userAnswerInitialSelected = updatedUserAnswer
+            self?.tableViewQuestions.reloadData()
+            self?.isProfileUpdated = true
+        }
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -101,6 +111,7 @@ extension EditProfileVC: EditProfileDelegate {
     func editProfile(isSuccess: Bool, msg: String, questions: [PFObject]) {
         print(questions)
         if isSuccess {
+            self.questions = questions
             self.data = self.presenter.mapDataToModel(questions: questions , userSavedOptions: self.userSavedOptions ?? [])
             self.tableViewQuestions.reloadData {
                 DispatchQueue.main.async {

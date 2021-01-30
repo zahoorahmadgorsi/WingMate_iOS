@@ -24,11 +24,13 @@ class OptionSelectionVC: BaseViewController {
     var data: UserProfileQuestion?
     var options = [PFObject]()
     var presenter = OptionSelectionPresenter()
+    var userAnswerUpdated: ((PFObject) -> Void )?
     
     convenience init(data: UserProfileQuestion) {
         self.init()
         self.data = data
         self.options = self.data?.questionObject?.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+        
     }
     
     //MARK: - View Controller Life Cycle
@@ -59,7 +61,17 @@ class OptionSelectionVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        self.dismiss(animated: true, completion: nil)
+        
+        if self.data?.userAnswerInitialSelected == nil {
+            //save
+            
+        } else {
+            //update
+            self.presenter.updateUserOptions(userAnswerObject: (self.data?.userAnswerObject)!)
+        }
+        
+        
+//        self.presenter.updateUserOptions(userAnswerObject: self.data?.userSelectedOptions)
         
     }
     
@@ -77,26 +89,44 @@ extension OptionSelectionVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionnaireSimpleOptionTableViewCell.className, for: indexPath) as! QuestionnaireSimpleOptionTableViewCell
-        cell.isUserSelectedOption = self.presenter.isSelectedOption(option: self.options[indexPath.row], userSelectedOption: self.data?.userSelectedOptions ?? [])
+        cell.isUserSelectedOption = self.presenter.isSelectedOption(option: self.options[indexPath.row], userAnswerObject: self.data?.userAnswerObject)
         cell.dataOption = self.options[indexPath.row]
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var objs = [PFObject]()
+        var arrayOptionsString = [String]()
         if self.presenter.isMandatoryQuestion(data: self.data!) {
-            self.data?.userSelectedOptions?.removeAll()
-            self.data?.userSelectedOptions?.append(self.options[indexPath.row])
+            let optionIdString = self.options[indexPath.row].value(forKey: DBColumn.objectId) as! String
+            arrayOptionsString.append(optionIdString)
+            objs.append(self.options[indexPath.row])
+            self.data?.userAnswerObject![DBColumn.optionsObjArray] = objs
+            self.data?.userAnswerObject![DBColumn.selectedOptionIds] = arrayOptionsString
         } else {
-            if let userOptions = self.data?.userSelectedOptions {
-                let deleteIndex = self.presenter.getIndexOfSelectedOptionalQuestion(userOptions: userOptions, questionOption: self.options[indexPath.row])
-                if deleteIndex == -1 {
-                    //-1 is returned, it means this option wasn't selected before
-                    self.data?.userSelectedOptions?.append(self.options[indexPath.row])
-                } else {
-                    //option is already selected so it needs to be deleted now.
-                    self.data?.userSelectedOptions?.remove(at: deleteIndex)
-                }
+            let optionIdString = self.options[indexPath.row].value(forKey: DBColumn.objectId) as! String
+            arrayOptionsString.append(optionIdString)
+            objs.append(self.options[indexPath.row])
+            if self.data?.userAnswerObject != nil {
+                
+            } else {
+                self.data?.userAnswerObject = 
+                self.data?.userAnswerObject![DBColumn.optionsObjArray] = objs
+                self.data?.userAnswerObject![DBColumn.selectedOptionIds] = arrayOptionsString
             }
+            
+//            if let userOptions = self.data?.userAnswerObject {
+//                let deleteIndex = self.presenter.getIndexOfSelectedOptionalQuestion(userOptions: userOptions, questionOption: self.options[indexPath.row])
+//                if deleteIndex == -1 {
+//                    //-1 is returned, it means this option wasn't selected before
+//                    self.data?.userAnswerObject?.append(self.options[indexPath.row])
+//                } else {
+//                    //option is already selected so it needs to be deleted now.
+//                    self.data?.userAnswerObject?.remove(at: deleteIndex)
+//                }
+//            }
+            
+            
         }
         self.tableViewOptions.reloadData()
     }
@@ -114,7 +144,11 @@ extension OptionSelectionVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension OptionSelectionVC: OptionSelectionDelegate {
-    func optionSelection() {
-        
+    func optionSelection(isSuccess: Bool, msg: String, updatedUserAnswerObject: PFObject) {
+        self.showToast(message: msg)
+        if isSuccess {
+            self.userAnswerUpdated?(updatedUserAnswerObject)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

@@ -37,10 +37,11 @@ class ProfileVC: BaseViewController {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
+        self.presenter.getAllUploadedFilesForUser()
+        self.presenter.getUserSavedQuestions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.presenter.getAllUploadedFilesForUser()
     }
 
     //MARK: - Helper Methods
@@ -114,7 +115,13 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func editProfileButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(EditProfileVC(userSavedOptions: self.dataUserSavedQuestions), animated: true)
+        let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
+        vc.isAnyInfoUpdated = { [weak self] status in
+            if status {
+                self?.presenter.getUserSavedQuestions()
+            }
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func editMultimediaButtonPressed(_ sender: Any) {
@@ -159,7 +166,7 @@ extension ProfileVC: ProfileDelegate {
             if let img = self.getVideoThumbnail(from: self.videoUrl) {
                 self.imageViewVideo.image = img
             }
-            self.presenter.getUserSavedQuestions()
+            
         }
     }
     

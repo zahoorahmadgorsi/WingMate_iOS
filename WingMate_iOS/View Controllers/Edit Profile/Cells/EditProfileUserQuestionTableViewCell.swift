@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class EditProfileUserQuestionTableViewCell: UITableViewCell {
     
@@ -27,7 +28,8 @@ class EditProfileUserQuestionTableViewCell: UITableViewCell {
         didSet {
             self.labelQuestion.text = data?.questionObject?.value(forKey: DBColumn.shortTitle) as? String ?? ""
             var selectedOptions = ""
-            if let options = data?.userSelectedOptions {
+            if let userAnswer = data?.userAnswerObject {
+                let options = userAnswer.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
                 for (i, item) in options.enumerated() {
                     let opt = item.value(forKey: DBColumn.title) as? String ?? ""
                     if i == options.count - 1 {
