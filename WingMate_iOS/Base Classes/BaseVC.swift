@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import AVKit
+import SimpleImageViewer
 
 class BaseViewController: UIViewController {
 
@@ -93,5 +94,14 @@ class BaseViewController: UIViewController {
         let range = (string as NSString).range(of: boldString)
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString
+    }
+    
+    //MARK: - Image Preview Methods
+    func previewImage(imageView: UIImageView) {
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = imageView
+        }
+        let imageViewerController = ImageViewerController(configuration: configuration)
+        present(imageViewerController, animated: true)
     }
 }

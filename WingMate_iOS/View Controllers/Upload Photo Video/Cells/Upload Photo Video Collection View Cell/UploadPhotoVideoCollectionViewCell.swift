@@ -42,6 +42,7 @@ class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
             self.viewAddPhotos.isHidden = data?.uploadFileUrl == nil ? false : true
             self.labelCross.isHidden = data?.uploadFileUrl == nil ? true : false
             self.buttonRemove.isHidden = data?.uploadFileUrl == nil ? true : false
+            self.buttonRemove.tag = indexPath.item
             self.imageViewPlay.isHidden = self.isPhotoMode ? true : data?.uploadFileUrl == nil ? true : false
         }
     }

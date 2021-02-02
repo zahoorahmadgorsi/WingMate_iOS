@@ -149,7 +149,7 @@ struct ParseAPIManager {
         }
     }
     
-    static func saveUserQuestionOptions(questionObject: PFObject, selectedOptionIds: [String], savedOptionsObjects: [PFObject], onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+    static func saveUserQuestionOptions(questionObject: PFObject, selectedOptionIds: [String], savedOptionsObjects: [PFObject], onSuccess: @escaping (Bool, PFObject?) -> Void, onFailure:@escaping (String) -> Void) {
         let userAnswer = PFObject(className: DBTable.userAnswer)
         userAnswer[DBColumn.userId] = ApplicationManager.shared.session
         userAnswer[DBColumn.questionId] = questionObject
@@ -165,7 +165,7 @@ struct ParseAPIManager {
             if let error = error {
                 onFailure(error.localizedDescription)
             } else {
-                onSuccess(true)
+                onSuccess(true, userAnswer)
             }
         }
     }

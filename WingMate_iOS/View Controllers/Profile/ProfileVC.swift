@@ -9,6 +9,7 @@ import UIKit
 import UICircularProgressRing
 import Parse
 import AVKit
+import SVProgressHUD
 
 class ProfileVC: BaseViewController {
     
@@ -27,18 +28,23 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var cstHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var progressView: UICircularProgressRing!
     @IBOutlet weak var labelMatchPercentage: UILabel!
+    @IBOutlet weak var viewVideo: UIView!
+    @IBOutlet weak var cstTopImageView: NSLayoutConstraint!
+    @IBOutlet weak var viewBlocker: UIView!
     var mainDataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserSavedQuestions = [PFObject]()
     var presenter = ProfilePresenter()
     var videoUrl = ""
+    var isPhotosFetched = false
+    var isDataFetched = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
-        self.presenter.getAllUploadedFilesForUser()
-        self.presenter.getUserSavedQuestions()
+        self.presenter.getAllUploadedFilesForUser(shouldShowLoader: true, isFromViewDidLoad: true)
+        self.presenter.getUserSavedQuestions(shouldShowLoader: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +55,7 @@ class ProfileVC: BaseViewController {
         self.tableViewUserQuestions.register(UINib(nibName: MyProfileTableViewCell.className, bundle: nil), forCellReuseIdentifier: MyProfileTableViewCell.className)
     }
     
-    func setData() {
+    func setProfileInfo() {
         self.cstHeightStackView.constant = 0 //or 80 if other profile view
         self.progressView.isHidden = true
         self.progressView.startAngle = -90
@@ -70,15 +76,19 @@ class ProfileVC: BaseViewController {
         let aboutMeText = APP_MANAGER.session?.value(forKey: DBColumn.aboutMe) as? String ?? ""
         let stringToDisplay = aboutMeText == "" ? "" : "About Me: \(aboutMeText)"
         self.labelAboutMe.attributedText = self.attributedText(withString: stringToDisplay, boldString: "About Me:", font: UIFont(name: "OpenSans-Regular", size: 14)!)
-        
-        //set photos
+    }
+    
+    func setPhotosVideo() {
         switch self.dataUserPhotosVideo.count {
         case 1:
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+            self.imageViewProfile2.image = UIImage()
+            self.imageViewProfile3.image = UIImage()
             break
         case 2:
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[1].uploadFileUrl ?? "", imageView: self.imageViewProfile2, placeholderImage: UIImage(named: "default_placeholder"))
+            self.imageViewProfile3.image = UIImage()
             break
         case 3:
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
@@ -86,6 +96,9 @@ class ProfileVC: BaseViewController {
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[2].uploadFileUrl ?? "", imageView: self.imageViewProfile3, placeholderImage: UIImage(named: "default_placeholder"))
             break
         default:
+            self.imageViewProfile1.image = UIImage()
+            self.imageViewProfile2.image = UIImage()
+            self.imageViewProfile3.image = UIImage()
             break
         }
     }
@@ -118,14 +131,20 @@ class ProfileVC: BaseViewController {
         let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
         vc.isAnyInfoUpdated = { [weak self] status in
             if status {
-                self?.presenter.getUserSavedQuestions()
+                self?.presenter.getUserSavedQuestions(shouldShowLoader: true)
             }
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func editMultimediaButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo), animated: true)
+        let vc = UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo)
+        vc.isAnyMediaUpdated = { [weak self] status in
+            if status {
+                self?.presenter.getAllUploadedFilesForUser(shouldShowLoader: true, isFromViewDidLoad: false)
+            }
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func videoButtonPressed(_ sender: Any) {
@@ -161,10 +180,23 @@ extension ProfileVC: ProfileDelegate {
             }
             self.dataUserPhotosVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: true)
             let userVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: false)
-            self.videoUrl = userVideo[0].uploadFileUrl!
+            if userVideo.count > 0 {
+                self.cstTopImageView.constant = 8
+                self.viewVideo.isHidden = false
+                self.videoUrl = userVideo[0].uploadFileUrl!
+                if let img = self.getVideoThumbnail(from: self.videoUrl) {
+                    self.imageViewVideo.image = img
+                }
+            } else {
+                self.cstTopImageView.constant = -60
+                self.viewVideo.isHidden = true
+            }
             
-            if let img = self.getVideoThumbnail(from: self.videoUrl) {
-                self.imageViewVideo.image = img
+            self.isPhotosFetched = true
+            self.setPhotosVideo()
+            if self.isDataFetched && self.isPhotosFetched {
+                self.viewBlocker.isHidden = true
+                SVProgressHUD.dismiss()
             }
             
         }
@@ -172,8 +204,20 @@ extension ProfileVC: ProfileDelegate {
     
     func profile(isSuccess: Bool, userSavedQuestions: [PFObject], msg: String) {
         if isSuccess {
-            self.dataUserSavedQuestions = userSavedQuestions
-            self.setData()
+            self.dataUserSavedQuestions = [PFObject]()
+            for i in userSavedQuestions {
+                let optionsObjArray = i.value(forKey: DBColumn.optionsObjArray) as? [PFObject]
+                if optionsObjArray?.count ?? 0 > 0 {
+                    //only append if user has marked any options in the given question
+                    self.dataUserSavedQuestions.append(i)
+                }
+            }
+            self.isDataFetched = true
+            self.setProfileInfo()
+            if self.isDataFetched && self.isPhotosFetched {
+                self.viewBlocker.isHidden = true
+                SVProgressHUD.dismiss()
+            }
         } else {
             self.showToast(message: msg)
         }

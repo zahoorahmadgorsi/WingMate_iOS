@@ -11,4 +11,5 @@ target 'WingMate_iOS' do
   pod 'AAPickerView'
   pod 'NotificationBannerSwift'
   pod 'UICircularProgressRing'
+  pod 'SimpleImageViewer', '~> 1.1.1'
 end

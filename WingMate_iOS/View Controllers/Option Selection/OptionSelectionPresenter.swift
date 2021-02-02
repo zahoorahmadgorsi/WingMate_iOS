@@ -8,6 +8,7 @@
 
 protocol OptionSelectionDelegate {
     func optionSelection(isSuccess: Bool, msg: String, updatedUserAnswerObject: PFObject)
+    func optionSelection(isSuccess: Bool, msg: String)
 }
 
 import Foundation
@@ -48,18 +49,18 @@ class OptionSelectionPresenter {
         return deleteIndex
     }
     
-    func isMandatoryQuestion(data: UserProfileQuestion) -> Bool {
-        let qstnType = data.questionObject?.value(forKey: DBColumn.questionType) as? String ?? ""
+    func isMandatoryQuestion(data: PFObject) -> Bool {
+        let qstnType = data.value(forKey: DBColumn.questionType) as? String ?? ""
         return qstnType == QuestionType.mandatory.rawValue ? true : false
     }
     
     func saveUserOptions(questionObject: PFObject, answersIds: [String], answersObjects: [PFObject]) {
         SVProgressHUD.show()
-        ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds, savedOptionsObjects: answersObjects) { (success) in
+        ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds, savedOptionsObjects: answersObjects) { (success, userAnswerObj) in
             SVProgressHUD.dismiss()
-//            self.delegate?.questionnaire(isSaved: true, msg: ValidationStrings.kQuestionnaireOptionSaved)
+            self.delegate?.optionSelection(isSuccess: true, msg: "Updated Successfully", updatedUserAnswerObject: userAnswerObj!)
         } onFailure: { (error) in
-//            self.delegate?.questionnaire(isSaved: false, msg: error)
+            self.delegate?.optionSelection(isSuccess: false, msg: error, updatedUserAnswerObject: PFObject(className: "Abc"))
         }
     }
     
@@ -73,4 +74,19 @@ class OptionSelectionPresenter {
         }
     }
     
+    func updateGender(text: String) {
+        PFUser.current()?.setValue(text, forKey: DBColumn.gender)
+        SVProgressHUD.show()
+        ParseAPIManager.updateUserObject() { (success) in
+            SVProgressHUD.dismiss()
+            if success {
+                APP_MANAGER.session = PFUser.current()
+                self.delegate?.optionSelection(isSuccess: true, msg: "Updated successfully")
+            } else {
+                self.delegate?.optionSelection(isSuccess: false, msg: "Updated successfully")
+            }
+        } onFailure: { (error) in
+            self.delegate?.optionSelection(isSuccess: false, msg: error)
+        }
+    }
 }

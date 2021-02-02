@@ -53,7 +53,6 @@ class EditProfilePresenter {
                 
                 if qstnObjectIdString == userSelectedOptionQuestionObjectIdString {
                     data[i].userAnswerObject = userSelectedOption
-                    data[i].userAnswerInitialSelected = userSelectedOption
                 }
             }
         }
@@ -65,10 +64,9 @@ class EditProfilePresenter {
 struct UserProfileQuestion {
     var questionObject: PFObject?
     var userAnswerObject: PFObject?
-    var userAnswerInitialSelected: PFObject?
-    
+
     init(){}
-    
+
     init(questionObject: PFObject) {
         self.questionObject = questionObject
     }

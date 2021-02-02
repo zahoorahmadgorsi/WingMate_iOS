@@ -43,6 +43,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         do {
             let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
             let thumbnail = UIImage(cgImage: img)
+            print("THUMBNAIL GENERATED")
             return thumbnail
         } catch {
             return UIImage()

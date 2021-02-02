@@ -58,17 +58,26 @@ class EditProfileVC: BaseViewController {
         let vc = EditNameVC(isAboutmeEdit: true)
         vc.dataEdited = { [weak self] text in
             self?.textViewAboutme.text = text
+            self?.isProfileUpdated = true
         }
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func genderButtonPressed(_ sender: Any) {
+        let vc = OptionSelectionVC(isGenderQuestion: true)
+        vc.isGenderUpdated = { [weak self] status in
+            if status {
+                self?.textFieldGender.text = APP_MANAGER.session?.value(forKey: DBColumn.gender) as? String ?? ""
+            }
+        }
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func nickButtonPressed(_ sender: Any) {
         let vc = EditNameVC(isAboutmeEdit: false)
         vc.dataEdited = { [weak self] text in
             self?.textFieldName.text = text
+            self?.isProfileUpdated = true
         }
         self.present(vc, animated: true, completion: nil)
     }
@@ -88,10 +97,9 @@ extension EditProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = OptionSelectionVC(data: self.data![indexPath.row])
+        let vc = OptionSelectionVC(userProfileData: self.data![indexPath.row])
         vc.userAnswerUpdated = { [weak self] updatedUserAnswer in
             self?.data![indexPath.row].userAnswerObject = updatedUserAnswer
-            self?.data![indexPath.row].userAnswerInitialSelected = updatedUserAnswer
             self?.tableViewQuestions.reloadData()
             self?.isProfileUpdated = true
         }
