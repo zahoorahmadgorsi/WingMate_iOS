@@ -24,17 +24,55 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="K0w-gH-pdw">
-                                <rect key="frame" x="322" y="64" width="72" height="72"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-c8-Ndt">
-                                <rect key="frame" x="20" y="191" width="374" height="378"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-c8-Ndt">
+                                <rect key="frame" x="21" y="191" width="374" height="378"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="OdZ-1V-e1E" id="Q8k-In-puo"/>
                                     <outlet property="delegate" destination="OdZ-1V-e1E" id="zFf-HO-W9F"/>
                                 </connections>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-eS-VS5">
+                                <rect key="frame" x="12" y="191" width="390" height="378"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="TO3-WO-DyK">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="OdZ-1V-e1E" id="2SN-1d-uXd"/>
+                                    <outlet property="delegate" destination="OdZ-1V-e1E" id="6AQ-6C-WHC"/>
+                                </connections>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="K0w-gH-pdw">
+                                <rect key="frame" x="322" y="64" width="72" height="72"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-Cm-EUH">
+                                <rect key="frame" x="107.33333333333333" y="274" width="199.66666666666669" height="212"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_results" translatesAutoresizingMaskIntoConstraints="NO" id="LZP-2N-NKK">
+                                        <rect key="frame" x="0.0" y="0.0" width="199.66666666666666" height="184"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmmm, We’re not getting any result.  Our bad try another search" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJ6-A2-Qim">
+                                        <rect key="frame" x="0.0" y="184" width="199.66666666666666" height="28"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                                        <color key="textColor" name="LabelBlueTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="LZP-2N-NKK" firstAttribute="top" secondItem="B4I-Cm-EUH" secondAttribute="top" id="AEw-Ci-HTj"/>
+                                    <constraint firstAttribute="trailing" secondItem="qJ6-A2-Qim" secondAttribute="trailing" id="CLb-fo-wIQ"/>
+                                    <constraint firstItem="qJ6-A2-Qim" firstAttribute="leading" secondItem="B4I-Cm-EUH" secondAttribute="leading" id="Fct-ed-bYg"/>
+                                    <constraint firstItem="qJ6-A2-Qim" firstAttribute="top" secondItem="LZP-2N-NKK" secondAttribute="bottom" id="I2e-xg-Gtt"/>
+                                    <constraint firstAttribute="trailing" secondItem="LZP-2N-NKK" secondAttribute="trailing" id="QAp-e7-F9j"/>
+                                    <constraint firstItem="LZP-2N-NKK" firstAttribute="leading" secondItem="B4I-Cm-EUH" secondAttribute="leading" id="VaL-Ba-NGB"/>
+                                    <constraint firstAttribute="bottom" secondItem="qJ6-A2-Qim" secondAttribute="bottom" id="iHq-zt-yla"/>
+                                </constraints>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="awS-at-XtI">
                                 <rect key="frame" x="20" y="64" width="72" height="72"/>
                             </imageView>
@@ -74,10 +112,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="awS-at-XtI" firstAttribute="leading" secondItem="epf-7x-I1g" secondAttribute="leading" constant="20" id="0oC-cc-KZf"/>
+                            <constraint firstItem="W6S-eS-VS5" firstAttribute="top" secondItem="0iw-c8-Ndt" secondAttribute="top" id="1Vf-9e-pHc"/>
                             <constraint firstItem="0iw-c8-Ndt" firstAttribute="leading" secondItem="epf-7x-I1g" secondAttribute="leading" constant="20" id="4c2-pC-9AT"/>
                             <constraint firstItem="K0w-gH-pdw" firstAttribute="top" secondItem="epf-7x-I1g" secondAttribute="top" constant="20" id="6oi-Bo-0Sz"/>
+                            <constraint firstItem="W6S-eS-VS5" firstAttribute="leading" secondItem="0iw-c8-Ndt" secondAttribute="leading" constant="-8" id="7Po-o2-WYe"/>
+                            <constraint firstItem="W6S-eS-VS5" firstAttribute="trailing" secondItem="0iw-c8-Ndt" secondAttribute="trailing" constant="8" id="8h1-9t-zwp"/>
+                            <constraint firstItem="B4I-Cm-EUH" firstAttribute="centerY" secondItem="0iw-c8-Ndt" secondAttribute="centerY" id="E19-Jh-e3y"/>
                             <constraint firstItem="UuI-CZ-Jb8" firstAttribute="leading" secondItem="epf-7x-I1g" secondAttribute="leading" constant="20" id="GtP-7m-ddd"/>
+                            <constraint firstItem="W6S-eS-VS5" firstAttribute="bottom" secondItem="0iw-c8-Ndt" secondAttribute="bottom" id="LeM-LE-X94"/>
                             <constraint firstItem="0iw-c8-Ndt" firstAttribute="top" secondItem="Rv2-Sy-aRt" secondAttribute="bottom" id="M3y-tA-Gau"/>
+                            <constraint firstItem="B4I-Cm-EUH" firstAttribute="centerX" secondItem="0iw-c8-Ndt" secondAttribute="centerX" id="Odk-Yj-9O7"/>
                             <constraint firstItem="hjd-3i-1Ky" firstAttribute="top" secondItem="0iw-c8-Ndt" secondAttribute="bottom" constant="8" id="PZ0-Xf-WuU"/>
                             <constraint firstItem="epf-7x-I1g" firstAttribute="trailing" secondItem="UuI-CZ-Jb8" secondAttribute="trailing" constant="20" id="QFk-Af-fRk"/>
                             <constraint firstItem="epf-7x-I1g" firstAttribute="bottom" secondItem="UuI-CZ-Jb8" secondAttribute="bottom" constant="8" id="VIT-Gw-ViX"/>
@@ -94,9 +138,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="kKv-CF-Fgh"/>
                     <connections>
+                        <outlet property="buttonSearch" destination="hjd-3i-1Ky" id="hLu-EZ-tBw"/>
+                        <outlet property="collectionViewSearchRecords" destination="W6S-eS-VS5" id="cZ5-EQ-wfA"/>
                         <outlet property="imageViewProfile" destination="K0w-gH-pdw" id="elI-t9-4Xh"/>
                         <outlet property="labelHeading" destination="Rv2-Sy-aRt" id="tE0-Zk-PGG"/>
                         <outlet property="tableViewFilters" destination="0iw-c8-Ndt" id="smS-0h-OVh"/>
+                        <outlet property="viewNoResults" destination="B4I-Cm-EUH" id="iID-nM-9na"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTL-jM-aUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -418,11 +465,15 @@
     </scenes>
     <resources>
         <image name="login-heart" width="72" height="72"/>
+        <image name="no_results" width="184" height="184"/>
         <image name="tab_home" width="24.666666030883789" height="25.666666030883789"/>
         <image name="tab_like" width="20.666666030883789" height="21"/>
         <image name="tab_message" width="24" height="18.333333969116211"/>
         <image name="tab_search" width="23.333333969116211" height="23.333333969116211"/>
         <image name="tab_settings" width="21.333333969116211" height="21.666666030883789"/>
+        <namedColor name="LabelBlueTextColor">
+            <color red="0.62400001287460327" green="0.67500001192092896" blue="0.72899997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PurpleThemeColor">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

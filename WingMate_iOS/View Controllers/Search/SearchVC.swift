@@ -12,14 +12,19 @@ class SearchVC: BaseViewController {
     
     //MARK: - Outlets & Constraints
     @IBOutlet weak var tableViewFilters: UITableView!
+    @IBOutlet weak var collectionViewSearchRecords: UICollectionView!
     @IBOutlet weak var labelHeading: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView!
+    @IBOutlet weak var viewNoResults: UIView!
+    @IBOutlet weak var buttonSearch: UIButton!
     var presenter = SearchPresenter()
     var dataQuestions: [UserProfileQuestion]?
     var searchedUsers = [PFUser]()
+    var isFiltersMode = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showFiltersTableView()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
         self.setInitialLayout()
@@ -28,6 +33,8 @@ class SearchVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.showFiltersTableView()
+        self.resetAllFilters()
         self.presenter.getQuestions(questionType: .mandatory)
     }
     
@@ -36,45 +43,59 @@ class SearchVC: BaseViewController {
         //set profile image
     }
     
+    func showFiltersTableView() {
+        self.tableViewFilters.isHidden = false
+        self.viewNoResults.isHidden = true
+        self.collectionViewSearchRecords.isHidden = true
+    }
+    
+    func showNoRecordsView() {
+        self.viewNoResults.isHidden = false
+        self.tableViewFilters.isHidden = true
+        self.collectionViewSearchRecords.isHidden = true
+    }
+    
+    func showSearchedRecordsTableView() {
+        self.collectionViewSearchRecords.reloadData()
+        self.viewNoResults.isHidden = true
+        self.tableViewFilters.isHidden = true
+        self.collectionViewSearchRecords.isHidden = false
+    }
+    
+    func resetAllFilters() {
+        self.isFiltersMode = true
+        self.buttonSearch.setTitle("Search", for: .normal)
+        if self.dataQuestions != nil {
+            self.presenter.resetFilters(dataQuestions: &self.dataQuestions!)
+        }
+        self.tableViewFilters.reloadData()
+    }
+    
     func registerTableViewCells() {
         self.tableViewFilters.register(UINib(nibName: EditProfileUserQuestionTableViewCell.className, bundle: nil), forCellReuseIdentifier: EditProfileUserQuestionTableViewCell.className)
+        self.collectionViewSearchRecords.register(UINib(nibName: SearchUserCollectionViewCell.className, bundle: nil), forCellWithReuseIdentifier: SearchUserCollectionViewCell.className)
     }
     
     //MARK: - Button Actions
     @IBAction func searchButtonPressed(_ sender: Any) {
-        var searchArray = [PFObject]()
-        var totalQuestionsMarkedByUser = 0
-        for i in self.dataQuestions ?? [] {
-            if i.userAnswerObject != nil {
-                totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
-                for j in i.searchedRecords ?? [] {
-                    searchArray.append(j)
-                }
+        self.isFiltersMode = !self.isFiltersMode
+        if self.isFiltersMode {
+            self.buttonSearch.setTitle("Search", for: .normal)
+            self.showFiltersTableView()
+        } else {
+            self.buttonSearch.setTitle("Search Again", for: .normal)
+            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions)
+            if self.searchedUsers.count > 0 {
+                self.showSearchedRecordsTableView()
+            } else {
+                self.showNoRecordsView()
             }
         }
-        
-        var uniqueUsersData = [PFUser]()
-        for i in searchArray {
-            var totalCount = 0
-            let userObjToMatch = i.value(forKey: DBColumn.userId) as? PFUser
-            for j in searchArray {
-                let iteratedUserObj = j.value(forKey: DBColumn.userId) as? PFUser
-                if (userObjToMatch?.objectId ?? "") == (iteratedUserObj?.objectId ?? "") {
-                    totalCount = totalCount + 1
-                }
-            }
-            if totalCount == totalQuestionsMarkedByUser {
-                if uniqueUsersData.map({$0.objectId}).contains(userObjToMatch?.objectId!) == false {
-                    uniqueUsersData.append(userObjToMatch!)
-                }
-            }
-        }
-        print("Total users found: \(uniqueUsersData.count)")
-        self.searchedUsers = uniqueUsersData
     }
     
     @IBAction func resetFilterButtonPressed(_ sender: Any) {
-        
+        self.showFiltersTableView()
+        self.resetAllFilters()
     }
     
 }
@@ -105,6 +126,37 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - Collection View Delegates
+extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
+        cell.data = self.searchedUsers[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.searchedUsers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionViewSearchRecords.frame.width/2, height: self.collectionViewSearchRecords.frame.width/2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView.numberOfItems(inSection: section) == 1 {
+            let cellWidth = self.collectionViewSearchRecords.frame.width/2
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: collectionView.frame.width - cellWidth)
+        }
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+}
+
 extension SearchVC: SearchDelegate {
     func search(isSuccess: Bool, msg: String, questions: [PFObject]) {
         self.dataQuestions = self.presenter.mapQuestionsToModel(questions: questions)
@@ -119,8 +171,4 @@ extension SearchVC: SearchDelegate {
             self.showToast(message: msg)
         }
     }
-}
-
-struct UserTest:Hashable {
-    let id:Int
 }

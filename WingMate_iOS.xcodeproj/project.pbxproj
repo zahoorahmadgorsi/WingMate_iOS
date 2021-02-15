@@ -80,6 +80,8 @@
 		FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */; };
 		FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */; };
 		FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */; };
+		FAB4A9AE25DA84100065D23D /* SearchUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4A9AC25DA84100065D23D /* SearchUserCollectionViewCell.swift */; };
+		FAB4A9AF25DA84100065D23D /* SearchUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB4A9AD25DA84100065D23D /* SearchUserCollectionViewCell.xib */; };
 		FABEC622259D7E1F0025B6C1 /* UserPhotoVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */; };
 		FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */; };
 		FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */; };
@@ -208,6 +210,8 @@
 		FAA016452547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireSimpleOptionTableViewCell.xib; sourceTree = "<group>"; };
 		FAA41160259475F800DD9177 /* TermsConditionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAA41161259475F800DD9177 /* TermsConditionsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsCollectionViewCell.xib; sourceTree = "<group>"; };
+		FAB4A9AC25DA84100065D23D /* SearchUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAB4A9AD25DA84100065D23D /* SearchUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoVideoModel.swift; sourceTree = "<group>"; };
 		FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
@@ -624,6 +628,15 @@
 			path = "Terms Conditions Collection View Cell";
 			sourceTree = "<group>";
 		};
+		FAB4A9AB25DA83E00065D23D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4A9AC25DA84100065D23D /* SearchUserCollectionViewCell.swift */,
+				FAB4A9AD25DA84100065D23D /* SearchUserCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		FAC77CA4254BF57E004ADA74 /* Simple Option Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,6 +700,7 @@
 			children = (
 				FAE965DA25D3DFF0009017F5 /* SearchVC.swift */,
 				FAE965E225D3E06A009017F5 /* SearchPresenter.swift */,
+				FAB4A9AB25DA83E00065D23D /* Cells */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -846,6 +860,7 @@
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
+				FAB4A9AF25DA84100065D23D /* SearchUserCollectionViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
 				FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */,
@@ -985,6 +1000,7 @@
 				FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */,
 				FAF2989725D2A0B200E1595A /* TabBarVC.swift in Sources */,
 				FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */,
+				FAB4A9AE25DA84100065D23D /* SearchUserCollectionViewCell.swift in Sources */,
 				FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */,
 				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
 				FAA016462547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.swift in Sources */,

@@ -62,4 +62,42 @@ class SearchPresenter {
         }
     }
     
+    func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?) -> [PFUser] {
+        var searchArray = [PFObject]()
+        var totalQuestionsMarkedByUser = 0
+        for i in dataQuestions ?? [] {
+            if i.userAnswerObject != nil {
+                totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
+                for j in i.searchedRecords ?? [] {
+                    searchArray.append(j)
+                }
+            }
+        }
+        
+        var uniqueUsersData = [PFUser]()
+        for i in searchArray {
+            var totalCount = 0
+            let userObjToMatch = i.value(forKey: DBColumn.userId) as? PFUser
+            for j in searchArray {
+                let iteratedUserObj = j.value(forKey: DBColumn.userId) as? PFUser
+                if (userObjToMatch?.objectId ?? "") == (iteratedUserObj?.objectId ?? "") {
+                    totalCount = totalCount + 1
+                }
+            }
+            if totalCount == totalQuestionsMarkedByUser {
+                if uniqueUsersData.map({$0.objectId}).contains(userObjToMatch?.objectId!) == false {
+                    uniqueUsersData.append(userObjToMatch!)
+                }
+            }
+        }
+        print("Total users found: \(uniqueUsersData.count)")
+        return uniqueUsersData
+    }
+    
+    func resetFilters(dataQuestions: inout [UserProfileQuestion]) {
+        for i in 0..<dataQuestions.count {
+            dataQuestions[i].searchedRecords = nil
+            dataQuestions[i].userAnswerObject = nil
+        }
+    }
 }
