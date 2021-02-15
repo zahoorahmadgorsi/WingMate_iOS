@@ -187,6 +187,8 @@ extension ProfileVC: ProfileDelegate {
                 if let img = self.getVideoThumbnail(from: self.videoUrl) {
                     self.imageViewVideo.image = img
                 }
+                self.cstTopImageView.constant = 8
+                self.viewVideo.isHidden = false
             } else {
                 self.cstTopImageView.constant = -60
                 self.viewVideo.isHidden = true

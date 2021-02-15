@@ -97,7 +97,7 @@ extension EditProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = OptionSelectionVC(userProfileData: self.data![indexPath.row])
+        let vc = OptionSelectionVC(userProfileData: self.data![indexPath.row], isSearchFlow: false)
         vc.userAnswerUpdated = { [weak self] updatedUserAnswer in
             self?.data![indexPath.row].userAnswerObject = updatedUserAnswer
             self?.tableViewQuestions.reloadData()

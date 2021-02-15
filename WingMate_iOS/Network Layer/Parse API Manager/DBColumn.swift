@@ -57,6 +57,7 @@ class DBCloudFunction {
 }
 
 class DBTable {
+    static let user  = "User"
     static let question  = "Question"
     static let questionOption  = "QuestionOption"
     static let userAnswer  = "UserAnswer"

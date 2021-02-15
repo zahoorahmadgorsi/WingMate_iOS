@@ -16,7 +16,8 @@ class DashboardVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.labelName.text = "Hi, \(APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? "")"
+//        self.labelName.text = "Hi, \(APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? "")"
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +77,9 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func photoVideoButtonPressed(_ sender: Any) {
-        self.navigationController?.pushViewController(ProfileVC(), animated: true)
+        let vc = ProfileVC()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

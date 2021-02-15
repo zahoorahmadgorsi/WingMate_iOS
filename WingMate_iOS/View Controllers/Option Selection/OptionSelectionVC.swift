@@ -30,13 +30,15 @@ class OptionSelectionVC: BaseViewController {
     var selectedGender: Gender?
     var data = Question()
     var dataCopy = Question()
+    var isSearchFlow = false
 
     var presenter = OptionSelectionPresenter()
     var userAnswerUpdated: ((PFObject) -> Void )?
     var isGenderUpdated: ((Bool)-> Void)?
     
-    convenience init(userProfileData: UserProfileQuestion) {
+    convenience init(userProfileData: UserProfileQuestion, isSearchFlow: Bool) {
         self.init()
+        self.isSearchFlow = isSearchFlow
         self.data.object = userProfileData.questionObject
         let options = userProfileData.questionObject?.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
         for i in options {
@@ -139,10 +141,7 @@ class OptionSelectionVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        
-        if self.isGenderQuestion {
-            self.presenter.updateGender(text: self.selectedGender!.rawValue)
-        } else {
+        if self.isSearchFlow {
             var answersIds = [String]()
             var answersObjects = [PFObject]()
             for i in self.data.options {
@@ -151,18 +150,37 @@ class OptionSelectionVC: BaseViewController {
                     answersObjects.append(i.object!)
                 }
             }
-            
-            if self.data.userSavedOptionObject == nil {
-                //save
-                self.presenter.saveUserOptions(questionObject: self.data.object!, answersIds: answersIds, answersObjects: answersObjects)
+            let userAnswer = PFObject(className: DBTable.userAnswer)
+            userAnswer[DBColumn.userId] = ApplicationManager.shared.session
+            userAnswer[DBColumn.questionId] = self.data.object
+            userAnswer[DBColumn.selectedOptionIds] = answersIds
+            userAnswer[DBColumn.optionsObjArray] = answersObjects
+            self.userAnswerUpdated?(userAnswer)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            if self.isGenderQuestion {
+                self.presenter.updateGender(text: self.selectedGender!.rawValue)
             } else {
-                //update
-                self.data.userSavedOptionObject?[DBColumn.selectedOptionIds] = answersIds
-                self.data.userSavedOptionObject?[DBColumn.optionsObjArray] = answersObjects
-                self.presenter.updateUserOptions(userAnswerObject: self.data.userSavedOptionObject!)
+                var answersIds = [String]()
+                var answersObjects = [PFObject]()
+                for i in self.data.options {
+                    if i.isSelected {
+                        answersIds.append(i.object?.value(forKey: DBColumn.objectId) as? String ?? "")
+                        answersObjects.append(i.object!)
+                    }
+                }
+                
+                if self.data.userSavedOptionObject == nil {
+                    //save
+                    self.presenter.saveUserOptions(questionObject: self.data.object!, answersIds: answersIds, answersObjects: answersObjects)
+                } else {
+                    //update
+                    self.data.userSavedOptionObject?[DBColumn.selectedOptionIds] = answersIds
+                    self.data.userSavedOptionObject?[DBColumn.optionsObjArray] = answersObjects
+                    self.presenter.updateUserOptions(userAnswerObject: self.data.userSavedOptionObject!)
+                }
             }
         }
-        
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -196,17 +214,22 @@ extension OptionSelectionVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.presenter.isMandatoryQuestion(data: self.data.object!) {
-            for (i, _) in self.data.options.enumerated() {
-                self.data.options[i].isSelected = false
-            }
-            for (i, _) in self.dataCopy.options.enumerated() {
-                self.dataCopy.options[i].isSelected = false
-            }
-            self.data.options[indexPath.row].isSelected = true
+        if self.isSearchFlow {
+            self.data.options[indexPath.row].isSelected = !self.data.options[indexPath.row].isSelected
             self.mapValuesToMainData()
         } else {
-            self.data.options[indexPath.row].isSelected = !self.data.options[indexPath.row].isSelected
+            if self.presenter.isMandatoryQuestion(data: self.data.object!) {
+                for (i, _) in self.data.options.enumerated() {
+                    self.data.options[i].isSelected = false
+                }
+                for (i, _) in self.dataCopy.options.enumerated() {
+                    self.dataCopy.options[i].isSelected = false
+                }
+                self.data.options[indexPath.row].isSelected = true
+                self.mapValuesToMainData()
+            } else {
+                self.data.options[indexPath.row].isSelected = !self.data.options[indexPath.row].isSelected
+            }
         }
         self.tableViewOptions.reloadData()
     }

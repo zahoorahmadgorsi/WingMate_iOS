@@ -46,13 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Decide RootViewController
     func decideRootViewController() {
-        //        let mainTabBarVC = Utilities.shared.getViewController(identifier: MainTabVC.className , storyboardType: .main)
-        //        self.window?.rootViewController = APP_MANAGER.isLoggedIn ?? false ? mainTabBarVC : LoginVC()
-        //        self.window?.makeKeyAndVisible()
-        //        if APP_MANAGER.isLoggedIn ?? false {
-        //            API_TOKEN = APP_MANAGER.session?.access_token ?? ""
-        
-        
+//        let mainTabBarVC = Utilities.shared.getViewController(identifier: Tabb.className , storyboardType: .main) as! Tabb
+//        let loginNavController = UINavigationController(rootViewController: LoginVC())
+//        loginNavController.isNavigationBarHidden = true
+//        mainTabBarVC.selectedIndex = self.isNotificationRecived ? 3 : 0
+//        self.isNotificationRecived = false
+//        (mainTabBarVC.selectedViewController as? AlertsVC)?.isLoadingFirstTime = true
+//        self.window?.rootViewController = APP_MANAGER.isLoggedIn ?? false ? mainTabBarVC : loginNavController
+//        self.window?.makeKeyAndVisible()
+//        if APP_MANAGER.isLoggedIn ?? false {
+//            API_TOKEN = APP_MANAGER.session?.access_token ?? ""
+//        }
         
     }
     

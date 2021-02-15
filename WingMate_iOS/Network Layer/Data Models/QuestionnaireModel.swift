@@ -16,6 +16,8 @@ struct Question {
     init(questionObject: PFObject) {
         self.object = questionObject
     }
+    
+    
 }
 
 struct Option {

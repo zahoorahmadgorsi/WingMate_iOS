@@ -21,7 +21,8 @@ class PreLoginVC: BaseViewController {
             self.navigationController?.pushViewController(LoginVC(), animated: false)
         }
         if APP_MANAGER.session != nil {
-            self.navigationController?.pushViewController(DashboardVC(), animated: false)
+            let vc = Utilities.shared.getViewController(identifier: TabBarVC.className, storyboardType: .main) as! TabBarVC
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

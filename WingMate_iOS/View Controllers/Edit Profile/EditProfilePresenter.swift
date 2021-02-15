@@ -64,10 +64,19 @@ class EditProfilePresenter {
 struct UserProfileQuestion {
     var questionObject: PFObject?
     var userAnswerObject: PFObject?
+    var searchedRecords: [PFObject]?
 
     init(){}
 
     init(questionObject: PFObject) {
         self.questionObject = questionObject
+    }
+    
+    func getUserSelectedOptionsArray() -> [PFObject] {
+        return userAnswerObject?.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+    }
+    
+    func getUserSelectedOptionsArrayString() -> [String] {
+        return userAnswerObject?.value(forKey: DBColumn.selectedOptionIds) as? [String] ?? []
     }
 }

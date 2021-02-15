@@ -43,7 +43,6 @@
 		FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA70023A255C76D4000052F4 /* TutorialVC.xib */; };
 		FA700299255D37B3000052F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA700298255D37B3000052F4 /* User.swift */; };
 		FA7003EE255F2708000052F4 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7003EC255F2708000052F4 /* DashboardVC.swift */; };
-		FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7003ED255F2708000052F4 /* DashboardVC.xib */; };
 		FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */; };
 		FA9EFD272537793700A1ED1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD222537793700A1ED1C /* Constants.swift */; };
 		FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EFD232537793700A1ED1C /* Utilities.swift */; };
@@ -90,6 +89,7 @@
 		FAC5FF012559142A00F06B33 /* DBColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5FF002559142A00F06B33 /* DBColumn.swift */; };
 		FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */; };
 		FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */; };
+		FACCBE5825D53FA40097554A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCBE5725D53FA40097554A /* SettingsVC.swift */; };
 		FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8BE6425919B34009AA7AB /* UploadPhotoVideoVC.swift */; };
 		FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */; };
 		FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */; };
@@ -98,8 +98,11 @@
 		FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE553A725A95B0500C765F2 /* ProfileVC.swift */; };
 		FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE553A825A95B0500C765F2 /* ProfileVC.xib */; };
 		FAE553B525A987F400C765F2 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE553B425A987F400C765F2 /* ProfilePresenter.swift */; };
+		FAE965DB25D3DFF0009017F5 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE965DA25D3DFF0009017F5 /* SearchVC.swift */; };
+		FAE965E325D3E06A009017F5 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE965E225D3E06A009017F5 /* SearchPresenter.swift */; };
 		FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */; };
 		FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */; };
+		FAF2989725D2A0B200E1595A /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2989625D2A0B200E1595A /* TabBarVC.swift */; };
 		FAF4EF6E25B287B8006E0830 /* MyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4EF6C25B287B8006E0830 /* MyProfileTableViewCell.swift */; };
 		FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */; };
 		FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */; };
@@ -168,7 +171,6 @@
 		FA70023A255C76D4000052F4 /* TutorialVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialVC.xib; sourceTree = "<group>"; };
 		FA700298255D37B3000052F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA7003EC255F2708000052F4 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
-		FA7003ED255F2708000052F4 /* DashboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardVC.xib; sourceTree = "<group>"; };
 		FA8DEA782579EA9700CDFD52 /* QuestionnaireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireModel.swift; sourceTree = "<group>"; };
 		FA9EFD222537793700A1ED1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA9EFD232537793700A1ED1C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		FAC5FF002559142A00F06B33 /* DBColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBColumn.swift; sourceTree = "<group>"; };
 		FAC77CAC254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountryOptionTableViewCell.swift; sourceTree = "<group>"; };
 		FAC77CAD254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionnaireCountryOptionTableViewCell.xib; sourceTree = "<group>"; };
+		FACCBE5725D53FA40097554A /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		FAD8BE6425919B34009AA7AB /* UploadPhotoVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoVC.swift; sourceTree = "<group>"; };
 		FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoVideoVC.xib; sourceTree = "<group>"; };
 		FAD8BE9B2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVideoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -223,8 +226,11 @@
 		FAE553A725A95B0500C765F2 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		FAE553A825A95B0500C765F2 /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		FAE553B425A987F400C765F2 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		FAE965DA25D3DFF0009017F5 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		FAE965E225D3E06A009017F5 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		FAF13CF0253C26B800D1499A /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
+		FAF2989625D2A0B200E1595A /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		FAF4EF6C25B287B8006E0830 /* MyProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileTableViewCell.xib; sourceTree = "<group>"; };
 		FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
@@ -427,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7003EC255F2708000052F4 /* DashboardVC.swift */,
-				FA7003ED255F2708000052F4 /* DashboardVC.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -447,6 +452,9 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FACCBE5625D53F930097554A /* Settings */,
+				FAE965D925D3DFDF009017F5 /* Search */,
+				FAF2989525D2A08500E1595A /* Tab Bar */,
 				FA0669CF25B6DF4500D0786E /* Option Selection */,
 				FA0669DD25B7CE0700D0786E /* Edit Name */,
 				FAF4EF7325B2B24E006E0830 /* Edit Profile */,
@@ -634,6 +642,14 @@
 			path = "Country Option Cell";
 			sourceTree = "<group>";
 		};
+		FACCBE5625D53F930097554A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FACCBE5725D53FA40097554A /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		FAD8BE4E25919AE6009AA7AB /* Upload Photo Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +682,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		FAE965D925D3DFDF009017F5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FAE965DA25D3DFF0009017F5 /* SearchVC.swift */,
+				FAE965E225D3E06A009017F5 /* SearchPresenter.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		FAF13CEC253C244300D1499A /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +699,14 @@
 				FAF13CF1253C26B800D1499A /* ForgotPasswordVC.xib */,
 			);
 			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
+		FAF2989525D2A08500E1595A /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2989625D2A0B200E1595A /* TabBarVC.swift */,
+			);
+			name = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		FAF4EF6B25B28778006E0830 /* Cells */ = {
@@ -803,7 +836,6 @@
 			files = (
 				FAD8BE9E2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib in Resources */,
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
-				FA7003EF255F2708000052F4 /* DashboardVC.xib in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
@@ -910,11 +942,13 @@
 				FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */,
 				FAE553B525A987F400C765F2 /* ProfilePresenter.swift in Sources */,
 				FA9EFDB225377DA200A1ED1C /* ParseConfiguration.swift in Sources */,
+				FAE965E325D3E06A009017F5 /* SearchPresenter.swift in Sources */,
 				FA9EFD44253779DD00A1ED1C /* UIView-Extension.swift in Sources */,
 				FA9EFD43253779DD00A1ED1C /* UIColor-Extension.swift in Sources */,
 				FA0669E025B7CE5700D0786E /* EditNameVC.swift in Sources */,
 				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
+				FACCBE5825D53FA40097554A /* SettingsVC.swift in Sources */,
 				FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */,
 				FAC5FEFC2558309B00F06B33 /* QuestionnairePresenter.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,
@@ -934,6 +968,7 @@
 				FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FA385E6E25B9275000D1AEAF /* OptionSelectionPresenter.swift in Sources */,
+				FAE965DB25D3DFF0009017F5 /* SearchVC.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */,
 				FA9EFD49253779DD00A1ED1C /* UIViewController-Extension.swift in Sources */,
@@ -948,6 +983,7 @@
 				FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */,
 				FADF223725B82E9200BB8E4C /* EditNamePresenter.swift in Sources */,
 				FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */,
+				FAF2989725D2A0B200E1595A /* TabBarVC.swift in Sources */,
 				FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */,
 				FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */,
 				FA9EFD4C253779DD00A1ED1C /* ImagePicker-Extension.swift in Sources */,
