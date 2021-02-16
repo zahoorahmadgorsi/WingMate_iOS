@@ -20,10 +20,20 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires camera permission to update profile picture</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app uses location to find the distance between user and its potential match.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app uses location to find the distance between user and its potential match.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This app uses location to find the distance between user and its potential match.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses location to find the distance between user and its potential match.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Baloo2-Bold.ttf</string>
@@ -32,6 +42,11 @@
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -51,11 +66,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses location to find the distance between user and its potential match.</string>
 </dict>
 </plist>

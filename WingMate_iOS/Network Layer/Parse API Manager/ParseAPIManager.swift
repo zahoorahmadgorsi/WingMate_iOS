@@ -260,37 +260,6 @@ struct ParseAPIManager {
                 }
             }
         }
-        /*
-        var query = PFQuery()
-        query = PFQuery(className: DBTable.userAnswer)
-        let obj = PFObject(withoutDataWithClassName:  DBTable.questionOption, objectId: "tKmc2CXpHs")
-//        query.includeKeys([DBColumn.questionId, DBColumn.optionsObjArray])
-        query.whereKey (DBColumn.optionsObjArray, equalTo: obj)
-        
-        var query2 = PFQuery()
-        query2 = PFQuery(className: DBTable.userAnswer)
-        let obj2 = PFObject(withoutDataWithClassName:  DBTable.questionOption, objectId: "dOpfs3lpLn")
-//        query2.includeKeys([DBColumn.questionId, DBColumn.optionsObjArray])
-        query2.whereKey (DBColumn.optionsObjArray, equalTo: obj2)
-        
-        
-      let qry = PFQuery.orQuery(withSubqueries: [query, query2])
-        
-        qry.findObjectsInBackground {(objects, error) in
-            if let error = error {
-                onFailure(error.localizedDescription)
-            }
-            else {
-                if let objs = objects {
-                    onSuccess(true, objs)
-                } else {
-                    onFailure("No objects found")
-                }
-            }
-        }
-        */
-        
-        
     }
     
     //MARK: - Edit Profile

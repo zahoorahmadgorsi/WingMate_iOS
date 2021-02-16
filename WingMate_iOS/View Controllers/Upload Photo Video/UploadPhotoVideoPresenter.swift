@@ -80,6 +80,7 @@ class UploadPhotoVideoPresenter {
                 self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: "Upload Failed", fileUrl: nil, obj: parseObj)
             }
         }
+        
         ParseAPIManager.uploadPhotoVideoFile(obj: parseObj) { (success) in
             if success {
                 self.delegate?.uploadPhotoVideo(isFileUploaded: true, msg: "Uploaded Successfully", fileUrl: file!.url!, obj: parseObj)

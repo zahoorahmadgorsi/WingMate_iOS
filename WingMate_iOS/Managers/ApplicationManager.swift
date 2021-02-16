@@ -56,6 +56,10 @@ class ApplicationManager: NSObject {
             user.isMandatoryQuestionnairesFilled = newValue?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
             user.isOptionalQuestionnairesFilled = newValue?.value(forKey: DBColumn.isOptionalQuestionnairesFilled) as? Bool ?? false
             user.aboutMe = newValue?.value(forKey: DBColumn.aboutMe) as? String ?? ""
+            user.profilePic = newValue?.value(forKey: DBColumn.profilePic) as? String ?? ""
+            let currentLocation = newValue?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
+            user.currentLocationLat = currentLocation.latitude
+            user.currentLocationLng = currentLocation.longitude
          
             UserDefaults.standard.set(try! PropertyListEncoder().encode(user), forKey:kSESSION_KEY)
             UserDefaults.standard.synchronize();
@@ -67,16 +71,18 @@ class ApplicationManager: NSObject {
             if let data = UserDefaults.standard.value(forKey: kSESSION_KEY) as? Data {
                 user = try! PropertyListDecoder().decode(User.self, from: data)
                 _session = PFUser()
-                _session?.setValue(user.objectId, forKey: DBColumn.objectId)
-                _session?.setValue(user.gender, forKey: DBColumn.gender)
-                _session?.setValue(user.nick, forKey: DBColumn.nick)
-                _session?.setValue(user.emailVerified, forKey: DBColumn.emailVerified)
-                _session?.setValue(user.username, forKey: DBColumn.username)
-                _session?.setValue(user.email, forKey: DBColumn.email)
-                _session?.setValue(user.isPaidUser, forKey: DBColumn.isPaidUser)
-                _session?.setValue(user.isMandatoryQuestionnairesFilled, forKey: DBColumn.isMandatoryQuestionnairesFilled)
-                _session?.setValue(user.isOptionalQuestionnairesFilled, forKey: DBColumn.isOptionalQuestionnairesFilled)
-                _session?.setValue(user.aboutMe, forKey: DBColumn.aboutMe)
+                _session?.setValue(user.objectId ?? "", forKey: DBColumn.objectId)
+                _session?.setValue(user.gender ?? "Male", forKey: DBColumn.gender)
+                _session?.setValue(user.nick ?? "", forKey: DBColumn.nick)
+                _session?.setValue(user.emailVerified ?? false, forKey: DBColumn.emailVerified)
+                _session?.setValue(user.username ?? "", forKey: DBColumn.username)
+                _session?.setValue(user.email ?? "", forKey: DBColumn.email)
+                _session?.setValue(user.isPaidUser ?? false, forKey: DBColumn.isPaidUser)
+                _session?.setValue(user.isMandatoryQuestionnairesFilled ?? false, forKey: DBColumn.isMandatoryQuestionnairesFilled)
+                _session?.setValue(user.isOptionalQuestionnairesFilled ?? false, forKey: DBColumn.isOptionalQuestionnairesFilled)
+                _session?.setValue(user.aboutMe ?? "", forKey: DBColumn.aboutMe)
+                _session?.setValue(user.profilePic ?? "", forKey: DBColumn.profilePic)
+                _session?.setValue(PFGeoPoint(latitude: user.currentLocationLat ?? 0, longitude: user.currentLocationLng ?? 0), forKey: DBColumn.currentLocation)
             }
             return _session;
             

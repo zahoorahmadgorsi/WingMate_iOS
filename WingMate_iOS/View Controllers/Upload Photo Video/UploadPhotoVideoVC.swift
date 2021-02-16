@@ -314,6 +314,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     } else {
                         self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
                     }
+                    self.updateUserProfilePic()
                 } else {
                     self.showToast(message: "Nil photo file url")
                 }
@@ -322,6 +323,20 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                 self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
             }
             self.setPhotosCollectionViewHeight()
+        }
+    }
+    
+    func updateUserProfilePic() {
+        if self.dataUserPhotoVideo.count > 0 {
+            PFUser.current()?.setValue(self.dataUserPhotoVideo[0].uploadFileUrl ?? "", forKey: DBColumn.profilePic)
+            ParseAPIManager.updateUserObject() { (success) in
+                if success {
+                    APP_MANAGER.session = PFUser.current()
+                } else {
+                }
+            } onFailure: { (error) in
+                self.showToast(message: error)
+            }
         }
     }
     
@@ -343,6 +358,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                         self.dataUserPhotoVideo.append(UserPhotoVideoModel())
                     }
                 }
+                self.updateUserProfilePic()
             } else {
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel()
             }

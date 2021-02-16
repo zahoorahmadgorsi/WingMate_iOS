@@ -9,13 +9,13 @@ import Foundation
 import Parse
 import SVProgressHUD
 
-protocol EditProfileDelegate {
+protocol EditProfileDelegate: class {
     func editProfile(isSuccess: Bool, msg: String, questions: [PFObject])
 }
 
 class EditProfilePresenter {
     
-    var delegate: EditProfileDelegate?
+    weak var delegate: EditProfileDelegate?
     
     func attach(vc: EditProfileDelegate) {
         self.delegate = vc

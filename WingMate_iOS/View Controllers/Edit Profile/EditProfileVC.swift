@@ -24,6 +24,10 @@ class EditProfileVC: BaseViewController {
     var isProfileUpdated = false
     var isAnyInfoUpdated: ((Bool)->Void)?
     
+    deinit {
+        print("Edit profile deinit")
+    }
+    
     convenience init(userSavedOptions: [PFObject]) {
         self.init()
         self.userSavedOptions = userSavedOptions
@@ -133,3 +137,5 @@ extension EditProfileVC: EditProfileDelegate {
         }
     }
 }
+
+

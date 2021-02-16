@@ -23,33 +23,16 @@
                         <rect key="frame" x="8" y="0.0" width="182" height="165"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-wg-Llo">
-                                <rect key="frame" x="59" y="12" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="ShZ-nc-qtQ"/>
-                                    <constraint firstAttribute="height" constant="64" id="u0T-RV-Sbc"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="PurpleThemeColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <rect key="frame" x="0.0" y="0.0" width="182" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSb-Hx-7Ia">
-                                <rect key="frame" x="8" y="84" width="166" height="17"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
-                                <color key="textColor" name="LabelDarkBlueColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23, Dubai" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeB-rr-oUS">
-                                <rect key="frame" x="8" y="103" width="166" height="14"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
-                                <color key="textColor" name="LabelGrayTextColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3i-Fj-G05">
+                                <rect key="frame" x="0.0" y="0.0" width="182" height="128"/>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.16078431372549018" blue="0.30980392156862746" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name, age" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSb-Hx-7Ia">
+                                <rect key="frame" x="8" y="101" width="166" height="19"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UgY-K4-5n8">
@@ -57,7 +40,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80% Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0O-kO-pMJ">
                                         <rect key="frame" x="12" y="12" width="52.5" height="12"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                                         <color key="textColor" name="LabelDarkBlueColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -66,7 +49,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 KM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yq7-yG-QOK">
                                         <rect key="frame" x="146" y="12" width="24" height="12"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                                         <color key="textColor" name="LabelGrayTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -92,20 +75,23 @@
                         </subviews>
                         <color key="backgroundColor" name="TextFieldBgColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="MeB-rr-oUS" secondAttribute="trailing" constant="8" id="5Lv-v1-Tl0"/>
+                            <constraint firstItem="b3i-Fj-G05" firstAttribute="top" secondItem="1XX-wg-Llo" secondAttribute="top" id="3zb-vc-EwU"/>
+                            <constraint firstAttribute="trailing" secondItem="LSb-Hx-7Ia" secondAttribute="trailing" constant="8" id="5T8-cP-Pgk"/>
                             <constraint firstItem="UgY-K4-5n8" firstAttribute="top" secondItem="Ghe-WW-AUa" secondAttribute="bottom" id="6GU-aF-vcT"/>
+                            <constraint firstItem="b3i-Fj-G05" firstAttribute="leading" secondItem="1XX-wg-Llo" secondAttribute="leading" id="BFy-11-pnQ"/>
                             <constraint firstItem="Ghe-WW-AUa" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="Hn1-A0-drR"/>
-                            <constraint firstItem="1XX-wg-Llo" firstAttribute="centerX" secondItem="gih-Xt-SQT" secondAttribute="centerX" id="Kw2-AH-1KA"/>
                             <constraint firstItem="UgY-K4-5n8" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="MXN-Ze-VNT"/>
-                            <constraint firstItem="LSb-Hx-7Ia" firstAttribute="top" secondItem="1XX-wg-Llo" secondAttribute="bottom" constant="8" id="T6h-3d-a3f"/>
-                            <constraint firstAttribute="trailing" secondItem="LSb-Hx-7Ia" secondAttribute="trailing" constant="8" id="ZkH-Cl-1JJ"/>
-                            <constraint firstItem="LSb-Hx-7Ia" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="8" id="bxN-N7-S3D"/>
-                            <constraint firstItem="MeB-rr-oUS" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="8" id="ee8-gq-AyL"/>
+                            <constraint firstItem="1XX-wg-Llo" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="Y9R-Jw-b4N"/>
+                            <constraint firstItem="b3i-Fj-G05" firstAttribute="trailing" secondItem="1XX-wg-Llo" secondAttribute="trailing" id="a8u-i5-syb"/>
                             <constraint firstAttribute="trailing" secondItem="Ghe-WW-AUa" secondAttribute="trailing" id="gRr-iD-Flm"/>
-                            <constraint firstItem="1XX-wg-Llo" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" constant="12" id="kWS-tj-VDn"/>
+                            <constraint firstAttribute="trailing" secondItem="1XX-wg-Llo" secondAttribute="trailing" id="hOq-cM-zVS"/>
+                            <constraint firstItem="LSb-Hx-7Ia" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="8" id="j10-hW-ZV8"/>
+                            <constraint firstItem="1XX-wg-Llo" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" id="kDS-xB-8bL"/>
+                            <constraint firstItem="b3i-Fj-G05" firstAttribute="bottom" secondItem="1XX-wg-Llo" secondAttribute="bottom" id="mqd-Zu-hC2"/>
                             <constraint firstAttribute="bottom" secondItem="UgY-K4-5n8" secondAttribute="bottom" id="taf-7a-ZPE"/>
+                            <constraint firstItem="Ghe-WW-AUa" firstAttribute="top" secondItem="1XX-wg-Llo" secondAttribute="bottom" id="tnb-8b-fny"/>
                             <constraint firstAttribute="trailing" secondItem="UgY-K4-5n8" secondAttribute="trailing" id="wDs-sl-2Ik"/>
-                            <constraint firstItem="MeB-rr-oUS" firstAttribute="top" secondItem="LSb-Hx-7Ia" secondAttribute="bottom" constant="2" id="wUO-MN-UOw"/>
+                            <constraint firstItem="Ghe-WW-AUa" firstAttribute="top" secondItem="LSb-Hx-7Ia" secondAttribute="bottom" constant="8" id="yPD-Ou-dmo"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -125,6 +111,7 @@
             <size key="customSize" width="198" height="173"/>
             <connections>
                 <outlet property="imageViewPhoto" destination="1XX-wg-Llo" id="Wj1-cf-QTh"/>
+                <outlet property="labelLocation" destination="yq7-yG-QOK" id="O64-z6-oq4"/>
                 <outlet property="labelName" destination="LSb-Hx-7Ia" id="7q5-sv-by0"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="118.86160714285714"/>
@@ -138,9 +125,6 @@
         </namedColor>
         <namedColor name="LabelGrayTextColor">
             <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="PurpleThemeColor">
-            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextFieldBgColor">
             <color red="0.96100002527236938" green="0.96100002527236938" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

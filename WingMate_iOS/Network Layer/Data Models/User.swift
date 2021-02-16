@@ -5,6 +5,7 @@
 //  Created by Muneeb on 14/10/2020.
 
 import Foundation
+import Parse
 
 struct User : Codable {
     var objectId : String?
@@ -17,10 +18,13 @@ struct User : Codable {
     var isMandatoryQuestionnairesFilled : Bool?
     var isOptionalQuestionnairesFilled : Bool?
     var aboutMe : String?
+    var profilePic : String?
+    var currentLocationLat : CLLocationDegrees?
+    var currentLocationLng : CLLocationDegrees?
     
     init(){
         self.objectId = ""
-        self.gender = "male"
+        self.gender = "Male"
         self.nick = ""
         self.emailVerified = false
         self.username = ""
@@ -29,19 +33,10 @@ struct User : Codable {
         self.isMandatoryQuestionnairesFilled = false
         self.isOptionalQuestionnairesFilled = false
         self.aboutMe = ""
-
+        self.profilePic = ""
+        self.currentLocationLat = 0
+        self.currentLocationLng = 0
     }
-    
-//    init(objectId: String, email: String, emailVerified: Bool, gender: String, nick: String, isPaidUser: Bool, isMandatoryQuestionnairesFilled: Bool, isOptionalQuestionnairesFilled: Bool) {
-//        self.objectId = objectId
-//        self.email = email
-//        self.emailVerified = emailVerified
-//        self.gender = gender
-//        self.nick = nick
-//        self.isPaidUser = isPaidUser
-//        self.isMandatoryQuestionnairesFilled = isMandatoryQuestionnairesFilled
-//        self.isOptionalQuestionnairesFilled = isOptionalQuestionnairesFilled
-//    }
     
     enum CodingKeys: String, CodingKey {
         case objectId = "objectId"
@@ -54,6 +49,9 @@ struct User : Codable {
         case isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
         case isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
         case aboutMe = "aboutMe"
+        case profilePic = "profilePic"
+        case currentLocationLat = "currentLocationLat"
+        case currentLocationLng = "currentLocationLng"
     }
 
 }

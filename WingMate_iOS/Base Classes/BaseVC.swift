@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import AVKit
 import SimpleImageViewer
+import Parse
 
 class BaseViewController: UIViewController {
 
@@ -104,4 +105,5 @@ class BaseViewController: UIViewController {
         let imageViewerController = ImageViewerController(configuration: configuration)
         present(imageViewerController, animated: true)
     }
+    
 }

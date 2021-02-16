@@ -9,11 +9,14 @@ import UIKit
 import IQKeyboardManager
 import SVProgressHUD
 import Parse
+import CoreLocation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var locationManager: CLLocationManager?
+    var currentLocation: CLLocation?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         IQKeyboardManager.shared().isEnabled = true
         self.setSVProgressHUD()
+        self.getCurrentLocation()
         return true
     }
     
@@ -46,18 +50,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Decide RootViewController
     func decideRootViewController() {
-//        let mainTabBarVC = Utilities.shared.getViewController(identifier: Tabb.className , storyboardType: .main) as! Tabb
-//        let loginNavController = UINavigationController(rootViewController: LoginVC())
-//        loginNavController.isNavigationBarHidden = true
-//        mainTabBarVC.selectedIndex = self.isNotificationRecived ? 3 : 0
-//        self.isNotificationRecived = false
-//        (mainTabBarVC.selectedViewController as? AlertsVC)?.isLoadingFirstTime = true
-//        self.window?.rootViewController = APP_MANAGER.isLoggedIn ?? false ? mainTabBarVC : loginNavController
-//        self.window?.makeKeyAndVisible()
-//        if APP_MANAGER.isLoggedIn ?? false {
-//            API_TOKEN = APP_MANAGER.session?.access_token ?? ""
-//        }
-        
     }
     
+}
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    //MARK: - Current Location
+    func getCurrentLocation() {
+        self.locationManager = CLLocationManager()
+        if locationManager != nil {
+            locationManager!.delegate = self;
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager!.startUpdatingLocation()
+            locationManager!.startMonitoringSignificantLocationChanges()
+            locationManager!.distanceFilter = 500
+            locationManager!.allowsBackgroundLocationUpdates = true
+            locationManager!.pausesLocationUpdatesAutomatically = false
+            locationManager!.activityType = .automotiveNavigation
+            locationManager!.requestAlwaysAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("didUpdateLocations")
+        if let loc = locations.last {
+            print(loc)
+            self.currentLocation = loc
+            self.sendCurrentLocationToServer()
+        }
+    }
+    
+    func sendCurrentLocationToServer() {
+        if let currentLoc = APP_DELEGATE.locationManager?.location {
+            let geoPoint = PFGeoPoint(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
+            PFUser.current()?.setValue(geoPoint, forKey: DBColumn.currentLocation)
+            ParseAPIManager.updateUserObject() { (success) in
+                if success {
+                    APP_MANAGER.session = PFUser.current()
+                } else {
+                }
+            } onFailure: { (error) in
+                print(error)
+            }
+        }
+    }
 }

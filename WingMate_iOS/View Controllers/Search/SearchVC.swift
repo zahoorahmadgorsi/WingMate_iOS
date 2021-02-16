@@ -33,6 +33,12 @@ class SearchVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let profileImage = APP_MANAGER.session?.value(forKey: DBColumn.profilePic) as? String ?? ""
+        if profileImage == "" {
+            self.imageViewProfile.image = UIImage(named: "default_placeholder")
+        } else {
+            self.setImageWithUrl(imageUrl: profileImage, imageView: self.imageViewProfile, placeholderImage: UIImage(named: "default_placeholder"))
+        }
         self.showFiltersTableView()
         self.resetAllFilters()
         self.presenter.getQuestions(questionType: .mandatory)

@@ -46,13 +46,13 @@
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "removePhotoVideoFileFromServer(obj:index:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6B67013D-5E9F-4368-B0A6-1C5AEC54D331 - 242dbf3bb204d3f"
+                  uuid = "6B67013D-5E9F-4368-B0A6-1C5AEC54D331 - 242dbf3bb204d1c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -62,12 +62,12 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
                   offsetFromSymbolStart = "48">
                </Location>
                <Location
-                  uuid = "6B67013D-5E9F-4368-B0A6-1C5AEC54D331 - 25189ffe65c207ca"
+                  uuid = "6B67013D-5E9F-4368-B0A6-1C5AEC54D331 - 25189ffe65c207ab"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -77,8 +77,8 @@
                   urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Upload%20Photo%20Video/UploadPhotoVideoPresenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
                   offsetFromSymbolStart = "166">
                </Location>
             </Locations>
@@ -110,8 +110,8 @@
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "uploadPhotoVideo(isFileDeleted:msg:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "uploadPhotoVideo(isFileDeleted:msg:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "uploadPhotoVideo(isFileDeleted:msg:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -209,6 +209,54 @@
             startingLineNumber = "259"
             endingLineNumber = "259"
             landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "838009DB-E962-4276-B0D0-D1DE5EADEB00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Edit Profile/EditProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E14C404E-4899-4FE9-B8EA-28B27DB940B0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/Application/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4966981C-EA52-4284-B8B4-FDA73C7CCAAB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/Application/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

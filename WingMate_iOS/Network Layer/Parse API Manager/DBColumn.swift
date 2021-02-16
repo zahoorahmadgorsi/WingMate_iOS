@@ -25,6 +25,10 @@ class DBColumn {
     static let emailWrong = "emailWrong"
     static let emailNew = "emailNew"
     static let aboutMe = "aboutMe"
+    static let profilePic = "profilePic"
+    static let optionalQuestionAnswersList = "optionalQuestionAnswersList"
+    static let mandatoryQuestionAnswersList = "mandatoryQuestionAnswersList"
+    static let currentLocation = "currentLocation"
     
     //questionnaires
     static let questionType = "questionType"
