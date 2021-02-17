@@ -77,7 +77,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         if let loc = locations.last {
             print(loc)
             self.currentLocation = loc
-            self.sendCurrentLocationToServer()
+//            self.sendCurrentLocationToServer()
         }
     }
     

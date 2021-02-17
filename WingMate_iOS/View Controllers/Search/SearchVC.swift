@@ -21,15 +21,20 @@ class SearchVC: BaseViewController {
     var dataQuestions: [UserProfileQuestion]?
     var searchedUsers = [PFUser]()
     var isFiltersMode = true
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showFiltersTableView()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
         self.setInitialLayout()
         self.tableViewFilters.estimatedRowHeight = 40
         self.navigationController?.isNavigationBarHidden = true
+        
+        self.showFiltersTableView()
+        self.resetAllFilters()
+        self.presenter.getQuestions(questionType: .mandatory)
+        self.addPullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,14 +44,23 @@ class SearchVC: BaseViewController {
         } else {
             self.setImageWithUrl(imageUrl: profileImage, imageView: self.imageViewProfile, placeholderImage: UIImage(named: "default_placeholder"))
         }
-        self.showFiltersTableView()
-        self.resetAllFilters()
-        self.presenter.getQuestions(questionType: .mandatory)
     }
     
     //MARK: - Helping Methods
     func setInitialLayout() {
         //set profile image
+    }
+    
+    func addPullToRefresh() {
+        self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.tableViewFilters.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.refreshControl.endRefreshing()
+        self.showFiltersTableView()
+        self.resetAllFilters()
+        self.presenter.getQuestions(questionType: .mandatory)
     }
     
     func showFiltersTableView() {
@@ -142,7 +156,9 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let vc = ProfileVC(user: self.searchedUsers[indexPath.item])
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

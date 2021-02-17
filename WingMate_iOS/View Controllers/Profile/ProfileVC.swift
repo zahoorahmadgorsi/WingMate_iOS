@@ -21,8 +21,9 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var imageViewProfile3: UIImageView!
     @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var labelAboutMe: UILabel!
-    @IBOutlet weak var cstHeightStackView: NSLayoutConstraint!
+    @IBOutlet weak var cstHeightOthersProfileStackView: NSLayoutConstraint!
     @IBOutlet weak var stackViewMyProfileButtons: UIStackView!
+    @IBOutlet weak var viewRefresh: UIView!
     @IBOutlet weak var stackViewOthersProfileButtons: UIStackView!
     @IBOutlet weak var tableViewUserQuestions: UITableView!
     @IBOutlet weak var cstHeightTableView: NSLayoutConstraint!
@@ -38,13 +39,19 @@ class ProfileVC: BaseViewController {
     var videoUrl = ""
     var isPhotosFetched = false
     var isDataFetched = false
+    var user = PFUser()
+    
+    convenience init(user: PFUser) {
+        self.init()
+        self.user = user
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
-        self.presenter.getAllUploadedFilesForUser(shouldShowLoader: true, isFromViewDidLoad: true)
-        self.presenter.getUserSavedQuestions(shouldShowLoader: false)
+        self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
+        self.presenter.getUserSavedQuestions(user: self.user, shouldShowLoader: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,17 +62,31 @@ class ProfileVC: BaseViewController {
         self.tableViewUserQuestions.register(UINib(nibName: MyProfileTableViewCell.className, bundle: nil), forCellReuseIdentifier: MyProfileTableViewCell.className)
     }
     
-    func setProfileInfo() {
-        self.cstHeightStackView.constant = 0 //or 80 if other profile view
-        self.progressView.isHidden = true
-        self.progressView.startAngle = -90
-        self.progressView.style = .ontop
-        self.progressView.startProgress(to: 95, duration: 0.1)
+    func setViews() {
+        if self.user.objectId == APP_MANAGER.session!.objectId {
+            self.stackViewMyProfileButtons.isHidden = false
+            self.cstHeightOthersProfileStackView.constant = 0
+            self.progressView.isHidden = true
+            self.labelDistance.isHidden = true
+            self.viewRefresh.isHidden = true
+        } else {
+            self.stackViewMyProfileButtons.isHidden = true
+            self.cstHeightOthersProfileStackView.constant = 80
+            self.viewRefresh.isHidden = false
+            let userLocation = self.user.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
+            self.labelDistance.text = Utilities.shared.getDistance(userLocation: userLocation)
+            self.labelMatchPercentage.text = "95%"
+            self.labelDistance.isHidden = false
+            self.progressView.isHidden = false
+            self.progressView.startAngle = -90
+            self.progressView.style = .ontop
+            self.progressView.startProgress(to: 95, duration: 0.1)
+        }
         
-        self.labelName.text = APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? ""
-        self.labelDistance.text = "0 km away"
-        self.labelDistance.isHidden = true
-        self.labelMatchPercentage.text = "95%"
+    }
+    
+    func setProfileInfo() {
+        self.labelName.text = self.user.value(forKey: DBColumn.nick) as? String ?? ""
         
         self.tableViewUserQuestions.reloadData {
             self.cstHeightTableView.constant = self.tableViewUserQuestions.contentSize.height
@@ -76,6 +97,7 @@ class ProfileVC: BaseViewController {
         let aboutMeText = APP_MANAGER.session?.value(forKey: DBColumn.aboutMe) as? String ?? ""
         let stringToDisplay = aboutMeText == "" ? "" : "About Me: \(aboutMeText)"
         self.labelAboutMe.attributedText = self.attributedText(withString: stringToDisplay, boldString: "About Me:", font: UIFont(name: "OpenSans-Regular", size: 14)!)
+        self.setViews()
     }
     
     func setPhotosVideo() {
@@ -125,13 +147,15 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
+        self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
+        self.presenter.getUserSavedQuestions(user: self.user, shouldShowLoader: false)
     }
     
     @IBAction func editProfileButtonPressed(_ sender: Any) {
         let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
         vc.isAnyInfoUpdated = { [weak self] status in
             if status {
-                self?.presenter.getUserSavedQuestions(shouldShowLoader: true)
+                self?.presenter.getUserSavedQuestions(user: APP_MANAGER.session!, shouldShowLoader: true)
             }
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -141,7 +165,7 @@ class ProfileVC: BaseViewController {
         let vc = UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo)
         vc.isAnyMediaUpdated = { [weak self] status in
             if status {
-                self?.presenter.getAllUploadedFilesForUser(shouldShowLoader: true, isFromViewDidLoad: false)
+                self?.presenter.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: false)
             }
         }
         self.navigationController?.pushViewController(vc, animated: true)

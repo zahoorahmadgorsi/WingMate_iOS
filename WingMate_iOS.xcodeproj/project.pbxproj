@@ -111,6 +111,7 @@
 		FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */; };
 		FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */; };
 		FAF4EF7725B2B267006E0830 /* EditProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4EF7525B2B267006E0830 /* EditProfileVC.xib */; };
+		FAFE287325DCF11200DB4770 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE287225DCF11200DB4770 /* DashboardPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +244,7 @@
 		FAF4EF6D25B287B8006E0830 /* MyProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileTableViewCell.xib; sourceTree = "<group>"; };
 		FAF4EF7425B2B267006E0830 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		FAF4EF7525B2B267006E0830 /* EditProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileVC.xib; sourceTree = "<group>"; };
+		FAFE287225DCF11200DB4770 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7003EC255F2708000052F4 /* DashboardVC.swift */,
+				FAFE287225DCF11200DB4770 /* DashboardPresenter.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 				FA9EFD47253779DD00A1ED1C /* UILabel-Extension.swift in Sources */,
 				FAC5FF012559142A00F06B33 /* DBColumn.swift in Sources */,
 				FA70023B255C76D4000052F4 /* TutorialVC.swift in Sources */,
+				FAFE287325DCF11200DB4770 /* DashboardPresenter.swift in Sources */,
 				FA9EFD282537793700A1ED1C /* Utilities.swift in Sources */,
 				FAC77CAE254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.swift in Sources */,
 				FA1C5EF625959645008C7BFE /* UploadPhotoVideoPresenter.swift in Sources */,

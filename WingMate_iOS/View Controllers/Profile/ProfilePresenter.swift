@@ -22,11 +22,11 @@ class ProfilePresenter {
         self.delegate = vc
     }
     
-    func getAllUploadedFilesForUser(shouldShowLoader: Bool, isFromViewDidLoad: Bool) {
+    func getAllUploadedFilesForUser(currentUserId: String, shouldShowLoader: Bool, isFromViewDidLoad: Bool) {
         if shouldShowLoader {
             SVProgressHUD.show()
         }
-        ParseAPIManager.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "") { (success, data)  in
+        ParseAPIManager.getAllUploadedFilesForUser(currentUserId: currentUserId) { (success, data)  in
             if shouldShowLoader && isFromViewDidLoad == false {
                 SVProgressHUD.dismiss()
             }
@@ -41,11 +41,11 @@ class ProfilePresenter {
         }
     }
     
-    func getUserSavedQuestions(shouldShowLoader: Bool) {
+    func getUserSavedQuestions(user: PFUser, shouldShowLoader: Bool) {
         if shouldShowLoader {
             SVProgressHUD.show()
         }
-        ParseAPIManager.getUserSavedQuestions { (success, data) in
+        ParseAPIManager.getUserSavedQuestions(user: user) { (success, data) in
             if shouldShowLoader {
                 SVProgressHUD.dismiss()
             }

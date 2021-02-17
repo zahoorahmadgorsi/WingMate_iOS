@@ -69,7 +69,7 @@ class SettingsVC: BaseViewController {
     }
     
     @IBAction func photoVideoButtonPressed(_ sender: Any) {
-        let vc = ProfileVC()
+        let vc = ProfileVC(user: APP_MANAGER.session!)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

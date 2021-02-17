@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import NotificationBannerSwift
+import Parse
 
 class Utilities {
     
@@ -72,6 +73,23 @@ class Utilities {
         banner = GrowingNotificationBanner(title: title, subtitle: msg, style: .success)
         banner.haptic = .heavy
         banner.show()
+    }
+    
+    func getDistance(userLocation: PFGeoPoint) -> String {
+        var distanceString = "N/A"
+        if let myLocation = APP_DELEGATE.currentLocation {
+            if userLocation == PFGeoPoint(latitude: 0, longitude: 0) {
+                distanceString = "N/A"
+            } else {
+                let myGeoPoint = PFGeoPoint(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+                let userGeoPoint = PFGeoPoint(latitude: userLocation.latitude, longitude: userLocation.longitude)
+                let distance = myGeoPoint.distanceInKilometers(to: userGeoPoint)
+                distanceString = "\(distance.rounded(toPlaces: 1)) KM"
+            }
+        } else {
+            distanceString = "N/A"
+        }
+        return distanceString
     }
 }
 

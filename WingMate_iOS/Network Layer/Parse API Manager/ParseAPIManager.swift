@@ -244,9 +244,9 @@ struct ParseAPIManager {
     }
     
     //MARK: - Profile
-    static func getUserSavedQuestions(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+    static func getUserSavedQuestions(user: PFUser, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DBTable.userAnswer).whereKey(DBColumn.userId, equalTo: APP_MANAGER.session!)
+        query = PFQuery(className: DBTable.userAnswer).whereKey(DBColumn.userId, equalTo: user)
         query.includeKeys([DBColumn.questionId, DBColumn.optionsObjArray])
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
@@ -296,6 +296,27 @@ struct ParseAPIManager {
             else {
                 if let objs = objects {
                     print("Total: \(objs.count)")
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
+    
+    //MARK: - Dashboard APIs
+    static func getDashboardUsers(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+//        var query = PFQuery()
+        var query = PFUser.query()!
+        query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "")
+        query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
+        
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
                     onSuccess(true, objs)
                 } else {
                     onFailure("No objects found")
