@@ -8,7 +8,7 @@
 import Foundation
 import Parse
 
-protocol RegisterDelegate {
+protocol RegisterDelegate: class {
     func register(isSuccess: Bool, nicknameValidationFailedMsg: String)
     func register(emailValidationFailedMsg: String)
     func register(passwordValidationFailedMsg: String)
@@ -20,7 +20,7 @@ protocol RegisterDelegate {
 
 class RegisterPresenter {
     
-    var delegate: RegisterDelegate?
+    weak var delegate: RegisterDelegate?
     
     func attach(vc: RegisterDelegate) {
         self.delegate = vc

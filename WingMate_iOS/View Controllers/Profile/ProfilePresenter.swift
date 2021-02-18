@@ -9,14 +9,14 @@ import Foundation
 import Parse
 import SVProgressHUD
 
-protocol ProfileDelegate {
+protocol ProfileDelegate: class {
     func profile(isSuccess: Bool, userFilesData: [PFObject], msg: String)
     func profile(isSuccess: Bool, userSavedQuestions: [PFObject], msg: String)
 }
 
 class ProfilePresenter {
     
-    var delegate: ProfileDelegate?
+    weak var delegate: ProfileDelegate?
     
     func attach(vc: ProfileDelegate) {
         self.delegate = vc

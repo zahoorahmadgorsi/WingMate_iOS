@@ -9,13 +9,13 @@ import Foundation
 import Parse
 import SVProgressHUD
 
-protocol EmailVerificationDelegate {
+protocol EmailVerificationDelegate: class {
     func emailVerification(didResendEmailSuccessfully: Bool, msg: String)
 }
 
 class EmailVerificationPresenter {
     
-    var delegate: EmailVerificationDelegate?
+    weak var delegate: EmailVerificationDelegate?
     
     func attach(vc: EmailVerificationDelegate) {
         self.delegate = vc

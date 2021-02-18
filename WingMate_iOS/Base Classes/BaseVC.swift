@@ -16,8 +16,21 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
 
     //MARK: - Toast Methods
+    func setProfileImage(imageViewProfile: UIImageView) {
+        let profileImage = APP_MANAGER.session?.value(forKey: DBColumn.profilePic) as? String ?? ""
+        if profileImage == "" {
+            imageViewProfile.image = UIImage(named: "default_placeholder")
+        } else {
+            self.setImageWithUrl(imageUrl: profileImage, imageView: imageViewProfile, placeholderImage: UIImage(named: "default_placeholder"))
+        }
+    }
+    
     func showToast(message : String) {
         let window = UIApplication.shared.keyWindow!
         //        let v = UIView(frame: window.bounds)

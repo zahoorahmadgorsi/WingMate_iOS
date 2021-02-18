@@ -9,7 +9,7 @@ import Foundation
 import Parse
 import SVProgressHUD
 
-protocol QuestionnaireDelegate {
+protocol QuestionnaireDelegate: class {
     func questionnaire(isSuccess: Bool, questionData: [Question], msg: String)
     func questionnaire(isSuccess: Bool, questionOptionsData: [Option], msg: String)
     func questionnaire(isSuccess: Bool, userSavedOptions: PFObject?, msg: String)
@@ -19,7 +19,7 @@ protocol QuestionnaireDelegate {
 
 class QuestionnairePresenter {
     
-    var delegate: QuestionnaireDelegate?
+    weak var delegate: QuestionnaireDelegate?
     var dataQuestionnaire = [Question]()
     
     func attach(vc: QuestionnaireDelegate) {

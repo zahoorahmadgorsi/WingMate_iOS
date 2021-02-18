@@ -8,7 +8,7 @@
 import Foundation
 import Parse
 
-protocol UploadPhotoVideoDelegate {
+protocol UploadPhotoVideoDelegate: class {
     func uploadPhotoVideo(isSuccess: Bool, termsData: [PFObject], msg: String)
     func uploadPhotoVideo(isFileUploaded: Bool, msg: String, fileUrl: String?, obj: PFObject)
     func uploadPhotoVideo(isFileDeleted: Bool, msg: String, index: Int)
@@ -16,7 +16,7 @@ protocol UploadPhotoVideoDelegate {
 
 class UploadPhotoVideoPresenter {
     
-    var delegate: UploadPhotoVideoDelegate?
+    weak var delegate: UploadPhotoVideoDelegate?
     
     func attach(vc: UploadPhotoVideoDelegate) {
         self.delegate = vc

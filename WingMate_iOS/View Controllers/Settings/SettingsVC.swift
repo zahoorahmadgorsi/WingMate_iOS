@@ -11,16 +11,22 @@ import SVProgressHUD
 
 class SettingsVC: BaseViewController {
 
+    @IBOutlet weak var imageViewProfile: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.setProfileImage(imageViewProfile: self.imageViewProfile)
     }
     
     //MARK: - Button Actions
+    @IBAction func profilePictureButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile)
+    }
+    
     @IBAction func payNowButtonPressed(_ sender: Any) {
         if APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false {
             self.showToast(message: "You're already a paid user")

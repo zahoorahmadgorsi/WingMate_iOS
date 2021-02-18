@@ -24,7 +24,6 @@ class DashboardVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
-        self.setInitialLayout()
         self.navigationController?.isNavigationBarHidden = true
         self.registerTableViewCells()
         self.presenter.getUsers()
@@ -32,7 +31,7 @@ class DashboardVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setInitialLayout()
+        self.setProfileImage(imageViewProfile: self.imageViewProfile)
         
     }
     
@@ -59,17 +58,11 @@ class DashboardVC: BaseViewController {
         self.presenter.getUsers()
     }
     
-    func setInitialLayout() {
-        //set profile image
-        let profileImage = APP_MANAGER.session?.value(forKey: DBColumn.profilePic) as? String ?? ""
-        if profileImage == "" {
-            self.imageViewProfile.image = UIImage(named: "default_placeholder")
-        } else {
-            self.setImageWithUrl(imageUrl: profileImage, imageView: self.imageViewProfile, placeholderImage: UIImage(named: "default_placeholder"))
-        }
+    //MARK: - Button Actions
+    @IBAction func profilePictureButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile)
     }
     
-    //MARK: - Button Actions
     @IBAction func myFansButtonPressed(_ sender: Any) {
         
     }

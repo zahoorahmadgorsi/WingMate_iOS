@@ -5,7 +5,7 @@
 //  Created by Muneeb on 02/11/2020.
 //
 
-protocol LoginDelegate {
+protocol LoginDelegate: class {
     func login(emailValidationFailedMsg: String)
     func login(passwordValidationFailedMsg: String)
     func login(didUserLoggedIn: Bool, msg: String)
@@ -15,7 +15,7 @@ import Foundation
 
 class LoginPresenter {
     
-    var delegate: LoginDelegate?
+    weak var delegate: LoginDelegate?
     
     func attach(vc: LoginDelegate) {
         self.delegate = vc

@@ -10,13 +10,13 @@ import Foundation
 import Parse
 import SVProgressHUD
 
-protocol DashboardDelegate: class {
+protocol DashboardDelegate {
     func dashboard(isSuccess: Bool, msg: String, users: [PFUser])
 }
 
 class DashboardPresenter {
     
-    weak var delegate: DashboardDelegate?
+    var delegate: DashboardDelegate?
     
     func attach(vc: DashboardDelegate) {
         self.delegate = vc

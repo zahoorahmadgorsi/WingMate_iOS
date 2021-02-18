@@ -21,7 +21,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     var data: PFUser? {
         didSet {
             self.setImageWithUrl(imgUrl: data?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            self.labelName.text = data?.value(forKey: "nick") as? String
+            self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? ""), age"
             let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
         }

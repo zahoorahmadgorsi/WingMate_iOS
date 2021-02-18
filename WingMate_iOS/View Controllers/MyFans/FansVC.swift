@@ -8,6 +8,8 @@
 import UIKit
 
 class FansVC: BaseViewController {
+    
+    @IBOutlet weak var imageViewProfile: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,9 +17,12 @@ class FansVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.setProfileImage(imageViewProfile: self.imageViewProfile)
     }
     
     //MARK: - Button Actions
+    @IBAction func profilePictureButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile)
+    }
     
 }

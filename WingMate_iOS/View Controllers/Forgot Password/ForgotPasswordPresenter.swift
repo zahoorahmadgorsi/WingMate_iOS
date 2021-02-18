@@ -5,7 +5,7 @@
 //  Created by Muneeb on 02/11/2020.
 //
 
-protocol ForgotPasswordDelegate {
+protocol ForgotPasswordDelegate: class {
     func forgotPassword(emailValidationFailedMsg: String)
     func forgotPassword(isSuccess: Bool, msg: String)
 }
@@ -14,7 +14,7 @@ import Foundation
 
 class ForgotPasswordPresenter {
     
-    var delegate: ForgotPasswordDelegate?
+    weak var delegate: ForgotPasswordDelegate?
     
     func attach(vc: ForgotPasswordDelegate) {
         self.delegate = vc

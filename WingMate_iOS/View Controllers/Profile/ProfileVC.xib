@@ -102,19 +102,19 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anI-fN-q5e">
-                            <rect key="frame" x="0.0" y="234.33333333333337" width="398" height="60"/>
+                            <rect key="frame" x="0.0" y="224.33333333333337" width="398" height="70"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DTH-tN-cLO">
-                                    <rect key="frame" x="20" y="1.9999999999999716" width="304" height="56"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DTH-tN-cLO">
+                                    <rect key="frame" x="20" y="8" width="304" height="54"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nicholas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-vc-PJr">
-                                            <rect key="frame" x="0.0" y="0.0" width="304" height="28"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
                                             <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="26"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7r-6X-UAh">
-                                            <rect key="frame" x="0.0" y="28" width="304" height="28"/>
+                                            <rect key="frame" x="0.0" y="28.999999999999972" width="304" height="25"/>
                                             <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMg-2c-IHF" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                    <rect key="frame" x="332" y="1" width="58" height="58"/>
+                                    <rect key="frame" x="332" y="6" width="58" height="58"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-fI-NAN">
                                             <rect key="frame" x="10.333333333333314" y="14.99999999999997" width="37.666666666666664" height="16.333333333333329"/>
@@ -182,9 +182,9 @@
                             <constraints>
                                 <constraint firstItem="AMg-2c-IHF" firstAttribute="centerY" secondItem="anI-fN-q5e" secondAttribute="centerY" id="1fU-ab-Ggl"/>
                                 <constraint firstItem="AMg-2c-IHF" firstAttribute="leading" secondItem="DTH-tN-cLO" secondAttribute="trailing" constant="8" id="Qim-sJ-hgb"/>
-                                <constraint firstItem="DTH-tN-cLO" firstAttribute="top" secondItem="anI-fN-q5e" secondAttribute="top" constant="2" id="cx1-Fi-f2W"/>
-                                <constraint firstAttribute="bottom" secondItem="DTH-tN-cLO" secondAttribute="bottom" constant="2" id="kZ2-he-E9g"/>
-                                <constraint firstAttribute="height" constant="60" id="mQT-pV-cdN"/>
+                                <constraint firstItem="DTH-tN-cLO" firstAttribute="top" secondItem="anI-fN-q5e" secondAttribute="top" constant="8" id="cx1-Fi-f2W"/>
+                                <constraint firstAttribute="bottom" secondItem="DTH-tN-cLO" secondAttribute="bottom" constant="8" id="kZ2-he-E9g"/>
+                                <constraint firstAttribute="height" constant="70" id="mQT-pV-cdN"/>
                                 <constraint firstAttribute="trailing" secondItem="AMg-2c-IHF" secondAttribute="trailing" constant="8" id="qCN-05-8Xg"/>
                                 <constraint firstItem="DTH-tN-cLO" firstAttribute="leading" secondItem="anI-fN-q5e" secondAttribute="leading" constant="20" id="xpO-3I-T0l"/>
                             </constraints>

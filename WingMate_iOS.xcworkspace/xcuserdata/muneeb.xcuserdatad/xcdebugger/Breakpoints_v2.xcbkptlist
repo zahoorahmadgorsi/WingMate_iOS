@@ -292,5 +292,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C28F404D-7807-4DD6-AF67-9B430CBA5431"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Settings/SettingsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "logoutButtonPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C28F404D-7807-4DD6-AF67-9B430CBA5431 - 14edabbd3f5b90ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WingMate_iOS.SettingsVC.logoutButtonPressed(Any) -&gt; ()"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Settings/SettingsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "C28F404D-7807-4DD6-AF67-9B430CBA5431 - 4998c93015eb0bfd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WingMate_iOS.SettingsVC.logoutButtonPressed(Any) -&gt; ()"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muneeb/Desktop/Reference%20Projects/Personal/WingMate_iOS/WingMate_iOS/View%20Controllers/Settings/SettingsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "85">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CED231F-9711-4396-8241-A9B259287C7F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Settings/SettingsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "logoutButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3786BE79-6286-4C2B-A092-33DF5BBA72EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Settings/SettingsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "logoutButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

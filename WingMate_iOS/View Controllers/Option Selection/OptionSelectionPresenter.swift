@@ -6,7 +6,7 @@
 //
 
 
-protocol OptionSelectionDelegate {
+protocol OptionSelectionDelegate: class {
     func optionSelection(isSuccess: Bool, msg: String, updatedUserAnswerObject: PFObject)
     func optionSelection(isSuccess: Bool, msg: String)
 }
@@ -17,7 +17,7 @@ import Parse
 
 class OptionSelectionPresenter {
     
-    var delegate: OptionSelectionDelegate?
+    weak var delegate: OptionSelectionDelegate?
     
     func attach(vc: OptionSelectionDelegate) {
         self.delegate = vc

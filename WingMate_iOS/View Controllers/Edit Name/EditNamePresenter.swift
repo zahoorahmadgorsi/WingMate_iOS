@@ -5,7 +5,7 @@
 //  Created by Muneeb on 20/01/2021.
 //
 
-protocol EditNameDelegate {
+protocol EditNameDelegate: class {
     func editName(isSuccess: Bool, msg: String)
 }
 
@@ -15,7 +15,7 @@ import SVProgressHUD
 
 class EditNamePresenter {
     
-    var delegate: EditNameDelegate?
+    weak var delegate: EditNameDelegate?
     
     func attach(vc: EditNameDelegate) {
         self.delegate = vc

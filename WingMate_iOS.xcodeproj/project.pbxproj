@@ -26,6 +26,7 @@
 		FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669DF25B7CE5700D0786E /* EditNameVC.xib */; };
 		FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */; };
 		FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */; };
+		FA0FF3A525DE689A0076C63E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0FF3A425DE689A0076C63E /* Info.plist */; };
 		FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */; };
 		FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */; };
 		FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */; };
@@ -141,7 +142,6 @@
 		882EDB3725322306009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		882EDB392532230A009E8C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882EDB3C2532230A009E8C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		882EDB3E2532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		882EDB432532230A009E8C46 /* WingMate_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSTests.swift; sourceTree = "<group>"; };
 		882EDB492532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,6 +159,7 @@
 		FA0669DF25B7CE5700D0786E /* EditNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNameVC.xib; sourceTree = "<group>"; };
 		FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsTableViewCell.swift; sourceTree = "<group>"; };
 		FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsConditionsTableViewCell.xib; sourceTree = "<group>"; };
+		FA0FF3A425DE689A0076C63E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
 		FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsAndConditionsVC.xib; sourceTree = "<group>"; };
 		FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationPresenter.swift; sourceTree = "<group>"; };
@@ -560,7 +561,7 @@
 			children = (
 				882EDB3025322306009E8C46 /* AppDelegate.swift */,
 				882EDB392532230A009E8C46 /* Assets.xcassets */,
-				882EDB3E2532230A009E8C46 /* Info.plist */,
+				FA0FF3A425DE689A0076C63E /* Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -881,6 +882,7 @@
 				FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
+				FA0FF3A525DE689A0076C63E /* Info.plist in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */,
@@ -1218,9 +1220,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5YFFSZDJGK;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1241,9 +1243,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5YFFSZDJGK;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
