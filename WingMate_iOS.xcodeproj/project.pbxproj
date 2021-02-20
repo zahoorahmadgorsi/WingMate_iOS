@@ -86,6 +86,7 @@
 		FAB4A9AE25DA84100065D23D /* SearchUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4A9AC25DA84100065D23D /* SearchUserCollectionViewCell.swift */; };
 		FAB4A9AF25DA84100065D23D /* SearchUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB4A9AD25DA84100065D23D /* SearchUserCollectionViewCell.xib */; };
 		FABEC622259D7E1F0025B6C1 /* UserPhotoVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */; };
+		FAC3A42B25DF00230098BAF7 /* FansPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3A42A25DF00230098BAF7 /* FansPresenter.swift */; };
 		FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */; };
 		FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */; };
 		FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */; };
@@ -219,6 +220,7 @@
 		FAB4A9AC25DA84100065D23D /* SearchUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAB4A9AD25DA84100065D23D /* SearchUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserCollectionViewCell.xib; sourceTree = "<group>"; };
 		FABEC621259D7E1F0025B6C1 /* UserPhotoVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoVideoModel.swift; sourceTree = "<group>"; };
+		FAC3A42A25DF00230098BAF7 /* FansPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansPresenter.swift; sourceTree = "<group>"; };
 		FAC4940E25403A13007E993B /* RegisterStepOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneVC.swift; sourceTree = "<group>"; };
 		FAC4940F25403A13007E993B /* RegisterStepOneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterStepOneVC.xib; sourceTree = "<group>"; };
 		FAC494182540C2E5007E993B /* RegisterStepTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepTwoVC.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				FA00F0B525DBD0DD00D38E88 /* FansVC.swift */,
+				FAC3A42A25DF00230098BAF7 /* FansPresenter.swift */,
 			);
 			path = MyFans;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 				FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */,
 				FA9EFD8025377BA200A1ED1C /* BaseCollectionViewCell.swift in Sources */,
 				FA9EFD45253779DD00A1ED1C /* UIButton-Extension.swift in Sources */,
+				FAC3A42B25DF00230098BAF7 /* FansPresenter.swift in Sources */,
 				FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */,
 				FAC4941025403A13007E993B /* RegisterStepOneVC.swift in Sources */,
 				FA9EFD8A25377C4300A1ED1C /* LoginVC.swift in Sources */,

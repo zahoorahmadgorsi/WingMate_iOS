@@ -51,3 +51,9 @@ enum TermsType: String {
     case photoText = "PhotoText"
     case videoText = "VideoText"
 }
+
+enum FanType: String {
+    case like = "Like"
+    case crush = "Crush"
+    case maybe = "Maybe"
+}

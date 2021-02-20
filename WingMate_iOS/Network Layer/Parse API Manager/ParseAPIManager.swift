@@ -231,7 +231,7 @@ struct ParseAPIManager {
         }
     }
     
-    static func removePhotoVideoFile(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
+    static func removeObject(obj: PFObject, onSuccess: @escaping (Bool) -> Void, onFailure:@escaping (String) -> Void) {
         SVProgressHUD.show()
         obj.deleteInBackground { (success, error) in
             SVProgressHUD.dismiss()
@@ -248,6 +248,38 @@ struct ParseAPIManager {
         var query = PFQuery()
         query = PFQuery(className: DBTable.userAnswer).whereKey(DBColumn.userId, equalTo: user)
         query.includeKeys([DBColumn.questionId, DBColumn.optionsObjArray])
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
+    
+    static func markUserFanType(user: PFUser, fanType: String, onSuccess: @escaping (Bool, PFObject?) -> Void, onFailure:@escaping (String) -> Void) {
+        let fan = PFObject(className: DBTable.fans)
+        fan[DBColumn.fromUser] = ApplicationManager.shared.session
+        fan[DBColumn.toUser] = user
+        fan[DBColumn.fanType] = fanType
+        
+        fan.saveEventually { (success, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true, fan)
+            }
+        }
+    }
+    
+    static func getFansMarkedByMe(user: PFUser, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        var query = PFQuery()
+        query = PFQuery(className: DBTable.fans).whereKey(DBColumn.fromUser, equalTo: APP_MANAGER.session!).whereKey(DBColumn.toUser, equalTo: user)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

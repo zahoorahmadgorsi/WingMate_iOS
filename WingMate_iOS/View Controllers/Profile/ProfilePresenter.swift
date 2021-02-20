@@ -12,6 +12,8 @@ import SVProgressHUD
 protocol ProfileDelegate: class {
     func profile(isSuccess: Bool, userFilesData: [PFObject], msg: String)
     func profile(isSuccess: Bool, userSavedQuestions: [PFObject], msg: String)
+    func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?)
+    func profile(isSuccess: Bool, msg: String, fansMarkedByMe: [PFObject])
 }
 
 class ProfilePresenter {
@@ -69,6 +71,51 @@ class ProfilePresenter {
             }
         }
         return userFilesData
+    }
+    
+    func markUserAsFan(user: PFUser, fanType: FanType) {
+        SVProgressHUD.show()
+        ParseAPIManager.markUserFanType(user: user, fanType: fanType.rawValue) { (success, obj) in
+            SVProgressHUD.dismiss()
+            if success {
+                self.delegate?.profile(isSuccess: true, msg: "Updated successfully", markedUnmarkedUserFanType: fanType, isDeleted: false, object: obj)
+            } else {
+                self.delegate?.profile(isSuccess: false, msg: "Unable to unmark", markedUnmarkedUserFanType: fanType, isDeleted: false, object: nil)
+            }
+        } onFailure: { (error) in
+            SVProgressHUD.dismiss()
+            self.delegate?.profile(isSuccess: false, msg: error, markedUnmarkedUserFanType: fanType, isDeleted: false, object: nil)
+        }
+    }
+    
+    func unmarkUserAsFan(object: PFObject, fanType: FanType) {
+        SVProgressHUD.show()
+        ParseAPIManager.removeObject(obj: object) { (success) in
+            SVProgressHUD.dismiss()
+            if success {
+                self.delegate?.profile(isSuccess: true, msg: "Updated successfully", markedUnmarkedUserFanType: fanType, isDeleted: true, object: nil)
+            } else {
+                self.delegate?.profile(isSuccess: false, msg: "Unable to unmark", markedUnmarkedUserFanType: fanType, isDeleted: true, object: nil)
+            }
+        } onFailure: { (error) in
+            SVProgressHUD.dismiss()
+            self.delegate?.profile(isSuccess: false, msg: error, markedUnmarkedUserFanType: fanType, isDeleted: false, object: nil)
+        }
+    }
+    
+    func getFansMarkedByMe(user: PFUser) {
+        SVProgressHUD.show()
+        ParseAPIManager.getFansMarkedByMe(user: user) { (success, data) in
+            SVProgressHUD.dismiss()
+            if success {
+                self.delegate?.profile(isSuccess: true, msg: "", fansMarkedByMe: data)
+            } else {
+                self.delegate?.profile(isSuccess: false, msg: "No data found", fansMarkedByMe: [])
+            }
+        } onFailure: { (error) in
+            SVProgressHUD.dismiss()
+            self.delegate?.profile(isSuccess: false, msg: error, fansMarkedByMe: [])
+        }
     }
     
 }

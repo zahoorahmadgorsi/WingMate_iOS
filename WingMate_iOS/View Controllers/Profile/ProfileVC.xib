@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="buttonCrush" destination="aC8-Jt-TDp" id="4Vt-3C-YTU"/>
+                <outlet property="buttonLike" destination="jSo-9T-hXK" id="yef-eC-jp7"/>
+                <outlet property="buttonMaybe" destination="Z6J-gM-ZC7" id="R7T-Bf-oEF"/>
                 <outlet property="cstHeightOthersProfileStackView" destination="CSd-s3-MBo" id="OuH-K4-AI9"/>
                 <outlet property="cstHeightTableView" destination="Miq-CI-hd8" id="tao-0g-9HT"/>
                 <outlet property="cstTopImageView" destination="XdK-Xf-XdZ" id="XOG-2T-egG"/>
@@ -264,28 +267,28 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6J-gM-ZC7">
                             <rect key="frame" x="0.0" y="0.0" width="95.666666666666671" height="80"/>
-                            <state key="normal" image="search_dashboard"/>
+                            <state key="normal" image="profile_maybe"/>
                             <connections>
                                 <action selector="maybeButtonPressed:" destination="-1" eventType="touchUpInside" id="gi0-0b-oob"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSo-9T-hXK">
                             <rect key="frame" x="95.666666666666686" y="0.0" width="95.333333333333314" height="80"/>
-                            <state key="normal" image="my_fans"/>
+                            <state key="normal" image="profile_like"/>
                             <connections>
                                 <action selector="likeButtonPressed:" destination="-1" eventType="touchUpInside" id="SEt-5s-m9n"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aC8-Jt-TDp">
                             <rect key="frame" x="191" y="0.0" width="95.666666666666686" height="80"/>
-                            <state key="normal" image="compatibility"/>
+                            <state key="normal" image="profile_crush"/>
                             <connections>
                                 <action selector="crushButtonPressed:" destination="-1" eventType="touchUpInside" id="989-Pv-gK2"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ5-7X-frQ">
                             <rect key="frame" x="286.66666666666669" y="0.0" width="95.333333333333314" height="80"/>
-                            <state key="normal" image="messages"/>
+                            <state key="normal" image="profile_msg"/>
                             <connections>
                                 <action selector="messageButtonPressed:" destination="-1" eventType="touchUpInside" id="fvc-CD-nyH"/>
                             </connections>
@@ -466,13 +469,13 @@
         </view>
     </objects>
     <resources>
-        <image name="compatibility" width="76" height="76"/>
-        <image name="messages" width="76" height="76"/>
-        <image name="my_fans" width="76" height="76"/>
         <image name="play-video" width="56" height="56"/>
         <image name="profile_back" width="27" height="12"/>
+        <image name="profile_crush" width="76" height="80.333335876464844"/>
+        <image name="profile_like" width="76" height="80.333335876464844"/>
+        <image name="profile_maybe" width="76" height="80.333335876464844"/>
+        <image name="profile_msg" width="76" height="80.333335876464844"/>
         <image name="refresh" width="18" height="17.666666030883789"/>
-        <image name="search_dashboard" width="76" height="76"/>
         <namedColor name="LabelGrayTextColor">
             <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

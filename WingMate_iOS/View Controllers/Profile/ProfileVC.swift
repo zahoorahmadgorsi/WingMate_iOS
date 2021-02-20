@@ -32,6 +32,9 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var viewVideo: UIView!
     @IBOutlet weak var cstTopImageView: NSLayoutConstraint!
     @IBOutlet weak var viewBlocker: UIView!
+    @IBOutlet weak var buttonMaybe: UIButton!
+    @IBOutlet weak var buttonCrush: UIButton!
+    @IBOutlet weak var buttonLike: UIButton!
     var mainDataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserSavedQuestions = [PFObject]()
@@ -40,6 +43,9 @@ class ProfileVC: BaseViewController {
     var isPhotosFetched = false
     var isDataFetched = false
     var user = PFUser()
+    var crushObject: PFObject?
+    var likeObject: PFObject?
+    var maybeObject: PFObject?
     
     convenience init(user: PFUser) {
         self.init()
@@ -52,6 +58,10 @@ class ProfileVC: BaseViewController {
         self.registerTableViewCells()
         self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
         self.presenter.getUserSavedQuestions(user: self.user, shouldShowLoader: false)
+        if APP_MANAGER.session != self.user {
+            self.disableUserInteractionButtons()
+            self.presenter.getFansMarkedByMe(user: self.user)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,15 +141,27 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func maybeButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if self.maybeObject == nil {
+            self.presenter.markUserAsFan(user: self.user, fanType: .maybe)
+        } else {
+            self.presenter.unmarkUserAsFan(object: self.maybeObject!, fanType: .maybe)
+        }
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if self.likeObject == nil {
+            self.presenter.markUserAsFan(user: self.user, fanType: .like)
+        } else {
+            self.presenter.unmarkUserAsFan(object: self.likeObject!, fanType: .like)
+        }
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if self.crushObject == nil {
+            self.presenter.markUserAsFan(user: self.user, fanType: .crush)
+        } else {
+            self.presenter.unmarkUserAsFan(object: self.crushObject!, fanType: .crush)
+        }
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
@@ -173,6 +195,36 @@ class ProfileVC: BaseViewController {
     
     @IBAction func videoButtonPressed(_ sender: Any) {
         self.playVideo(filePath: self.videoUrl)
+    }
+    
+    func enableUserInteractionButtons() {
+        self.buttonMaybe.isUserInteractionEnabled = true
+        self.buttonLike.isUserInteractionEnabled = true
+        self.buttonCrush.isUserInteractionEnabled = true
+        
+        if likeObject != nil {
+            self.buttonLike.alpha = 1
+        } else {
+            self.buttonLike.alpha = 0.5
+        }
+        
+        if crushObject != nil {
+            self.buttonCrush.alpha = 1
+        } else {
+            self.buttonCrush.alpha = 0.5
+        }
+        
+        if maybeObject != nil {
+            self.buttonMaybe.alpha = 1
+        } else {
+            self.buttonMaybe.alpha = 0.5
+        }
+    }
+    
+    func disableUserInteractionButtons() {
+        self.buttonMaybe.isUserInteractionEnabled = false
+        self.buttonLike.isUserInteractionEnabled = false
+        self.buttonCrush.isUserInteractionEnabled = false
     }
     
 }
@@ -246,6 +298,68 @@ extension ProfileVC: ProfileDelegate {
             }
         } else {
             self.showToast(message: msg)
+        }
+    }
+
+    func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {
+        if isDeleted == false { //saving case
+            self.showToast(message: msg)
+            if isSuccess {
+                switch markedUnmarkedUserFanType {
+                case .like:
+                    self.likeObject = object
+                    break
+                case .maybe:
+                    self.maybeObject = object
+                    break
+                case .crush:
+                    self.crushObject = object
+                    break
+                }
+                self.enableUserInteractionButtons()
+            }
+        } else { //deleting case
+            if isSuccess {
+                switch markedUnmarkedUserFanType {
+                case .like:
+                    self.likeObject = object
+                    break
+                case .maybe:
+                    self.maybeObject = object
+                    break
+                case .crush:
+                    self.crushObject = object
+                    break
+                }
+                self.enableUserInteractionButtons()
+            } else {
+                self.showToast(message: msg)
+            }
+        }
+    }
+    
+    func profile(isSuccess: Bool, msg: String, fansMarkedByMe: [PFObject]) {
+        if isSuccess {
+            for i in fansMarkedByMe {
+                let fanType = i.value(forKey: DBColumn.fanType) as? String ?? ""
+                switch fanType {
+                case FanType.like.rawValue:
+                    self.likeObject = i
+                case FanType.maybe.rawValue:
+                    self.maybeObject = i
+                case FanType.crush.rawValue:
+                    self.crushObject = i
+                default:
+                    break
+                }
+            }
+            self.enableUserInteractionButtons()
+        } else {
+            if msg != "No data found" {
+                self.showToast(message: msg)
+            } else {
+                self.enableUserInteractionButtons()
+            }
         }
     }
 }

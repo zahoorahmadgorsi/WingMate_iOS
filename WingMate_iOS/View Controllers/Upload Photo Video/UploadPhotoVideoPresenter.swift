@@ -93,7 +93,7 @@ class UploadPhotoVideoPresenter {
     }
     
     func removePhotoVideoFileFromServer(obj: PFObject, index: Int) {
-        ParseAPIManager.removePhotoVideoFile(obj: obj) { (success) in
+        ParseAPIManager.removeObject(obj: obj) { (success) in
             if success {
                 self.delegate?.uploadPhotoVideo(isFileDeleted: true, msg: "Successfully removed", index: index)
             } else {

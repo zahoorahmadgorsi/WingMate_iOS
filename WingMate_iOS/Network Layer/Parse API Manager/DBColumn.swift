@@ -53,6 +53,11 @@ class DBColumn {
     //photo video
     static let isPhoto = "isPhoto"
     static let videoThumbnail = "videoThumbnail"
+    
+    //fans
+    static let fromUser = "fromUser"
+    static let toUser = "toUser"
+    static let fanType = "fanType"
 }
 
 class DBCloudFunction {
@@ -67,6 +72,7 @@ class DBTable {
     static let userAnswer  = "UserAnswer"
     static let termsConditions  = "TermsConditions"
     static let userProfilePhotoVideo = "UserProfilePhotoVideo"
+    static let fans = "Fans"
 }
 
 class QuestionShortTitle {
