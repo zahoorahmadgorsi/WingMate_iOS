@@ -10,7 +10,7 @@ import Parse
 import SVProgressHUD
 
 protocol FansDelegate {
-    func fans(isSuccess: Bool, msg: String, users: [PFUser])
+    func fans(isSuccess: Bool, msg: String, users: [PFObject])
 }
 
 class FansPresenter {
@@ -23,14 +23,10 @@ class FansPresenter {
 
     func getUsers() {
         SVProgressHUD.show()
-        ParseAPIManager.getDashboardUsers { (success, data) in
+        ParseAPIManager.getMyFans { (success, data) in
             SVProgressHUD.dismiss()
             if success {
-                var dataUsers = [PFUser]()
-                for i in data {
-                    dataUsers.append(i as! PFUser)
-                }
-                self.delegate?.fans(isSuccess: true, msg: "", users: dataUsers)
+                self.delegate?.fans(isSuccess: true, msg: "", users: data)
             } else {
                 self.delegate?.fans(isSuccess: false, msg: "No questions found", users: [])
             }

@@ -443,9 +443,9 @@
                     <connections>
                         <outlet property="collectionViewUsers" destination="cAg-MV-o1G" id="jUN-VV-eSF"/>
                         <outlet property="imageViewProfile" destination="BlO-GW-DDS" id="v8S-nk-VFq"/>
-                        <outlet property="labelCrush" destination="eoc-N4-rf5" id="xeo-8N-0sb"/>
-                        <outlet property="labelMaybe" destination="X22-fl-N7m" id="ng2-HI-T3Z"/>
-                        <outlet property="labelMyLikes" destination="bL4-Zl-8r9" id="yEa-Wt-4q7"/>
+                        <outlet property="labelCrush" destination="fSz-tt-lRb" id="1DG-0X-2e4"/>
+                        <outlet property="labelMaybe" destination="X22-fl-N7m" id="s7j-pH-ODY"/>
+                        <outlet property="labelMyLikes" destination="LAA-LV-1uR" id="IgF-aL-krB"/>
                         <outlet property="labelStaticCrush" destination="eoc-N4-rf5" id="1RG-jv-rLh"/>
                         <outlet property="labelStaticMaybe" destination="Abj-XK-ysc" id="cEb-Qa-dwy"/>
                         <outlet property="labelStaticMyLikes" destination="bL4-Zl-8r9" id="T4C-03-pUc"/>

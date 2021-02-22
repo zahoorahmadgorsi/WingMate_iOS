@@ -23,7 +23,10 @@ class FansVC: BaseViewController {
     @IBOutlet weak var collectionViewUsers: UICollectionView!
     let presenter = FansPresenter()
     var selectedFanType: FanType = .like
-    var dataUsers = [PFUser]()
+    var dataUsers = [PFObject]()
+    var dataLikeUsers = [PFObject]()
+    var dataCrushUsers = [PFObject]()
+    var dataMaybeUsers = [PFObject]()
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -104,14 +107,14 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
-        cell.data = self.dataUsers[indexPath.row]
+        cell.dataFans = self.dataUsers[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ProfileVC(user: self.dataUsers[indexPath.item])
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = ProfileVC(user: self.dataUsers[indexPath.item])
+//        vc.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -133,9 +136,39 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 }
 
 extension FansVC: FansDelegate {
-    func fans(isSuccess: Bool, msg: String, users: [PFUser]) {
+    func fans(isSuccess: Bool, msg: String, users: [PFObject]) {
         if isSuccess {
+            self.dataLikeUsers.removeAll()
+            self.dataMaybeUsers.removeAll()
+            self.dataCrushUsers.removeAll()
             self.dataUsers = users
+            for i in self.dataUsers {
+                let fanType = i.value(forKey: DBColumn.fanType) as? String
+                switch fanType {
+                case FanType.like.rawValue:
+                    self.dataLikeUsers.append(i)
+                case FanType.maybe.rawValue:
+                    self.dataMaybeUsers.append(i)
+                case FanType.crush.rawValue:
+                    self.dataCrushUsers.append(i)
+                default:
+                    break
+                }
+            }
+            switch self.selectedFanType {
+            case .like:
+                self.dataUsers = self.dataLikeUsers
+                break
+            case .maybe:
+                self.dataUsers = self.dataMaybeUsers
+                break
+            case .crush:
+                self.dataUsers = self.dataCrushUsers
+                break
+            }
+            self.labelMyLikes.text = "\(self.dataLikeUsers.count)"
+            self.labelMaybe.text = "\(self.dataMaybeUsers.count)"
+            self.labelCrush.text = "\(self.dataCrushUsers.count)"
             self.collectionViewUsers.reloadData()
         } else {
             self.showToast(message: msg)

@@ -26,6 +26,16 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
         }
     }
+    
+    var dataFans: PFObject? {
+        didSet {
+            let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
+            self.setImageWithUrl(imgUrl: fromUser?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
+            self.labelName.text = "\(fromUser?.value(forKey: "nick") as? String ?? ""), age"
+            let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
+            self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
+        }
+    }
 
 }
 

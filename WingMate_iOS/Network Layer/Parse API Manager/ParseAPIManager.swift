@@ -279,7 +279,7 @@ struct ParseAPIManager {
     
     static func getFansMarkedByMe(user: PFUser, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DBTable.fans).whereKey(DBColumn.fromUser, equalTo: APP_MANAGER.session!).whereKey(DBColumn.toUser, equalTo: user)
+        query = PFQuery(className: DBTable.fans).whereKey(DBColumn.toUser, equalTo: APP_MANAGER.session!)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -338,11 +338,30 @@ struct ParseAPIManager {
     
     //MARK: - Dashboard APIs
     static func getDashboardUsers(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
-//        var query = PFQuery()
-        var query = PFUser.query()!
+        let query = PFUser.query()!
         query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "")
         query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
         
+        query.findObjectsInBackground {(objects, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            }
+            else {
+                if let objs = objects {
+                    onSuccess(true, objs)
+                } else {
+                    onFailure("No objects found")
+                }
+            }
+        }
+    }
+    
+    //MARK: - Fans APIs
+    static func getMyFans(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        let query = PFQuery(className: DBTable.fans)
+        query.whereKey(DBColumn.toUser, equalTo: APP_MANAGER.session!)
+        query.includeKey(DBColumn.toUser)
+        query.includeKey(DBColumn.fromUser)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
