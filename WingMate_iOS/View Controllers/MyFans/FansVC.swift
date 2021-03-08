@@ -29,6 +29,7 @@ class FansVC: BaseViewController {
     var dataCrushUsers = [PFObject]()
     var dataMaybeUsers = [PFObject]()
     var refreshControl = UIRefreshControl()
+    var myUserOptions = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class FansVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
+        self.myUserOptions = self.getMyUserOptions()
         
     }
     
@@ -115,6 +117,7 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
+        cell.myUserOptions = self.myUserOptions
         cell.dataFans = self.dataUsers[indexPath.row]
         return cell
     }

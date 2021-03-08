@@ -18,8 +18,9 @@ class DashboardVC: BaseViewController {
     @IBOutlet weak var imageViewProfile: UIImageView!
     
     var presenter = DashboardPresenter()
-    var dataUsers = [PFUser]()
+    var dataUsers = [DashboardData]()
     var refreshControl = UIRefreshControl()
+    var myUserOptions = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,9 @@ class DashboardVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
-        
+        DispatchQueue.main.async {
+            self.myUserOptions = self.getMyUserOptions()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,7 +92,10 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func compatibleButtonPressed(_ sender: Any) {
-        
+        self.dataUsers = self.dataUsers.sorted { (d1, d2) -> Bool in
+            return d1.percentageMatch > d2.percentageMatch
+        }
+        self.collectionViewUsers.reloadData()
     }
     
 }
@@ -99,12 +105,16 @@ extension DashboardVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
-        cell.data = self.dataUsers[indexPath.row]
+        cell.myUserOptions = self.myUserOptions
+        cell.dataUsers = self.dataUsers[indexPath.row]
+        cell.setPercentageMatchValue = { [weak self] percentage in
+            self?.dataUsers[indexPath.item].percentageMatch = percentage
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ProfileVC(user: self.dataUsers[indexPath.item])
+        let vc = ProfileVC(user: self.dataUsers[indexPath.item].user!)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -130,10 +140,24 @@ extension DashboardVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
 extension DashboardVC: DashboardDelegate {
     func dashboard(isSuccess: Bool, msg: String, users: [PFUser]) {
         if isSuccess {
-            self.dataUsers = users
+            self.dataUsers.removeAll()
+            for i in users {
+                self.dataUsers.append(DashboardData(user: i))
+            }
             self.collectionViewUsers.reloadData()
         } else {
             self.showToast(message: msg)
         }
+    }
+}
+
+
+class DashboardData {
+    var user: PFUser?
+    var percentageMatch: Int
+    
+    init(user: PFUser) {
+        self.user = user
+        self.percentageMatch = 0
     }
 }

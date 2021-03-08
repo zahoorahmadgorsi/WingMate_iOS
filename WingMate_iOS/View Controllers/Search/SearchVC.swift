@@ -22,6 +22,7 @@ class SearchVC: BaseViewController {
     var searchedUsers = [PFUser]()
     var isFiltersMode = true
     var refreshControl = UIRefreshControl()
+    var myUserOptions = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class SearchVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
+        self.myUserOptions = self.getMyUserOptions()
     }
     
     //MARK: - Helping Methods
@@ -153,6 +155,7 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
+        cell.myUserOptions = self.myUserOptions
         cell.data = self.searchedUsers[indexPath.row]
         return cell
     }

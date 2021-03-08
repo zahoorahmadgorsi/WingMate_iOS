@@ -14,29 +14,54 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var labelMatchPercentage: UILabel!
+    @IBOutlet weak var imageViewHeart: UIImageView!
+    var setPercentageMatchValue: ((Int)-> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
+    var myUserOptions = [PFObject]()
     var data: PFUser? {
         didSet {
+            self.imageViewHeart.isHidden = true
             self.setImageWithUrl(imgUrl: data?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? ""), age"
+            let ageString = self.getAge(otherUser: data!)
+            self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? ""), \(ageString)"
             let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
-            print((self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: data!)))
-            self.labelMatchPercentage.text = "\(self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: data!))% Match"
+            self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: data!))% Match"
+        }
+    }
+    
+    
+    var dataUsers: DashboardData? {
+        didSet {
+            self.imageViewHeart.isHidden = true
+            self.setImageWithUrl(imgUrl: dataUsers?.user?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
+            let ageString = self.getAge(otherUser: dataUsers!.user!)
+            self.labelName.text = "\(dataUsers?.user?.value(forKey: "nick") as? String ?? ""), \(ageString)"
+            let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
+            self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
+            let percentage = self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: dataUsers!.user!)
+            self.labelMatchPercentage.text = "\(percentage)% Match"
+            
+            DispatchQueue.main.async {
+                self.setPercentageMatchValue?(percentage)
+            }
         }
     }
     
     var dataFans: PFObject? {
         didSet {
+            self.imageViewHeart.isHidden = false
             let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
             self.setImageWithUrl(imgUrl: fromUser?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            self.labelName.text = "\(fromUser?.value(forKey: "nick") as? String ?? ""), age"
+            let ageString = self.getAge(otherUser: fromUser!)
+            self.labelName.text = "\(fromUser?.value(forKey: "nick") as? String ?? ""), \(ageString)"
             let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
+            self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))% Match"
         }
     }
 

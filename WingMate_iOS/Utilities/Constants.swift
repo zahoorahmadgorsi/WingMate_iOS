@@ -40,5 +40,6 @@ struct Constants {
     static let settingsBtnTitle = "Settings"
     static let cancelBtnTitle = "Cancel"
     static let kAppLang = "APP_LANGUAGE"
+    static let ageQuestionId = "OPF5wV3B4e"
 }
 

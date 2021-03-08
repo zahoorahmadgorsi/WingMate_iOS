@@ -120,13 +120,10 @@ class BaseViewController: UIViewController {
     }
     
     //MARK: - Calculate Match Percentage
-    func getPercentageMatch(currentUser: PFUser, otherUser: PFUser) -> Int {
-        var percentage: Double = 0
+    func getMyUserOptions() -> [PFObject] {
         var myOptions = [PFObject]()
-        var userOptions = [PFObject]()
-        
         do {
-            let myUserAnswers = try currentUser.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+            let myUserAnswers = try PFUser.current()!.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
             if myUserAnswers.count > 0 {
                 for i in myUserAnswers {
                     let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
@@ -137,6 +134,26 @@ class BaseViewController: UIViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+        return myOptions
+    }
+    
+    func getPercentageMatch(myUserOptions: [PFObject], otherUser: PFUser) -> Int {
+        var percentage: Double = 0
+        var myOptions = myUserOptions
+        var userOptions = [PFObject]()
+        
+//        do {
+//            let myUserAnswers = try PFUser.current()!.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+//            if myUserAnswers.count > 0 {
+//                for i in myUserAnswers {
+//                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+//                    myOptions.append(contentsOf: optionsObjArr)
+//                }
+//            }
+//
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
         
         let otherUserAnswers = otherUser.value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
         if otherUserAnswers.count > 0 {

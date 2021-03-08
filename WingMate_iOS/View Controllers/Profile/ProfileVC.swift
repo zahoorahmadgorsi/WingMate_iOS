@@ -85,7 +85,8 @@ class ProfileVC: BaseViewController {
             self.viewRefresh.isHidden = false
             let userLocation = self.user.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelDistance.text = Utilities.shared.getDistance(userLocation: userLocation)
-            let percentage = self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: self.user)
+            let myUserOptions = self.getMyUserOptions()
+            let percentage = self.getPercentageMatch(myUserOptions: myUserOptions, otherUser: self.user)
             self.labelMatchPercentage.text = "\(percentage)%\nMatch"
             self.labelDistance.isHidden = false
             self.progressView.isHidden = false

@@ -52,23 +52,23 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Calculate Match Percentage
-    func getPercentageMatch(currentUser: PFUser, otherUser: PFUser) -> Int {
+    func getPercentageMatch(myUserOptions: [PFObject], otherUser: PFUser) -> Int {
         var percentage: Double = 0
-        var myOptions = [PFObject]()
+        var myOptions = myUserOptions
         var userOptions = [PFObject]()
         
-        do {
-            let myUserAnswers = try currentUser.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
-            if myUserAnswers.count > 0 {
-                for i in myUserAnswers {
-                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
-                    myOptions.append(contentsOf: optionsObjArr)
-                }
-            }
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
+//        do {
+//            let myUserAnswers = try currentUser.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+//            if myUserAnswers.count > 0 {
+//                for i in myUserAnswers {
+//                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+//                    myOptions.append(contentsOf: optionsObjArr)
+//                }
+//            }
+//
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
         
         let otherUserAnswers = otherUser.value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
         if otherUserAnswers.count > 0 {
@@ -94,5 +94,26 @@ class BaseCollectionViewCell: UICollectionViewCell {
             percentage = div * 100
         }
         return Int(percentage)
+    }
+    
+    func getAge(otherUser: PFUser) -> String {
+        var ageString = ""
+        var userOptions = [PFObject]()
+        let otherUserAnswers = otherUser.value(forKey: DBColumn.mandatoryQuestionAnswersList) as? [PFObject] ?? []
+        if otherUserAnswers.count > 0 {
+            for i in otherUserAnswers {
+                let optionsObjArr = i.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                userOptions.append(contentsOf: optionsObjArr)
+            }
+            
+            for i in userOptions {
+                let userOptionQuestionObj = i.value(forKey: DBColumn.questionId) as? PFObject
+                let questionId = userOptionQuestionObj!.value(forKey: DBColumn.objectId) as? String ?? ""
+                if questionId == Constants.ageQuestionId {
+                    ageString = i.value(forKey: DBColumn.title) as? String ?? ""
+                }
+            }
+        }
+        return ageString
     }
 }
