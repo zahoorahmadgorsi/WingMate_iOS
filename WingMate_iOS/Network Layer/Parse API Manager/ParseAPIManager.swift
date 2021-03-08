@@ -279,7 +279,7 @@ struct ParseAPIManager {
     
     static func getFansMarkedByMe(user: PFUser, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DBTable.fans).whereKey(DBColumn.toUser, equalTo: APP_MANAGER.session!)
+        query = PFQuery(className: DBTable.fans).whereKey(DBColumn.fromUser, equalTo: APP_MANAGER.session!).whereKey(DBColumn.toUser, equalTo: user)
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

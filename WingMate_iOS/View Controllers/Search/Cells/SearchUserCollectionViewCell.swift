@@ -53,6 +53,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     }
     
     var fromUsers: [PFObject]?
+    var selectedFanType: FanType = .like
     var dataFans: PFObject? {
         didSet {
             let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
@@ -62,14 +63,16 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))% Match"
+            var isFound = false
             for i in self.fromUsers ?? [] {
-                let fromUsr = i.value(forKey: DBColumn.fromUser) as? PFUser
-                if (fromUsr?.objectId == PFUser.current()?.objectId) && (fromUser?.objectId == PFUser.current()?.objectId) {
-                    self.imageViewHeart.isHidden = true
-                } else {
-                    self.imageViewHeart.isHidden = false
+                let frmUsr = i.value(forKey: DBColumn.fromUser) as? PFUser
+                let toUsr = i.value(forKey: DBColumn.toUser) as? PFUser
+                let fanType = i.value(forKey: DBColumn.fanType) as? String ?? ""
+                if (frmUsr!.objectId! == PFUser.current()?.objectId!) && (toUsr!.objectId! == fromUser!.objectId!) && (fanType == self.selectedFanType.rawValue) {
+                    isFound = true
                 }
             }
+            self.imageViewHeart.isHidden = isFound ? false : true
         }
     }
 

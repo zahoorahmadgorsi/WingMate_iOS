@@ -17,8 +17,11 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelDistance: UILabel!
     @IBOutlet weak var imageViewProfile1: UIImageView!
+    @IBOutlet weak var buttonProfileImage1: UIButton!
     @IBOutlet weak var imageViewProfile2: UIImageView!
+    @IBOutlet weak var buttonProfileImage2: UIButton!
     @IBOutlet weak var imageViewProfile3: UIImageView!
+    @IBOutlet weak var buttonProfileImage3: UIButton!
     @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var labelAboutMe: UILabel!
     @IBOutlet weak var cstHeightOthersProfileStackView: NSLayoutConstraint!
@@ -46,6 +49,7 @@ class ProfileVC: BaseViewController {
     var crushObject: PFObject?
     var likeObject: PFObject?
     var maybeObject: PFObject?
+    var refreshFansList:(()->Void)?
     
     convenience init(user: PFUser) {
         self.init()
@@ -79,10 +83,12 @@ class ProfileVC: BaseViewController {
             self.progressView.isHidden = true
             self.labelDistance.isHidden = true
             self.viewRefresh.isHidden = true
+            self.setAboutMeText(usr: PFUser.current()!)
         } else {
             self.stackViewMyProfileButtons.isHidden = true
             self.cstHeightOthersProfileStackView.constant = 80
             self.viewRefresh.isHidden = false
+            self.setAboutMeText(usr: self.user)
             let userLocation = self.user.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelDistance.text = Utilities.shared.getDistance(userLocation: userLocation)
             let myUserOptions = self.getMyUserOptions()
@@ -97,6 +103,12 @@ class ProfileVC: BaseViewController {
         
     }
     
+    func setAboutMeText(usr: PFUser) {
+        let aboutMeText = usr.value(forKey: DBColumn.aboutMe) as? String ?? ""
+        let stringToDisplay = aboutMeText == "" ? "" : "About Me: \(aboutMeText)"
+        self.labelAboutMe.attributedText = self.attributedText(withString: stringToDisplay, boldString: "About Me:", font: UIFont(name: "OpenSans-Regular", size: 14)!)
+    }
+    
     func setProfileInfo() {
         self.labelName.text = self.user.value(forKey: DBColumn.nick) as? String ?? ""
         
@@ -106,9 +118,7 @@ class ProfileVC: BaseViewController {
             self.cstHeightTableView.constant = self.tableViewUserQuestions.contentSize.height
         }
         
-        let aboutMeText = APP_MANAGER.session?.value(forKey: DBColumn.aboutMe) as? String ?? ""
-        let stringToDisplay = aboutMeText == "" ? "" : "About Me: \(aboutMeText)"
-        self.labelAboutMe.attributedText = self.attributedText(withString: stringToDisplay, boldString: "About Me:", font: UIFont(name: "OpenSans-Regular", size: 14)!)
+        
         self.setViews()
     }
     
@@ -118,26 +128,50 @@ class ProfileVC: BaseViewController {
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
             self.imageViewProfile2.image = UIImage()
             self.imageViewProfile3.image = UIImage()
+            self.buttonProfileImage1.isHidden = false
+            self.buttonProfileImage2.isHidden = true
+            self.buttonProfileImage3.isHidden = true
             break
         case 2:
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[1].uploadFileUrl ?? "", imageView: self.imageViewProfile2, placeholderImage: UIImage(named: "default_placeholder"))
             self.imageViewProfile3.image = UIImage()
+            self.buttonProfileImage1.isHidden = false
+            self.buttonProfileImage2.isHidden = false
+            self.buttonProfileImage3.isHidden = true
             break
         case 3:
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[1].uploadFileUrl ?? "", imageView: self.imageViewProfile2, placeholderImage: UIImage(named: "default_placeholder"))
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[2].uploadFileUrl ?? "", imageView: self.imageViewProfile3, placeholderImage: UIImage(named: "default_placeholder"))
+            self.buttonProfileImage1.isHidden = false
+            self.buttonProfileImage2.isHidden = false
+            self.buttonProfileImage3.isHidden = false
             break
         default:
             self.imageViewProfile1.image = UIImage()
             self.imageViewProfile2.image = UIImage()
             self.imageViewProfile3.image = UIImage()
+            self.buttonProfileImage1.isHidden = true
+            self.buttonProfileImage2.isHidden = true
+            self.buttonProfileImage3.isHidden = true
             break
         }
     }
     
     //MARK: - Button Actions
+    @IBAction func image1ButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile1)
+    }
+    
+    @IBAction func image2ButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile2)
+    }
+    
+    @IBAction func image3ButtonPressed(_ sender: Any) {
+        self.previewImage(imageView: self.imageViewProfile3)
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -319,6 +353,7 @@ extension ProfileVC: ProfileDelegate {
                     break
                 }
                 self.enableUserInteractionButtons()
+                self.refreshFansList?()
             }
         } else { //deleting case
             if isSuccess {
@@ -334,6 +369,7 @@ extension ProfileVC: ProfileDelegate {
                     break
                 }
                 self.enableUserInteractionButtons()
+                self.refreshFansList?()
             } else {
                 self.showToast(message: msg)
             }

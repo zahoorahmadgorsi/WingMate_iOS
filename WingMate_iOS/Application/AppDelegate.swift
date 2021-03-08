@@ -78,11 +78,13 @@ extension AppDelegate: CLLocationManagerDelegate {
             print(loc)
             self.currentLocation = loc
             
-            #if DEBUG
-            print("Not hitting location api again and again when in debug mode")
-            #else
-                self.sendCurrentLocationToServer()
-            #endif
+            self.sendCurrentLocationToServer()
+            
+//            #if DEBUG
+//            print("Not hitting location api again and again when in debug mode")
+//            #else
+//                self.sendCurrentLocationToServer()
+//            #endif
         }
     }
     

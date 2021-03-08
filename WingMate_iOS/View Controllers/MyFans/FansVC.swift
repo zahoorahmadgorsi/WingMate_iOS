@@ -25,7 +25,7 @@ class FansVC: BaseViewController {
     let presenter = FansPresenter()
     var selectedFanType: FanType = .like
     var dataUsers = [PFObject]()
-    var toUsers = [PFObject]()
+    var fromUsers = [PFObject]()
     var dataLikeUsers = [PFObject]()
     var dataCrushUsers = [PFObject]()
     var dataMaybeUsers = [PFObject]()
@@ -94,6 +94,9 @@ class FansVC: BaseViewController {
 //        self.previewImage(imageView: self.imageViewProfile)
         let vc = ProfileVC(user: APP_MANAGER.session!)
         vc.hidesBottomBarWhenPushed = true
+        vc.refreshFansList = {
+            self.presenter.getUsers()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -120,7 +123,8 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
         cell.myUserOptions = self.myUserOptions
-        cell.fromUsers = self.toUsers
+        cell.selectedFanType = self.selectedFanType
+        cell.fromUsers = self.fromUsers
         cell.dataFans = self.dataUsers[indexPath.row]
         return cell
     }
@@ -129,6 +133,9 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         let usr = (self.dataUsers[indexPath.item].value(forKey: DBColumn.fromUser) as? PFUser)!
         let vc = ProfileVC(user: usr)
         vc.hidesBottomBarWhenPushed = true
+        vc.refreshFansList = {
+            self.presenter.getUsers()
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -158,6 +165,7 @@ extension FansVC: FansDelegate {
             self.dataMaybeUsers.removeAll()
             self.dataCrushUsers.removeAll()
             self.dataUsers.removeAll()
+            self.fromUsers.removeAll()
             
             for i in users {
                 let toUser = i.value(forKey: DBColumn.toUser) as? PFUser
@@ -169,7 +177,7 @@ extension FansVC: FansDelegate {
                     self.dataUsers.append(i)
                 }
                 if fromUserObjId == currentUserObjId {
-                    self.toUsers.append(i)
+                    self.fromUsers.append(i)
                 }
             }
             

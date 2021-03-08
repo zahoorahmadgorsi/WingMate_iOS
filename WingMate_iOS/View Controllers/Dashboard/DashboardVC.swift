@@ -80,15 +80,15 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func myFansButtonPressed(_ sender: Any) {
-        
+        self.tabBarController?.selectedIndex = 2
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
-        
+        self.tabBarController?.selectedIndex = 1
     }
     
     @IBAction func messagesButtonPressed(_ sender: Any) {
-        
+        self.tabBarController?.selectedIndex = 3
     }
     
     @IBAction func compatibleButtonPressed(_ sender: Any) {
