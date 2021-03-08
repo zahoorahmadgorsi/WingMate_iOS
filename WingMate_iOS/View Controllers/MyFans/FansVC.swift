@@ -25,11 +25,13 @@ class FansVC: BaseViewController {
     let presenter = FansPresenter()
     var selectedFanType: FanType = .like
     var dataUsers = [PFObject]()
+    var toUsers = [PFObject]()
     var dataLikeUsers = [PFObject]()
     var dataCrushUsers = [PFObject]()
     var dataMaybeUsers = [PFObject]()
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +120,7 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
         cell.myUserOptions = self.myUserOptions
+        cell.fromUsers = self.toUsers
         cell.dataFans = self.dataUsers[indexPath.row]
         return cell
     }
@@ -154,7 +157,22 @@ extension FansVC: FansDelegate {
             self.dataLikeUsers.removeAll()
             self.dataMaybeUsers.removeAll()
             self.dataCrushUsers.removeAll()
-            self.dataUsers = users
+            self.dataUsers.removeAll()
+            
+            for i in users {
+                let toUser = i.value(forKey: DBColumn.toUser) as? PFUser
+                let fromUser = i.value(forKey: DBColumn.fromUser) as? PFUser
+                let toUserObjId = toUser?.value(forKey: DBColumn.objectId) as? String ?? ""
+                let fromUserObjId = fromUser?.value(forKey: DBColumn.objectId) as? String ?? ""
+                let currentUserObjId = PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? ""
+                if toUserObjId == currentUserObjId {
+                    self.dataUsers.append(i)
+                }
+                if fromUserObjId == currentUserObjId {
+                    self.toUsers.append(i)
+                }
+            }
+            
             for i in self.dataUsers {
                 let fanType = i.value(forKey: DBColumn.fanType) as? String
                 switch fanType {
@@ -172,19 +190,19 @@ extension FansVC: FansDelegate {
             case .like:
                 self.dataUsers = self.dataLikeUsers
                 if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = true
+                    self.viewNoResults.isHidden = false
                 }
                 break
             case .maybe:
                 self.dataUsers = self.dataMaybeUsers
                 if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = true
+                    self.viewNoResults.isHidden = false
                 }
                 break
             case .crush:
                 self.dataUsers = self.dataCrushUsers
                 if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = true
+                    self.viewNoResults.isHidden = false
                 }
                 break
             }

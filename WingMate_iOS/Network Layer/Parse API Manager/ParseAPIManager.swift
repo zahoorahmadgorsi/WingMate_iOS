@@ -363,11 +363,26 @@ struct ParseAPIManager {
         let query = PFQuery(className: DBTable.fans)
         query.whereKey(DBColumn.toUser, equalTo: APP_MANAGER.session!)
         
-        query.includeKeys([DBColumn.fromUser, DBColumn.toUser, "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList)", "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
+        let query2 = PFQuery(className: DBTable.fans)
+        query2.whereKey(DBColumn.fromUser, equalTo: APP_MANAGER.session!)
+        
+        let queries = [query, query2]
+        
+        let mainQuery = PFQuery.orQuery(withSubqueries: queries)
+        
+        mainQuery.includeKeys([DBColumn.fromUser,
+                               DBColumn.toUser,
+                               "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList)",
+                               "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList)",
+                               "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)",
+                               "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)",
+                               "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)",
+                               "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"
+        ])
         
         
         
-        query.findObjectsInBackground {(objects, error) in
+        mainQuery.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
             }

@@ -52,9 +52,9 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
+    var fromUsers: [PFObject]?
     var dataFans: PFObject? {
         didSet {
-            self.imageViewHeart.isHidden = false
             let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
             self.setImageWithUrl(imgUrl: fromUser?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
             let ageString = self.getAge(otherUser: fromUser!)
@@ -62,6 +62,14 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))% Match"
+            for i in self.fromUsers ?? [] {
+                let fromUsr = i.value(forKey: DBColumn.fromUser) as? PFUser
+                if (fromUsr?.objectId == PFUser.current()?.objectId) && (fromUser?.objectId == PFUser.current()?.objectId) {
+                    self.imageViewHeart.isHidden = true
+                } else {
+                    self.imageViewHeart.isHidden = false
+                }
+            }
         }
     }
 
