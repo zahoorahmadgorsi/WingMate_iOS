@@ -9,6 +9,7 @@
 
 import UIKit
 import AVKit
+import Parse
 
 class BaseCollectionViewCell: UICollectionViewCell {
     
@@ -48,5 +49,50 @@ class BaseCollectionViewCell: UICollectionViewCell {
         } catch {
             return UIImage()
         }
+    }
+    
+    //MARK: - Calculate Match Percentage
+    func getPercentageMatch(currentUser: PFUser, otherUser: PFUser) -> Int {
+        var percentage: Double = 0
+        var myOptions = [PFObject]()
+        var userOptions = [PFObject]()
+        
+        do {
+            let myUserAnswers = try currentUser.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+            if myUserAnswers.count > 0 {
+                for i in myUserAnswers {
+                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                    myOptions.append(contentsOf: optionsObjArr)
+                }
+            }
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let otherUserAnswers = otherUser.value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+        if otherUserAnswers.count > 0 {
+            for i in otherUserAnswers {
+                let optionsObjArr = i.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                userOptions.append(contentsOf: optionsObjArr)
+            }
+        }
+        
+        var count = 0
+        for i in myOptions {
+            for j in userOptions {
+                let myOptionObjectId = i.value(forKey: DBColumn.objectId) as? String ?? ""
+                let userOptionObjectId = j.value(forKey: DBColumn.objectId) as? String ?? ""
+                if myOptionObjectId == userOptionObjectId {
+                    count = count + 1
+                }
+            }
+        }
+        
+        if myOptions.count > 0 {
+            let div: Double = Double(count) / Double(myOptions.count)
+            percentage = div * 100
+        }
+        return Int(percentage)
     }
 }

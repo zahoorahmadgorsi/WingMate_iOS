@@ -133,7 +133,8 @@ extension LoginVC: LoginDelegate {
                 APP_MANAGER.userEmail = ""
                 APP_MANAGER.userPassword = ""
             }
-            self.navigationController?.pushViewController(DashboardVC(), animated: true)
+            let vc = Utilities.shared.getViewController(identifier: TabBarVC.className, storyboardType: .main) as! TabBarVC
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             self.showToast(message: msg)
         }

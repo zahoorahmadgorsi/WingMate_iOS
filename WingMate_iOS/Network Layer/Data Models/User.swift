@@ -21,6 +21,8 @@ struct User : Codable {
     var profilePic : String?
     var currentLocationLat : CLLocationDegrees?
     var currentLocationLng : CLLocationDegrees?
+//    var mandatoryQuestionAnswersList : [PFObject]?
+//    var optionalQuestionAnswersList : [PFObject]?
     
     init(){
         self.objectId = ""
@@ -36,6 +38,8 @@ struct User : Codable {
         self.profilePic = ""
         self.currentLocationLat = 0
         self.currentLocationLng = 0
+//        self.mandatoryQuestionAnswersList = [PFObject]()
+//        self.optionalQuestionAnswersList = [PFObject]()
     }
     
     enum CodingKeys: String, CodingKey {
@@ -52,6 +56,8 @@ struct User : Codable {
         case profilePic = "profilePic"
         case currentLocationLat = "currentLocationLat"
         case currentLocationLng = "currentLocationLng"
+//        case mandatoryQuestionAnswersList = "mandatoryQuestionAnswersList"
+//        case optionalQuestionAnswersList = "optionalQuestionAnswersList"
     }
 
 }

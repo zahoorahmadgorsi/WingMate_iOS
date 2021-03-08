@@ -11,6 +11,7 @@ import SVProgressHUD
 
 protocol EditProfileDelegate: class {
     func editProfile(isSuccess: Bool, msg: String, questions: [PFObject])
+    func editProfile(isSuccess: Bool, msg: String, questionsList: ([PFObject], [PFObject]))
 }
 
 class EditProfilePresenter {
@@ -59,6 +60,48 @@ class EditProfilePresenter {
         return data
     }
     
+    func filterQuestionLists(data: [UserProfileQuestion]?) -> ([PFObject], [PFObject]) {
+        var optionalQuestions = [PFObject]()
+        var mandatoryQuestions = [PFObject]()
+        for i in data ?? [] {
+            let questionType = i.questionObject?.value(forKey: DBColumn.questionType) as? String
+            if questionType == QuestionType.mandatory.rawValue {
+                if i.userAnswerObject != nil {
+                    let optionsObjArray = i.userAnswerObject?.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                    if optionsObjArray.count != 0 {
+                        mandatoryQuestions.append(i.userAnswerObject!)
+                    }
+                }
+            } else if questionType == QuestionType.optional.rawValue {
+                if i.userAnswerObject != nil {
+                    let optionsObjArray = i.userAnswerObject?.value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                    if optionsObjArray.count != 0 {
+                        optionalQuestions.append(i.userAnswerObject!)
+                    }
+                }
+            }
+        }
+        return (mandatoryQuestions, optionalQuestions)
+    }
+    
+    func updateQuestionListsInUserTable(mandatoryQuestionList: [PFObject], optionalQuestionList: [PFObject]) {
+        PFUser.current()?.setValue(mandatoryQuestionList, forKey: DBColumn.mandatoryQuestionAnswersList)
+        PFUser.current()?.setValue(optionalQuestionList, forKey: DBColumn.optionalQuestionAnswersList)
+        
+        SVProgressHUD.show()
+        ParseAPIManager.updateUserObject() { (success) in
+            SVProgressHUD.dismiss()
+            if success {
+                APP_MANAGER.session = PFUser.current()
+                self.delegate?.editProfile(isSuccess: true, msg: "Updated", questionsList: (mandatoryQuestionList, optionalQuestionList))
+            } else {
+                self.delegate?.editProfile(isSuccess: false, msg: "Update failed", questionsList: (mandatoryQuestionList, optionalQuestionList))
+            }
+        } onFailure: { (error) in
+            self.delegate?.editProfile(isSuccess: false, msg: error, questionsList: (mandatoryQuestionList, optionalQuestionList))
+        }
+    }
+    
 }
 
 struct UserProfileQuestion {
@@ -79,4 +122,5 @@ struct UserProfileQuestion {
     func getUserSelectedOptionsArrayString() -> [String] {
         return userAnswerObject?.value(forKey: DBColumn.selectedOptionIds) as? [String] ?? []
     }
+    
 }

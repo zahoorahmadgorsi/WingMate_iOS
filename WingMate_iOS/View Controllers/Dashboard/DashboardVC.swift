@@ -28,6 +28,7 @@ class DashboardVC: BaseViewController {
         self.registerTableViewCells()
         self.presenter.getUsers()
         self.addPullToRefresh()
+//        self.setViewControllers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +45,15 @@ class DashboardVC: BaseViewController {
     }
     
     //MARK: - Helping Methods
+    func setViewControllers() {
+        let vc1 = DashboardVC() // UINavigationController(rootViewController: DashboardVC())
+        let vc2 = SettingsVC() //UINavigationController(rootViewController: SettingsVC())
+//        self.tabBarController?.setViewControllers([vc1, vc2], animated: true)
+        
+        self.tabBarController?.setViewControllers([vc1, vc2], animated: true)
+        
+    }
+    
     func registerTableViewCells() {
         self.collectionViewUsers.register(UINib(nibName: SearchUserCollectionViewCell.className, bundle: nil), forCellWithReuseIdentifier: SearchUserCollectionViewCell.className)
     }
@@ -60,7 +70,10 @@ class DashboardVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile)
+//        self.previewImage(imageView: self.imageViewProfile)
+        let vc = ProfileVC(user: APP_MANAGER.session!)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func myFansButtonPressed(_ sender: Any) {

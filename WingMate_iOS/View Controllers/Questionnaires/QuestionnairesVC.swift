@@ -41,6 +41,7 @@ class QuestionnairesVC: BaseViewController {
     //MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.questionnairePresenter.attach(vc: self)
         self.setLayout()
         self.registerTableViewCells()
@@ -374,6 +375,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     //user option saved response
     func questionnaire(isSaved: Bool, msg: String) {
         if isSaved {
+            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex])
             self.moveToNextQuestion()
         } else {
             self.showToast(message: msg)
@@ -382,6 +384,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     
     func questionnaire(isUpdated: Bool, msg: String) {
         if isUpdated {
+            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex])
             self.moveToNextQuestion()
         } else {
             self.showToast(message: msg)

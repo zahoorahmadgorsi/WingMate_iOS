@@ -21,6 +21,7 @@ class FansVC: BaseViewController {
     @IBOutlet weak var labelStaticMaybe: UILabel!
     @IBOutlet weak var labelStaticMyLikes: UILabel!
     @IBOutlet weak var collectionViewUsers: UICollectionView!
+    @IBOutlet weak var viewNoResults: UIView!
     let presenter = FansPresenter()
     var selectedFanType: FanType = .like
     var dataUsers = [PFObject]()
@@ -40,6 +41,7 @@ class FansVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
+        
     }
     
     //MARK: - Helping Methods
@@ -56,6 +58,7 @@ class FansVC: BaseViewController {
         self.refreshControl.endRefreshing()
         self.presenter.getUsers()
     }
+    
     func updateUI() {
         self.viewBgCrush.backgroundColor = UIColor.clear
         self.viewBgMyLikes.backgroundColor = UIColor.clear
@@ -80,9 +83,14 @@ class FansVC: BaseViewController {
         self.presenter.getUsers()
     }
     
+    
+    
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile)
+//        self.previewImage(imageView: self.imageViewProfile)
+        let vc = ProfileVC(user: APP_MANAGER.session!)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func myLikesButtonPressed(_ sender: Any) {
@@ -112,9 +120,10 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let vc = ProfileVC(user: self.dataUsers[indexPath.item])
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let usr = (self.dataUsers[indexPath.item].value(forKey: DBColumn.fromUser) as? PFUser)!
+        let vc = ProfileVC(user: usr)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -138,6 +147,7 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 extension FansVC: FansDelegate {
     func fans(isSuccess: Bool, msg: String, users: [PFObject]) {
         if isSuccess {
+            self.viewNoResults.isHidden = true
             self.dataLikeUsers.removeAll()
             self.dataMaybeUsers.removeAll()
             self.dataCrushUsers.removeAll()
@@ -158,18 +168,29 @@ extension FansVC: FansDelegate {
             switch self.selectedFanType {
             case .like:
                 self.dataUsers = self.dataLikeUsers
+                if self.dataUsers.count == 0 {
+                    self.viewNoResults.isHidden = true
+                }
                 break
             case .maybe:
                 self.dataUsers = self.dataMaybeUsers
+                if self.dataUsers.count == 0 {
+                    self.viewNoResults.isHidden = true
+                }
                 break
             case .crush:
                 self.dataUsers = self.dataCrushUsers
+                if self.dataUsers.count == 0 {
+                    self.viewNoResults.isHidden = true
+                }
                 break
             }
             self.labelMyLikes.text = "\(self.dataLikeUsers.count)"
             self.labelMaybe.text = "\(self.dataMaybeUsers.count)"
             self.labelCrush.text = "\(self.dataCrushUsers.count)"
             self.collectionViewUsers.reloadData()
+            
+        
         } else {
             self.showToast(message: msg)
         }

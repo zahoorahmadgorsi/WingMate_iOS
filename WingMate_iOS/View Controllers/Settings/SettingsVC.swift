@@ -24,7 +24,10 @@ class SettingsVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile)
+//        self.previewImage(imageView: self.imageViewProfile)
+        let vc = ProfileVC(user: APP_MANAGER.session!)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func payNowButtonPressed(_ sender: Any) {
@@ -50,7 +53,9 @@ class SettingsVC: BaseViewController {
     @IBAction func mandatoryQuestionnaireButtonPressed(_ sender: Any) {
         let isPaidUser = APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool
         if isPaidUser ?? false {
-            self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: true), animated: true)
+            let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             self.showToast(message: "You are not a paid user")
         }
@@ -59,7 +64,9 @@ class SettingsVC: BaseViewController {
     @IBAction func optionalQuestionnaireButtonPressed(_ sender: Any) {
         let isPaidUser = APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool
         if isPaidUser ?? false {
-            self.navigationController?.pushViewController(QuestionnairesVC(isMandatoryQuestionnaires: false), animated: true)
+            let vc = QuestionnairesVC(isMandatoryQuestionnaires: false)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             self.showToast(message: "You are not a paid user")
         }
@@ -68,7 +75,11 @@ class SettingsVC: BaseViewController {
     @IBAction func logoutButtonPressed(_ sender: Any) {
         ParseAPIManager.logoutUser { (success) in
             APP_MANAGER.session = nil
-            self.navigationController?.popToRootViewController(animated: true)
+//            self.navigationController?.popToRootViewController(animated: true)
+            let vc = PreLoginVC()
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.navigationBar.isHidden = true
+            APP_DELEGATE.window?.rootViewController = navigationController
         } onFailure: { (error) in
             self.showToast(message: error)
         }

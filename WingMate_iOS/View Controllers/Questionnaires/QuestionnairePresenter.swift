@@ -97,5 +97,56 @@ class QuestionnairePresenter {
         }
     }
     
+    func saveQuestionListInUserTable(data: Question) {
+        
+        let questionType = data.object?.value(forKey: DBColumn.questionType) as? String ?? ""
+        var questionAnswerList = [PFObject]()
+        if questionType == QuestionType.mandatory.rawValue {
+            questionAnswerList = PFUser.current()?.value(forKey: DBColumn.mandatoryQuestionAnswersList) as? [PFObject] ?? []
+            
+        } else {
+            questionAnswerList = PFUser.current()?.value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+        }
+        
+        for i in 0..<questionAnswerList.count {
+            do {
+                let questionIdObj = try (questionAnswerList[i].fetchIfNeeded().value(forKey: DBColumn.questionId) as! PFObject)
+                let questionId = questionIdObj.value(forKey: DBColumn.objectId) as? String ?? ""
+//                try PFUser.current()?.fetchIfNeeded()
+//                let questionId = questionAnswerList[i].value(forKey: DBColumn.questionId) as? String ?? ""
+                let currentDataQuestionId = data.object?.value(forKey: DBColumn.objectId) as? String ?? ""
+                if questionId == currentDataQuestionId {
+                    questionAnswerList.remove(at: i)
+                    break
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        questionAnswerList.append(data.userSavedOptionObject!)
+        
+        if questionType == QuestionType.mandatory.rawValue {
+            PFUser.current()?.setValue(questionAnswerList, forKey: DBColumn.mandatoryQuestionAnswersList)
+        } else {
+            PFUser.current()?.setValue(questionAnswerList, forKey: DBColumn.optionalQuestionAnswersList)
+        }
+        
+        SVProgressHUD.show()
+        ParseAPIManager.updateUserObject() { (success) in
+            SVProgressHUD.dismiss()
+            if success {
+//                APP_MANAGER.session = PFUser.current()
+                print("Current user questionAnswersList updated")
+            } else {
+                print("Failed to update current user questionAnswersList")
+            }
+        } onFailure: { (error) in
+            print("Failed to update current user questionAnswersList. Error: \(error)")
+        }
+        
+    }
+    
+    
     
 }

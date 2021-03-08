@@ -85,12 +85,13 @@ class ProfileVC: BaseViewController {
             self.viewRefresh.isHidden = false
             let userLocation = self.user.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelDistance.text = Utilities.shared.getDistance(userLocation: userLocation)
-            self.labelMatchPercentage.text = "95%"
+            let percentage = self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: self.user)
+            self.labelMatchPercentage.text = "\(percentage)%\nMatch"
             self.labelDistance.isHidden = false
             self.progressView.isHidden = false
             self.progressView.startAngle = -90
             self.progressView.style = .ontop
-            self.progressView.startProgress(to: 95, duration: 0.1)
+            self.progressView.startProgress(to: CGFloat(percentage), duration: 0.1)
         }
         
     }

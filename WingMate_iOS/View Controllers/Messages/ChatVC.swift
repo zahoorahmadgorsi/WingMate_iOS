@@ -22,7 +22,10 @@ class ChatVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile)
+//        self.previewImage(imageView: self.imageViewProfile)
+        let vc = ProfileVC(user: APP_MANAGER.session!)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

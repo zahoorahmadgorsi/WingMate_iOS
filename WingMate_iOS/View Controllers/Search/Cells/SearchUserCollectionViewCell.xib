@@ -112,6 +112,7 @@
             <connections>
                 <outlet property="imageViewPhoto" destination="1XX-wg-Llo" id="Wj1-cf-QTh"/>
                 <outlet property="labelLocation" destination="yq7-yG-QOK" id="O64-z6-oq4"/>
+                <outlet property="labelMatchPercentage" destination="I0O-kO-pMJ" id="j8A-Y5-RK0"/>
                 <outlet property="labelName" destination="LSb-Hx-7Ia" id="7q5-sv-by0"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="118.86160714285714"/>

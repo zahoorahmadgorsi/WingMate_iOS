@@ -317,7 +317,9 @@ struct ParseAPIManager {
     static func searchUsers(data: UserProfileQuestion, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
         query = PFQuery(className: DBTable.userAnswer)
-        query.includeKeys([DBColumn.optionsObjArray, DBColumn.userId])
+        
+        query.includeKeys([DBColumn.userId, "\(DBColumn.userId).\(DBColumn.optionalQuestionAnswersList)", "\(DBColumn.userId).\(DBColumn.mandatoryQuestionAnswersList)", "\(DBColumn.userId).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.userId).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.userId).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.userId).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
+        
         
         query.whereKey(DBColumn.optionsObjArray, containedIn: data.getUserSelectedOptionsArray())
 
@@ -360,8 +362,11 @@ struct ParseAPIManager {
     static func getMyFans(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         let query = PFQuery(className: DBTable.fans)
         query.whereKey(DBColumn.toUser, equalTo: APP_MANAGER.session!)
-        query.includeKey(DBColumn.toUser)
-        query.includeKey(DBColumn.fromUser)
+        
+        query.includeKeys([DBColumn.fromUser, DBColumn.toUser, "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList)", "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
+        
+        
+        
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

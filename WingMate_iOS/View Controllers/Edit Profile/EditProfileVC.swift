@@ -106,6 +106,8 @@ extension EditProfileVC: UITableViewDelegate, UITableViewDataSource {
             self?.data![indexPath.row].userAnswerObject = updatedUserAnswer
             self?.tableViewQuestions.reloadData()
             self?.isProfileUpdated = true
+            let questionLists = self?.presenter.filterQuestionLists(data: self?.data)
+            self?.presenter.updateQuestionListsInUserTable(mandatoryQuestionList: questionLists!.0, optionalQuestionList: questionLists!.1)
         }
         self.present(vc, animated: true, completion: nil)
     }
@@ -132,6 +134,15 @@ extension EditProfileVC: EditProfileDelegate {
                     self.cstHeightTableView.constant = self.tableViewQuestions.contentSize.height
                 }
             }
+        } else {
+            self.showToast(message: msg)
+        }
+    }
+    
+    func editProfile(isSuccess: Bool, msg: String, questionsList: ([PFObject], [PFObject])) {
+        if isSuccess {
+//            self.showToast(message: msg)
+            print(msg)
         } else {
             self.showToast(message: msg)
         }

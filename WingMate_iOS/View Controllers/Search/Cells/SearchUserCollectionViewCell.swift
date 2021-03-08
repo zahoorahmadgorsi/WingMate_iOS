@@ -13,6 +13,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var imageViewPhoto: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
+    @IBOutlet weak var labelMatchPercentage: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +25,8 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? ""), age"
             let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
+            print((self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: data!)))
+            self.labelMatchPercentage.text = "\(self.getPercentageMatch(currentUser: PFUser.current()!, otherUser: data!))% Match"
         }
     }
     

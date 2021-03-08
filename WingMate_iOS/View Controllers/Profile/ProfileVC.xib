@@ -168,7 +168,7 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isClockwise" value="YES"/>
                                         <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
-                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldDrawMinValueKnob" value="NO"/>
