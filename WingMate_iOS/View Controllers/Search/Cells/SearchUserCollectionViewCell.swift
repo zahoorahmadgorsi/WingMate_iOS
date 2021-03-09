@@ -41,7 +41,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             self.setImageWithUrl(imgUrl: dataUsers?.user?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
             let ageString = self.getAge(otherUser: dataUsers!.user!)
             self.labelName.text = "\(dataUsers?.user?.value(forKey: "nick") as? String ?? ""), \(ageString)"
-            let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
+            let userLocation = dataUsers?.user?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             let percentage = self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: dataUsers!.user!)
             self.labelMatchPercentage.text = "\(percentage)% Match"
