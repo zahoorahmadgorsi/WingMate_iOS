@@ -26,8 +26,14 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
         didSet {
             self.imageViewHeart.isHidden = true
             self.setImageWithUrl(imgUrl: data?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            let ageString = self.getAge(otherUser: data!)
-            self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? ""), \(ageString)"
+//            let ageString = self.getAge(otherUser: data!)
+//            self.labelName.text = "\(data?.value(forKey: "nick") as? String ?? "")"
+            
+            let nickname = data?.value(forKey: "nick") as? String ?? ""
+            let arr = nickname.split(separator: " ")
+            let name = arr.count > 0 ? String(arr[0]) : nickname
+            self.labelName.text = name
+            
             let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: data!))% Match"
@@ -39,8 +45,15 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
         didSet {
             self.imageViewHeart.isHidden = true
             self.setImageWithUrl(imgUrl: dataUsers?.user?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            let ageString = self.getAge(otherUser: dataUsers!.user!)
-            self.labelName.text = "\(dataUsers?.user?.value(forKey: "nick") as? String ?? ""), \(ageString)"
+//            let ageString = self.getAge(otherUser: dataUsers!.user!)
+//            self.labelName.text = "\(dataUsers?.user?.value(forKey: "nick") as? String ?? "")"
+            
+            let nickname = dataUsers?.user?.value(forKey: "nick") as? String ?? ""
+            let arr = nickname.split(separator: " ")
+            let name = arr.count > 0 ? String(arr[0]) : nickname
+            self.labelName.text = name
+            
+            
             let userLocation = dataUsers?.user?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             let percentage = self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: dataUsers!.user!)
@@ -58,8 +71,11 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
         didSet {
             let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
             self.setImageWithUrl(imgUrl: fromUser?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
-            let ageString = self.getAge(otherUser: fromUser!)
-            self.labelName.text = "\(fromUser?.value(forKey: "nick") as? String ?? ""), \(ageString)"
+//            let ageString = self.getAge(otherUser: fromUser!)
+            let nickname = fromUser?.value(forKey: "nick") as? String ?? ""
+            let arr = nickname.split(separator: " ")
+            let name = arr.count > 0 ? String(arr[0]) : nickname
+            self.labelName.text = name
             let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))% Match"

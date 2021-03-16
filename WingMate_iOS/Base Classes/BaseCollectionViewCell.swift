@@ -57,19 +57,6 @@ class BaseCollectionViewCell: UICollectionViewCell {
         var myOptions = myUserOptions
         var userOptions = [PFObject]()
         
-//        do {
-//            let myUserAnswers = try currentUser.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
-//            if myUserAnswers.count > 0 {
-//                for i in myUserAnswers {
-//                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
-//                    myOptions.append(contentsOf: optionsObjArr)
-//                }
-//            }
-//
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-        
         let otherUserAnswers = otherUser.value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
         if otherUserAnswers.count > 0 {
             for i in otherUserAnswers {

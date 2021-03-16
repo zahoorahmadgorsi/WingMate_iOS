@@ -10,6 +10,7 @@ import UICircularProgressRing
 import Parse
 import AVKit
 import SVProgressHUD
+import ImageSlideShowSwift
 
 class ProfileVC: BaseViewController {
     
@@ -159,17 +160,52 @@ class ProfileVC: BaseViewController {
         }
     }
     
+    func showImagesInSlider() {
+        var images: [Image] = []
+        for i in self.dataUserPhotosVideo {
+            images.append(Image(title: "", url: URL(string: i.uploadFileUrl ?? "")!))
+        }
+        
+        ImageSlideShowViewController.presentFrom(self){ [weak self] controller in
+            
+            controller.dismissOnPanGesture = true
+            controller.slides = images
+            controller.enableZoom = true
+            controller.controllerDidDismiss = {
+                debugPrint("Controller Dismissed")
+                
+                debugPrint("last index viewed: \(controller.currentIndex)")
+            }
+            
+            controller.slideShowViewDidLoad = {
+                debugPrint("Did Load")
+            }
+            
+            controller.slideShowViewWillAppear = { animated in
+                debugPrint("Will Appear Animated: \(animated)")
+            }
+            
+            controller.slideShowViewDidAppear = { animated in
+                debugPrint("Did Appear Animated: \(animated)")
+            }
+            
+        }
+    }
+    
     //MARK: - Button Actions
     @IBAction func image1ButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile1)
+//        self.previewImage(imageView: self.imageViewProfile1)
+        self.showImagesInSlider()
     }
     
     @IBAction func image2ButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile2)
+//        self.previewImage(imageView: self.imageViewProfile2)
+        self.showImagesInSlider()
     }
     
     @IBAction func image3ButtonPressed(_ sender: Any) {
-        self.previewImage(imageView: self.imageViewProfile3)
+//        self.previewImage(imageView: self.imageViewProfile3)
+        self.showImagesInSlider()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -399,5 +435,40 @@ extension ProfileVC: ProfileDelegate {
                 self.enableUserInteractionButtons()
             }
         }
+    }
+}
+
+
+class Image: NSObject, ImageSlideShowProtocol
+{
+    private let url: URL
+    let title: String?
+    
+    init(title: String, url: URL) {
+        self.title = title
+        self.url = url
+    }
+    
+    func slideIdentifier() -> String {
+        return String(describing: url)
+    }
+    
+    func image(completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void) {
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        session.dataTask(with: self.url) { data, response, error in
+            
+            if let data = data, error == nil
+            {
+                let image = UIImage(data: data)
+                completion(image, nil)
+            }
+            else
+            {
+                completion(nil, error)
+            }
+            
+        }.resume()
+        
     }
 }
