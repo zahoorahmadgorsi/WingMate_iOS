@@ -63,7 +63,7 @@ class DashboardVC: BaseViewController {
     
     func addPullToRefresh() {
         self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        self.collectionViewUsers.addSubview(refreshControl)
+        self.collectionViewUsers.refreshControl = refreshControl
     }
     
     @objc func refresh(_ sender: AnyObject) {

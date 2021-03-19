@@ -160,7 +160,7 @@ class ProfileVC: BaseViewController {
         }
     }
     
-    func showImagesInSlider() {
+    func showImagesInSlider(indexSelected: Int) {
         var images: [Image] = []
         for i in self.dataUserPhotosVideo {
             images.append(Image(title: "", url: URL(string: i.uploadFileUrl ?? "")!))
@@ -170,6 +170,7 @@ class ProfileVC: BaseViewController {
             
             controller.dismissOnPanGesture = true
             controller.slides = images
+            controller.initialIndex = indexSelected
             controller.enableZoom = true
             controller.controllerDidDismiss = {
                 debugPrint("Controller Dismissed")
@@ -195,17 +196,17 @@ class ProfileVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func image1ButtonPressed(_ sender: Any) {
 //        self.previewImage(imageView: self.imageViewProfile1)
-        self.showImagesInSlider()
+        self.showImagesInSlider(indexSelected: 0)
     }
     
     @IBAction func image2ButtonPressed(_ sender: Any) {
 //        self.previewImage(imageView: self.imageViewProfile2)
-        self.showImagesInSlider()
+        self.showImagesInSlider(indexSelected: 1)
     }
     
     @IBAction func image3ButtonPressed(_ sender: Any) {
 //        self.previewImage(imageView: self.imageViewProfile3)
-        self.showImagesInSlider()
+        self.showImagesInSlider(indexSelected: 2)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

@@ -86,7 +86,9 @@ class SearchPresenter {
             }
             if totalCount == totalQuestionsMarkedByUser {
                 if (uniqueUsersData.map({$0.objectId}).contains(userObjToMatch?.objectId!) == false) {
-                    if userObjToMatch?.objectId != APP_MANAGER.session?.objectId {
+                    let userObjToMatchGender = userObjToMatch?.value(forKey: DBColumn.gender) as? String ?? "Male"
+                    let currentUserGender = APP_MANAGER.session?.value(forKey: DBColumn.gender) as? String ?? "Male"
+                    if (userObjToMatch?.objectId != APP_MANAGER.session?.objectId) && (userObjToMatchGender != currentUserGender) {
                         uniqueUsersData.append(userObjToMatch!)
                     }
                 }
