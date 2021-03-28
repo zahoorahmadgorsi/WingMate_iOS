@@ -23,6 +23,7 @@ class SearchVC: BaseViewController {
     var isFiltersMode = true
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
+    var sliderRangeValue = RangeMeters.range1.rawValue
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +91,7 @@ class SearchVC: BaseViewController {
     
     func registerTableViewCells() {
         self.tableViewFilters.register(UINib(nibName: EditProfileUserQuestionTableViewCell.className, bundle: nil), forCellReuseIdentifier: EditProfileUserQuestionTableViewCell.className)
+        self.tableViewFilters.register(UINib(nibName: SliderTableViewCell.className, bundle: nil), forCellReuseIdentifier: SliderTableViewCell.className)
         self.collectionViewSearchRecords.register(UINib(nibName: SearchUserCollectionViewCell.className, bundle: nil), forCellWithReuseIdentifier: SearchUserCollectionViewCell.className)
     }
     
@@ -107,13 +109,7 @@ class SearchVC: BaseViewController {
             self.buttonSearch.setTitle("Search", for: .normal)
             self.showFiltersTableView()
         } else {
-            self.buttonSearch.setTitle("Search Again", for: .normal)
-            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions)
-            if self.searchedUsers.count > 0 {
-                self.showSearchedRecordsTableView()
-            } else {
-                self.showNoRecordsView()
-            }
+            self.presenter.searchUsersByDistance(distanceInMeters: 100000)
         }
     }
     
@@ -126,9 +122,18 @@ class SearchVC: BaseViewController {
 
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: EditProfileUserQuestionTableViewCell.className, for: indexPath) as! EditProfileUserQuestionTableViewCell
-        cell.data = self.dataQuestions?[indexPath.row]
-        return cell
+        if indexPath.item == (self.dataQuestions?.count ?? 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SliderTableViewCell.className, for: indexPath) as! SliderTableViewCell
+            cell.sliderValueChanged = { [weak self] value in
+                print("VALUE IS: \(value)")
+                self?.sliderRangeValue = value
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: EditProfileUserQuestionTableViewCell.className, for: indexPath) as! EditProfileUserQuestionTableViewCell
+            cell.data = self.dataQuestions?[indexPath.row]
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -146,7 +151,11 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataQuestions?.count ?? 0
+        if self.dataQuestions?.count ?? 0 > 0 {
+            return (self.dataQuestions?.count ?? 0 ) + 1
+        } else {
+            return 0
+        }
     }
 }
 
@@ -196,6 +205,18 @@ extension SearchVC: SearchDelegate {
             self.dataQuestions?[index].searchedRecords = searchResults
         } else {
             self.showToast(message: msg)
+        }
+    }
+    
+    func search(isSuccess: Bool, msg: String, searchResultsByLocation: [PFObject]) {
+        if isSuccess {
+            self.buttonSearch.setTitle("Search Again", for: .normal)
+            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: [])
+            if self.searchedUsers.count > 0 {
+                self.showSearchedRecordsTableView()
+            } else {
+                self.showNoRecordsView()
+            }
         }
     }
 }

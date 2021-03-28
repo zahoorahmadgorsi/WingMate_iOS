@@ -12,6 +12,7 @@ import SVProgressHUD
 protocol SearchDelegate {
     func search(isSuccess: Bool, msg: String, questions: [PFObject])
     func search(isSuccess: Bool, msg: String, searchResults: [PFObject], index: Int)
+    func search(isSuccess: Bool, msg: String, searchResultsByLocation: [PFObject])
 }
 
 class SearchPresenter {
@@ -62,8 +63,35 @@ class SearchPresenter {
         }
     }
     
-    func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?) -> [PFUser] {
+    func searchUsersByDistance(distanceInMeters: Int) {
+        SVProgressHUD.show()
+        ParseAPIManager.getUsersBasedOnDistance(distanceInMeters: distanceInMeters) { (success, data) in
+            SVProgressHUD.dismiss()
+            self.delegate?.search(isSuccess: true, msg: "", searchResultsByLocation: data)
+        } onFailure: { (error) in
+            SVProgressHUD.dismiss()
+            self.delegate?.search(isSuccess: false, msg: error, searchResultsByLocation: [])
+        }
+    }
+    
+    func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?, dataUsersWithLocation: [PFObject]?) -> [PFUser] {
         var searchArray = [PFObject]()
+        var uniqueUsersData = [PFUser]()
+//        if dataQuestions?.count ?? 0 == 0 {
+//            var recordsFound = false
+//            for i in dataQuestions ?? [] {
+//                if i.searchedRecords?.count ?? 0 > 0 {
+//                    recordsFound = true
+//                    break
+//                }
+//            }
+//            if recordsFound == false {
+//                for i in dataUsersWithLocation ?? [] { //only get users from location based because user has not filled any questions or no
+//                    uniqueUsersData.append(i as! PFUser)
+//                }m
+//            }
+//        }
+        
         var totalQuestionsMarkedByUser = 0
         for i in dataQuestions ?? [] {
             if i.userAnswerObject != nil {
@@ -74,12 +102,18 @@ class SearchPresenter {
             }
         }
         
-        var uniqueUsersData = [PFUser]()
+        if dataUsersWithLocation?.count ?? 0 > 0 { //also found results via location based
+            totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
+            for i in dataUsersWithLocation ?? [] {
+                searchArray.append(i)
+            }
+        }
+        
         for i in searchArray {
             var totalCount = 0
-            let userObjToMatch = i.value(forKey: DBColumn.userId) as? PFUser
+            let userObjToMatch = i.value(forKey: DBColumn.userId) as? PFUser ?? i as? PFUser
             for j in searchArray {
-                let iteratedUserObj = j.value(forKey: DBColumn.userId) as? PFUser
+                let iteratedUserObj = j.value(forKey: DBColumn.userId) as? PFUser ?? j as? PFUser
                 if (userObjToMatch?.objectId ?? "") == (iteratedUserObj?.objectId ?? "") {
                     totalCount = totalCount + 1
                 }
@@ -94,6 +128,8 @@ class SearchPresenter {
                 }
             }
         }
+        
+        
         print("Total users found: \(uniqueUsersData.count)")
         return uniqueUsersData
     }

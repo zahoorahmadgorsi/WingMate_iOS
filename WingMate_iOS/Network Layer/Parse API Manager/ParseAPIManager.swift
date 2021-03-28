@@ -338,6 +338,30 @@ struct ParseAPIManager {
         }
     }
     
+    static func getUsersBasedOnDistance(distanceInMeters: Int, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
+        let query = PFUser.query()!
+        let geoPoint = PFUser.current()?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint
+        if geoPoint != nil {
+            query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.currentLocation, nearGeoPoint: geoPoint!, withinKilometers: Double(distanceInMeters/1000))
+            query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
+            
+            query.findObjectsInBackground {(objects, error) in
+                if let error = error {
+                    onFailure(error.localizedDescription)
+                }
+                else {
+                    if let objs = objects {
+                        onSuccess(true, objs)
+                    } else {
+                        onFailure("No objects found")
+                    }
+                }
+            }
+        } else {
+            
+        }
+    }
+    
     //MARK: - Dashboard APIs
     static func getDashboardUsers(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         let query = PFUser.query()!

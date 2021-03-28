@@ -36,5 +36,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23C3E054-FC86-49E4-B2BB-1483D8A25228"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Search/SearchVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "search(isSuccess:msg:searchResultsByLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "837B98C2-360D-47F6-8892-93D48D78EE67"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Search/SearchPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "getCommonUsersAppearedInAllQueries(dataQuestions:dataUsersWithLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9464B531-E945-43D5-BB17-D4F01F88DAF1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Search/SearchPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "getCommonUsersAppearedInAllQueries(dataQuestions:dataUsersWithLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1913216C-F2CA-4886-99D9-126B9F479C44"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Search/SearchPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "getCommonUsersAppearedInAllQueries(dataQuestions:dataUsersWithLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B284D838-5BDD-4CE5-AE4C-24DC8E0A9355"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WingMate_iOS/View Controllers/Search/SearchPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "getCommonUsersAppearedInAllQueries(dataQuestions:dataUsersWithLocation:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B284D838-5BDD-4CE5-AE4C-24DC8E0A9355 - 4a65e8deaab8c7f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WingMate_iOS.SearchPresenter.getCommonUsersAppearedInAllQueries(dataQuestions: Swift.Optional&lt;Swift.Array&lt;WingMate_iOS.UserProfileQuestion&gt;&gt;, dataUsersWithLocation: Swift.Optional&lt;Swift.Array&lt;__C.PFObject&gt;&gt;) -&gt; Swift.Array&lt;__C.PFUser&gt;"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Reference%20Projects/Others/Wingmate/WingMate_iOS/View%20Controllers/Search/SearchPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "5635">
+               </Location>
+               <Location
+                  uuid = "B284D838-5BDD-4CE5-AE4C-24DC8E0A9355 - 34e8b7befbd7bc9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.PFUser) -&gt; Swift.Optional&lt;Swift.String&gt; in WingMate_iOS.SearchPresenter.getCommonUsersAppearedInAllQueries(dataQuestions: Swift.Optional&lt;Swift.Array&lt;WingMate_iOS.UserProfileQuestion&gt;&gt;, dataUsersWithLocation: Swift.Optional&lt;Swift.Array&lt;__C.PFObject&gt;&gt;) -&gt; Swift.Array&lt;__C.PFUser&gt;"
+                  moduleName = "WingMate_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Reference%20Projects/Others/Wingmate/WingMate_iOS/View%20Controllers/Search/SearchPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

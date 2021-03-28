@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04FFB7EB260D04FD000CA37D /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB7E9260D04FD000CA37D /* SliderTableViewCell.swift */; };
+		04FFB7EC260D04FD000CA37D /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FFB7EA260D04FD000CA37D /* SliderTableViewCell.xib */; };
 		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
 		52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
@@ -134,6 +136,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04FFB7E9260D04FD000CA37D /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
+		04FFB7EA260D04FD000CA37D /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
 		09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WingMate_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseAPIManager.swift; sourceTree = "<group>"; };
 		70517DE6A53286DDC37984C3 /* Pods-WingMate_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WingMate_iOS.release.xcconfig"; path = "Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -371,6 +375,8 @@
 			children = (
 				FA0669BC25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift */,
 				FA0669BD25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib */,
+				04FFB7E9260D04FD000CA37D /* SliderTableViewCell.swift */,
+				04FFB7EA260D04FD000CA37D /* SliderTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -890,6 +896,7 @@
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
+				04FFB7EC260D04FD000CA37D /* SliderTableViewCell.xib in Resources */,
 				FAB4A9AF25DA84100065D23D /* SearchUserCollectionViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
@@ -977,6 +984,7 @@
 				FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */,
 				FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */,
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
+				04FFB7EB260D04FD000CA37D /* SliderTableViewCell.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA0669D225B6DF6D00D0786E /* OptionSelectionVC.swift in Sources */,
