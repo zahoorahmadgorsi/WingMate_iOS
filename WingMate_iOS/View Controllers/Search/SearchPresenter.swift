@@ -76,22 +76,6 @@ class SearchPresenter {
     
     func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?, dataUsersWithLocation: [PFObject]?) -> [PFUser] {
         var searchArray = [PFObject]()
-        var uniqueUsersData = [PFUser]()
-//        if dataQuestions?.count ?? 0 == 0 {
-//            var recordsFound = false
-//            for i in dataQuestions ?? [] {
-//                if i.searchedRecords?.count ?? 0 > 0 {
-//                    recordsFound = true
-//                    break
-//                }
-//            }
-//            if recordsFound == false {
-//                for i in dataUsersWithLocation ?? [] { //only get users from location based because user has not filled any questions or no
-//                    uniqueUsersData.append(i as! PFUser)
-//                }m
-//            }
-//        }
-        
         var totalQuestionsMarkedByUser = 0
         for i in dataQuestions ?? [] {
             if i.userAnswerObject != nil {
@@ -102,13 +86,15 @@ class SearchPresenter {
             }
         }
         
-        if dataUsersWithLocation?.count ?? 0 > 0 { //also found results via location based
-            totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
-            for i in dataUsersWithLocation ?? [] {
-                searchArray.append(i)
-            }
+        for i in dataUsersWithLocation ?? [] {
+            searchArray.append(i as! PFUser)
         }
         
+        if dataUsersWithLocation?.count ?? 0 > 0 {
+            totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
+        }
+        
+        var uniqueUsersData = [PFUser]()
         for i in searchArray {
             var totalCount = 0
             let userObjToMatch = i.value(forKey: DBColumn.userId) as? PFUser ?? i as? PFUser
@@ -120,15 +106,16 @@ class SearchPresenter {
             }
             if totalCount == totalQuestionsMarkedByUser {
                 if (uniqueUsersData.map({$0.objectId}).contains(userObjToMatch?.objectId!) == false) {
-                    let userObjToMatchGender = userObjToMatch?.value(forKey: DBColumn.gender) as? String ?? "Male"
-                    let currentUserGender = APP_MANAGER.session?.value(forKey: DBColumn.gender) as? String ?? "Male"
-                    if (userObjToMatch?.objectId != APP_MANAGER.session?.objectId) && (userObjToMatchGender != currentUserGender) {
+                    if userObjToMatch?.objectId != APP_MANAGER.session?.objectId {
                         uniqueUsersData.append(userObjToMatch!)
                     }
                 }
             }
         }
         
+        if dataUsersWithLocation?.count ?? 0 == 0 {
+            uniqueUsersData.removeAll() //because no userss found from location api, so there will be no users to check for common users
+        }
         
         print("Total users found: \(uniqueUsersData.count)")
         return uniqueUsersData

@@ -82,12 +82,13 @@ class BaseViewController: UIViewController {
         let asset = AVAsset(url: URL(string: url)!)
         let assetImgGenerate = AVAssetImageGenerator(asset: asset)
         assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(Float64(1), preferredTimescale: 100)
+        let time = CMTimeMakeWithSeconds(Float64(1), preferredTimescale: 1)
         do {
             let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
             let thumbnail = UIImage(cgImage: img)
             return thumbnail
-        } catch {
+        } catch let error {
+            print("*** Error generating thumbnail: \(error.localizedDescription)")
             return UIImage()
         }
     }

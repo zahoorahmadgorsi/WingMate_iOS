@@ -109,7 +109,7 @@ class SearchVC: BaseViewController {
             self.buttonSearch.setTitle("Search", for: .normal)
             self.showFiltersTableView()
         } else {
-            self.presenter.searchUsersByDistance(distanceInMeters: 100000)
+            self.presenter.searchUsersByDistance(distanceInMeters: self.sliderRangeValue)
         }
     }
     
@@ -211,7 +211,7 @@ extension SearchVC: SearchDelegate {
     func search(isSuccess: Bool, msg: String, searchResultsByLocation: [PFObject]) {
         if isSuccess {
             self.buttonSearch.setTitle("Search Again", for: .normal)
-            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: [])
+            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: searchResultsByLocation)
             if self.searchedUsers.count > 0 {
                 self.showSearchedRecordsTableView()
             } else {
