@@ -28,11 +28,11 @@
                         <rect key="frame" x="8" y="0.0" width="182" height="165"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVf-6y-WCl">
-                                <rect key="frame" x="0.0" y="0.0" width="182" height="110"/>
+                                <rect key="frame" x="0.0" y="0.0" width="182" height="129"/>
                                 <color key="backgroundColor" name="RedThemeColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1XX-wg-Llo">
-                                <rect key="frame" x="8" y="8" width="166" height="120"/>
+                                <rect key="frame" x="4" y="4" width="174" height="124"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="16"/>
@@ -40,7 +40,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3i-Fj-G05">
-                                <rect key="frame" x="8" y="8" width="166" height="120"/>
+                                <rect key="frame" x="4" y="4" width="174" height="124"/>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.16078431372549018" blue="0.30980392156862746" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -49,12 +49,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="LVm-Y6-yOQ">
-                                <rect key="frame" x="150.5" y="10" width="21.5" height="21.5"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <rect key="frame" x="152.5" y="8" width="21.5" height="21.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name, age" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSb-Hx-7Ia">
                                 <rect key="frame" x="16" y="101" width="150" height="19"/>
@@ -102,29 +97,29 @@
                         </subviews>
                         <color key="backgroundColor" name="TextFieldBgColor"/>
                         <constraints>
+                            <constraint firstItem="LVm-Y6-yOQ" firstAttribute="trailing" secondItem="b3i-Fj-G05" secondAttribute="trailing" constant="-4" id="11s-SW-VAT"/>
                             <constraint firstItem="b3i-Fj-G05" firstAttribute="top" secondItem="1XX-wg-Llo" secondAttribute="top" id="3zb-vc-EwU"/>
                             <constraint firstAttribute="trailing" secondItem="LSb-Hx-7Ia" secondAttribute="trailing" constant="16" id="5T8-cP-Pgk"/>
                             <constraint firstItem="UgY-K4-5n8" firstAttribute="top" secondItem="Ghe-WW-AUa" secondAttribute="bottom" id="6GU-aF-vcT"/>
                             <constraint firstItem="b3i-Fj-G05" firstAttribute="leading" secondItem="1XX-wg-Llo" secondAttribute="leading" id="BFy-11-pnQ"/>
                             <constraint firstItem="dVf-6y-WCl" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" id="Bww-eZ-6dv"/>
                             <constraint firstItem="Ghe-WW-AUa" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="Hn1-A0-drR"/>
-                            <constraint firstAttribute="trailing" secondItem="LVm-Y6-yOQ" secondAttribute="trailing" constant="10" id="MLq-NU-aOU"/>
+                            <constraint firstItem="LVm-Y6-yOQ" firstAttribute="top" secondItem="b3i-Fj-G05" secondAttribute="top" constant="4" id="MOe-Al-P7r"/>
+                            <constraint firstItem="dVf-6y-WCl" firstAttribute="bottom" secondItem="Ghe-WW-AUa" secondAttribute="bottom" id="MTf-V9-7XZ"/>
                             <constraint firstItem="UgY-K4-5n8" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="MXN-Ze-VNT"/>
                             <constraint firstItem="dVf-6y-WCl" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" id="Oz1-ty-KnH"/>
-                            <constraint firstItem="1XX-wg-Llo" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="8" id="Y9R-Jw-b4N"/>
-                            <constraint firstItem="LVm-Y6-yOQ" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" constant="10" id="Zhi-nr-IaA"/>
+                            <constraint firstItem="1XX-wg-Llo" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="4" id="Y9R-Jw-b4N"/>
                             <constraint firstItem="b3i-Fj-G05" firstAttribute="trailing" secondItem="1XX-wg-Llo" secondAttribute="trailing" id="a8u-i5-syb"/>
                             <constraint firstAttribute="trailing" secondItem="dVf-6y-WCl" secondAttribute="trailing" id="dqL-cP-nNC"/>
                             <constraint firstAttribute="trailing" secondItem="Ghe-WW-AUa" secondAttribute="trailing" id="gRr-iD-Flm"/>
-                            <constraint firstAttribute="trailing" secondItem="1XX-wg-Llo" secondAttribute="trailing" constant="8" id="hOq-cM-zVS"/>
+                            <constraint firstAttribute="trailing" secondItem="1XX-wg-Llo" secondAttribute="trailing" constant="4" id="hOq-cM-zVS"/>
                             <constraint firstItem="LSb-Hx-7Ia" firstAttribute="leading" secondItem="gih-Xt-SQT" secondAttribute="leading" constant="16" id="j10-hW-ZV8"/>
-                            <constraint firstItem="1XX-wg-Llo" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" constant="8" id="kDS-xB-8bL"/>
+                            <constraint firstItem="1XX-wg-Llo" firstAttribute="top" secondItem="gih-Xt-SQT" secondAttribute="top" constant="4" id="kDS-xB-8bL"/>
                             <constraint firstItem="b3i-Fj-G05" firstAttribute="bottom" secondItem="1XX-wg-Llo" secondAttribute="bottom" id="mqd-Zu-hC2"/>
                             <constraint firstAttribute="bottom" secondItem="UgY-K4-5n8" secondAttribute="bottom" id="taf-7a-ZPE"/>
                             <constraint firstItem="Ghe-WW-AUa" firstAttribute="top" secondItem="1XX-wg-Llo" secondAttribute="bottom" id="tnb-8b-fny"/>
                             <constraint firstAttribute="trailing" secondItem="UgY-K4-5n8" secondAttribute="trailing" id="wDs-sl-2Ik"/>
                             <constraint firstItem="Ghe-WW-AUa" firstAttribute="top" secondItem="LSb-Hx-7Ia" secondAttribute="bottom" constant="8" id="yPD-Ou-dmo"/>
-                            <constraint firstItem="dVf-6y-WCl" firstAttribute="bottom" secondItem="LSb-Hx-7Ia" secondAttribute="bottom" constant="-10" id="yVX-JW-22Z"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
