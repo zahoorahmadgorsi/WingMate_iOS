@@ -23,7 +23,7 @@ class SearchVC: BaseViewController {
     var isFiltersMode = true
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
-    var sliderRangeValue = RangeMeters.range1.rawValue
+    var sliderRangeValue = RangeMeters.range0.rawValue
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +109,17 @@ class SearchVC: BaseViewController {
             self.buttonSearch.setTitle("Search", for: .normal)
             self.showFiltersTableView()
         } else {
-            self.presenter.searchUsersByDistance(distanceInMeters: self.sliderRangeValue)
+            if self.sliderRangeValue == RangeMeters.range0.rawValue {
+                self.buttonSearch.setTitle("Search Again", for: .normal)
+                self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: [], isDistanceRangeApplied: false)
+                if self.searchedUsers.count > 0 {
+                    self.showSearchedRecordsTableView()
+                } else {
+                    self.showNoRecordsView()
+                }
+            } else {
+                self.presenter.searchUsersByDistance(distanceInMeters: self.sliderRangeValue)
+            }
         }
     }
     
@@ -211,7 +221,7 @@ extension SearchVC: SearchDelegate {
     func search(isSuccess: Bool, msg: String, searchResultsByLocation: [PFObject]) {
         if isSuccess {
             self.buttonSearch.setTitle("Search Again", for: .normal)
-            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: searchResultsByLocation)
+            self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: searchResultsByLocation, isDistanceRangeApplied: true)
             if self.searchedUsers.count > 0 {
                 self.showSearchedRecordsTableView()
             } else {

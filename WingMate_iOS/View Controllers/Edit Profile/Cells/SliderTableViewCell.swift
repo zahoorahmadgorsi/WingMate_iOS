@@ -15,7 +15,7 @@ class SliderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.labelSelectedRange.text = RangeSelectedString.range1.rawValue + " selected"
+        self.labelSelectedRange.text = RangeSelectedString.range0.rawValue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,46 +26,50 @@ class SliderTableViewCell: UITableViewCell {
         let val = Int(self.sliderRanges.value)
         switch val {
         case 0:
+            self.labelSelectedRange.text = RangeSelectedString.range0.rawValue
+            self.sliderValueChanged?(RangeMeters.range0.rawValue)
+            break
+        case 1:
             self.labelSelectedRange.text = RangeSelectedString.range1.rawValue
             self.sliderValueChanged?(RangeMeters.range1.rawValue)
             break
-        case 1:
+        case 2:
             self.labelSelectedRange.text = RangeSelectedString.range2.rawValue
             self.sliderValueChanged?(RangeMeters.range2.rawValue)
             break
-        case 2:
+        case 3:
             self.labelSelectedRange.text = RangeSelectedString.range3.rawValue
             self.sliderValueChanged?(RangeMeters.range3.rawValue)
             break
-        case 3:
+        case 4:
             self.labelSelectedRange.text = RangeSelectedString.range4.rawValue
             self.sliderValueChanged?(RangeMeters.range4.rawValue)
             break
-        case 4:
+        case 5:
             self.labelSelectedRange.text = RangeSelectedString.range5.rawValue
             self.sliderValueChanged?(RangeMeters.range5.rawValue)
             break
-        case 5:
+        case 6:
             self.labelSelectedRange.text = RangeSelectedString.range6.rawValue
             self.sliderValueChanged?(RangeMeters.range6.rawValue)
             break
-        case 6:
+        case 7:
             self.labelSelectedRange.text = RangeSelectedString.range7.rawValue
             self.sliderValueChanged?(RangeMeters.range7.rawValue)
             break
-        case 7:
+        case 8:
             self.labelSelectedRange.text = RangeSelectedString.range8.rawValue
             self.sliderValueChanged?(RangeMeters.range8.rawValue)
             break
-        case 8:
+        case 9:
             self.labelSelectedRange.text = RangeSelectedString.range9.rawValue
             self.sliderValueChanged?(RangeMeters.range9.rawValue)
             break
-        case 9:
+        case 10:
             self.labelSelectedRange.text = RangeSelectedString.range10.rawValue
             self.sliderValueChanged?(RangeMeters.range10.rawValue)
             break
-        case 10:
+        case 11:
             self.labelSelectedRange.text = RangeSelectedString.range11.rawValue
             self.sliderValueChanged?(RangeMeters.range11.rawValue)
             break
@@ -73,12 +77,12 @@ class SliderTableViewCell: UITableViewCell {
             break
         }
         
-        self.labelSelectedRange.text = self.labelSelectedRange.text! + " selected"
     }
     
 }
 
 enum RangeSelectedString: String {
+    case range0 = "No distance selected"
     case range1 = "5m"
     case range2 = "10m"
     case range3 = "50m"
@@ -93,6 +97,7 @@ enum RangeSelectedString: String {
 }
 
 enum RangeMeters: Int {
+    case range0 = 0
     case range1 = 5
     case range2 = 10
     case range3 = 50

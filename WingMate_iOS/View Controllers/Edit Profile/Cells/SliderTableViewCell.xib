@@ -29,7 +29,7 @@
                         <color key="textColor" name="Label Gray Text Color"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kh9-8E-U60">
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="11" translatesAutoresizingMaskIntoConstraints="NO" id="Kh9-8E-U60">
                         <rect key="frame" x="2" y="42" width="316" height="31"/>
                         <color key="minimumTrackTintColor" name="RedThemeColor"/>
                         <connections>

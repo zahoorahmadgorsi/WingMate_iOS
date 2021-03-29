@@ -74,7 +74,7 @@ class SearchPresenter {
         }
     }
     
-    func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?, dataUsersWithLocation: [PFObject]?) -> [PFUser] {
+    func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?, dataUsersWithLocation: [PFObject]?, isDistanceRangeApplied: Bool) -> [PFUser] {
         var searchArray = [PFObject]()
         var totalQuestionsMarkedByUser = 0
         for i in dataQuestions ?? [] {
@@ -113,7 +113,7 @@ class SearchPresenter {
             }
         }
         
-        if dataUsersWithLocation?.count ?? 0 == 0 {
+        if (dataUsersWithLocation?.count ?? 0 == 0) && (isDistanceRangeApplied) {
             uniqueUsersData.removeAll() //because no userss found from location api, so there will be no users to check for common users
         }
         
