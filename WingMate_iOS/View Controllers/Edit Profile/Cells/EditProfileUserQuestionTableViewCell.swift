@@ -40,6 +40,8 @@ class EditProfileUserQuestionTableViewCell: UITableViewCell {
                 }
             }
             self.labelUserOption.text = selectedOptions
+            
+            
         }
     }
     

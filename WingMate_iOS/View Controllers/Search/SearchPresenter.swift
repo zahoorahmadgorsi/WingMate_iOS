@@ -107,7 +107,11 @@ class SearchPresenter {
             if totalCount == totalQuestionsMarkedByUser {
                 if (uniqueUsersData.map({$0.objectId}).contains(userObjToMatch?.objectId!) == false) {
                     if userObjToMatch?.objectId != APP_MANAGER.session?.objectId {
-                        uniqueUsersData.append(userObjToMatch!)
+                        let genderOtherUser = userObjToMatch?.value(forKey: DBColumn.gender) as? String ?? "Male"
+                        let genderMyUser = PFUser.current()?.value(forKey: DBColumn.gender) as? String ?? "Male"
+                        if genderOtherUser != genderMyUser {
+                            uniqueUsersData.append(userObjToMatch!)
+                        }
                     }
                 }
             }

@@ -15,10 +15,21 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var labelMatchPercentage: UILabel!
     @IBOutlet weak var imageViewHeart: UIImageView!
+    @IBOutlet weak var viewBottomGrey: UIView!
+    @IBOutlet weak var viewOpaque: UIView!
     var setPercentageMatchValue: ((Int)-> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.viewBottomGrey.clipsToBounds = true
+        self.viewBottomGrey.layer.cornerRadius = 16
+        self.viewBottomGrey.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        self.imageViewPhoto.clipsToBounds = true
+        self.imageViewPhoto.layer.cornerRadius = 16
+        self.imageViewPhoto.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        self.viewOpaque.clipsToBounds = true
+        self.viewOpaque.layer.cornerRadius = 16
+        self.viewOpaque.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]            
     }
     
     var myUserOptions = [PFObject]()
