@@ -719,8 +719,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-0s-V7h">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
-                                <color key="backgroundColor" name="PurpleThemeColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
+                                <color key="backgroundColor" name="RedThemeColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-dm-MjE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="110"/>
@@ -777,7 +777,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="PurpleThemeColor"/>
+                                <color key="backgroundColor" name="RedThemeColor"/>
                                 <constraints>
                                     <constraint firstItem="a1Q-ek-ahY" firstAttribute="leading" secondItem="kAh-dm-MjE" secondAttribute="leading" constant="16" id="9tm-t7-SJ3"/>
                                     <constraint firstItem="s79-fC-BoZ" firstAttribute="bottom" secondItem="e2o-p1-R57" secondAttribute="bottom" id="BeR-b6-dP2"/>
@@ -846,19 +846,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EML-zH-0wg" firstAttribute="bottom" secondItem="jXv-hG-Do8" secondAttribute="bottom" id="4JL-fm-xqh"/>
+                            <constraint firstItem="aGC-zO-hIz" firstAttribute="top" secondItem="kAh-dm-MjE" secondAttribute="bottom" constant="16" id="9jV-HO-Xzh"/>
                             <constraint firstItem="jXv-hG-Do8" firstAttribute="top" secondItem="aGC-zO-hIz" secondAttribute="bottom" constant="16" id="HS5-9T-bX4"/>
                             <constraint firstItem="EML-zH-0wg" firstAttribute="trailing" secondItem="aGC-zO-hIz" secondAttribute="trailing" constant="20" id="LWe-oJ-nmN"/>
                             <constraint firstItem="kAh-dm-MjE" firstAttribute="leading" secondItem="EML-zH-0wg" secondAttribute="leading" id="S99-Mg-7vf"/>
                             <constraint firstItem="EML-zH-0wg" firstAttribute="trailing" secondItem="kAh-dm-MjE" secondAttribute="trailing" id="ck7-PZ-R66"/>
                             <constraint firstItem="EML-zH-0wg" firstAttribute="trailing" secondItem="jXv-hG-Do8" secondAttribute="trailing" constant="12" id="dES-Vg-Smv"/>
                             <constraint firstItem="jXv-hG-Do8" firstAttribute="leading" secondItem="EML-zH-0wg" secondAttribute="leading" constant="12" id="fnW-Nb-3IN"/>
-                            <constraint firstItem="aGC-zO-hIz" firstAttribute="top" secondItem="bOX-0s-V7h" secondAttribute="bottom" constant="16" id="frQ-Tx-KKF"/>
                             <constraint firstItem="bOX-0s-V7h" firstAttribute="trailing" secondItem="EML-zH-0wg" secondAttribute="trailing" id="l7A-om-cu7"/>
                             <constraint firstItem="aGC-zO-hIz" firstAttribute="leading" secondItem="EML-zH-0wg" secondAttribute="leading" constant="20" id="lIV-Ua-e6d"/>
                             <constraint firstItem="bOX-0s-V7h" firstAttribute="leading" secondItem="EML-zH-0wg" secondAttribute="leading" id="nWv-xc-PUP"/>
                             <constraint firstItem="kAh-dm-MjE" firstAttribute="top" secondItem="EML-zH-0wg" secondAttribute="top" id="p0y-MG-kgh"/>
                             <constraint firstItem="bOX-0s-V7h" firstAttribute="top" secondItem="qjo-Nc-8Yo" secondAttribute="top" id="peL-3E-GPc"/>
-                            <constraint firstItem="bOX-0s-V7h" firstAttribute="bottom" secondItem="kAh-dm-MjE" secondAttribute="bottom" id="uc4-Yl-gKV"/>
+                            <constraint firstItem="bOX-0s-V7h" firstAttribute="bottom" secondItem="kAh-dm-MjE" secondAttribute="bottom" constant="-40" id="uc4-Yl-gKV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XJ5-xl-5AA"/>
@@ -867,6 +867,7 @@
                         <outlet property="imageViewProfile" destination="e2o-p1-R57" id="Gg0-uF-Csg"/>
                         <outlet property="labelAuthor" destination="D2Z-zN-Tte" id="Mrf-id-Q14"/>
                         <outlet property="labelQuote" destination="8C0-Nr-xjn" id="Lrz-5c-nGy"/>
+                        <outlet property="viewHeader" destination="kAh-dm-MjE" id="aeJ-JZ-vyA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uom-iP-ojG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

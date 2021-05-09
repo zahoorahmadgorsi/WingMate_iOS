@@ -16,6 +16,7 @@ class DashboardVC: BaseViewController {
     @IBOutlet weak var labelQuote: UILabel!
     @IBOutlet weak var labelAuthor: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView!
+    @IBOutlet weak var viewHeader: UIView!
     
     var presenter = DashboardPresenter()
     var dataUsers = [DashboardData]()
@@ -24,6 +25,7 @@ class DashboardVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setLayout()
         self.presenter.attach(vc: self)
         self.navigationController?.isNavigationBarHidden = true
         self.registerTableViewCells()
@@ -48,6 +50,12 @@ class DashboardVC: BaseViewController {
     }
     
     //MARK: - Helping Methods
+    func setLayout() {
+        self.viewHeader.clipsToBounds = true
+        self.viewHeader.layer.cornerRadius = 30
+        self.viewHeader.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    }
+    
     func setViewControllers() {
         let vc1 = DashboardVC() // UINavigationController(rootViewController: DashboardVC())
         let vc2 = SettingsVC() //UINavigationController(rootViewController: SettingsVC())
