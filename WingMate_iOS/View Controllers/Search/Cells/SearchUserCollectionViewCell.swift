@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import UICircularProgressRing
 
 class SearchUserCollectionViewCell: BaseCollectionViewCell {
 
@@ -17,19 +18,28 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var imageViewHeart: UIImageView!
     @IBOutlet weak var viewBottomGrey: UIView!
     @IBOutlet weak var viewOpaque: UIView!
+    @IBOutlet weak var progressView: UICircularProgressRing!
     var setPercentageMatchValue: ((Int)-> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewBottomGrey.clipsToBounds = true
-        self.viewBottomGrey.layer.cornerRadius = 16
-        self.viewBottomGrey.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        self.imageViewPhoto.clipsToBounds = true
-        self.imageViewPhoto.layer.cornerRadius = 16
-        self.imageViewPhoto.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+//        self.viewBottomGrey.clipsToBounds = true
+//        self.viewBottomGrey.layer.cornerRadius = 16
+//        self.viewBottomGrey.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+//        self.imageViewPhoto.clipsToBounds = true
+//        self.imageViewPhoto.layer.cornerRadius = 16
+//        self.imageViewPhoto.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         self.viewOpaque.clipsToBounds = true
-        self.viewOpaque.layer.cornerRadius = 16
-        self.viewOpaque.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]            
+//        self.viewOpaque.layer.cornerRadius = 16
+//        self.viewOpaque.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        self.setInitialProgressView()
+    }
+    
+    func setInitialProgressView() {
+        self.progressView.style = .ontop
+        self.progressView.minValue = 1
+        self.progressView.maxValue = 100
+        self.progressView.startAngle = -90
     }
     
     var myUserOptions = [PFObject]()
@@ -47,7 +57,9 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             
             let userLocation = data?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
-            self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: data!))% Match"
+            let percentage = self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: data!)
+            self.labelMatchPercentage.text = "\(percentage)%"
+            self.progressView.startProgress(to: CGFloat(percentage), duration: 0)
         }
     }
     
@@ -68,8 +80,8 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             let userLocation = dataUsers?.user?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
             let percentage = self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: dataUsers!.user!)
-            self.labelMatchPercentage.text = "\(percentage)% Match"
-            
+            self.labelMatchPercentage.text = "\(percentage)%"
+            self.progressView.startProgress(to: CGFloat(percentage), duration: 0)
             DispatchQueue.main.async {
                 self.setPercentageMatchValue?(percentage)
             }
@@ -89,7 +101,11 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
             self.labelName.text = name
             let userLocation = fromUser?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint ?? PFGeoPoint()
             self.labelLocation.text = Utilities.shared.getDistance(userLocation: userLocation)
-            self.labelMatchPercentage.text = "\(self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))% Match"
+            
+            let percentage = (self.getPercentageMatch(myUserOptions: self.myUserOptions, otherUser: fromUser!))
+            self.labelMatchPercentage.text = "\(percentage)%"
+            self.progressView.startProgress(to: CGFloat(percentage), duration: 0)
+            
             var isFound = false
             for i in self.fromUsers ?? [] {
                 let frmUsr = i.value(forKey: DBColumn.fromUser) as? PFUser

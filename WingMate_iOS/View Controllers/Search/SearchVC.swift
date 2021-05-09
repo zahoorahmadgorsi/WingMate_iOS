@@ -190,7 +190,7 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionViewSearchRecords.frame.width/2, height: self.collectionViewSearchRecords.frame.width/2)
+        return CGSize(width: self.collectionViewSearchRecords.frame.width/2, height: (self.collectionViewSearchRecords.frame.width/2)+40)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
