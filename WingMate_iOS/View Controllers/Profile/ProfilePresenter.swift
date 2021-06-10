@@ -118,4 +118,12 @@ class ProfilePresenter {
         }
     }
     
+    func pushNotification(title: String, msg: String, userId: String) {
+        ParseAPIManager.sendPushNotification(title: title, message: msg, userObjectId: userId) { success, message in
+            print("Push notification sent: \(success). Message: \(message)")
+        } onFailure: { error in
+            print("Push notification error: \(msg)")
+        }
+    }
+    
 }

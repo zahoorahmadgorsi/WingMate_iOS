@@ -61,6 +61,7 @@ class UploadPhotoVideoPresenter {
                 parseObj[DBColumn.userId] = APP_MANAGER.session?.objectId ?? ""
                 parseObj[DBColumn.file] = file
                 parseObj[DBColumn.isPhoto] = true
+                parseObj[DBColumn.fileStatus] = FileStatus.pending.rawValue
             }
         } else { //video uploading
             let contents: Data?
@@ -76,6 +77,7 @@ class UploadPhotoVideoPresenter {
                 parseObj[DBColumn.file] = file
                 parseObj[DBColumn.isPhoto] = false
                 parseObj[DBColumn.videoThumbnail] = false
+                parseObj[DBColumn.fileStatus] = FileStatus.pending.rawValue
             } else {
                 self.delegate?.uploadPhotoVideo(isFileUploaded: false, msg: "Upload Failed", fileUrl: nil, obj: parseObj)
             }
@@ -151,6 +153,18 @@ class UploadPhotoVideoPresenter {
             }
         }
         return photosData
+    }
+    
+    func updateUserObject() {
+        ParseAPIManager.updateUserObject() { (success) in
+            if success {
+                print("User object updated")
+            } else {
+                print("Failure returned to update user object")
+            }
+        } onFailure: { (error) in
+            print("Failed to update user object: \(error)")
+        }
     }
     
 }

@@ -57,3 +57,19 @@ enum FanType: String {
     case crush = "Crush"
     case maybe = "Maybe"
 }
+
+enum UserAccountStatus: Int {
+    case pending = 0
+    case accepted = 1
+    case rejected = 2
+}
+
+enum FileStatus: Int {
+    case pending = 0
+    case accepted = 1
+    case rejected = 2
+}
+
+enum GroupCategory: String {
+    case newGroup = "N"
+}

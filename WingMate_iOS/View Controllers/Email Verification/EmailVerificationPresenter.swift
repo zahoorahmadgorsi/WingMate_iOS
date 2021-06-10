@@ -30,4 +30,12 @@ class EmailVerificationPresenter {
             self.delegate?.emailVerification(didResendEmailSuccessfully: false, msg: error)
         }
     }
+    
+    func pushNotification(title: String, msg: String) {
+        ParseAPIManager.sendPushNotification(title: title, message: msg) { success, message in
+            print("Push notification sent: \(success). Message: \(message)")
+        } onFailure: { error in
+            print("Push notification error: \(msg)")
+        }
+    }
 }

@@ -28,6 +28,7 @@ class QuestionnairesVC: BaseViewController {
     var questionnairePresenter = QuestionnairePresenter()
     var filteredData = [Question]()
     var mainData = [Question]()
+    var canDismiss = true
     
     var questionIndex = 0
     var isMandatoryQuestionnaires = true
@@ -42,6 +43,11 @@ class QuestionnairesVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        if isPaidUser {
+            self.canDismiss = false
+        }
+        
         self.questionnairePresenter.attach(vc: self)
         self.setLayout()
         self.registerTableViewCells()
@@ -50,6 +56,10 @@ class QuestionnairesVC: BaseViewController {
         } else {
             self.questionnairePresenter.getQuestions(questionType: .optional)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.checkAccountStatus()
     }
     
     //MARK: - Helping Methods
@@ -195,14 +205,28 @@ class QuestionnairesVC: BaseViewController {
             
             self.setProgress()
         } else {
-            self.navigationController?.popViewController(animated: true)
+            if self.isMandatoryQuestionnaires {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.continueWithOptionalQuestions) { (successHanler) in
+                    let vc = QuestionnairesVC(isMandatoryQuestionnaires: false)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } failureHandler: { (failureHandler) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         if self.questionIndex == 0 {
-            self.navigationController?.popViewController(animated: true)
+            if self.canDismiss {
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                self.showToast(message: ValidationStrings.needToFillMandatoryQuestions)
+            }
+            
         } else {
             self.questionIndex = self.questionIndex - 1
             self.getOptions()

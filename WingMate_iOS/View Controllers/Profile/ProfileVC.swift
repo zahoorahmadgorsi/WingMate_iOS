@@ -70,6 +70,7 @@ class ProfileVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.checkAccountStatus()
     }
 
     //MARK: - Helper Methods
@@ -213,32 +214,92 @@ class ProfileVC: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func maybeButtonPressed(_ sender: Any) {
-        if self.maybeObject == nil {
-            self.presenter.markUserAsFan(user: self.user, fanType: .maybe)
+    func isAllowedToInteract() -> Bool {
+        let isPaid = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        let isActive = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+        
+        if isPaid && (isActive == UserAccountStatus.accepted.rawValue) {
+            return true
         } else {
-            self.presenter.unmarkUserAsFan(object: self.maybeObject!, fanType: .maybe)
+            return false
         }
+    }
+    
+    @IBAction func maybeButtonPressed(_ sender: Any) {
+//        self.getAccountStatus(completion: { (status) in
+//            if status == UserAccountStatus.accepted.rawValue {
+//
+//            } else {
+//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
+//            }
+//        })
+        
+        if self.isAllowedToInteract() {
+            if self.maybeObject == nil {
+                self.presenter.markUserAsFan(user: self.user, fanType: .maybe)
+            } else {
+                self.presenter.unmarkUserAsFan(object: self.maybeObject!, fanType: .maybe)
+            }
+        } else {
+            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
+        }
+        
+        
+        
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        if self.likeObject == nil {
-            self.presenter.markUserAsFan(user: self.user, fanType: .like)
+//        self.getAccountStatus(completion: { (status) in
+//            if status == UserAccountStatus.accepted.rawValue {
+//
+//            } else {
+//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
+//            }
+//        })
+        
+        if self.isAllowedToInteract() {
+            if self.likeObject == nil {
+                self.presenter.markUserAsFan(user: self.user, fanType: .like)
+            } else {
+                self.presenter.unmarkUserAsFan(object: self.likeObject!, fanType: .like)
+            }
         } else {
-            self.presenter.unmarkUserAsFan(object: self.likeObject!, fanType: .like)
+            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
         }
+        
+        
+        
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-        if self.crushObject == nil {
-            self.presenter.markUserAsFan(user: self.user, fanType: .crush)
+//        self.getAccountStatus(completion: { (status) in
+//            if status == UserAccountStatus.accepted.rawValue {
+//
+//            } else {
+//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
+//            }
+//        })
+        
+        
+        if self.isAllowedToInteract() {
+            if self.crushObject == nil {
+                self.presenter.markUserAsFan(user: self.user, fanType: .crush)
+            } else {
+                self.presenter.unmarkUserAsFan(object: self.crushObject!, fanType: .crush)
+            }
         } else {
-            self.presenter.unmarkUserAsFan(object: self.crushObject!, fanType: .crush)
+            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
         }
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+//        self.getAccountStatus(completion: { (status) in
+//            if status == UserAccountStatus.accepted.rawValue {
+//
+//            } else {
+//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
+//            }
+//        })
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
@@ -247,13 +308,24 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func editProfileButtonPressed(_ sender: Any) {
-        let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
-        vc.isAnyInfoUpdated = { [weak self] status in
-            if status {
-                self?.presenter.getUserSavedQuestions(user: APP_MANAGER.session!, shouldShowLoader: true)
+        let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        if isPaidUser {
+            let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
+            vc.isAnyInfoUpdated = { [weak self] status in
+                if status {
+                    self?.presenter.getUserSavedQuestions(user: APP_MANAGER.session!, shouldShowLoader: true)
+                }
             }
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
+                let vc = PaymentVC()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } failureHandler: { failureAction in
+                
+            }
+
         }
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func editMultimediaButtonPressed(_ sender: Any) {
@@ -320,7 +392,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
 
 extension ProfileVC: ProfileDelegate {
     func profile(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
-        self.self.mainDataUserPhotosVideo.removeAll()
+        self.mainDataUserPhotosVideo.removeAll()
         if isSuccess {
             for i in userFilesData {
                 let uploadedFile = i[DBColumn.file] as? PFFileObject
@@ -373,20 +445,24 @@ extension ProfileVC: ProfileDelegate {
             self.showToast(message: msg)
         }
     }
-
+    
     func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {
+        let nickName = self.user.value(forKey: DBColumn.nick) as? String ?? ""
         if isDeleted == false { //saving case
             self.showToast(message: msg)
             if isSuccess {
                 switch markedUnmarkedUserFanType {
                 case .like:
                     self.likeObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "\(nickName) liked you", userId: self.user.objectId!)
                     break
                 case .maybe:
                     self.maybeObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "You are marked as maybe by \(nickName)", userId: self.user.objectId!)
                     break
                 case .crush:
                     self.crushObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "You are marked as crush by \(nickName)", userId: self.user.objectId!)
                     break
                 }
                 self.enableUserInteractionButtons()
@@ -397,12 +473,15 @@ extension ProfileVC: ProfileDelegate {
                 switch markedUnmarkedUserFanType {
                 case .like:
                     self.likeObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "\(nickName) unliked you", userId: self.user.objectId!)
                     break
                 case .maybe:
                     self.maybeObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "You are unmarked as maybe by \(nickName)", userId: self.user.objectId!)
                     break
                 case .crush:
                     self.crushObject = object
+                    self.presenter.pushNotification(title: APP_NAME, msg: "You are unmarked as crush by \(nickName)", userId: self.user.objectId!)
                     break
                 }
                 self.enableUserInteractionButtons()

@@ -25,6 +25,8 @@ class DashboardVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.saveInstallationToken()
         self.setLayout()
         self.presenter.attach(vc: self)
         self.navigationController?.isNavigationBarHidden = true
@@ -32,13 +34,32 @@ class DashboardVC: BaseViewController {
         self.presenter.getUsers()
         self.addPullToRefresh()
 //        self.setViewControllers()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
-        DispatchQueue.main.async {
+        
+        DispatchQueue.global(qos: .background).async {
             self.myUserOptions = self.getMyUserOptions()
         }
+        
+        if self.isTimeExpiredToRecallAPIs() {
+            
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
+            
+            if isPaidUser && !isMandatoryQuestionsFilled {
+                let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.checkAccountStatus()
+            }
+        } else {
+            print("not expired")
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +98,10 @@ class DashboardVC: BaseViewController {
     @objc func refresh(_ sender: AnyObject) {
         self.refreshControl.endRefreshing()
         self.presenter.getUsers()
+    }
+    
+    func saveInstallationToken() {
+        APP_DELEGATE.createInstallationOnParse(userId: PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? "")
     }
     
     //MARK: - Button Actions

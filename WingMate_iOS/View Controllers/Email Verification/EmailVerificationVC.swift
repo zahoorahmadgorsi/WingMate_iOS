@@ -34,6 +34,8 @@ class EmailVerificationVC: BaseViewController {
         
         self.labelEmail.text = email
         self.labelMessage.text = "Hi \(nickName)! You're almost ready to start enjoying Wingmate! Simply click on the link which has been sent to your email to verify your email address."
+        
+        self.emailVerificationPresenter.pushNotification(title: APP_NAME, msg: "A new user has just registered to \(APP_NAME)")
     }
     
     //MARK: - Button Actions

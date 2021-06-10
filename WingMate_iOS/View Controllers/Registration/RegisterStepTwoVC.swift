@@ -140,11 +140,16 @@ extension RegisterStepTwoVC: RegisterDelegate {
             user.email = self.textFieldEmail.text ?? ""
             user.password = self.textFieldPassword.text ?? ""
             user.username = self.textFieldEmail.text ?? ""
-            user.setValue(self.nickName, forKey: "nick")
-            user.setValue(false, forKey: "isPaidUser")
-            user.setValue(false, forKey: "isMandatoryQuestionnairesFilled")
-            user.setValue(false, forKey: "isOptionalQuestionnairesFilled")
-            user.setValue(self.genderType == 1 ? "male" : "female", forKey: "gender")
+            user.setValue(self.nickName, forKey: DBColumn.nick)
+            user.setValue(false, forKey: DBColumn.isPaidUser)
+            user.setValue(false, forKey: DBColumn.isMandatoryQuestionnairesFilled)
+            user.setValue(false, forKey: DBColumn.isOptionalQuestionnairesFilled)
+            user.setValue(false, forKey: DBColumn.isPhotosSubmitted)
+            user.setValue(false, forKey: DBColumn.isVideoSubmitted)
+            user.setValue(self.genderType == 1 ? "male" : "female", forKey: DBColumn.gender)
+            user.setValue(false, forKey: DBColumn.isMediaApproved)
+            user.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
+            user.setValue(GroupCategory.newGroup.rawValue, forKey: DBColumn.groupCategory)
             self.navigationController?.pushViewController(TermsAndConditionsVC(user: user), animated: true)
         }
     }

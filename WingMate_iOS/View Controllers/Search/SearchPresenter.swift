@@ -110,7 +110,11 @@ class SearchPresenter {
                         let genderOtherUser = userObjToMatch?.value(forKey: DBColumn.gender) as? String ?? "Male"
                         let genderMyUser = PFUser.current()?.value(forKey: DBColumn.gender) as? String ?? "Male"
                         if genderOtherUser != genderMyUser {
-                            uniqueUsersData.append(userObjToMatch!)
+                            let isActiveUser = userObjToMatch?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+                            if isActiveUser == UserAccountStatus.accepted.rawValue {
+                                uniqueUsersData.append(userObjToMatch!)
+                            }
+                            
                         }
                     }
                 }

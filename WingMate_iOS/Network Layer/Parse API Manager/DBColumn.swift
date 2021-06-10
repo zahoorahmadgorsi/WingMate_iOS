@@ -11,6 +11,7 @@ class DBColumn {
     //general
     static let objectId = "objectId"
     static let createdAt = "createdAt"
+    static let isAdmin = "isAdmin"
     
     //user
     static let gender = "gender"
@@ -20,6 +21,8 @@ class DBColumn {
     static let email = "email"
     static let password = "password"
     static let isPaidUser = "isPaidUser"
+    static let isPhotosSubmitted = "isPhotosSubmitted"
+    static let isVideoSubmitted = "isVideoSubmitted"
     static let isMandatoryQuestionnairesFilled = "isMandatoryQuestionnairesFilled"
     static let isOptionalQuestionnairesFilled = "isOptionalQuestionnairesFilled"
     static let emailWrong = "emailWrong"
@@ -29,6 +32,9 @@ class DBColumn {
     static let optionalQuestionAnswersList = "optionalQuestionAnswersList"
     static let mandatoryQuestionAnswersList = "mandatoryQuestionAnswersList"
     static let currentLocation = "currentLocation"
+    static let accountStatus = "accountStatus"
+    static let isMediaApproved = "isMediaApproved"
+    static let groupCategory = "groupCategory"
     
     //questionnaires
     static let questionType = "questionType"
@@ -53,6 +59,7 @@ class DBColumn {
     //photo video
     static let isPhoto = "isPhoto"
     static let videoThumbnail = "videoThumbnail"
+    static let fileStatus = "fileStatus"
     
     //fans
     static let fromUser = "fromUser"
@@ -63,6 +70,10 @@ class DBColumn {
 class DBCloudFunction {
     static let cloudFunctionResendVerificationEmail = "resendVerificationEmail"
     static let cloudFunctionUpdateWrongEmail = "updateWrongEmail"
+    static let cloudFunctionServerDate = "getServerDate"
+    static let pushToAdmin = "pushToAdmin"
+    static let pushToUser = "pushToUser"
+    
 }
 
 class DBTable {

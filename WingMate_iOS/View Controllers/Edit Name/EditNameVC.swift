@@ -28,6 +28,10 @@ class EditNameVC: BaseViewController {
         self.setInitialLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.checkAccountStatus()
+    }
+    
     func setInitialLayout() {
         self.labelSubHeading.text = self.isAboutmeEdit ? "About Me" : "Name or Nick Name"
         self.textFieldNickName.isHidden = self.isAboutmeEdit ? true : false

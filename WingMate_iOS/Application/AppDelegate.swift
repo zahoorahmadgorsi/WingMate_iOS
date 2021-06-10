@@ -10,6 +10,8 @@ import IQKeyboardManager
 import SVProgressHUD
 import Parse
 import CoreLocation
+import UserNotifications
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
+    var deviceToken: Data?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        UserDefaults.standard.setValue(Date(), forKey: UserDefaultKeys.latestDateTime)
         self.configureParse()
+        self.configurePushNotifications()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = SplashVC()
         self.window!.backgroundColor = UIColor.white
@@ -45,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = kServer
         }
         Parse.initialize(with: parseConfig)
-
+        
     }
     
     //MARK: - Decide RootViewController
@@ -80,11 +84,11 @@ extension AppDelegate: CLLocationManagerDelegate {
             
             self.sendCurrentLocationToServer()
             
-//            #if DEBUG
-//            print("Not hitting location api again and again when in debug mode")
-//            #else
-//                self.sendCurrentLocationToServer()
-//            #endif
+            //            #if DEBUG
+            //            print("Not hitting location api again and again when in debug mode")
+            //            #else
+            //                self.sendCurrentLocationToServer()
+            //            #endif
         }
     }
     
@@ -99,6 +103,60 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }
             } onFailure: { (error) in
                 print(error)
+            }
+        }
+    }
+}
+
+//MARK: - Push Notifications Configuration
+extension AppDelegate {
+    func configurePushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        self.deviceToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    
+    func createInstallationOnParse(userId: String){
+        if let installation = PFInstallation.current(){
+            if let token = self.deviceToken {
+                installation.setDeviceTokenFrom(token)
+                installation.setValue(false, forKey: DBColumn.isAdmin)
+                installation.setValue(userId, forKey: DBColumn.userId)
+                installation.saveInBackground {
+                    (success: Bool, error: Error?) in
+                    if (success) {
+                        print("You have successfully saved your push installation to Back4App!")
+                    } else {
+                        if let myError = error{
+                            print("Error saving parse installation \(myError.localizedDescription)")
+                        }else{
+                            print("Uknown error")
+                        }
+                    }
+                }
             }
         }
     }

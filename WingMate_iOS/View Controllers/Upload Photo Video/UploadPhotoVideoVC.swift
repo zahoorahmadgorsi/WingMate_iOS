@@ -32,30 +32,52 @@ class UploadPhotoVideoVC: BaseViewController {
     let maximumNumberOfPhotosAllowed = 3
     var isAnyMediaUpdated: ((Bool)->Void)?
     var isPhotoVideoUpdated = false
+    var shouldGetData = false
     
     var dataTermsConditions: [PFObject]?
     var dataTextTerms: [TextTypeTerms]?
     var dataPhotoTerms: [PhotoVideoTypeTerms]?
     var dataUserPhotoVideo = [UserPhotoVideoModel()]
-    var mainDataUserPhotoVideo = [UserPhotoVideoModel()]
+    var mainDataUserPhotosVideo = [UserPhotoVideoModel()]
     var presenter = UploadPhotoVideoPresenter()
+    var presenterProfile = ProfilePresenter()
     
     convenience init(data: [UserPhotoVideoModel]) {
         self.init()
-        self.mainDataUserPhotoVideo = data
+        self.mainDataUserPhotosVideo = data
+    }
+    
+    convenience init(shouldGetData: Bool) {
+        self.init()
+        self.shouldGetData = shouldGetData
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.attach(vc: self)
+        self.presenterProfile.attach(vc: self)
         self.registerCells()
         self.initialLayout()
-        self.goToPhotos()
+        
         self.presenter.getTermsConditions()
+        if self.shouldGetData {
+            self.presenterProfile.getAllUploadedFilesForUser(currentUserId: PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
+        } else {
+            self.goToPhotos()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.setTermsViewsHeight()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+        self.checkAccountStatus()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     //MARK: - Helper Methods
@@ -110,7 +132,7 @@ class UploadPhotoVideoVC: BaseViewController {
         self.setProgress()
         
         self.imagePicker.mediaTypes = ["public.movie"]
-        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotosVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
         if self.dataUserPhotoVideo.count == 0 {
             self.dataUserPhotoVideo = [UserPhotoVideoModel()]
         }
@@ -123,7 +145,7 @@ class UploadPhotoVideoVC: BaseViewController {
         self.getTermsConditions()
         self.setProgress()
         
-        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotoVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+        self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotosVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
 //        if self.dataUserPhotoVideo.count < 3 {
 //            self.dataUserPhotoVideo.append(UserPhotoVideoModel())
 //        }
@@ -136,6 +158,15 @@ class UploadPhotoVideoVC: BaseViewController {
         self.scrollViewMain.scrollToTop()
         self.dataPhotoTerms = self.presenter.getTermsConditionsImages(isPhotoMode: self.isPhotoMode, dataTermsConditions: self.dataTermsConditions)
         self.setTermsViewsHeight()
+    }
+    
+    override func checkAccountStatus() {
+        self.getAccountStatus(completion: { (status) in
+            if status == UserAccountStatus.rejected.rawValue {
+                self.logoutUser()
+                return
+            }
+        })
     }
     
     //MARK: - Button Actions
@@ -170,7 +201,18 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
             cell.isPhotoMode = self.isPhotoMode
             cell.data = self.dataUserPhotoVideo[indexPath.item]
             cell.removeImageButtonPressed = { [weak self] buttonTag in
-                self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                if self?.isPhotoMode ?? false {
+                    if self?.dataUserPhotoVideo.count == 1 {
+                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                    }
+                } else {
+                    self?.showAlertTwoButtons(APP_NAME, message: Constants.actionFileTypeDescription, successHandler: { successAction in
+                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                    }, failureHandler: { failureAction in
+                        
+                    })
+                }
+                
             }
             return cell
         } else {
@@ -337,6 +379,11 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
             } onFailure: { (error) in
                 self.showToast(message: error)
             }
+        } else {
+            PFUser.current()?.setValue("", forKey: DBColumn.profilePic)
+            PFUser.current()?.setValue(false, forKey: DBColumn.isPhotosSubmitted)
+            PFUser.current()?.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
+            self.presenter.updateUserObject()
         }
     }
     
@@ -361,8 +408,35 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                 self.updateUserProfilePic()
             } else {
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel()
+                PFUser.current()?.setValue(false, forKey: DBColumn.isVideoSubmitted)
+                PFUser.current()?.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
+                self.presenter.updateUserObject()
             }
             self.setPhotosCollectionViewHeight()
         }
     }
+    
+    
+}
+
+extension UploadPhotoVideoVC: ProfileDelegate {
+    func profile(isSuccess: Bool, userFilesData: [PFObject], msg: String) {
+        self.mainDataUserPhotosVideo.removeAll()
+        if isSuccess {
+            for i in userFilesData {
+                let uploadedFile = i[DBColumn.file] as? PFFileObject
+                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
+                self.mainDataUserPhotosVideo.append(model)
+            }
+            self.goToPhotos()
+        }
+    }
+    
+    func profile(isSuccess: Bool, userSavedQuestions: [PFObject], msg: String) {}
+    
+    func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {}
+    
+    func profile(isSuccess: Bool, msg: String, fansMarkedByMe: [PFObject]) {}
+    
+    
 }

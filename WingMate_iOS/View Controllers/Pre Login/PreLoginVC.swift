@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PreLoginVC: BaseViewController {
 
@@ -16,6 +17,7 @@ class PreLoginVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
         if didPressedLoginNowOnEmailVerification {
             didPressedLoginNowOnEmailVerification = false
             self.navigationController?.pushViewController(LoginVC(), animated: false)

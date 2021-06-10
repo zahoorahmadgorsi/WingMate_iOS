@@ -10,6 +10,7 @@ import SDWebImage
 import AVKit
 import SimpleImageViewer
 import Parse
+import SVProgressHUD
 
 class BaseViewController: UIViewController {
 
@@ -122,20 +123,23 @@ class BaseViewController: UIViewController {
     
     //MARK: - Calculate Match Percentage
     func getMyUserOptions() -> [PFObject] {
-        var myOptions = [PFObject]()
-        do {
-            let myUserAnswers = try PFUser.current()!.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
-            if myUserAnswers.count > 0 {
-                for i in myUserAnswers {
-                    let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
-                    myOptions.append(contentsOf: optionsObjArr)
+        if let _ = PFUser.current() {
+            var myOptions = [PFObject]()
+            do {
+                let myUserAnswers = try PFUser.current()?.fetchIfNeeded().value(forKey: DBColumn.optionalQuestionAnswersList) as? [PFObject] ?? []
+                if myUserAnswers.count > 0 {
+                    for i in myUserAnswers {
+                        let optionsObjArr = try i.fetchIfNeeded().value(forKey: DBColumn.optionsObjArray) as? [PFObject] ?? []
+                        myOptions.append(contentsOf: optionsObjArr)
+                    }
                 }
+                
+            } catch let error {
+                print(error.localizedDescription)
             }
-            
-        } catch let error {
-            print(error.localizedDescription)
+            return myOptions
         }
-        return myOptions
+        return []
     }
     
     func getPercentageMatch(myUserOptions: [PFObject], otherUser: PFUser) -> Int {
@@ -182,4 +186,112 @@ class BaseViewController: UIViewController {
         return Int(percentage)
     }
     
+    func isTimeExpiredToRecallAPIs() -> Bool {
+        let latestDateTime = UserDefaults.standard.value(forKey: UserDefaultKeys.latestDateTime) as? Date ?? Date()
+        let differenceTime = self.minutesBetweenDates(latestDateTime, Date())
+        if Int(differenceTime) >= Constants.timeExpiredInMinsToRecallApis {
+            UserDefaults.standard.setValue(Date(), forKey: UserDefaultKeys.latestDateTime)
+            return true
+        }
+        return false
+    }
+    
+    func isTrialPeriodExpired(completion: @escaping(Bool)->Void) {
+        ParseAPIManager.getServerDate { [self] (status, date) in
+            print(date)
+            
+            let userCreatedAtDate = PFUser.current()?.value(forKey: DBColumn.createdAt) as? Date ?? Date()
+            
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+            let serverDate = dateFormatter.date(from: date)
+            
+            print(userCreatedAtDate)
+            print(serverDate)
+            
+            let days = self.daysBetweenDates(startDate: userCreatedAtDate, endDate: serverDate!)
+            if days > Constants.trialPeriodDays {
+                print("*******TRIAL PERIOD EXPIRED*******")
+            }
+            
+            
+            completion(false)
+        } onFailure: { (error) in
+            print("getServerDate clound function error: \(error)")
+        }
+    }
+    
+    func daysBetweenDates(startDate: Date, endDate: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: endDate)
+        return components.day!
+    }
+    
+    func minutesBetweenDates(_ oldDate: Date, _ newDate: Date) -> CGFloat {
+
+        //get both times sinces refrenced date and divide by 60 to get minutes
+        let newDateMinutes = newDate.timeIntervalSinceReferenceDate/60
+        let oldDateMinutes = oldDate.timeIntervalSinceReferenceDate/60
+
+        //then return the difference
+        return CGFloat(newDateMinutes - oldDateMinutes)
+    }
+
+    
+    func getAccountStatus( completion:@escaping (Int) -> Void ) {
+        DispatchQueue.global(qos: .background).async {
+            PFUser.current()?.fetchInBackground(block: { (obj, err) in
+                let accountStatus = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+                completion(accountStatus)
+            })
+        }
+    }
+    
+    func logoutUser() {
+        ParseAPIManager.logoutUser { (success) in
+            APP_MANAGER.session = nil
+//            self.navigationController?.popToRootViewController(animated: true)
+            let vc = PreLoginVC()
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.navigationBar.isHidden = true
+            APP_DELEGATE.window?.rootViewController = navigationController
+        } onFailure: { (error) in
+            self.showToast(message: error)
+        }
+    }
+    
+    func checkAccountStatus() {
+        self.getAccountStatus(completion: { (status) in
+            
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+            
+            if status == UserAccountStatus.rejected.rawValue {
+                self.logoutUser()
+                return
+            }
+            
+            if isPaidUser == false {
+                self.isTrialPeriodExpired { (isExpired) in
+                    if isExpired {
+                        //GO TO PAYMENT SCREEN
+                        let vc = PaymentVC()
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true, completion: nil)
+                    } else {
+                        if isPhotosSubmitted == false || isVideoSubmitted == false {
+                            //GO TO UPLOAD PHOTOS/VIDEO SCREEN
+                            let vc = UploadPhotoVideoVC(shouldGetData: true)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    
 }
+    

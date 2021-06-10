@@ -20,6 +20,12 @@ class SettingsVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
+        
+        if self.isTimeExpiredToRecallAPIs() {
+            self.checkAccountStatus()
+        } else {
+            print("not expired")
+        }
     }
     
     //MARK: - Button Actions
@@ -73,16 +79,7 @@ class SettingsVC: BaseViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        ParseAPIManager.logoutUser { (success) in
-            APP_MANAGER.session = nil
-//            self.navigationController?.popToRootViewController(animated: true)
-            let vc = PreLoginVC()
-            let navigationController = UINavigationController(rootViewController: vc)
-            navigationController.navigationBar.isHidden = true
-            APP_DELEGATE.window?.rootViewController = navigationController
-        } onFailure: { (error) in
-            self.showToast(message: error)
-        }
+        self.logoutUser()
     }
     
     @IBAction func photoVideoButtonPressed(_ sender: Any) {

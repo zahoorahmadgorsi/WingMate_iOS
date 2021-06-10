@@ -97,6 +97,37 @@ struct ParseAPIManager {
         }
     }
     
+    //MARK: - Get Server Date
+    static func getServerDate(onSuccess: @escaping (Bool, String) -> Void, onFailure:@escaping (String) -> Void) {
+        PFCloud.callFunction(inBackground: DBCloudFunction.cloudFunctionServerDate, withParameters: nil) { (data, error) in
+            if let error = error {
+                onFailure(error.localizedDescription)
+            } else {
+                onSuccess(true, data as? String ?? "")
+            }
+        }
+    }
+    
+    //MARK: - Push Notification
+    static func sendPushNotification(title: String, message: String, userObjectId: String? = "", onSuccess: @escaping (Bool, String) -> Void, onFailure:@escaping (String) -> Void) {
+        let params: [String: Any]?
+        var url = ""
+        if userObjectId == "" {
+            params = ["alertTitle": title, "alertText": title]
+            url = DBCloudFunction.pushToAdmin
+        } else {
+            params = ["alertTitle": title, "alertText": title, "userId": userObjectId!]
+            url = DBCloudFunction.pushToUser
+        }
+        PFCloud.callFunction(inBackground: url, withParameters: params!) { (data, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Push notification sent successfully")
+            }
+        }
+    }
+    
     //MARK: - Questionnaire Flow APIs
     static func getQuestions(questionType: String? = "", onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
@@ -204,7 +235,12 @@ struct ParseAPIManager {
     //MARK: - Upload Photo Video APIs
     static func getAllUploadedFilesForUser(currentUserId: String, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
-        query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt)
+        if currentUserId == PFUser.current()?.objectId ?? "" {
+            query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt).whereKey(DBColumn.fileStatus, notEqualTo: FileStatus.rejected.rawValue)
+        } else {
+            query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt).whereKey(DBColumn.fileStatus, equalTo: FileStatus.accepted.rawValue)
+        }
+        
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)
@@ -365,7 +401,8 @@ struct ParseAPIManager {
     //MARK: - Dashboard APIs
     static func getDashboardUsers(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         let query = PFUser.query()!
-        query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "")
+        query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.accountStatus, equalTo: UserAccountStatus.accepted.rawValue)
+        
         query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
         
         query.findObjectsInBackground {(objects, error) in
@@ -401,7 +438,9 @@ struct ParseAPIManager {
                                "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)",
                                "\(DBColumn.fromUser).\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)",
                                "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)",
-                               "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"
+                               "\(DBColumn.fromUser).\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)",
+                               "\(DBColumn.fromUser).\(DBColumn.accountStatus)",
+                               "\(DBColumn.toUser).\(DBColumn.accountStatus)"
         ])
         
         

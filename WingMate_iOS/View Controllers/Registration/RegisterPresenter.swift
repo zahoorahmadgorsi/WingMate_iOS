@@ -73,4 +73,6 @@ class RegisterPresenter {
             self.delegate?.register(isWrongEmailSent: false, msg: ValidationStrings.kEmailResent)
         }
     }
+    
+    
 }

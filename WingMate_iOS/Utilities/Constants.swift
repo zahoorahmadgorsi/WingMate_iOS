@@ -21,10 +21,18 @@ class ValidationStrings {
     static let kSelectAnyOption = "Select any option"
     static let kSelectOneBelowOption = "Select one of the below options"
     static let kSelectMultipleBelowOption = "Select one or multiple of the below options"
+    static let kAccountRejected = "Your profile has been rejected by the admin"
+    static let kAccountPending = "Your profile is waiting for approval. You can not interact with other users right now"
+    static let kNotActiveAndNotPaid = "Your account should be active and you should be a paid user to interact with other users"
+    static let confirmationForDeteteMedia = "Are you sure you want to delete it? Please note that your profile will go into pending state."
+    static let payNowToCompleteProfile = "You need to pay first to complete your profile. Do you want to pay now?"
+    static let continueWithOptionalQuestions = "Do you want to fill optional questionnaires?"
+    static let needToFillMandatoryQuestions = "Please fill mandatory questionnaires to proceed"
 }
 
 class UserDefaultKeys {
     static let userObjectKeyUserDefaults = "userObjectKeyUserDefaults"
+    static let latestDateTime = "latestDateTime"
 }
 
 struct Constants {
@@ -41,5 +49,7 @@ struct Constants {
     static let cancelBtnTitle = "Cancel"
     static let kAppLang = "APP_LANGUAGE"
     static let ageQuestionId = "OPF5wV3B4e"
+    static let trialPeriodDays = 7
+    static let timeExpiredInMinsToRecallApis = 1
 }
 

@@ -41,7 +41,16 @@ class SearchVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
-        self.myUserOptions = self.getMyUserOptions()
+        
+        DispatchQueue.global(qos: .background).async {
+            self.myUserOptions = self.getMyUserOptions()
+        }
+        
+        if self.isTimeExpiredToRecallAPIs() {
+            self.checkAccountStatus()
+        } else {
+            print("not expired")
+        }
     }
     
     //MARK: - Helping Methods

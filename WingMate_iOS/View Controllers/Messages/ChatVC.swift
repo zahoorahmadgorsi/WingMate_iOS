@@ -18,6 +18,12 @@ class ChatVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
+        
+        if self.isTimeExpiredToRecallAPIs() {
+            self.checkAccountStatus()
+        } else {
+            print("not expired")
+        }
     }
     
     //MARK: - Button Actions

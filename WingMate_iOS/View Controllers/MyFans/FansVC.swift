@@ -44,8 +44,16 @@ class FansVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
-        self.myUserOptions = self.getMyUserOptions()
         
+        DispatchQueue.global(qos: .background).async {
+            self.myUserOptions = self.getMyUserOptions()
+        }
+        
+        if self.isTimeExpiredToRecallAPIs() {
+            self.checkAccountStatus()
+        } else {
+            print("not expired")
+        }
     }
     
     //MARK: - Helping Methods
@@ -173,16 +181,20 @@ extension FansVC: FansDelegate {
                 let toUserObjId = toUser?.value(forKey: DBColumn.objectId) as? String ?? ""
                 let fromUserObjId = fromUser?.value(forKey: DBColumn.objectId) as? String ?? ""
                 let currentUserObjId = PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? ""
-                if toUserObjId == currentUserObjId {
-                    self.dataUsers.append(i)
+                let fromIsActiveUser = fromUser?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+                if (toUserObjId == currentUserObjId) {
+                    if fromIsActiveUser == UserAccountStatus.accepted.rawValue {
+                        self.dataUsers.append(i)
+                    }
                 }
-                if fromUserObjId == currentUserObjId {
+                if (fromUserObjId == currentUserObjId) {
                     self.fromUsers.append(i)
                 }
             }
             
             for i in self.dataUsers {
                 let fanType = i.value(forKey: DBColumn.fanType) as? String
+                
                 switch fanType {
                 case FanType.like.rawValue:
                     self.dataLikeUsers.append(i)

@@ -73,6 +73,10 @@ class OptionSelectionVC: BaseViewController {
         self.presenter.attach(vc: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.checkAccountStatus()
+    }
+    
     //MARK: - Helping Methods
     func setLayout() {
         if self.isGenderQuestion {
