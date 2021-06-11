@@ -126,28 +126,18 @@ extension LoginVC: LoginDelegate {
     }
     
     func login(didUserLoggedIn: Bool, msg: String) {
+        
         if didUserLoggedIn {
             let isMediaApproved = PFUser.current()?.value(forKey: DBColumn.isMediaApproved) as? Bool ?? false
             let accountStatus = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+            let isEmailVerified = PFUser.current()?.value(forKey: DBColumn.emailVerified) as? Bool ?? false
+            
             if accountStatus == UserAccountStatus.rejected.rawValue {
                 self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountRejected)
-            } else if accountStatus == UserAccountStatus.accepted.rawValue {
+            } else if isEmailVerified == false {
+                self.showToast(message: ValidationStrings.kVerifyEmail)
+            } else {
                 self.rememberMe()
-                //check if user is (paid user) or (trial period is active) then take to tabbarvc
-                let vc = Utilities.shared.getViewController(identifier: TabBarVC.className, storyboardType: .main) as! TabBarVC
-                self.navigationController?.pushViewController(vc, animated: true)
-                //on dashboard, check if user (trial period finished) take to payment page directly
-            } else { //pending
-                self.rememberMe()
-//                if isMediaApproved == false {
-//                    //go to upload photos/videos
-//                    let vc = UploadPhotoVideoVC(shouldGetData: true)
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                } else {
-//                    //go to dashboard
-//                    let vc = Utilities.shared.getViewController(identifier: TabBarVC.className, storyboardType: .main) as! TabBarVC
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                }
                 let vc = Utilities.shared.getViewController(identifier: TabBarVC.className, storyboardType: .main) as! TabBarVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }

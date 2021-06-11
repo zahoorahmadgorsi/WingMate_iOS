@@ -9,6 +9,7 @@ class ValidationStrings {
     static let kEnterEmail = "Enter your email"
     static let kInvalidEmail = "Invalid email"
     static let kInvalidPassword = "Invalid password"
+    static let kVerifyEmail = "Verify your email first"
     static let kInvalidAge = "You must be 21 or above"
     static let kEnterPassword = "Enter your password"
     static let kEnterName = "Enter your name"
