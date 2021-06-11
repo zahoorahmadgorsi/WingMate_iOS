@@ -43,17 +43,16 @@ class FansVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
         
         DispatchQueue.global(qos: .background).async {
             self.myUserOptions = self.getMyUserOptions()
         }
-        
-        if self.isTimeExpiredToRecallAPIs() {
-            self.checkAccountStatus()
-        } else {
-            print("not expired")
-        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: - Helping Methods

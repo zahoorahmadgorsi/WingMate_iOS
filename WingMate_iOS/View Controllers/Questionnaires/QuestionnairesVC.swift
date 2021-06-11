@@ -59,7 +59,7 @@ class QuestionnairesVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.checkAccountStatus()
+        
     }
     
     //MARK: - Helping Methods
@@ -206,6 +206,13 @@ class QuestionnairesVC: BaseViewController {
             self.setProgress()
         } else {
             if self.isMandatoryQuestionnaires {
+                PFUser.current()?.setValue(true, forKey: DBColumn.isMandatoryQuestionnairesFilled)
+                ParseAPIManager.updateUserObject { success in
+                    print("updated isMandatoryQuestionnairesFilled")
+                } onFailure: { error in
+                    print("failed to update isMandatoryQuestionnairesFilled")
+                }
+
                 self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.continueWithOptionalQuestions) { (successHanler) in
                     let vc = QuestionnairesVC(isMandatoryQuestionnaires: false)
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -221,7 +228,7 @@ class QuestionnairesVC: BaseViewController {
     @IBAction func backButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         if self.questionIndex == 0 {
-            if self.canDismiss {
+            if self.canDismiss || !self.isMandatoryQuestionnaires {
                 self.navigationController?.popToRootViewController(animated: true)
             } else {
                 self.showToast(message: ValidationStrings.needToFillMandatoryQuestions)
@@ -397,9 +404,9 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     }
     
     //user option saved response
-    func questionnaire(isSaved: Bool, msg: String) {
+    func questionnaire(isSaved: Bool, msg: String, userAnswer: PFObject?) {
         if isSaved {
-            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex])
+            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex], userAnswer: userAnswer!)
             self.moveToNextQuestion()
         } else {
             self.showToast(message: msg)
@@ -408,7 +415,7 @@ extension QuestionnairesVC: QuestionnaireDelegate {
     
     func questionnaire(isUpdated: Bool, msg: String) {
         if isUpdated {
-            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex])
+            self.questionnairePresenter.saveQuestionListInUserTable(data: self.filteredData[self.questionIndex], userAnswer: PFObject(className: "ABC"))
             self.moveToNextQuestion()
         } else {
             self.showToast(message: msg)

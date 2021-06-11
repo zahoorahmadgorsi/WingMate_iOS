@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,6 +16,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="buttonBack" destination="dWL-2k-U95" id="e4d-je-4JQ"/>
+                <outlet property="cstHeightBackButton" destination="Hwy-G6-Mu5" id="5mk-uw-Oy6"/>
+                <outlet property="cstTopBackButton" destination="ryG-J5-F3I" id="6rc-ce-PWm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,14 +28,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEo-af-Ini">
-                    <rect key="frame" x="62" y="646" width="290" height="50"/>
-                    <color key="backgroundColor" name="PurpleThemeColor"/>
+                    <rect key="frame" x="62" y="596" width="290" height="50"/>
+                    <color key="backgroundColor" name="TextFieldBgColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="9wx-HM-kdT"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                     <state key="normal" title="Logout">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" name="PurpleThemeColor"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -45,14 +47,14 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSy-ES-Ee8">
-                    <rect key="frame" x="62" y="576" width="290" height="50"/>
-                    <color key="backgroundColor" name="PurpleThemeColor"/>
+                    <rect key="frame" x="62" y="526" width="290" height="50"/>
+                    <color key="backgroundColor" name="TextFieldBgColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="E0t-I6-T7O"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                     <state key="normal" title="Pay Now">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" name="PurpleThemeColor"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -63,26 +65,40 @@
                         <action selector="payNowButtonPressed:" destination="-1" eventType="touchUpInside" id="SaY-eA-Nqr"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWL-2k-U95">
+                    <rect key="frame" x="62" y="666" width="290" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Hwy-G6-Mu5" userLabel="ht"/>
+                    </constraints>
+                    <state key="normal" image="backbutton_white"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="r4o-kQ-TOC"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="PurpleThemeColor"/>
             <constraints>
+                <constraint firstItem="dWL-2k-U95" firstAttribute="trailing" secondItem="zEo-af-Ini" secondAttribute="trailing" id="6GE-yu-HP1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dWL-2k-U95" secondAttribute="bottom" constant="20" id="JrG-Ap-kDb"/>
                 <constraint firstItem="oSy-ES-Ee8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VLT-yD-Bqc"/>
                 <constraint firstItem="zEo-af-Ini" firstAttribute="top" secondItem="oSy-ES-Ee8" secondAttribute="bottom" constant="20" id="gYc-kp-IB6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zEo-af-Ini" secondAttribute="bottom" constant="40" id="jXf-lz-EGH"/>
                 <constraint firstItem="zEo-af-Ini" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.700483" id="rJA-Rt-CAy"/>
+                <constraint firstItem="dWL-2k-U95" firstAttribute="top" secondItem="zEo-af-Ini" secondAttribute="bottom" constant="20" id="ryG-J5-F3I" userLabel="tp"/>
                 <constraint firstItem="oSy-ES-Ee8" firstAttribute="width" secondItem="zEo-af-Ini" secondAttribute="width" id="tMH-LH-bpK"/>
+                <constraint firstItem="dWL-2k-U95" firstAttribute="leading" secondItem="zEo-af-Ini" secondAttribute="leading" id="yGD-ge-OES"/>
                 <constraint firstItem="zEo-af-Ini" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zUu-fr-00J"/>
             </constraints>
             <point key="canvasLocation" x="112" y="96"/>
         </view>
     </objects>
     <resources>
+        <image name="backbutton_white" width="47.333332061767578" height="24"/>
         <namedColor name="PurpleThemeColor">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="TextFieldBgColor">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

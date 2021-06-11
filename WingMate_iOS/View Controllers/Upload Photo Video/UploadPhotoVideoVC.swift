@@ -41,15 +41,17 @@ class UploadPhotoVideoVC: BaseViewController {
     var mainDataUserPhotosVideo = [UserPhotoVideoModel()]
     var presenter = UploadPhotoVideoPresenter()
     var presenterProfile = ProfilePresenter()
+    var isTrialExpired = false
     
     convenience init(data: [UserPhotoVideoModel]) {
         self.init()
         self.mainDataUserPhotosVideo = data
     }
     
-    convenience init(shouldGetData: Bool) {
+    convenience init(shouldGetData: Bool, isTrialExpired: Bool) {
         self.init()
         self.shouldGetData = shouldGetData
+        self.isTrialExpired = isTrialExpired
     }
     
     override func viewDidLoad() {
@@ -72,13 +74,10 @@ class UploadPhotoVideoVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-        self.checkAccountStatus()
+        
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
+    
 
     //MARK: - Helper Methods
     func initialLayout() {
@@ -160,22 +159,15 @@ class UploadPhotoVideoVC: BaseViewController {
         self.setTermsViewsHeight()
     }
     
-    override func checkAccountStatus() {
-        self.getAccountStatus(completion: { (status) in
-            if status == UserAccountStatus.rejected.rawValue {
-                self.logoutUser()
-                return
-            }
-        })
-    }
-    
     //MARK: - Button Actions
     @IBAction func saveButtonPressed(_ sender: Any) {
         if self.isPhotoMode {
             self.goToVideos()
         } else {
             self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
-            self.navigationController?.popViewController(animated: true)
+            let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
+            self.navigationController?.pushViewController(vc, animated: true)
+//            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -186,7 +178,12 @@ class UploadPhotoVideoVC: BaseViewController {
 //            self.goToPhotos()
 //        }
         self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
-        self.navigationController?.popViewController(animated: true)
+        if self.isTrialExpired {
+            self.showToast(message: "Trial period has been expired")
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
 }
@@ -356,13 +353,19 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     } else {
                         self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
                     }
-                    self.updateUserProfilePic()
+//                    self.updateUserProfilePic()
+                    
+                    PFUser.current()?.setValue(true, forKey: DBColumn.isPhotosSubmitted)
+                    self.presenter.updateUserObject()
                 } else {
                     self.showToast(message: "Nil photo file url")
                 }
             } else {
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
                 self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
+                
+                PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted)
+                self.presenter.updateUserObject()
             }
             self.setPhotosCollectionViewHeight()
         }

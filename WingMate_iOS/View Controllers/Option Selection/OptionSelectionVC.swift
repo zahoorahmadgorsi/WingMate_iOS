@@ -74,7 +74,7 @@ class OptionSelectionVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.checkAccountStatus()
+        
     }
     
     //MARK: - Helping Methods

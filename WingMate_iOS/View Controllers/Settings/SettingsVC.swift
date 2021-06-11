@@ -12,6 +12,7 @@ import SVProgressHUD
 class SettingsVC: BaseViewController {
 
     @IBOutlet weak var imageViewProfile: UIImageView!
+    @IBOutlet weak var payNowButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +20,65 @@ class SettingsVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
-        
-        if self.isTimeExpiredToRecallAPIs() {
-            self.checkAccountStatus()
+        if PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false == true {
+            self.payNowButton.isHidden = true
         } else {
-            print("not expired")
+            self.payNowButton.isHidden = false
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func processUserState() {
+        SVProgressHUD.show()
+        self.getAccountStatus(completion: { (status) in
+            
+            if status == UserAccountStatus.rejected.rawValue {
+                self.logoutUser()
+                return
+            }
+            
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+            
+            self.isTrialPeriodExpired { (isExpired, daysLeft) in
+                SVProgressHUD.dismiss()
+                if isExpired {
+                    if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                        self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaFirst) { successAction in
+                            let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        } failureHandler: { failureAction in
+                            
+                        }
+                    } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                        self.navigationController?.pushViewController(WaitingVC(), animated: true)
+                    } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        let vc = PaymentVC(isTrialExpired: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                        self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaFirst) { successAction in
+                            let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        } failureHandler: { failureAction in
+                            
+                        }
+                    } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                        self.showToast(message: ValidationStrings.profileUnderScreening)
+                    } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        let vc = PaymentVC(isTrialExpired: false)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        })
     }
     
     //MARK: - Button Actions
@@ -37,23 +90,7 @@ class SettingsVC: BaseViewController {
     }
     
     @IBAction func payNowButtonPressed(_ sender: Any) {
-        if APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false {
-            self.showToast(message: "You're already a paid user")
-        } else {
-            PFUser.current()?.setValue(true, forKey: DBColumn.isPaidUser)
-            SVProgressHUD.show()
-            ParseAPIManager.updateUserObject() { (success) in
-                SVProgressHUD.dismiss()
-                if success {
-                    APP_MANAGER.session = PFUser.current()
-                    self.showToast(message: "Congrats on becoming a paid user")
-                } else {
-                    self.showToast(message: "Failed to update to paid user")
-                }
-            } onFailure: { (error) in
-                self.showToast(message: error)
-            }
-        }
+        self.processUserState()
     }
     
     @IBAction func mandatoryQuestionnaireButtonPressed(_ sender: Any) {

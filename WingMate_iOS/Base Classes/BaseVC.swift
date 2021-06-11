@@ -196,7 +196,7 @@ class BaseViewController: UIViewController {
         return false
     }
     
-    func isTrialPeriodExpired(completion: @escaping(Bool)->Void) {
+    func isTrialPeriodExpired(completion: @escaping(Bool, Int)->Void) {
         ParseAPIManager.getServerDate { [self] (status, date) in
             print(date)
             
@@ -213,10 +213,12 @@ class BaseViewController: UIViewController {
             let days = self.daysBetweenDates(startDate: userCreatedAtDate, endDate: serverDate!)
             if days > Constants.trialPeriodDays {
                 print("*******TRIAL PERIOD EXPIRED*******")
+                completion(true, Constants.trialPeriodDays-days)
+            } else {
+                completion(false, Constants.trialPeriodDays-days)
             }
             
             
-            completion(false)
         } onFailure: { (error) in
             print("getServerDate clound function error: \(error)")
         }
@@ -259,37 +261,6 @@ class BaseViewController: UIViewController {
         } onFailure: { (error) in
             self.showToast(message: error)
         }
-    }
-    
-    func checkAccountStatus() {
-        self.getAccountStatus(completion: { (status) in
-            
-            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
-            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
-            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
-            
-            if status == UserAccountStatus.rejected.rawValue {
-                self.logoutUser()
-                return
-            }
-            
-            if isPaidUser == false {
-                self.isTrialPeriodExpired { (isExpired) in
-                    if isExpired {
-                        //GO TO PAYMENT SCREEN
-                        let vc = PaymentVC()
-                        vc.modalPresentationStyle = .fullScreen
-                        self.present(vc, animated: true, completion: nil)
-                    } else {
-                        if isPhotosSubmitted == false || isVideoSubmitted == false {
-                            //GO TO UPLOAD PHOTOS/VIDEO SCREEN
-                            let vc = UploadPhotoVideoVC(shouldGetData: true)
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    }
-                }
-            }
-        })
     }
     
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0421198D26736F9C0056A737 /* CongratsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421198B26736F9C0056A737 /* CongratsVC.swift */; };
+		0421198E26736F9C0056A737 /* CongratsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0421198C26736F9C0056A737 /* CongratsVC.xib */; };
 		042650AA2650F246009E6451 /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042650A82650F245009E6451 /* PaymentVC.swift */; };
 		042650AB2650F246009E6451 /* PaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042650A92650F245009E6451 /* PaymentVC.xib */; };
 		044DCAC02671D3C20093F5B1 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DCABE2671D3C20093F5B1 /* WaitingVC.swift */; };
@@ -140,6 +142,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0421198B26736F9C0056A737 /* CongratsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsVC.swift; sourceTree = "<group>"; };
+		0421198C26736F9C0056A737 /* CongratsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CongratsVC.xib; sourceTree = "<group>"; };
 		042650A82650F245009E6451 /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
 		042650A92650F245009E6451 /* PaymentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentVC.xib; sourceTree = "<group>"; };
 		044DCABC266A57950093F5B1 /* WingMate_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WingMate_iOS.entitlements; sourceTree = "<group>"; };
@@ -289,6 +293,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0421198A26736F6D0056A737 /* CongratsVC */ = {
+			isa = PBXGroup;
+			children = (
+				0421198B26736F9C0056A737 /* CongratsVC.swift */,
+				0421198C26736F9C0056A737 /* CongratsVC.xib */,
+			);
+			path = CongratsVC;
+			sourceTree = "<group>";
+		};
 		042650A72650F223009E6451 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +530,7 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0421198A26736F6D0056A737 /* CongratsVC */,
 				044DCABD2671D3A80093F5B1 /* Waiting */,
 				042650A72650F223009E6451 /* Payment */,
 				FA00F0BA25DBD10800D38E88 /* Messages */,
@@ -942,6 +956,7 @@
 				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
 				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
+				0421198E26736F9C0056A737 /* CongratsVC.xib in Resources */,
 				FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */,
 				FA0669BF25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib in Resources */,
 				FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */,
@@ -1075,6 +1090,7 @@
 				FADF223725B82E9200BB8E4C /* EditNamePresenter.swift in Sources */,
 				FAE553A925A95B0500C765F2 /* ProfileVC.swift in Sources */,
 				FAF2989725D2A0B200E1595A /* TabBarVC.swift in Sources */,
+				0421198D26736F9C0056A737 /* CongratsVC.swift in Sources */,
 				FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */,
 				FAB4A9AE25DA84100065D23D /* SearchUserCollectionViewCell.swift in Sources */,
 				FAD8BE9D2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.swift in Sources */,

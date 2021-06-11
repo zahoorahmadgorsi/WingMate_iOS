@@ -17,6 +17,8 @@ class DashboardVC: BaseViewController {
     @IBOutlet weak var labelAuthor: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var viewHeader: UIView!
+    @IBOutlet weak var viewFloatingBottom: UIView!
+    @IBOutlet weak var labelFloating: UILabel!
     
     var presenter = DashboardPresenter()
     var dataUsers = [DashboardData]()
@@ -25,41 +27,118 @@ class DashboardVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewFloatingBottom.isHidden = true
         
         self.saveInstallationToken()
+        self.processUserState(isBottomViewTapped: false)
         self.setLayout()
         self.presenter.attach(vc: self)
         self.navigationController?.isNavigationBarHidden = true
         self.registerTableViewCells()
         self.presenter.getUsers()
         self.addPullToRefresh()
-//        self.setViewControllers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resetBottomFloatingViewText(notification:)), name: Notification.Name("resetBottomFloatingViewText"), object: nil)
+
+        //        self.setViewControllers()
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc func resetBottomFloatingViewText(notification: Notification) {
+        let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+        let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+        let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+        
+        if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+            self.labelFloating.text = ValidationStrings.photosVideoRequiredToUpload
+        } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+            self.labelFloating.text = ValidationStrings.profileUnderScreening
+        } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+            self.isTrialPeriodExpired { (isExpired, daysLeft) in
+                if !isExpired {
+                    self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
+                }
+            }
+        }
+        
+        if isPaidUser {
+            self.viewFloatingBottom.isHidden = true
+        }
+    }
+
+    
+    func processUserState(isBottomViewTapped: Bool) {
+        self.getAccountStatus(completion: { (status) in
+            
+            if status == UserAccountStatus.rejected.rawValue {
+                self.logoutUser()
+                return
+            }
+            
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+            let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
+            
+            self.isTrialPeriodExpired { (isExpired, daysLeft) in
+                SVProgressHUD.dismiss()
+                if isExpired {
+                    self.viewFloatingBottom.isHidden = true
+                    if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                        self.navigationController?.pushViewController(WaitingVC(), animated: true)
+                    } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        let vc = PaymentVC(isTrialExpired: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
+                        let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                        self.labelFloating.text = ValidationStrings.photosVideoRequiredToUpload
+                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                        self.labelFloating.text = ValidationStrings.profileUnderScreening
+                    } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
+                        if isBottomViewTapped {
+                            let vc = PaymentVC(isTrialExpired: false)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue {
+                        if !isBottomViewTapped {
+                            let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                            vc.hidesBottomBarWhenPushed = true
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                    self.viewFloatingBottom.isHidden = false
+                    
+                    if isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        self.viewFloatingBottom.isHidden = true
+                   }
+                }
+            }
+        })
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
         
         DispatchQueue.global(qos: .background).async {
             self.myUserOptions = self.getMyUserOptions()
         }
-        
-        if self.isTimeExpiredToRecallAPIs() {
-            
-            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
-            let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
-            
-            if isPaidUser && !isMandatoryQuestionsFilled {
-                let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                self.checkAccountStatus()
-            }
-        } else {
-            print("not expired")
-        }
-        
+        self.resetBottomFloatingViewText(notification: Notification(name: Notification.Name(rawValue: "")))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +159,7 @@ class DashboardVC: BaseViewController {
     func setViewControllers() {
         let vc1 = DashboardVC() // UINavigationController(rootViewController: DashboardVC())
         let vc2 = SettingsVC() //UINavigationController(rootViewController: SettingsVC())
-//        self.tabBarController?.setViewControllers([vc1, vc2], animated: true)
+        //        self.tabBarController?.setViewControllers([vc1, vc2], animated: true)
         
         self.tabBarController?.setViewControllers([vc1, vc2], animated: true)
         
@@ -106,7 +185,7 @@ class DashboardVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-//        self.previewImage(imageView: self.imageViewProfile)
+        //        self.previewImage(imageView: self.imageViewProfile)
         let vc = ProfileVC(user: APP_MANAGER.session!)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -129,6 +208,11 @@ class DashboardVC: BaseViewController {
             return d1.percentageMatch > d2.percentageMatch
         }
         self.collectionViewUsers.reloadData()
+    }
+    
+    @IBAction func redViewButtonPressed(_ sender: Any) {
+        SVProgressHUD.show()
+        self.processUserState(isBottomViewTapped: true)
     }
     
 }

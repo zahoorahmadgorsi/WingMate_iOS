@@ -66,6 +66,7 @@ struct ParseAPIManager {
             if let error = error {
                 onFailure(error.localizedDescription)
             } else {
+                NotificationCenter.default.post(name: Notification.Name("resetBottomFloatingViewText"), object: nil, userInfo: nil)
                 onSuccess(true)
             }
         }

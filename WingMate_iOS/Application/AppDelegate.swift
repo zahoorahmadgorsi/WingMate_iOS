@@ -103,6 +103,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }
             } onFailure: { (error) in
                 print(error)
+                
             }
         }
     }

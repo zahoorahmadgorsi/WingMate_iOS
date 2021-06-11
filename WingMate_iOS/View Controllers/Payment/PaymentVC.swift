@@ -10,19 +10,36 @@ import Parse
 import SVProgressHUD
 
 class PaymentVC: BaseViewController {
-
+    
+    @IBOutlet weak var buttonBack: UIButton!
+    @IBOutlet weak var cstHeightBackButton: NSLayoutConstraint!
+    @IBOutlet weak var cstTopBackButton: NSLayoutConstraint!
+    
+    var isTrialExpired = false
+    
+    convenience init(isTrialExpired: Bool) {
+        self.init()
+        self.isTrialExpired = isTrialExpired
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.buttonBack.isHidden = self.isTrialExpired ? true : false
+        self.cstHeightBackButton.constant = self.isTrialExpired ? 0 : 50
+        self.cstTopBackButton.constant = self.isTrialExpired ? 0 : 20
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.checkAccountStatus()
+        
+    }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func payNowButtonPressed(_ sender: Any) {
-        if APP_MANAGER.session?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false {
+        if PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false {
             self.showToast(message: "You're already a paid user")
         } else {
             PFUser.current()?.setValue(true, forKey: DBColumn.isPaidUser)
@@ -31,12 +48,10 @@ class PaymentVC: BaseViewController {
                 SVProgressHUD.dismiss()
                 if success {
                     APP_MANAGER.session = PFUser.current()
-                    self.showToast(message: "Congrats on becoming a paid user")
-                    self.dismiss(animated: true) {
-                        let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
-                        vc.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
+//                    self.showToast(message: "Congrats on becoming a paid user")
+                    
+                    let vc = CongratsVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showToast(message: "Failed to update to paid user")
                 }
@@ -59,13 +74,5 @@ class PaymentVC: BaseViewController {
         }
     }
     
-    override func checkAccountStatus() {
-        self.getAccountStatus(completion: { (status) in
-            if status == UserAccountStatus.rejected.rawValue {
-                self.logoutUser()
-                return
-            }
-        })
-    }
 
 }

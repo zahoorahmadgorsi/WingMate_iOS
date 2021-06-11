@@ -13,7 +13,7 @@ protocol QuestionnaireDelegate: class {
     func questionnaire(isSuccess: Bool, questionData: [Question], msg: String)
     func questionnaire(isSuccess: Bool, questionOptionsData: [Option], msg: String)
     func questionnaire(isSuccess: Bool, userSavedOptions: PFObject?, msg: String)
-    func questionnaire(isSaved: Bool, msg: String)
+    func questionnaire(isSaved: Bool, msg: String, userAnswer: PFObject?)
     func questionnaire(isUpdated: Bool, msg: String)
 }
 
@@ -81,9 +81,9 @@ class QuestionnairePresenter {
         SVProgressHUD.show()
         ParseAPIManager.saveUserQuestionOptions(questionObject: questionObject, selectedOptionIds: answersIds, savedOptionsObjects: answersObjects) { (success, userAnswer) in
             SVProgressHUD.dismiss()
-            self.delegate?.questionnaire(isSaved: true, msg: ValidationStrings.kQuestionnaireOptionSaved)
+            self.delegate?.questionnaire(isSaved: true, msg: ValidationStrings.kQuestionnaireOptionSaved, userAnswer: userAnswer!)
         } onFailure: { (error) in
-            self.delegate?.questionnaire(isSaved: false, msg: error)
+            self.delegate?.questionnaire(isSaved: false, msg: error, userAnswer: PFObject())
         }
     }
     
@@ -97,7 +97,7 @@ class QuestionnairePresenter {
         }
     }
     
-    func saveQuestionListInUserTable(data: Question) {
+    func saveQuestionListInUserTable(data: Question, userAnswer: PFObject?) {
         
         let questionType = data.object?.value(forKey: DBColumn.questionType) as? String ?? ""
         var questionAnswerList = [PFObject]()
@@ -124,7 +124,11 @@ class QuestionnairePresenter {
             }
         }
         
-        questionAnswerList.append(data.userSavedOptionObject!)
+        if data.userSavedOptionObject == nil {
+            questionAnswerList.append(userAnswer!)
+        } else {
+            questionAnswerList.append(data.userSavedOptionObject!)
+        }
         
         if questionType == QuestionType.mandatory.rawValue {
             PFUser.current()?.setValue(questionAnswerList, forKey: DBColumn.mandatoryQuestionAnswersList)

@@ -51,6 +51,7 @@ class ProfileVC: BaseViewController {
     var likeObject: PFObject?
     var maybeObject: PFObject?
     var refreshFansList:(()->Void)?
+    var isTrialExpired = false
     
     convenience init(user: PFUser) {
         self.init()
@@ -59,6 +60,7 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.processUserState()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
         self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
@@ -70,7 +72,7 @@ class ProfileVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.checkAccountStatus()
+        
     }
 
     //MARK: - Helper Methods
@@ -194,6 +196,40 @@ class ProfileVC: BaseViewController {
         }
     }
     
+    func processUserState() {
+        self.getAccountStatus(completion: { (status) in
+            
+            if status == UserAccountStatus.rejected.rawValue {
+                self.logoutUser()
+                return
+            }
+            
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+            let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
+            
+            self.isTrialPeriodExpired { (isExpired, daysLeft) in
+                self.isTrialExpired = true
+                if isExpired {
+                    if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                        self.navigationController?.pushViewController(WaitingVC(), animated: true)
+                    } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        let vc = PaymentVC(isTrialExpired: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
+                        let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        })
+    }
+    
     //MARK: - Button Actions
     @IBAction func image1ButtonPressed(_ sender: Any) {
 //        self.previewImage(imageView: self.imageViewProfile1)
@@ -309,6 +345,10 @@ class ProfileVC: BaseViewController {
     
     @IBAction func editProfileButtonPressed(_ sender: Any) {
         let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+        let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+        let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+        
         if isPaidUser {
             let vc = EditProfileVC(userSavedOptions: self.dataUserSavedQuestions)
             vc.isAnyInfoUpdated = { [weak self] status in
@@ -318,18 +358,29 @@ class ProfileVC: BaseViewController {
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
-                let vc = PaymentVC()
-                self.navigationController?.pushViewController(vc, animated: true)
-            } failureHandler: { failureAction in
-                
+            if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaFirst) { successAction in
+                    let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: self.isTrialExpired)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } failureHandler: { failureAction in
+                    
+                }
+            } else if (isPhotosSubmitted || isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                self.showToast(message: ValidationStrings.profileUnderScreening)
+            } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
+                    let vc = PaymentVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } failureHandler: { failureAction in
+                    
+                }
             }
-
         }
     }
     
     @IBAction func editMultimediaButtonPressed(_ sender: Any) {
         let vc = UploadPhotoVideoVC(data: self.mainDataUserPhotosVideo)
+        vc.isTrialExpired = self.isTrialExpired
         vc.isAnyMediaUpdated = { [weak self] status in
             if status {
                 self?.presenter.getAllUploadedFilesForUser(currentUserId: APP_MANAGER.session?.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: false)

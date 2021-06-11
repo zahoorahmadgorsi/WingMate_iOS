@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baloo2-Bold.ttf">
+            <string>Baloo2-Bold</string>
+        </array>
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CongratsVC" customModule="WingMate_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="imageViewMain" destination="1Yg-oY-4xw" id="Bs3-NE-ml3"/>
+                <outlet property="labelHeading" destination="79C-0A-AF6" id="SET-hH-sFp"/>
+                <outlet property="labelSubHeading" destination="GtJ-j8-D9g" id="wte-vP-n40"/>
+                <outlet property="view" destination="sog-W7-DqL" id="4yY-p2-g86"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="sog-W7-DqL">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ne6-KI-sbk">
+                    <rect key="frame" x="62" y="792" width="290" height="50"/>
+                    <color key="backgroundColor" name="TextFieldBgColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="PVI-xA-y6n"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" name="PurpleThemeColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="Wsz-3U-0qS"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurrah!!! Now you are Pro member for Wing Mate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79C-0A-AF6">
+                    <rect key="frame" x="40" y="400.5" width="334" height="65.5"/>
+                    <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="28"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For better result we need to know more about you. please provide few answers about you &amp; your interests." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtJ-j8-D9g">
+                    <rect key="frame" x="40" y="486" width="334" height="56"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thanks_photos_video" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-oY-4xw">
+                    <rect key="frame" x="94.5" y="172" width="225" height="208.5"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="GQS-gb-9gi"/>
+            <color key="backgroundColor" name="PurpleThemeColor"/>
+            <constraints>
+                <constraint firstItem="GtJ-j8-D9g" firstAttribute="leading" secondItem="GQS-gb-9gi" secondAttribute="leading" constant="40" id="8ic-Qz-8y3"/>
+                <constraint firstItem="GQS-gb-9gi" firstAttribute="bottom" secondItem="ne6-KI-sbk" secondAttribute="bottom" constant="20" id="BK6-Qb-qNo"/>
+                <constraint firstItem="1Yg-oY-4xw" firstAttribute="centerX" secondItem="GQS-gb-9gi" secondAttribute="centerX" id="Hbv-iU-zPv"/>
+                <constraint firstItem="79C-0A-AF6" firstAttribute="top" secondItem="1Yg-oY-4xw" secondAttribute="bottom" constant="20" id="JC1-fy-WMM"/>
+                <constraint firstItem="GQS-gb-9gi" firstAttribute="trailing" secondItem="GtJ-j8-D9g" secondAttribute="trailing" constant="40" id="MpF-Nh-Ysl"/>
+                <constraint firstItem="79C-0A-AF6" firstAttribute="centerY" secondItem="GQS-gb-9gi" secondAttribute="centerY" constant="-20" id="Q6D-pO-vTh"/>
+                <constraint firstItem="79C-0A-AF6" firstAttribute="leading" secondItem="sog-W7-DqL" secondAttribute="leading" constant="40" id="c4T-K0-XuV"/>
+                <constraint firstItem="79C-0A-AF6" firstAttribute="centerX" secondItem="GQS-gb-9gi" secondAttribute="centerX" id="edI-LP-9bt"/>
+                <constraint firstItem="GtJ-j8-D9g" firstAttribute="top" secondItem="79C-0A-AF6" secondAttribute="bottom" constant="20" id="g96-n0-zdS"/>
+                <constraint firstItem="ne6-KI-sbk" firstAttribute="width" secondItem="sog-W7-DqL" secondAttribute="width" multiplier="0.700483" id="jx5-yi-dDs"/>
+                <constraint firstItem="ne6-KI-sbk" firstAttribute="centerX" secondItem="GQS-gb-9gi" secondAttribute="centerX" id="lpt-qk-PVG"/>
+                <constraint firstAttribute="trailing" secondItem="79C-0A-AF6" secondAttribute="trailing" constant="40" id="t05-pq-9au"/>
+            </constraints>
+            <point key="canvasLocation" x="71" y="96"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="thanks_photos_video" width="225.33332824707031" height="208.66667175292969"/>
+        <namedColor name="PurpleThemeColor">
+            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextFieldBgColor">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
