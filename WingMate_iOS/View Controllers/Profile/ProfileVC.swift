@@ -210,8 +210,9 @@ class ProfileVC: BaseViewController {
             let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
             
             self.isTrialPeriodExpired { (isExpired, daysLeft) in
-                self.isTrialExpired = true
+                
                 if isExpired {
+                    self.isTrialExpired = true
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
                         let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
                         self.navigationController?.pushViewController(vc, animated: true)

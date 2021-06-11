@@ -33,6 +33,10 @@ class SettingsVC: BaseViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func processUserState() {
         SVProgressHUD.show()
         self.getAccountStatus(completion: { (status) in
