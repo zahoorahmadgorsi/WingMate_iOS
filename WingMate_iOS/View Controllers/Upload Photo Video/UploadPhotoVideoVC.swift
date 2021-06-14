@@ -26,6 +26,7 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet weak var testimageview: UIImageView!
     var isPhotoMode = true
+    var isPhotosUploaded = false
 
     let imagePicker = UIImagePickerController()
     var selectedImageIndex = 0
@@ -74,7 +75,7 @@ class UploadPhotoVideoVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     
@@ -163,40 +164,49 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         if self.isPhotoMode {
             if self.isTrialExpired {
-                self.showToast(message: ValidationStrings.uploadAtleast1Photo)
+                if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
+                    self.showToast(message: ValidationStrings.uploadAtleast1Photo)
+                } else {
+                    self.goToVideos()
+                }
             } else {
                 if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
                     self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1PhotoRequired, successHandler: { successAction in
                         self.goToVideos()
                     }, failureHandler: { failureAction in })
                 } else {
+                    self.isPhotosUploaded = true
                     self.goToVideos()
                 }
             }
         } else {
-            if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
-                if self.isTrialExpired {
+            if self.isTrialExpired {
+                if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
                     self.showToast(message: ValidationStrings.uploadVideoToContinue)
                 } else {
+                    let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
+                    vc.isTrialExpired = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
                     self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1videoRequired, successHandler: { successAction in
                         self.navigationController?.popToRootViewController(animated: true)
                     }, failureHandler: { failureAction in })
-                }
-                
-            } else {
-                //        self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
-                //        self.navigationController?.popViewController(animated: true)
-                if self.isTrialExpired {
-                    let vc = WaitingVC()
-                    self.navigationController?.pushViewController(vc, animated: true)
                 } else {
-                    let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if self.isPhotosUploaded {
+                        let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             }
         }
     }
     
+        //        self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
+        //        self.navigationController?.popViewController(animated: true)
 
     @IBAction func backButtonPressed(_ sender: Any) {
 //        if self.isPhotoMode {

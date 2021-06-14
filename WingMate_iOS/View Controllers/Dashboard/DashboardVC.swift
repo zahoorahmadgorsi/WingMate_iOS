@@ -44,7 +44,7 @@ class DashboardVC: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
+        
     }
     
     @objc func resetBottomFloatingViewText(notification: Notification) {

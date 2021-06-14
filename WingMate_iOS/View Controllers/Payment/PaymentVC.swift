@@ -31,7 +31,7 @@ class PaymentVC: BaseViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

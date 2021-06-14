@@ -53,7 +53,6 @@ class SearchVC: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: - Helping Methods

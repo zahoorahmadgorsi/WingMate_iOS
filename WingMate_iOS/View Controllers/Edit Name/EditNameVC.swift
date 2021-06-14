@@ -29,7 +29,7 @@ class EditNameVC: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func setInitialLayout() {

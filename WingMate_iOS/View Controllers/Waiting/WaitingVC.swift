@@ -15,6 +15,9 @@ class WaitingVC: BaseViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
     @IBAction func logoutButtonPressed(_ sender: Any) {
         ParseAPIManager.logoutUser { (success) in
             APP_MANAGER.session = nil
