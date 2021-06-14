@@ -146,7 +146,7 @@ extension RegisterStepTwoVC: RegisterDelegate {
             user.setValue(false, forKey: DBColumn.isOptionalQuestionnairesFilled)
             user.setValue(false, forKey: DBColumn.isPhotosSubmitted)
             user.setValue(false, forKey: DBColumn.isVideoSubmitted)
-            user.setValue(self.genderType == 1 ? "male" : "female", forKey: DBColumn.gender)
+            user.setValue(self.genderType == 1 ? Gender.male.rawValue : Gender.female.rawValue, forKey: DBColumn.gender)
             user.setValue(false, forKey: DBColumn.isMediaApproved)
             user.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
             user.setValue(GroupCategory.newGroup.rawValue, forKey: DBColumn.groupCategory)
