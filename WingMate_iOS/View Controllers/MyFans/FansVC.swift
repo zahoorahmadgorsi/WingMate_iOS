@@ -70,8 +70,7 @@ class FansVC: BaseViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        self.refreshControl.endRefreshing()
-        self.presenter.getUsers()
+        self.presenter.getUsers(shouldShowLoader: false)
     }
     
     func updateUI() {
@@ -170,6 +169,7 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
 extension FansVC: FansDelegate {
     func fans(isSuccess: Bool, msg: String, users: [PFObject]) {
+        self.refreshControl.endRefreshing()
         if isSuccess {
             self.viewNoResults.isHidden = true
             self.dataLikeUsers.removeAll()

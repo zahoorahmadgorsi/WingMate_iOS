@@ -73,3 +73,10 @@ enum FileStatus: Int {
 enum GroupCategory: String {
     case newGroup = "N"
 }
+
+enum InteractionType: Int {
+    case like = 0
+    case crush = 1
+    case maybe = 2
+}
+

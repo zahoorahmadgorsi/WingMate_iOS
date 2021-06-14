@@ -210,9 +210,8 @@ class ProfileVC: BaseViewController {
             let isMandatoryQuestionsFilled = PFUser.current()?.value(forKey: DBColumn.isMandatoryQuestionnairesFilled) as? Bool ?? false
             
             self.isTrialPeriodExpired { (isExpired, daysLeft) in
-                
+                self.isTrialExpired = isExpired
                 if isExpired {
-                    self.isTrialExpired = true
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
                         let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -263,70 +262,61 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func maybeButtonPressed(_ sender: Any) {
-//        self.getAccountStatus(completion: { (status) in
-//            if status == UserAccountStatus.accepted.rawValue {
-//
-//            } else {
-//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
-//            }
-//        })
+        self.interactWithUsers(interactionType: .maybe)
+    }
+    
+    func interactWithUsers(interactionType: InteractionType) {
+        let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+        let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+        let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue
         
-        if self.isAllowedToInteract() {
-            if self.maybeObject == nil {
-                self.presenter.markUserAsFan(user: self.user, fanType: .maybe)
-            } else {
-                self.presenter.unmarkUserAsFan(object: self.maybeObject!, fanType: .maybe)
+        if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaAndBecomePaidToInteract, rightBtnText: ValidationStrings.uploadNow, leftBtnText: ValidationStrings.uploadLater) { rightButtonAction in
+                let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: self.isTrialExpired)
+                self.navigationController?.pushViewController(vc, animated: true)
+            } failureHandler: { leftButtonAction in
+                
+            }
+        } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+            self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
+        } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
+                let vc = PaymentVC(isTrialExpired: self.isTrialExpired)
+                self.navigationController?.pushViewController(vc, animated: true)
+            } failureHandler: { leftButtonAction in
+                
             }
         } else {
-            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
+            //can interact now
+            if interactionType == .maybe {
+                if self.maybeObject == nil {
+                    self.presenter.markUserAsFan(user: self.user, fanType: .maybe)
+                } else {
+                    self.presenter.unmarkUserAsFan(object: self.maybeObject!, fanType: .maybe)
+                }
+            } else if interactionType == .like {
+                if self.likeObject == nil {
+                    self.presenter.markUserAsFan(user: self.user, fanType: .like)
+                } else {
+                    self.presenter.unmarkUserAsFan(object: self.likeObject!, fanType: .like)
+                }
+            } else if interactionType == .crush {
+                if self.crushObject == nil {
+                    self.presenter.markUserAsFan(user: self.user, fanType: .crush)
+                } else {
+                    self.presenter.unmarkUserAsFan(object: self.crushObject!, fanType: .crush)
+                }
+            }
         }
-        
-        
-        
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-//        self.getAccountStatus(completion: { (status) in
-//            if status == UserAccountStatus.accepted.rawValue {
-//
-//            } else {
-//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
-//            }
-//        })
-        
-        if self.isAllowedToInteract() {
-            if self.likeObject == nil {
-                self.presenter.markUserAsFan(user: self.user, fanType: .like)
-            } else {
-                self.presenter.unmarkUserAsFan(object: self.likeObject!, fanType: .like)
-            }
-        } else {
-            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
-        }
-        
-        
-        
+        self.interactWithUsers(interactionType: .like)
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-//        self.getAccountStatus(completion: { (status) in
-//            if status == UserAccountStatus.accepted.rawValue {
-//
-//            } else {
-//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
-//            }
-//        })
-        
-        
-        if self.isAllowedToInteract() {
-            if self.crushObject == nil {
-                self.presenter.markUserAsFan(user: self.user, fanType: .crush)
-            } else {
-                self.presenter.unmarkUserAsFan(object: self.crushObject!, fanType: .crush)
-            }
-        } else {
-            self.showAlertOK(APP_NAME, message: ValidationStrings.kNotActiveAndNotPaid)
-        }
+        self.interactWithUsers(interactionType: .crush)
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {

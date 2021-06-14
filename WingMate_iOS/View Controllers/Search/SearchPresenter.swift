@@ -23,8 +23,10 @@ class SearchPresenter {
         self.delegate = vc
     }
     
-    func getQuestions(questionType: QuestionType) {
-        SVProgressHUD.show()
+    func getQuestions(questionType: QuestionType, shouldShowLoader: Bool? = true) {
+        if shouldShowLoader ?? false {
+            SVProgressHUD.show()
+        }
         ParseAPIManager.getQuestions(questionType: questionType.rawValue)
         { (success, data) in
             SVProgressHUD.dismiss()

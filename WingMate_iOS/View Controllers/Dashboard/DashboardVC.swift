@@ -176,8 +176,7 @@ class DashboardVC: BaseViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        self.refreshControl.endRefreshing()
-        self.presenter.getUsers()
+        self.presenter.getUsers(shouldShowLoader: false)
     }
     
     func saveInstallationToken() {
@@ -257,6 +256,8 @@ extension DashboardVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
 
 extension DashboardVC: DashboardDelegate {
     func dashboard(isSuccess: Bool, msg: String, users: [PFUser]) {
+        print("ENDED")
+        self.refreshControl.endRefreshing()
         if isSuccess {
             self.dataUsers.removeAll()
             for i in users {

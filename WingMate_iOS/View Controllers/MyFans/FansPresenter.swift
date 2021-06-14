@@ -21,8 +21,10 @@ class FansPresenter {
         self.delegate = vc
     }
 
-    func getUsers() {
-        SVProgressHUD.show()
+    func getUsers(shouldShowLoader: Bool? = true) {
+        if shouldShowLoader ?? false {
+            SVProgressHUD.show()
+        }
         ParseAPIManager.getMyFans { (success, data) in
             SVProgressHUD.dismiss()
             if success {

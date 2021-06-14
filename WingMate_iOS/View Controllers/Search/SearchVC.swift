@@ -67,10 +67,10 @@ class SearchVC: BaseViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        self.refreshControl.endRefreshing()
         self.showFiltersTableView()
         self.resetAllFilters()
-        self.presenter.getQuestions(questionType: .mandatory)
+        
+        self.presenter.getQuestions(questionType: .mandatory, shouldShowLoader: false)
     }
     
     func showFiltersTableView() {
@@ -217,6 +217,7 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
 
 extension SearchVC: SearchDelegate {
     func search(isSuccess: Bool, msg: String, questions: [PFObject]) {
+        self.refreshControl.endRefreshing()
         self.dataQuestions = self.presenter.mapQuestionsToModel(questions: questions)
         self.tableViewFilters.reloadData()
     }

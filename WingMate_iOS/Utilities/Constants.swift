@@ -33,6 +33,13 @@ class ValidationStrings {
     static let daysLeftForTrialExpiry = "days left for trial. Buy Pro"
     static let photosVideoRequiredToUpload = "Kindly submit your photos/video"
     static let uploadMediaFirst = "You need to upload photos & video first inorder to proceed. Do you wish to continue?"
+    static let uploadMediaAndBecomePaidToInteract = "Please upload your photos and video and become a paid user to avail this feature. Do you want to upload photos and video"
+    static let uploadNow = "Upload Now"
+    static let uploadLater = "Upload Later"
+    static let becomePaidUser = "Please become a paid user to avail this feature. Do you want to pay?"
+    static let payNow = "Pay Now"
+    static let payLater = "Pay Later"
+    static let accountInReviewForInteraction = "Your account is under review. Only approved and paid accounts can avail this feature"
 }
 
 class UserDefaultKeys {

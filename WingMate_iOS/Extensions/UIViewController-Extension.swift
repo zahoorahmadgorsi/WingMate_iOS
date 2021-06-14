@@ -17,10 +17,10 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showAlertTwoButtons(_ title: String, message: String, successHandler: ((UIAlertAction) -> Void)?, failureHandler: ((UIAlertAction) -> Void)?) {
+    func showAlertTwoButtons(_ title: String, message: String, rightBtnText: String? = "Yes", leftBtnText: String? = "No", successHandler: ((UIAlertAction) -> Void)?, failureHandler: ((UIAlertAction) -> Void)?) {
         let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let continueAction = UIAlertAction(title: "Yes", style: .default, handler: successHandler)
-        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: failureHandler)
+        let continueAction = UIAlertAction(title: rightBtnText, style: .default, handler: successHandler)
+        let cancelAction = UIAlertAction(title: leftBtnText, style: .cancel, handler: failureHandler)
         alertController.addAction(cancelAction)
         alertController.addAction(continueAction)
         //        alertController.view.tintColor = UIConfig.appColor
