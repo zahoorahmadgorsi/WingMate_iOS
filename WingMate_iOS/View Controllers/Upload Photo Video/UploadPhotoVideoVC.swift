@@ -165,9 +165,13 @@ class UploadPhotoVideoVC: BaseViewController {
             if self.isTrialExpired {
                 self.showToast(message: ValidationStrings.uploadAtleast1Photo)
             } else {
-                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1PhotoRequired, successHandler: { successAction in
+                if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
+                    self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1PhotoRequired, successHandler: { successAction in
+                        self.goToVideos()
+                    }, failureHandler: { failureAction in })
+                } else {
                     self.goToVideos()
-                }, failureHandler: { failureAction in })
+                }
             }
         } else {
             if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
