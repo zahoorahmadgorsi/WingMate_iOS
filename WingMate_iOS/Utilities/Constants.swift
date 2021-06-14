@@ -40,6 +40,8 @@ class ValidationStrings {
     static let payNow = "Pay Now"
     static let payLater = "Pay Later"
     static let accountInReviewForInteraction = "Your account is under review. Only approved and paid accounts can avail this feature"
+    static let deletingVideoWillMakeAccountPending = "Removing video will make account pending. Are you sure you want to continue?"
+    static let deletingAllPhotosWillMakeAccountPending = "Removing all photos will make account pending. Are you sure you want to continue?"
 }
 
 class UserDefaultKeys {

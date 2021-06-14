@@ -199,11 +199,15 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
             cell.data = self.dataUserPhotoVideo[indexPath.item]
             cell.removeImageButtonPressed = { [weak self] buttonTag in
                 if self?.isPhotoMode ?? false {
-                    if self?.dataUserPhotoVideo.count == 1 {
-                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                    if self?.dataUserPhotoVideo.count ?? 0 == 2 {
+                        self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingAllPhotosWillMakeAccountPending, successHandler: { successAction in
+                            self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                        }, failureHandler: { failureAction in
+                            
+                        })
                     }
                 } else {
-                    self?.showAlertTwoButtons(APP_NAME, message: Constants.actionFileTypeDescription, successHandler: { successAction in
+                    self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingVideoWillMakeAccountPending, successHandler: { successAction in
                         self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
                     }, failureHandler: { failureAction in
                         
@@ -372,7 +376,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     }
     
     func updateUserProfilePic() {
-        if self.dataUserPhotoVideo.count > 0 {
+        if self.dataUserPhotoVideo.count > 1 {
             PFUser.current()?.setValue(self.dataUserPhotoVideo[0].uploadFileUrl ?? "", forKey: DBColumn.profilePic)
             ParseAPIManager.updateUserObject() { (success) in
                 if success {
