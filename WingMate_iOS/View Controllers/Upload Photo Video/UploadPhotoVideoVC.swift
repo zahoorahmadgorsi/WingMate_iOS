@@ -182,8 +182,13 @@ class UploadPhotoVideoVC: BaseViewController {
             } else {
                 //        self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
                 //        self.navigationController?.popViewController(animated: true)
-                let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
-                self.navigationController?.pushViewController(vc, animated: true)
+                if self.isTrialExpired {
+                    let vc = WaitingVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
