@@ -162,15 +162,33 @@ class UploadPhotoVideoVC: BaseViewController {
     //MARK: - Button Actions
     @IBAction func saveButtonPressed(_ sender: Any) {
         if self.isPhotoMode {
-            self.goToVideos()
+            if self.isTrialExpired {
+                self.showToast(message: ValidationStrings.uploadAtleast1Photo)
+            } else {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1PhotoRequired, successHandler: { successAction in
+                    self.goToVideos()
+                }, failureHandler: { failureAction in })
+            }
         } else {
-            self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
-            let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
-            self.navigationController?.pushViewController(vc, animated: true)
-//            self.navigationController?.popViewController(animated: true)
+            if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
+                if self.isTrialExpired {
+                    self.showToast(message: ValidationStrings.uploadVideoToContinue)
+                } else {
+                    self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.min1videoRequired, successHandler: { successAction in
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }, failureHandler: { failureAction in })
+                }
+                
+            } else {
+                //        self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
+                //        self.navigationController?.popViewController(animated: true)
+                let vc = CongratsVC(isPhotosVideoUploadedFlow: true)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
+
     @IBAction func backButtonPressed(_ sender: Any) {
 //        if self.isPhotoMode {
 //            self.navigationController?.popViewController(animated: true)
