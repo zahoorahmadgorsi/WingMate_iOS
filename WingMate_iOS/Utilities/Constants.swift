@@ -41,6 +41,7 @@ class ValidationStrings {
     static let payLater = "Pay Later"
     static let accountInReviewForInteraction = "Your account is under review. Only approved and paid accounts can avail this feature"
     static let deletingVideoWillMakeAccountPending = "Removing video will make account pending. Are you sure you want to continue?"
+    static let deletingAlertMsg = "Are you sure you want to delete it?"
     static let deletingAllPhotosWillMakeAccountPending = "Removing all photos will make account pending. Are you sure you want to continue?"
     static let min1videoRequired = "Video is required, are you sure you want to continue without uploading it?"
     static let min1PhotoRequired = "Minimum 1 photo is required, are you sure you want to continue without uploading it?"

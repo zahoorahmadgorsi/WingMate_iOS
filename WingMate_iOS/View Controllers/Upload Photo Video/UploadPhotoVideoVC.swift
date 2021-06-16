@@ -235,24 +235,11 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
             cell.isPhotoMode = self.isPhotoMode
             cell.data = self.dataUserPhotoVideo[indexPath.item]
             cell.removeImageButtonPressed = { [weak self] buttonTag in
-                if self?.isPhotoMode ?? false {
-                    if self?.dataUserPhotoVideo.count ?? 0 == 2 {
-                        self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingAllPhotosWillMakeAccountPending, successHandler: { successAction in
-                            self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
-                        }, failureHandler: { failureAction in
-                            
-                        })
-                    } else {
-                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
-                    }
-                } else {
-                    self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingVideoWillMakeAccountPending, successHandler: { successAction in
-                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
-                    }, failureHandler: { failureAction in
-                        
-                    })
-                }
-                
+                self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingAlertMsg, successHandler: { successAction in
+                    self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
+                }, failureHandler: { failureAction in
+                    
+                })
             }
             return cell
         } else {
