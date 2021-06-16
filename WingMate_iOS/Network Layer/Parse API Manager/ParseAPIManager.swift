@@ -237,7 +237,8 @@ struct ParseAPIManager {
     static func getAllUploadedFilesForUser(currentUserId: String, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
         if currentUserId == PFUser.current()?.objectId ?? "" {
-            query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt).whereKey(DBColumn.fileStatus, notEqualTo: FileStatus.rejected.rawValue)
+            query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt)
+            //.whereKey(DBColumn.fileStatus, notEqualTo: FileStatus.rejected.rawValue)
         } else {
             query = PFQuery(className: DBTable.userProfilePhotoVideo).whereKey(DBColumn.userId, equalTo: currentUserId).order(byAscending: DBColumn.createdAt).whereKey(DBColumn.fileStatus, equalTo: FileStatus.accepted.rawValue)
         }

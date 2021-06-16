@@ -15,6 +15,8 @@ class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var buttonRemove: UIButton!
     @IBOutlet weak var viewAddPhotos: UIView!
     @IBOutlet weak var imageViewPlay: UIImageView!
+    @IBOutlet weak var viewFileStatus: UIView!
+    @IBOutlet weak var labelFileStatus: UILabel!
     var removeImageButtonPressed: ((Int) -> Void)?
     
     override func awakeFromNib() {
@@ -44,6 +46,20 @@ class UploadPhotoVideoCollectionViewCell: BaseCollectionViewCell {
             self.buttonRemove.isHidden = data?.uploadFileUrl == nil ? true : false
             self.buttonRemove.tag = indexPath.item
             self.imageViewPlay.isHidden = self.isPhotoMode ? true : data?.uploadFileUrl == nil ? true : false
+            
+            if data?.fileStatus == FileStatus.accepted.rawValue || data?.fileStatus == -1 {
+                self.viewFileStatus.isHidden = true
+            } else {
+                if data?.fileStatus == FileStatus.pending.rawValue {
+                    self.labelFileStatus.text = "Pending"
+                    self.viewFileStatus.backgroundColor = UIColor.orange
+                } else if data?.fileStatus == FileStatus.rejected.rawValue {
+                    self.labelFileStatus.text = "Rejected"
+                    self.viewFileStatus.backgroundColor = UIColor.red
+                }
+                self.viewFileStatus.isHidden = false
+                
+            }
         }
     }
     

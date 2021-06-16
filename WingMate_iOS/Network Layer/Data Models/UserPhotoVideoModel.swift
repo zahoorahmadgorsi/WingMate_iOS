@@ -12,9 +12,11 @@ struct UserPhotoVideoModel {
     var image: UIImage?
     var uploadFileUrl: String?
     var object: PFObject?
-    init(image: UIImage? = UIImage(named: ""), uploadFileUrl: String? = nil, object: PFObject? = PFObject(className: "abc")) {
+    var fileStatus: Int?
+    init(image: UIImage? = UIImage(named: ""), uploadFileUrl: String? = nil, object: PFObject? = PFObject(className: "abc"), fileStatus: Int? = -1) {
         self.image = image
         self.uploadFileUrl = uploadFileUrl
         self.object = object
+        self.fileStatus = fileStatus
     }
 }

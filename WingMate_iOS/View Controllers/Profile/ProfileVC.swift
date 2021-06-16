@@ -438,7 +438,8 @@ extension ProfileVC: ProfileDelegate {
         if isSuccess {
             for i in userFilesData {
                 let uploadedFile = i[DBColumn.file] as? PFFileObject
-                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
+                let fileStatus = i[DBColumn.fileStatus] as? Int ?? -1
+                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i, fileStatus: fileStatus)
                 self.mainDataUserPhotosVideo.append(model)
             }
             self.dataUserPhotosVideo = self.presenter.getUserPhotosVideos(data: self.mainDataUserPhotosVideo, isPhotos: true)

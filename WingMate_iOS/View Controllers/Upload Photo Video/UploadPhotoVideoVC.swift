@@ -242,6 +242,8 @@ extension UploadPhotoVideoVC: UICollectionViewDelegate, UICollectionViewDataSour
                         }, failureHandler: { failureAction in
                             
                         })
+                    } else {
+                        self?.presenter.removePhotoVideoFileFromServer(obj: self?.dataUserPhotoVideo[buttonTag].object ?? PFObject(className: "abc"), index: buttonTag)
                     }
                 } else {
                     self?.showAlertTwoButtons(APP_NAME, message: ValidationStrings.deletingVideoWillMakeAccountPending, successHandler: { successAction in
@@ -388,7 +390,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
             self.isPhotoVideoUpdated = true
             if self.isPhotoMode {
                 if fileUrl != nil { //image uploaded
-                    let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
+                    let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
                     if self.maximumNumberOfPhotosAllowed == self.dataUserPhotoVideo.count {
                         self.dataUserPhotoVideo[self.maximumNumberOfPhotosAllowed-1] = model
                     } else {
@@ -402,7 +404,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     self.showToast(message: "Nil photo file url")
                 }
             } else {
-                self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj)
+                self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
                 self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
                 
                 PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted)
@@ -413,7 +415,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     }
     
     func updateUserProfilePic() {
-        if self.dataUserPhotoVideo.count > 1 {
+        /*if self.dataUserPhotoVideo.count > 1 {
             PFUser.current()?.setValue(self.dataUserPhotoVideo[0].uploadFileUrl ?? "", forKey: DBColumn.profilePic)
             ParseAPIManager.updateUserObject() { (success) in
                 if success {
@@ -428,7 +430,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
             PFUser.current()?.setValue(false, forKey: DBColumn.isPhotosSubmitted)
             PFUser.current()?.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
             self.presenter.updateUserObject()
-        }
+        }*/
     }
     
     func uploadPhotoVideo(isFileDeleted: Bool, msg: String, index: Int) {
@@ -469,7 +471,8 @@ extension UploadPhotoVideoVC: ProfileDelegate {
         if isSuccess {
             for i in userFilesData {
                 let uploadedFile = i[DBColumn.file] as? PFFileObject
-                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i)
+                let fileStatus = i[DBColumn.fileStatus] as? Int ?? -1
+                let model = UserPhotoVideoModel(uploadFileUrl: uploadedFile?.url ?? "", object: i, fileStatus: fileStatus)
                 self.mainDataUserPhotosVideo.append(model)
             }
             self.goToPhotos()
