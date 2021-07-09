@@ -13,10 +13,16 @@ class SettingsVC: BaseViewController {
 
     @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var payNowButton: UIButton!
+    @IBOutlet weak var labelVersion: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            print("\(version).\(build)")
+            self.labelVersion.text = "Version \(version).\(build)"
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +125,11 @@ class SettingsVC: BaseViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        self.logoutUser()
+        self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.logoutAlertMsg) { successAction in
+            self.logoutUser()
+        } failureHandler: { failureAction in
+            
+        }
     }
     
     @IBAction func photoVideoButtonPressed(_ sender: Any) {

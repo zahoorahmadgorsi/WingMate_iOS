@@ -25,19 +25,16 @@ class UploadPhotoVideoPresenter {
     func getUserFiles(isPhotoMode: Bool, data: [UserPhotoVideoModel], maxPhotosAllowed: Int) -> [UserPhotoVideoModel] {
         var userFilesData = [UserPhotoVideoModel]()
         if isPhotoMode {
-            if data.count < maxPhotosAllowed { //total user photos are less than allowed, then add one object by default that will show current new photo picture
-                userFilesData = [UserPhotoVideoModel()]
-            }
             for i in data {
                 let photoStatus = i.object!.value(forKey: DBColumn.isPhoto) as! Bool
                 if photoStatus == isPhotoMode {
-                    if data.count < maxPhotosAllowed {
-                        userFilesData.insert(i, at: userFilesData.count - 1)
-                    } else {
-                        userFilesData.append(i)
-                    }
+                    userFilesData.insert(i, at: 0)
                 }
             }
+            if (userFilesData.count < maxPhotosAllowed) {
+                userFilesData.append(UserPhotoVideoModel())
+            }
+            
         } else {
             for i in data {
                 let photoStatus = i.object!.value(forKey: DBColumn.isPhoto) as! Bool

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class CongratsVC: BaseViewController {
     
@@ -34,7 +35,7 @@ class CongratsVC: BaseViewController {
 
     @IBAction func continueButtonPressed(_ sender: Any) {
         if self.isPhotosVideoUploadedFlow {
-            if self.isTrialExpired {
+            if self.isTrialExpired && (PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue) == UserAccountStatus.pending.rawValue {
                 let vc = WaitingVC()
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {

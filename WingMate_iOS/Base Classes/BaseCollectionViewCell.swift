@@ -37,17 +37,19 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     func getVideoThumbnail(from url: String) -> UIImage? {
-        let asset = AVAsset(url: URL(string: url)!)
-        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(Float64(1), preferredTimescale: 100)
-        do {
-            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-            let thumbnail = UIImage(cgImage: img)
-            print("THUMBNAIL GENERATED")
-            return thumbnail
-        } catch {
-            return UIImage()
+        DispatchQueue.global(qos: .background).sync {
+            let asset = AVAsset(url: URL(string: url)!)
+            let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+            assetImgGenerate.appliesPreferredTrackTransform = true
+            let time = CMTimeMakeWithSeconds(Float64(1), preferredTimescale: 100)
+            do {
+                let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                let thumbnail = UIImage(cgImage: img)
+                print("THUMBNAIL GENERATED")
+                return thumbnail
+            } catch {
+                return UIImage()
+            }
         }
     }
     

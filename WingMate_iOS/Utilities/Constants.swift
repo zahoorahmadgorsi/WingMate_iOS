@@ -35,6 +35,7 @@ class ValidationStrings {
     static let uploadMediaFirst = "You need to upload photos & video first inorder to proceed. Do you wish to continue?"
     static let uploadMediaAndBecomePaidToInteract = "Please upload your photos and video and become a paid user to avail this feature. Do you want to upload photos and video"
     static let uploadNow = "Upload Now"
+    static let logoutAlertMsg = "Are you sure you want to logout?"
     static let uploadLater = "Upload Later"
     static let becomePaidUser = "Please become a paid user to avail this feature. Do you want to pay?"
     static let payNow = "Pay Now"
@@ -47,6 +48,7 @@ class ValidationStrings {
     static let min1PhotoRequired = "Minimum 1 photo is required, are you sure you want to continue without uploading it?"
     static let uploadAtleast1Photo = "Upload at least 1 photo"
     static let uploadVideoToContinue = "Upload video to continue"
+    static let inappropriateVideoLength = "Your video is longer than 20 seconds. Please choose or take a shorter video"
 }
 
 class UserDefaultKeys {

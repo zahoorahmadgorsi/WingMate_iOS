@@ -24,6 +24,7 @@ class DashboardVC: BaseViewController {
     var dataUsers = [DashboardData]()
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
+    var isTrialExpired = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,8 @@ class DashboardVC: BaseViewController {
             self.isTrialPeriodExpired { (isExpired, daysLeft) in
                 if !isExpired {
                     self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
+                } else {
+                    self.isTrialExpired = true
                 }
             }
         }
@@ -87,6 +90,7 @@ class DashboardVC: BaseViewController {
             self.isTrialPeriodExpired { (isExpired, daysLeft) in
                 SVProgressHUD.dismiss()
                 if isExpired {
+                    self.isTrialExpired = true
                     self.viewFloatingBottom.isHidden = true
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
                         let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
@@ -188,6 +192,7 @@ class DashboardVC: BaseViewController {
         //        self.previewImage(imageView: self.imageViewProfile)
         let vc = ProfileVC(user: APP_MANAGER.session!)
         vc.hidesBottomBarWhenPushed = true
+        vc.isTrialExpired = self.isTrialExpired
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

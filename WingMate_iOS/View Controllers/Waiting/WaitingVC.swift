@@ -19,6 +19,16 @@ class WaitingVC: BaseViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     @IBAction func logoutButtonPressed(_ sender: Any) {
+        self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.logoutAlertMsg) { successAction in
+            self.logout()
+        } failureHandler: { failureAction in
+            
+        }
+        
+        
+    }
+
+    func logout() {
         ParseAPIManager.logoutUser { (success) in
             APP_MANAGER.session = nil
 //            self.navigationController?.popToRootViewController(animated: true)
@@ -30,5 +40,4 @@ class WaitingVC: BaseViewController {
             self.showToast(message: error)
         }
     }
-
 }

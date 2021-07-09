@@ -8,6 +8,7 @@
 import UIKit
 import UICircularProgressRing
 import Parse
+import AVKit
 
 class UploadPhotoVideoVC: BaseViewController {
     
@@ -95,14 +96,14 @@ class UploadPhotoVideoVC: BaseViewController {
     func setInitialProgressView() {
         self.progressView.style = .ontop
         self.progressView.minValue = 1
-        self.progressView.maxValue = 2
+        self.progressView.maxValue = 100
         self.progressView.startAngle = -90
         self.setProgress()
     }
     
     func setProgress() {
         self.labelProgress.text = self.isPhotoMode ? "1/2" : "2/2"
-        self.progressView.startProgress(to: self.isPhotoMode ? 1 : 2, duration: 0.1)
+        self.progressView.startProgress(to: self.isPhotoMode ? 50 : 100, duration: 0.1)
         self.labelHeading.text = self.isPhotoMode ? "Upload Photos" : "Upload Videos"
         self.labelSubHeading.text = self.isPhotoMode ? "Minimum 1 photo is required" : "Video is required"
     }
@@ -141,11 +142,13 @@ class UploadPhotoVideoVC: BaseViewController {
     }
     
     func goToPhotos() {
+//        self.imageViewProgress.image = UIImage(named: "")
         self.isPhotoMode = true
         self.getTermsConditions()
         self.setProgress()
         
         self.dataUserPhotoVideo = self.presenter.getUserFiles(isPhotoMode: self.isPhotoMode, data: self.mainDataUserPhotosVideo, maxPhotosAllowed: self.maximumNumberOfPhotosAllowed)
+        
 //        if self.dataUserPhotoVideo.count < 3 {
 //            self.dataUserPhotoVideo.append(UserPhotoVideoModel())
 //        }
@@ -175,12 +178,11 @@ class UploadPhotoVideoVC: BaseViewController {
                         self.goToVideos()
                     }, failureHandler: { failureAction in })
                 } else {
-                    self.isPhotosUploaded = true
                     self.goToVideos()
                 }
             }
         } else {
-            if self.isTrialExpired {
+            if self.isTrialExpired && (PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue) == UserAccountStatus.pending.rawValue {
                 if self.dataUserPhotoVideo[0].uploadFileUrl == nil {
                     self.showToast(message: ValidationStrings.uploadVideoToContinue)
                 } else {
@@ -215,7 +217,7 @@ class UploadPhotoVideoVC: BaseViewController {
 //            self.goToPhotos()
 //        }
         self.isAnyMediaUpdated?(self.isPhotoVideoUpdated)
-        if self.isTrialExpired {
+        if self.isTrialExpired && (PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue) == UserAccountStatus.pending.rawValue {
             self.showToast(message: "Trial period has been expired")
         } else {
             self.navigationController?.popViewController(animated: true)
@@ -347,13 +349,27 @@ extension UploadPhotoVideoVC: UIImagePickerControllerDelegate, UINavigationContr
         } else {
             let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
             print("videoURL:\(String(describing: videoURL))")
-            self.presenter.savePhotoVideoFileToServer(videoUrl: videoURL)
+            if let url = videoURL {
+                let time = self.getMediaDuration(url: url)
+                if time > 20 {
+                    self.dismiss(animated: true, completion: nil)
+                    self.showAlertOK(APP_NAME, message: ValidationStrings.inappropriateVideoLength)
+                } else {
+                    self.presenter.savePhotoVideoFileToServer(videoUrl: videoURL)
+                }
+            }
         }
         self.dismiss(animated: true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getMediaDuration(url: URL) -> Float64 {
+        let asset : AVURLAsset = AVURLAsset(url: url) as AVURLAsset
+        let duration : CMTime = asset.duration
+        return CMTimeGetSeconds(duration)
     }
 }
 
@@ -377,6 +393,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
             self.isPhotoVideoUpdated = true
             if self.isPhotoMode {
                 if fileUrl != nil { //image uploaded
+                    self.isPhotosUploaded = true
                     let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
                     if self.maximumNumberOfPhotosAllowed == self.dataUserPhotoVideo.count {
                         self.dataUserPhotoVideo[self.maximumNumberOfPhotosAllowed-1] = model

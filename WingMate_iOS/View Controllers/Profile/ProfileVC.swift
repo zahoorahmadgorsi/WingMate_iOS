@@ -357,7 +357,7 @@ class ProfileVC: BaseViewController {
                     
                 }
             } else if (isPhotosSubmitted || isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
-                self.showToast(message: ValidationStrings.profileUnderScreening)
+                self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
             } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                 self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
                     let vc = PaymentVC()
