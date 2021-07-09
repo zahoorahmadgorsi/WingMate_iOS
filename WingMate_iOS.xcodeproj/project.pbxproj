@@ -1284,7 +1284,7 @@
 				CODE_SIGN_ENTITLEMENTS = WingMate_iOS/WingMate_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A84738639J;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1308,7 +1308,7 @@
 				CODE_SIGN_ENTITLEMENTS = WingMate_iOS/WingMate_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A84738639J;
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
