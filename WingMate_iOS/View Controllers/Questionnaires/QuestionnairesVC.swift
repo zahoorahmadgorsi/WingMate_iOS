@@ -212,15 +212,19 @@ class QuestionnairesVC: BaseViewController {
                 } onFailure: { error in
                     print("failed to update isMandatoryQuestionnairesFilled")
                 }
+                
+                let vc = QuestionsSuccessVC(isMandatorySuccess: true)
+                self.navigationController?.pushViewController(vc, animated: true)
 
-                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.continueWithOptionalQuestions) { (successHanler) in
-                    let vc = QuestionnairesVC(isMandatoryQuestionnaires: false)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } failureHandler: { (failureHandler) in
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+//                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.continueWithOptionalQuestions) { (successHanler) in
+//                    let vc = QuestionnairesVC(isMandatoryQuestionnaires: false)
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                } failureHandler: { (failureHandler) in
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                }
             } else {
-                self.navigationController?.popToRootViewController(animated: true)
+                let vc = QuestionsSuccessVC(isMandatorySuccess: false)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

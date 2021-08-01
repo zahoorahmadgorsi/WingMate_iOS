@@ -50,7 +50,7 @@ class PaymentVC: BaseViewController {
                     APP_MANAGER.session = PFUser.current()
 //                    self.showToast(message: "Congrats on becoming a paid user")
                     
-                    let vc = CongratsVC()
+                    let vc = CongratsVC(isPhotosVideoUploadedFlow: false)
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showToast(message: "Failed to update to paid user")

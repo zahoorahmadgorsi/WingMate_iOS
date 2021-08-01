@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UserDefaults.standard.setValue(Date(), forKey: UserDefaultKeys.latestDateTime)
         self.configureParse()
-        self.configurePushNotifications()
+        self.configurePushNotifications(application: application)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = SplashVC()
         self.window!.backgroundColor = UIColor.white
@@ -110,14 +110,30 @@ extension AppDelegate: CLLocationManagerDelegate {
 }
 
 //MARK: - Push Notifications Configuration
-extension AppDelegate {
-    func configurePushNotifications() {
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func configurePushNotifications(application: UIApplication) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {
             (granted, error) in
             print("Permission granted: \(granted)")
             guard granted else { return }
             self.getNotificationSettings()
+            
+            UNUserNotificationCenter.current().delegate = self // For iOS 10 display notification (sent via APNS) for when app in foreground
+            
+//            application.registerForRemoteNotifications()
         }
+        
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("mb: PUSH RECEIVED")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("mb: Presented")
+        NotificationCenter.default.post(name: Notification.Name("refreshUserObject"), object: nil)
+        completionHandler([.alert, .badge, .sound])
     }
     
     func getNotificationSettings() {
@@ -128,6 +144,7 @@ extension AppDelegate {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+        
     }
     
     func application(_ application: UIApplication,
@@ -161,4 +178,10 @@ extension AppDelegate {
             }
         }
     }
+    
+    //receive notification
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
+    }
+    
 }

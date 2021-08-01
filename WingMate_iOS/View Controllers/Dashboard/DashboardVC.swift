@@ -39,6 +39,7 @@ class DashboardVC: BaseViewController {
         self.presenter.getUsers()
         self.addPullToRefresh()
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetBottomFloatingViewText(notification:)), name: Notification.Name("resetBottomFloatingViewText"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserObject(notification:)), name: Notification.Name("refreshUserObject"), object: nil)
 
         //        self.setViewControllers()
         
@@ -46,6 +47,10 @@ class DashboardVC: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
+    }
+    
+    @objc func refreshUserObject(notification: Notification) {
+        self.processUserState(isBottomViewTapped: false)
     }
     
     @objc func resetBottomFloatingViewText(notification: Notification) {
@@ -78,7 +83,9 @@ class DashboardVC: BaseViewController {
         self.getAccountStatus(completion: { (status) in
             
             if status == UserAccountStatus.rejected.rawValue {
-                self.logoutUser()
+                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountRejected) { action in
+                    self.logoutUser()
+                }
                 return
             }
             
@@ -93,36 +100,50 @@ class DashboardVC: BaseViewController {
                     self.isTrialExpired = true
                     self.viewFloatingBottom.isHidden = true
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
-                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToUploadPhotosVideoTrialExpired) { action in
+                            let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
-                        self.navigationController?.pushViewController(WaitingVC(), animated: true)
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToWaitTrialExpired) { action in
+                            self.navigationController?.pushViewController(WaitingVC(), animated: true)
+                        }
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
-                        let vc = PaymentVC(isTrialExpired: true)
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
+                            let vc = PaymentVC(isTrialExpired: true)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
-                        let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
-                        vc.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToFillMandatoryQuestionnaires) { action in
+                            let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                            vc.hidesBottomBarWhenPushed = true
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     }
                 } else {
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
-                        self.labelFloating.text = ValidationStrings.photosVideoRequiredToUpload
-                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToUploadPhotosVideo) { action in
+                            self.labelFloating.text = ValidationStrings.photosVideoRequiredToUpload
+                            let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
                         self.labelFloating.text = ValidationStrings.profileUnderScreening
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
                         if isBottomViewTapped {
-                            let vc = PaymentVC(isTrialExpired: false)
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNow) { action in
+                                let vc = PaymentVC(isTrialExpired: false)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue {
                         if !isBottomViewTapped {
-                            let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
-                            vc.hidesBottomBarWhenPushed = true
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            self.showAlertOK(APP_NAME, message: ValidationStrings.needToFillMandatoryQuestionnaires) { action in
+                                let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
+                                vc.hidesBottomBarWhenPushed = true
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     }
                     self.viewFloatingBottom.isHidden = false

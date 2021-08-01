@@ -105,7 +105,7 @@ class UploadPhotoVideoVC: BaseViewController {
         self.labelProgress.text = self.isPhotoMode ? "1/2" : "2/2"
         self.progressView.startProgress(to: self.isPhotoMode ? 50 : 100, duration: 0.1)
         self.labelHeading.text = self.isPhotoMode ? "Upload Photos" : "Upload Videos"
-        self.labelSubHeading.text = self.isPhotoMode ? "Minimum 1 photo is required" : "Video is required"
+        self.labelSubHeading.text = self.isPhotoMode ? "Minimum 1 photo is required" : "Video is required. Max video length is 20 seconds"
     }
     
     func setPhotosCollectionViewHeight() {
@@ -388,7 +388,7 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
     }
     
     func uploadPhotoVideo(isFileUploaded: Bool, msg: String, fileUrl: String?, obj: PFObject) {
-        self.showToast(message: msg)
+        
         if isFileUploaded {
             self.isPhotoVideoUpdated = true
             if self.isPhotoMode {
@@ -404,15 +404,22 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     
                     PFUser.current()?.setValue(true, forKey: DBColumn.isPhotosSubmitted)
                     self.presenter.updateUserObject()
+                    if self.dataUserPhotoVideo.count == 2 {
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.photoUploaded + ". To complete your profile, you must upload minimum 1 photo and minimum 1 video")
+                    } else {
+                        self.showAlertOK(APP_NAME, message: ValidationStrings.photoUploaded)
+                    }
                 } else {
                     self.showToast(message: "Nil photo file url")
                 }
             } else {
+                
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
                 self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
                 
-                PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted)
+                PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted) 
                 self.presenter.updateUserObject()
+                self.showAlertOK(APP_NAME, message: ValidationStrings.videoUploaded)
             }
             self.setPhotosCollectionViewHeight()
         }

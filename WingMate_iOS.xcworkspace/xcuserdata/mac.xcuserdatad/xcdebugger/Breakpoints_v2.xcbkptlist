@@ -7,144 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "67E57D7E-9BE3-4F25-BA2E-DB3CED897FD7"
+            uuid = "09762D28-EE6F-4284-8621-304017B816F1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
+            filePath = "WingMate_iOS/View Controllers/Questionnaires/QuestionnairesVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
-            landmarkName = "uploadPhotoVideo(isFileUploaded:msg:fileUrl:obj:)"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "questionnaire(isSuccess:questionOptionsData:msg:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E8D6A51F-2527-4D8D-BC78-2531B61463EE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Upload Photo Video/UploadPhotoVideoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "saveButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "58049C02-102F-4A51-8C18-ED26704E5D8D"
+            uuid = "8CBB159E-E8F9-46D5-8908-2120F8AF0799"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "getAllUploadedFilesForUser(currentUserId:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6333D095-25D2-4CA7-974C-0875653A9F38"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/Network Layer/Parse API Manager/ParseAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "getAllUploadedFilesForUser(currentUserId:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "377C4DD6-5315-45E1-8C7D-D710C0CF70D1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Profile/ProfilePresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getAllUploadedFilesForUser(currentUserId:shouldShowLoader:isFromViewDidLoad:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "85885B8F-7C83-4628-849E-8A10E67F9DCF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Profile/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
-            landmarkName = "profile(isSuccess:userFilesData:msg:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "747DFA86-F0D9-4562-B681-A1EA8EAD6EBC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Profile/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "profile(isSuccess:userFilesData:msg:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "940461E3-C691-42F2-B239-FF9FCD0E461A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Profile/ProfilePresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "getUserPhotosVideos(data:isPhotos:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "62148EE7-548B-49D9-B7AD-F79B89F86977"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Profile/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "setPhotosVideo()"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "getQuestionOptions(questionObject:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

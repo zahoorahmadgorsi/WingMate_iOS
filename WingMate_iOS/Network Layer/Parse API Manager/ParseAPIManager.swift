@@ -151,6 +151,7 @@ struct ParseAPIManager {
     static func getQuestionOptions(questionObject: PFObject? = nil, onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         var query = PFQuery()
         query = PFQuery(className: DBTable.questionOption).whereKey(DBColumn.questionId, equalTo: questionObject ?? PFObject()).order(byAscending: DBColumn.optionId)
+        query.limit = 1000
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
                 onFailure(error.localizedDescription)

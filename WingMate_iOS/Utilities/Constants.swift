@@ -49,6 +49,14 @@ class ValidationStrings {
     static let uploadAtleast1Photo = "Upload at least 1 photo"
     static let uploadVideoToContinue = "Upload video to continue"
     static let inappropriateVideoLength = "Your video is longer than 20 seconds. Please choose or take a shorter video"
+    static let photoUploaded = "Photo is uploaded"
+    static let videoUploaded = "Video is uploaded"
+    static let needToUploadPhotosVideo = "You need to upload photos/video"
+    static let needToPayNow = "You need to pay now"
+    static let needToFillMandatoryQuestionnaires = "You need to fill mandatory questionnaires"
+    static let needToUploadPhotosVideoTrialExpired = "Your trial period has been expired. You need to upload photos/video"
+    static let needToPayNowTrialExpired = "Your trial period has been expired. You need to pay now"
+    static let needToWaitTrialExpired = "Your trial period has been expired. Your profile is being reviewed by the admin"
 }
 
 class UserDefaultKeys {

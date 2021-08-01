@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041B3F0126B52E150086D893 /* QuestionsSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B3EFF26B52E150086D893 /* QuestionsSuccessVC.swift */; };
+		041B3F0226B52E150086D893 /* QuestionsSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041B3F0026B52E150086D893 /* QuestionsSuccessVC.xib */; };
 		0421198D26736F9C0056A737 /* CongratsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421198B26736F9C0056A737 /* CongratsVC.swift */; };
 		0421198E26736F9C0056A737 /* CongratsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0421198C26736F9C0056A737 /* CongratsVC.xib */; };
 		042650AA2650F246009E6451 /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042650A82650F245009E6451 /* PaymentVC.swift */; };
@@ -142,6 +144,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041B3EFF26B52E150086D893 /* QuestionsSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsSuccessVC.swift; sourceTree = "<group>"; };
+		041B3F0026B52E150086D893 /* QuestionsSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsSuccessVC.xib; sourceTree = "<group>"; };
 		0421198B26736F9C0056A737 /* CongratsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsVC.swift; sourceTree = "<group>"; };
 		0421198C26736F9C0056A737 /* CongratsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CongratsVC.xib; sourceTree = "<group>"; };
 		042650A82650F245009E6451 /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
@@ -293,6 +297,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041B3EFE26B52DF50086D893 /* QuestionsSuccessVC */ = {
+			isa = PBXGroup;
+			children = (
+				041B3EFF26B52E150086D893 /* QuestionsSuccessVC.swift */,
+				041B3F0026B52E150086D893 /* QuestionsSuccessVC.xib */,
+			);
+			path = QuestionsSuccessVC;
+			sourceTree = "<group>";
+		};
 		0421198A26736F6D0056A737 /* CongratsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +543,7 @@
 		FA9EFD20253774DE00A1ED1C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				041B3EFE26B52DF50086D893 /* QuestionsSuccessVC */,
 				0421198A26736F6D0056A737 /* CongratsVC */,
 				044DCABD2671D3A80093F5B1 /* Waiting */,
 				042650A72650F223009E6451 /* Payment */,
@@ -931,6 +945,7 @@
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
+				041B3F0226B52E150086D893 /* QuestionsSuccessVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
 				FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
@@ -1062,6 +1077,7 @@
 				FA9EFD292537793700A1ED1C /* GlobalVariables.swift in Sources */,
 				FA1C5F3C25998DED008C7BFE /* UploadPhotoVideoModel.swift in Sources */,
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
+				041B3F0126B52E150086D893 /* QuestionsSuccessVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
 				FA700299255D37B3000052F4 /* User.swift in Sources */,
 				FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */,

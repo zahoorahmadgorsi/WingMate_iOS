@@ -52,20 +52,20 @@
                         <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="Wsz-3U-0qS"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurrah!!! Now you are Pro member for Wing Mate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79C-0A-AF6">
-                    <rect key="frame" x="40" y="400.5" width="334" height="65.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations. Now you have full access to wingmate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79C-0A-AF6">
+                    <rect key="frame" x="40" y="384" width="334" height="98"/>
                     <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="28"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For better result we need to know more about you. please provide few answers about you &amp; your interests." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtJ-j8-D9g">
-                    <rect key="frame" x="40" y="486" width="334" height="56"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtext" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtJ-j8-D9g">
+                    <rect key="frame" x="40" y="502" width="334" height="19"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thanks_photos_video" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-oY-4xw">
-                    <rect key="frame" x="94.5" y="172" width="225" height="208.5"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="payment_success" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-oY-4xw">
+                    <rect key="frame" x="137.5" y="197" width="139" height="167"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="GQS-gb-9gi"/>
@@ -88,7 +88,7 @@
         </view>
     </objects>
     <resources>
-        <image name="thanks_photos_video" width="225.33332824707031" height="208.66667175292969"/>
+        <image name="payment_success" width="139" height="167"/>
         <namedColor name="PurpleThemeColor">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

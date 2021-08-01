@@ -24,8 +24,13 @@ class CongratsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.isPhotosVideoUploadedFlow {
-            self.labelHeading.text = "Thank you for uploading your Photo and Video!"
-            self.labelSubHeading.text = "Please allow up to 24 hours for approval. Upon verification, we will send you an email and get you to the next step closer to being a Wingmate member! "
+            self.labelHeading.text = "Please allow us up to 24 hours to confirm your profile by e-mail"
+            self.labelSubHeading.text = "Thankyou for uploading your media"
+            self.imageViewMain.image = UIImage(named: "media_success")
+        } else {
+            self.labelHeading.text = "Congratulations! Now you have full access to Wingmate"
+            self.labelSubHeading.text = ""
+            self.imageViewMain.image = UIImage(named: "payment_success")
         }
     }
     

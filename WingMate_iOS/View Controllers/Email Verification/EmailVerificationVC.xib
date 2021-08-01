@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baloo2-Bold.ttf">
+            <string>Baloo2-Bold</string>
+        </array>
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailVerificationVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
@@ -17,23 +30,23 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hna-tl-Fjr">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email_verification" translatesAutoresizingMaskIntoConstraints="NO" id="IB4-SU-1Sj">
-                    <rect key="frame" x="97" y="155.5" width="220" height="133"/>
+                    <rect key="frame" x="120.5" y="210.5" width="173" height="161"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="ERn-1Y-8kB">
-                    <rect key="frame" x="20" y="20" width="72" height="72"/>
+                    <rect key="frame" x="20" y="64" width="72" height="72"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't receive a link?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyw-Gs-HVT">
-                    <rect key="frame" x="142" y="659.5" width="130.5" height="16.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't receive the link?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyw-Gs-HVT">
+                    <rect key="frame" x="133.5" y="782.5" width="147" height="19.5"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                     <color key="textColor" name="Label Gray Text Color"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-BS-ORe">
-                    <rect key="frame" x="83" y="666" width="248" height="50"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-BS-ORe">
+                    <rect key="frame" x="170.5" y="792" width="73" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="uys-Vp-hsN"/>
                     </constraints>
@@ -46,9 +59,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xzs-ac-hqY">
-                    <rect key="frame" x="83" y="512.5" width="248" height="50"/>
+                    <rect key="frame" x="162.5" y="792" width="89" height="50"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
-                    <state key="normal" title="Wrong email?">
+                    <state key="normal" title="Change email">
                         <color key="titleColor" name="Red Theme Color"/>
                     </state>
                     <connections>
@@ -56,7 +69,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IrK-w1-rUA">
-                    <rect key="frame" x="83" y="458.5" width="248" height="50"/>
+                    <rect key="frame" x="83" y="562.5" width="248" height="50"/>
                     <color key="backgroundColor" name="Purple Theme Color"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="ra5-ca-jZJ"/>
@@ -75,21 +88,21 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email verification for" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8y-q4-1MM">
-                    <rect key="frame" x="20" y="328.5" width="374" height="21"/>
-                    <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="18"/>
-                    <color key="textColor" name="Purple Theme Color"/>
+                    <rect key="frame" x="20" y="411.5" width="374" height="19.5"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                    <color key="textColor" name="LabelGrayTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Nick! you're almost ready to start enjoying Wingmate! Simply click on the button to verify your email address." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvO-3b-NW8">
-                    <rect key="frame" x="62" y="386.5" width="290" height="42"/>
-                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
-                    <color key="textColor" name="Label Gray Text Color"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please go to your inbox and click on the link" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvO-3b-NW8">
+                    <rect key="frame" x="62" y="475.5" width="290" height="57"/>
+                    <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="18"/>
+                    <color key="textColor" name="RedThemeColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nick@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fld-v4-2wG">
-                    <rect key="frame" x="20" y="357.5" width="374" height="21"/>
+                    <rect key="frame" x="20" y="439" width="374" height="28.5"/>
                     <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="18"/>
-                    <color key="textColor" name="Red Theme Color"/>
+                    <color key="textColor" name="PurpleThemeColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -99,42 +112,49 @@
                 <constraint firstItem="R8y-q4-1MM" firstAttribute="top" secondItem="IB4-SU-1Sj" secondAttribute="bottom" constant="40" id="1Mp-Vm-bEy"/>
                 <constraint firstItem="KvO-3b-NW8" firstAttribute="centerX" secondItem="hna-tl-Fjr" secondAttribute="centerX" id="2nn-hw-aMI"/>
                 <constraint firstItem="IrK-w1-rUA" firstAttribute="centerX" secondItem="hna-tl-Fjr" secondAttribute="centerX" id="5mA-85-EVG"/>
+                <constraint firstItem="Xzs-ac-hqY" firstAttribute="centerY" secondItem="jIz-BS-ORe" secondAttribute="centerY" id="630-1q-qeF"/>
                 <constraint firstItem="DI4-6p-hPe" firstAttribute="trailing" secondItem="fld-v4-2wG" secondAttribute="trailing" constant="20" id="8ye-aw-0po"/>
                 <constraint firstItem="R8y-q4-1MM" firstAttribute="leading" secondItem="DI4-6p-hPe" secondAttribute="leading" constant="20" id="Cf7-Bx-nYk"/>
-                <constraint firstItem="Xzs-ac-hqY" firstAttribute="centerX" secondItem="hna-tl-Fjr" secondAttribute="centerX" id="GsX-RJ-4Yi"/>
                 <constraint firstItem="KvO-3b-NW8" firstAttribute="top" secondItem="fld-v4-2wG" secondAttribute="bottom" constant="8" id="JCR-yk-JKe"/>
                 <constraint firstItem="IrK-w1-rUA" firstAttribute="width" secondItem="hna-tl-Fjr" secondAttribute="width" multiplier="0.6" id="QF4-d1-TIJ"/>
                 <constraint firstItem="jIz-BS-ORe" firstAttribute="top" secondItem="eyw-Gs-HVT" secondAttribute="bottom" constant="-10" id="RaW-tU-7Tm"/>
-                <constraint firstItem="Xzs-ac-hqY" firstAttribute="top" secondItem="IrK-w1-rUA" secondAttribute="bottom" constant="4" id="VyR-p6-uVA"/>
                 <constraint firstItem="fld-v4-2wG" firstAttribute="leading" secondItem="DI4-6p-hPe" secondAttribute="leading" constant="20" id="WSm-lQ-Q4F"/>
                 <constraint firstItem="DI4-6p-hPe" firstAttribute="bottom" secondItem="jIz-BS-ORe" secondAttribute="bottom" constant="20" id="aZa-zN-rbQ"/>
-                <constraint firstItem="Xzs-ac-hqY" firstAttribute="height" secondItem="IrK-w1-rUA" secondAttribute="height" id="cgr-P7-SwN"/>
+                <constraint firstItem="Xzs-ac-hqY" firstAttribute="top" secondItem="jIz-BS-ORe" secondAttribute="top" id="bcO-op-tsV"/>
                 <constraint firstItem="jIz-BS-ORe" firstAttribute="centerX" secondItem="hna-tl-Fjr" secondAttribute="centerX" id="cwW-Ps-IsO"/>
                 <constraint firstItem="fld-v4-2wG" firstAttribute="top" secondItem="R8y-q4-1MM" secondAttribute="bottom" constant="8" id="eZ4-gV-h2a"/>
                 <constraint firstItem="ERn-1Y-8kB" firstAttribute="top" secondItem="DI4-6p-hPe" secondAttribute="top" constant="20" id="gzR-in-tMv"/>
+                <constraint firstItem="Xzs-ac-hqY" firstAttribute="centerX" secondItem="DI4-6p-hPe" secondAttribute="centerX" id="lRT-Xc-Lpn"/>
                 <constraint firstItem="eyw-Gs-HVT" firstAttribute="centerX" secondItem="DI4-6p-hPe" secondAttribute="centerX" id="low-26-yL4"/>
                 <constraint firstItem="ERn-1Y-8kB" firstAttribute="leading" secondItem="DI4-6p-hPe" secondAttribute="leading" constant="20" id="nnS-MM-ZC3"/>
                 <constraint firstItem="IrK-w1-rUA" firstAttribute="top" secondItem="KvO-3b-NW8" secondAttribute="bottom" constant="30" id="r5n-wO-HGk"/>
                 <constraint firstItem="KvO-3b-NW8" firstAttribute="width" secondItem="hna-tl-Fjr" secondAttribute="width" multiplier="0.7" id="tas-zN-bMC"/>
-                <constraint firstItem="jIz-BS-ORe" firstAttribute="width" secondItem="Xzs-ac-hqY" secondAttribute="width" id="uPB-Ty-Z0n"/>
                 <constraint firstItem="DI4-6p-hPe" firstAttribute="trailing" secondItem="R8y-q4-1MM" secondAttribute="trailing" constant="20" id="uj4-QU-U0m"/>
                 <constraint firstItem="fld-v4-2wG" firstAttribute="centerY" secondItem="DI4-6p-hPe" secondAttribute="centerY" id="vlS-cZ-Gdd"/>
                 <constraint firstItem="IB4-SU-1Sj" firstAttribute="centerX" secondItem="hna-tl-Fjr" secondAttribute="centerX" id="xZI-Ay-Iyo"/>
-                <constraint firstItem="Xzs-ac-hqY" firstAttribute="width" secondItem="IrK-w1-rUA" secondAttribute="width" id="ysY-KZ-SUl"/>
             </constraints>
             <point key="canvasLocation" x="-191.30434782608697" y="65.217391304347828"/>
         </view>
     </objects>
     <resources>
-        <image name="email_verification" width="220" height="132.66667175292969"/>
+        <image name="email_verification" width="173" height="161"/>
         <image name="login-heart" width="72" height="72"/>
         <namedColor name="Label Gray Text Color">
+            <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LabelGrayTextColor">
             <color red="0.56499999761581421" green="0.56499999761581421" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Purple Theme Color">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="PurpleThemeColor">
+            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Red Theme Color">
+            <color red="0.96100002527236938" green="0.35699999332427979" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedThemeColor">
             <color red="0.96100002527236938" green="0.35699999332427979" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
