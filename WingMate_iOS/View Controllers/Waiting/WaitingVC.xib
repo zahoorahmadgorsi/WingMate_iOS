@@ -49,21 +49,20 @@
                         <action selector="logoutButtonPressed:" destination="-1" eventType="touchUpInside" id="WnP-9r-Vgf"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Wait" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL0-Rm-aZs">
-                    <rect key="frame" x="144" y="329" width="126" height="38"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please allow us up to 24 hours to confirm your profile by e-mail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL0-Rm-aZs">
+                    <rect key="frame" x="40" y="366" width="334" height="84"/>
                     <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-ZH-pWG">
-                    <rect key="frame" x="40" y="375" width="334" height="87.333333333333314"/>
-                    <string key="text">Please allow up to 24 hours for approval. Upon verification, we will send you an email and get you to the next step closer to being a Wingmate member! </string>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLf-ZH-pWG">
+                    <rect key="frame" x="40" y="458" width="334" height="18.666666666666686"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thanks_photos_video" translatesAutoresizingMaskIntoConstraints="NO" id="EAc-4k-dCb">
-                    <rect key="frame" x="94.666666666666686" y="100.66666666666667" width="225" height="208.33333333333331"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="media_success" translatesAutoresizingMaskIntoConstraints="NO" id="EAc-4k-dCb">
+                    <rect key="frame" x="125.66666666666669" y="183" width="163" height="143"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -72,19 +71,21 @@
                 <constraint firstItem="Ck5-UX-ENW" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="2bG-0i-SS1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ck5-UX-ENW" secondAttribute="bottom" constant="20" id="6t3-9O-2gG"/>
                 <constraint firstItem="MLf-ZH-pWG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="6wl-D4-9lQ"/>
+                <constraint firstItem="iL0-Rm-aZs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="HrZ-MH-KiG"/>
                 <constraint firstItem="iL0-Rm-aZs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="SBt-vL-rwj"/>
-                <constraint firstItem="iL0-Rm-aZs" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-20" id="U10-Bt-XAN"/>
+                <constraint firstItem="iL0-Rm-aZs" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="40" id="U10-Bt-XAN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MLf-ZH-pWG" secondAttribute="trailing" constant="40" id="Va7-nw-JBc"/>
                 <constraint firstItem="MLf-ZH-pWG" firstAttribute="top" secondItem="iL0-Rm-aZs" secondAttribute="bottom" constant="8" id="bS3-Ne-vYM"/>
+                <constraint firstAttribute="trailing" secondItem="iL0-Rm-aZs" secondAttribute="trailing" constant="40" id="jNr-lp-s1S"/>
                 <constraint firstItem="EAc-4k-dCb" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kmQ-t8-uqz"/>
                 <constraint firstItem="Ck5-UX-ENW" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.700483" id="ks0-C0-1Uf"/>
-                <constraint firstItem="iL0-Rm-aZs" firstAttribute="top" secondItem="EAc-4k-dCb" secondAttribute="bottom" constant="20" id="leV-JW-U0A"/>
+                <constraint firstItem="iL0-Rm-aZs" firstAttribute="top" secondItem="EAc-4k-dCb" secondAttribute="bottom" constant="40" id="leV-JW-U0A"/>
             </constraints>
             <point key="canvasLocation" x="71" y="96"/>
         </view>
     </objects>
     <resources>
-        <image name="thanks_photos_video" width="225.33332824707031" height="208.66667175292969"/>
+        <image name="media_success" width="163" height="143"/>
         <namedColor name="PurpleThemeColor">
             <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

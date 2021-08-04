@@ -403,21 +403,21 @@ class ProfileVC: BaseViewController {
         self.buttonCrush.isUserInteractionEnabled = true
         
         if likeObject != nil {
-            self.buttonLike.alpha = 1
+            self.buttonLike.setImage(UIImage(named: "like-filled"), for: .normal)
         } else {
-            self.buttonLike.alpha = 0.5
+            self.buttonLike.setImage(UIImage(named: "profile_like"), for: .normal)
         }
         
         if crushObject != nil {
-            self.buttonCrush.alpha = 1
+            self.buttonCrush.setImage(UIImage(named: "crush-filled"), for: .normal)
         } else {
-            self.buttonCrush.alpha = 0.5
+            self.buttonCrush.setImage(UIImage(named: "profile_crush"), for: .normal)
         }
         
         if maybeObject != nil {
-            self.buttonMaybe.alpha = 1
+            self.buttonMaybe.setImage(UIImage(named: "maybe-filled"), for: .normal)
         } else {
-            self.buttonMaybe.alpha = 0.5
+            self.buttonMaybe.setImage(UIImage(named: "profile_maybe"), for: .normal)
         }
     }
     
@@ -505,7 +505,7 @@ extension ProfileVC: ProfileDelegate {
     func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {
         let nickName = self.user.value(forKey: DBColumn.nick) as? String ?? ""
         if isDeleted == false { //saving case
-            self.showToast(message: msg)
+//            self.showToast(message: msg)
             if isSuccess {
                 switch markedUnmarkedUserFanType {
                 case .like:
@@ -543,7 +543,7 @@ extension ProfileVC: ProfileDelegate {
                 self.enableUserInteractionButtons()
                 self.refreshFansList?()
             } else {
-                self.showToast(message: msg)
+//                self.showToast(message: msg)
             }
         }
     }
