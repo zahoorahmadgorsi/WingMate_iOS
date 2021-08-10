@@ -29,7 +29,7 @@ class ValidationStrings {
     static let payNowToCompleteProfile = "You need to pay first to complete your profile. Do you want to pay now?"
     static let continueWithOptionalQuestions = "Do you want to fill optional questionnaires?"
     static let needToFillMandatoryQuestions = "Please fill mandatory questionnaires to proceed"
-    static let profileUnderScreening = "Your profile is under screening process"
+    static let profileUnderScreening = "Your profile is under review by admin"
     static let daysLeftForTrialExpiry = "days left for trial. Buy Pro"
     static let photosVideoRequiredToUpload = "Kindly submit your photos/video"
     static let uploadMediaFirst = "You need to upload photos & video first inorder to proceed. Do you wish to continue?"

@@ -361,6 +361,8 @@ struct ParseAPIManager {
         
         
         query.whereKey(DBColumn.optionsObjArray, containedIn: data.getUserSelectedOptionsArray())
+        
+        
 
         query.findObjectsInBackground {(objects, error) in
             if let error = error {
@@ -381,7 +383,14 @@ struct ParseAPIManager {
         let query = PFUser.query()!
         let geoPoint = PFUser.current()?.value(forKey: DBColumn.currentLocation) as? PFGeoPoint
         if geoPoint != nil {
-            query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.currentLocation, nearGeoPoint: geoPoint!, withinKilometers: Double(distanceInMeters/1000))
+            let myUserGroup = PFUser.current()?.value(forKey: DBColumn.groupCategory) as? String ?? ""
+            if myUserGroup == "N" {
+                query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.currentLocation, nearGeoPoint: geoPoint!, withinKilometers: Double(distanceInMeters/1000))
+            } else {
+                query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.currentLocation, nearGeoPoint: geoPoint!, withinKilometers: Double(distanceInMeters/1000)).whereKey(DBColumn.groupCategory, equalTo: myUserGroup)
+            }
+            
+            
             query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
             
             query.findObjectsInBackground {(objects, error) in
@@ -404,7 +413,13 @@ struct ParseAPIManager {
     //MARK: - Dashboard APIs
     static func getDashboardUsers(onSuccess: @escaping (Bool, _ data: [PFObject]) -> Void, onFailure:@escaping (String) -> Void) {
         let query = PFUser.query()!
-        query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.accountStatus, equalTo: UserAccountStatus.accepted.rawValue)
+        let myUserGroup = PFUser.current()?.value(forKey: DBColumn.groupCategory) as? String ?? ""
+        if myUserGroup == "N" {
+            query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.accountStatus, equalTo: UserAccountStatus.accepted.rawValue)
+        } else {
+            query.whereKey(DBColumn.objectId, notEqualTo: APP_MANAGER.session?.objectId ?? "").whereKey(DBColumn.accountStatus, equalTo: UserAccountStatus.accepted.rawValue).whereKey(DBColumn.groupCategory, equalTo: myUserGroup)
+        }
+        
         
         query.includeKeys([DBColumn.optionalQuestionAnswersList, DBColumn.mandatoryQuestionAnswersList, "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.optionalQuestionAnswersList).\(DBColumn.optionsObjArray)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.questionId)", "\(DBColumn.mandatoryQuestionAnswersList).\(DBColumn.optionsObjArray)"])
         

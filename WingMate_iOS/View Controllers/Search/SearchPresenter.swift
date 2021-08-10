@@ -114,7 +114,15 @@ class SearchPresenter {
                         if genderOtherUser != genderMyUser {
                             let isActiveUser = userObjToMatch?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
                             if isActiveUser == UserAccountStatus.accepted.rawValue {
-                                uniqueUsersData.append(userObjToMatch!)
+                                let myUserGroup = PFUser.current()?.value(forKey: DBColumn.groupCategory) as? String ?? ""
+                                let otherUserGroup = userObjToMatch?.value(forKey: DBColumn.groupCategory) as? String ?? ""
+                                if myUserGroup == "N" {
+                                    uniqueUsersData.append(userObjToMatch!)
+                                } else if (myUserGroup == otherUserGroup) && myUserGroup != "N" {
+                                    uniqueUsersData.append(userObjToMatch!)
+                                }
+                                
+                                
                             }
                             
                         }
