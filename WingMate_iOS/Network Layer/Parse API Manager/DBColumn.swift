@@ -35,6 +35,7 @@ class DBColumn {
     static let accountStatus = "accountStatus"
     static let isMediaApproved = "isMediaApproved"
     static let groupCategory = "groupCategory"
+    static let isMediaPending = "isMediaPending"
     
     //questionnaires
     static let questionType = "questionType"

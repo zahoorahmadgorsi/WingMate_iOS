@@ -397,12 +397,15 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
                     if self.maximumNumberOfPhotosAllowed == self.dataUserPhotoVideo.count {
                         self.dataUserPhotoVideo[self.maximumNumberOfPhotosAllowed-1] = model
+                        self.mainDataUserPhotosVideo.append(model)
                     } else {
                         self.dataUserPhotoVideo.insert(model, at: self.dataUserPhotoVideo.count-1)
+                        self.mainDataUserPhotosVideo.append(model)
                     }
 //                    self.updateUserProfilePic()
                     
                     PFUser.current()?.setValue(true, forKey: DBColumn.isPhotosSubmitted)
+                    PFUser.current()?.setValue(true, forKey: DBColumn.isMediaPending)
                     self.presenter.updateUserObject()
                     if self.dataUserPhotoVideo.count == 2 {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.photoUploaded + ". To complete your profile, you must upload minimum 1 photo and minimum 1 video")
@@ -413,16 +416,27 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                     self.showToast(message: "Nil photo file url")
                 }
             } else {
-                
-                self.dataUserPhotoVideo[0] = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
+                let model = UserPhotoVideoModel(uploadFileUrl: fileUrl!, object: obj, fileStatus: FileStatus.pending.rawValue)
+                self.dataUserPhotoVideo[0] = model
+                self.mainDataUserPhotosVideo.append(model)
                 self.dataUserPhotoVideo[0].image = self.getVideoThumbnail(from: fileUrl!)
                 
-                PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted) 
+                PFUser.current()?.setValue(true, forKey: DBColumn.isVideoSubmitted)
+                PFUser.current()?.setValue(true, forKey: DBColumn.isMediaPending)
                 self.presenter.updateUserObject()
                 self.showAlertOK(APP_NAME, message: ValidationStrings.videoUploaded)
             }
             self.setPhotosCollectionViewHeight()
         }
+    }
+    
+    func isAnyMediaInPendingState() -> Bool {
+        for i in self.mainDataUserPhotosVideo {
+            if i.fileStatus == FileStatus.pending.rawValue {
+                return true
+            }
+        }
+        return false
     }
     
     func updateUserProfilePic() {
@@ -449,7 +463,8 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
         if isFileDeleted {
             self.isPhotoVideoUpdated = true
             if self.isPhotoMode {
-                self.dataUserPhotoVideo.remove(at: index)
+                let deletedItem = self.dataUserPhotoVideo.remove(at: index)
+                self.deleteItemFromMainData(deletedItem: deletedItem)
                 if self.dataUserPhotoVideo.count < 3 {
                     var shouldAddEmptyBox = true
                     for i in self.dataUserPhotoVideo {
@@ -462,15 +477,50 @@ extension UploadPhotoVideoVC: UploadPhotoVideoDelegate {
                         self.dataUserPhotoVideo.append(UserPhotoVideoModel())
                     }
                 }
-                self.updateUserProfilePic()
+//                self.updateUserProfilePic()
+                if self.isAnyMediaInPendingState() {
+                    PFUser.current()?.setValue(true, forKey: DBColumn.isMediaPending)
+                } else {
+                    PFUser.current()?.setValue(false, forKey: DBColumn.isMediaPending)
+                }
+                self.presenter.updateUserObject()
             } else {
+                var indexToDelete = -1
+                for (i,item) in self.mainDataUserPhotosVideo.enumerated() {
+                    if (item.uploadFileUrl ?? "" == self.dataUserPhotoVideo[0].uploadFileUrl ?? "") && (item.uploadFileUrl != nil) {
+                        indexToDelete = i
+                        break
+                    }
+                }
+                if indexToDelete != -1 {
+                    self.mainDataUserPhotosVideo.remove(at: indexToDelete)
+                }
                 self.dataUserPhotoVideo[0] = UserPhotoVideoModel()
                 PFUser.current()?.setValue(false, forKey: DBColumn.isVideoSubmitted)
                 PFUser.current()?.setValue(UserAccountStatus.pending.rawValue, forKey: DBColumn.accountStatus)
+                if self.isAnyMediaInPendingState() {
+                    PFUser.current()?.setValue(true, forKey: DBColumn.isMediaPending)
+                } else {
+                    PFUser.current()?.setValue(false, forKey: DBColumn.isMediaPending)
+                }
                 self.presenter.updateUserObject()
             }
             self.setPhotosCollectionViewHeight()
         }
+    }
+    
+    func deleteItemFromMainData(deletedItem: UserPhotoVideoModel) {
+        var indexToDeleteFromMainData = -1
+        for (i,item) in mainDataUserPhotosVideo.enumerated() {
+            if (item.uploadFileUrl == deletedItem.uploadFileUrl) && (item.uploadFileUrl != nil) {
+                indexToDeleteFromMainData = i
+                break
+            }
+        }
+        if indexToDeleteFromMainData != -1 {
+            self.mainDataUserPhotosVideo.remove(at: indexToDeleteFromMainData)
+        }
+        
     }
     
     
