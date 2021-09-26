@@ -18,11 +18,25 @@
 		4AB0D54D4A473118C96593E1 /* Pods_WingMate_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B438F8E927009B0A4F30F1 /* Pods_WingMate_iOS.framework */; };
 		52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A35B53254C9F0D00D1A56A /* ParseAPIManager.swift */; };
 		882EDB3125322306009E8C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB3025322306009E8C46 /* AppDelegate.swift */; };
-		882EDB3825322306009E8C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
 		882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB392532230A009E8C46 /* Assets.xcassets */; };
 		882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3B2532230A009E8C46 /* LaunchScreen.storyboard */; };
 		882EDB482532230A009E8C46 /* WingMate_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB472532230A009E8C46 /* WingMate_iOSTests.swift */; };
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
+		F816D20A26EE9FD3006E0A74 /* ThirdPartyPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816D20826EE9FD3006E0A74 /* ThirdPartyPaymentVC.swift */; };
+		F816D20B26EE9FD3006E0A74 /* ThirdPartyPaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F816D20926EE9FD3006E0A74 /* ThirdPartyPaymentVC.xib */; };
+		F816D21926EEA025006E0A74 /* LaunchCampaignVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816D21726EEA025006E0A74 /* LaunchCampaignVC.swift */; };
+		F816D21A26EEA025006E0A74 /* LaunchCampaignVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F816D21826EEA025006E0A74 /* LaunchCampaignVC.xib */; };
+		F8AB783A26EEA73E0061D63C /* DoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AB783826EEA73E0061D63C /* DoneVC.swift */; };
+		F8AB783B26EEA73E0061D63C /* DoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AB783926EEA73E0061D63C /* DoneVC.xib */; };
+		F8AB784126EEA8550061D63C /* QuestionIntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AB783F26EEA8550061D63C /* QuestionIntroVC.swift */; };
+		F8AB784226EEA8550061D63C /* QuestionIntroVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AB784026EEA8550061D63C /* QuestionIntroVC.xib */; };
+		F8AEAEE126ED7BAF00656BCE /* UploadPhotoInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEAEDF26ED7BAF00656BCE /* UploadPhotoInfoVC.swift */; };
+		F8AEAEE226ED7BAF00656BCE /* UploadPhotoInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AEAEE026ED7BAF00656BCE /* UploadPhotoInfoVC.xib */; };
+		F8AEAEE826ED812E00656BCE /* SelectPaymentOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEAEE626ED812E00656BCE /* SelectPaymentOptionVC.swift */; };
+		F8AEAEE926ED812E00656BCE /* SelectPaymentOptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AEAEE726ED812E00656BCE /* SelectPaymentOptionVC.xib */; };
+		F8B0B26A26FFEB2400108A73 /* InstantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0B26926FFEB2400108A73 /* InstantCell.swift */; };
+		F8B0B27026FFEDAD00108A73 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0B26E26FFEDAD00108A73 /* MessagesVC.swift */; };
+		F8B0B27E27000B2600108A73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882EDB3625322306009E8C46 /* Main.storyboard */; };
 		FA00F0B625DBD0DD00D38E88 /* FansVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00F0B525DBD0DD00D38E88 /* FansVC.swift */; };
 		FA00F0BC25DBD11E00D38E88 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00F0BB25DBD11E00D38E88 /* ChatVC.swift */; };
 		FA06695725B686D900D0786E /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06695625B686D900D0786E /* EditProfilePresenter.swift */; };
@@ -34,7 +48,6 @@
 		FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0669DF25B7CE5700D0786E /* EditNameVC.xib */; };
 		FA0765382594425200D48366 /* TermsConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0765362594425200D48366 /* TermsConditionsTableViewCell.swift */; };
 		FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0765372594425200D48366 /* TermsConditionsTableViewCell.xib */; };
-		FA0FF3A525DE689A0076C63E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0FF3A425DE689A0076C63E /* Info.plist */; };
 		FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D402551283E005A55DD /* TermsAndConditionsVC.swift */; };
 		FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA192D412551283E005A55DD /* TermsAndConditionsVC.xib */; };
 		FA192D8525514C08005A55DD /* EmailVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA192D8425514C08005A55DD /* EmailVerificationPresenter.swift */; };
@@ -166,6 +179,20 @@
 		882EDB4E2532230A009E8C46 /* WingMate_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingMate_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WingMate_iOSUITests.swift; sourceTree = "<group>"; };
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F816D20826EE9FD3006E0A74 /* ThirdPartyPaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyPaymentVC.swift; sourceTree = "<group>"; };
+		F816D20926EE9FD3006E0A74 /* ThirdPartyPaymentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdPartyPaymentVC.xib; sourceTree = "<group>"; };
+		F816D21726EEA025006E0A74 /* LaunchCampaignVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCampaignVC.swift; sourceTree = "<group>"; };
+		F816D21826EEA025006E0A74 /* LaunchCampaignVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchCampaignVC.xib; sourceTree = "<group>"; };
+		F8AB783826EEA73E0061D63C /* DoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneVC.swift; sourceTree = "<group>"; };
+		F8AB783926EEA73E0061D63C /* DoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoneVC.xib; sourceTree = "<group>"; };
+		F8AB783F26EEA8550061D63C /* QuestionIntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionIntroVC.swift; sourceTree = "<group>"; };
+		F8AB784026EEA8550061D63C /* QuestionIntroVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionIntroVC.xib; sourceTree = "<group>"; };
+		F8AEAEDF26ED7BAF00656BCE /* UploadPhotoInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoInfoVC.swift; sourceTree = "<group>"; };
+		F8AEAEE026ED7BAF00656BCE /* UploadPhotoInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadPhotoInfoVC.xib; sourceTree = "<group>"; };
+		F8AEAEE626ED812E00656BCE /* SelectPaymentOptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPaymentOptionVC.swift; sourceTree = "<group>"; };
+		F8AEAEE726ED812E00656BCE /* SelectPaymentOptionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPaymentOptionVC.xib; sourceTree = "<group>"; };
+		F8B0B26926FFEB2400108A73 /* InstantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantCell.swift; sourceTree = "<group>"; };
+		F8B0B26E26FFEDAD00108A73 /* MessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
 		FA00F0B525DBD0DD00D38E88 /* FansVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansVC.swift; sourceTree = "<group>"; };
 		FA00F0BB25DBD11E00D38E88 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		FA06695625B686D900D0786E /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
@@ -307,6 +334,14 @@
 			children = (
 				042650A82650F245009E6451 /* PaymentVC.swift */,
 				042650A92650F245009E6451 /* PaymentVC.xib */,
+				F8AEAEE626ED812E00656BCE /* SelectPaymentOptionVC.swift */,
+				F8AEAEE726ED812E00656BCE /* SelectPaymentOptionVC.xib */,
+				F816D20826EE9FD3006E0A74 /* ThirdPartyPaymentVC.swift */,
+				F816D20926EE9FD3006E0A74 /* ThirdPartyPaymentVC.xib */,
+				F816D21726EEA025006E0A74 /* LaunchCampaignVC.swift */,
+				F816D21826EEA025006E0A74 /* LaunchCampaignVC.xib */,
+				F8AB783826EEA73E0061D63C /* DoneVC.swift */,
+				F8AB783926EEA73E0061D63C /* DoneVC.xib */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -394,6 +429,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F8B0B26826FFEB0000108A73 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F8B0B26926FFEB2400108A73 /* InstantCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		FA00F0B425DBD0C200D38E88 /* MyFans */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,7 +449,9 @@
 		FA00F0BA25DBD10800D38E88 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				F8B0B26826FFEB0000108A73 /* cell */,
 				FA00F0BB25DBD11E00D38E88 /* ChatVC.swift */,
+				F8B0B26E26FFEDAD00108A73 /* MessagesVC.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -685,6 +730,8 @@
 				FAC5FEFB2558309B00F06B33 /* QuestionnairePresenter.swift */,
 				FAA0163025471818004D35BB /* QuestionnairesVC.xib */,
 				FAA0163625471FC8004D35BB /* Questionnaire Table View Cells */,
+				F8AB783F26EEA8550061D63C /* QuestionIntroVC.swift */,
+				F8AB784026EEA8550061D63C /* QuestionIntroVC.xib */,
 			);
 			path = Questionnaires;
 			sourceTree = "<group>";
@@ -749,6 +796,8 @@
 				FAD8BE6525919B34009AA7AB /* UploadPhotoVideoVC.xib */,
 				FA1C5EF525959645008C7BFE /* UploadPhotoVideoPresenter.swift */,
 				FAD8BE9A2591A5E2009AA7AB /* Cells */,
+				F8AEAEDF26ED7BAF00656BCE /* UploadPhotoInfoVC.swift */,
+				F8AEAEE026ED7BAF00656BCE /* UploadPhotoInfoVC.xib */,
 			);
 			path = "Upload Photo Video";
 			sourceTree = "<group>";
@@ -887,7 +936,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					882EDB2C25322306009E8C46 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -929,24 +978,26 @@
 			files = (
 				FAD8BE9E2591A608009AA7AB /* UploadPhotoVideoCollectionViewCell.xib in Resources */,
 				882EDB3D2532230A009E8C46 /* LaunchScreen.storyboard in Resources */,
+				F816D20B26EE9FD3006E0A74 /* ThirdPartyPaymentVC.xib in Resources */,
 				FA285E95253B663100A5303E /* SplashVC.xib in Resources */,
+				F8AB783B26EEA73E0061D63C /* DoneVC.xib in Resources */,
 				FAF13CF3253C26B800D1499A /* ForgotPasswordVC.xib in Resources */,
 				FAA0163225471819004D35BB /* QuestionnairesVC.xib in Resources */,
 				FAA41163259475F800DD9177 /* TermsConditionsCollectionViewCell.xib in Resources */,
 				FA9EFE6D253B4B8300A1ED1C /* OpenSans-Bold.ttf in Resources */,
 				044DCAC12671D3C20093F5B1 /* WaitingVC.xib in Resources */,
 				FAC4941B2540C2E5007E993B /* RegisterStepTwoVC.xib in Resources */,
-				FA0FF3A525DE689A0076C63E /* Info.plist in Resources */,
 				882EDB3A2532230A009E8C46 /* Assets.xcassets in Resources */,
 				FA9EFD8B25377C4300A1ED1C /* LoginVC.xib in Resources */,
 				FA0669D325B6DF6D00D0786E /* OptionSelectionVC.xib in Resources */,
 				FAA016472547EC3D004D35BB /* QuestionnaireSimpleOptionTableViewCell.xib in Resources */,
 				04FFB7EC260D04FD000CA37D /* SliderTableViewCell.xib in Resources */,
+				F8AB784226EEA8550061D63C /* QuestionIntroVC.xib in Resources */,
 				FAB4A9AF25DA84100065D23D /* SearchUserCollectionViewCell.xib in Resources */,
 				FAC4941125403A13007E993B /* RegisterStepOneVC.xib in Resources */,
 				FAA016272546C9C6004D35BB /* EmailVerificationVC.xib in Resources */,
 				FA0669E125B7CE5700D0786E /* EditNameVC.xib in Resources */,
-				882EDB3825322306009E8C46 /* Main.storyboard in Resources */,
+				F816D21A26EEA025006E0A74 /* LaunchCampaignVC.xib in Resources */,
 				FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */,
 				FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */,
 				042650AB2650F246009E6451 /* PaymentVC.xib in Resources */,
@@ -956,10 +1007,13 @@
 				FA192D432551283E005A55DD /* TermsAndConditionsVC.xib in Resources */,
 				FA9EFE66253B498400A1ED1C /* Baloo2-Bold.ttf in Resources */,
 				FAC77CAF254BF5D2004ADA74 /* QuestionnaireCountryOptionTableViewCell.xib in Resources */,
+				F8AEAEE926ED812E00656BCE /* SelectPaymentOptionVC.xib in Resources */,
 				0421198E26736F9C0056A737 /* CongratsVC.xib in Resources */,
+				F8B0B27E27000B2600108A73 /* Main.storyboard in Resources */,
 				FA70023C255C76D4000052F4 /* TutorialVC.xib in Resources */,
 				FA0669BF25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.xib in Resources */,
 				FAD8BE6725919B35009AA7AB /* UploadPhotoVideoVC.xib in Resources */,
+				F8AEAEE226ED7BAF00656BCE /* UploadPhotoInfoVC.xib in Resources */,
 				FA285EB3253B721600A5303E /* PreLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1031,9 +1085,14 @@
 				FA192D422551283E005A55DD /* TermsAndConditionsVC.swift in Sources */,
 				FA5DB48625501DE1002465B3 /* LoginPresenter.swift in Sources */,
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
+				F8AEAEE126ED7BAF00656BCE /* UploadPhotoInfoVC.swift in Sources */,
+				F8AB784126EEA8550061D63C /* QuestionIntroVC.swift in Sources */,
 				04FFB7EB260D04FD000CA37D /* SliderTableViewCell.swift in Sources */,
+				F8AEAEE826ED812E00656BCE /* SelectPaymentOptionVC.swift in Sources */,
 				042650AA2650F246009E6451 /* PaymentVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
+				F8B0B26A26FFEB2400108A73 /* InstantCell.swift in Sources */,
+				F8AB783A26EEA73E0061D63C /* DoneVC.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,
 				FA0669D225B6DF6D00D0786E /* OptionSelectionVC.swift in Sources */,
 				FA1C5F41259B8013008C7BFE /* UIScrollView-Extension.swift in Sources */,
@@ -1073,6 +1132,7 @@
 				FA0669BE25B6B53B00D0786E /* EditProfileUserQuestionTableViewCell.swift in Sources */,
 				FA9EFD48253779DD00A1ED1C /* DateTime-Extension.swift in Sources */,
 				FA385E6E25B9275000D1AEAF /* OptionSelectionPresenter.swift in Sources */,
+				F816D20A26EE9FD3006E0A74 /* ThirdPartyPaymentVC.swift in Sources */,
 				FAE965DB25D3DFF0009017F5 /* SearchVC.swift in Sources */,
 				FAC4941A2540C2E5007E993B /* RegisterStepTwoVC.swift in Sources */,
 				FA8DEA792579EA9700CDFD52 /* QuestionnaireModel.swift in Sources */,
@@ -1103,8 +1163,10 @@
 				FA5DB49925502BB5002465B3 /* ForgotPasswordPresenter.swift in Sources */,
 				FA06695725B686D900D0786E /* EditProfilePresenter.swift in Sources */,
 				FA9EFD4B253779DD00A1ED1C /* URL-Extension.swift in Sources */,
+				F816D21926EEA025006E0A74 /* LaunchCampaignVC.swift in Sources */,
 				FA9EFD7E25377BA200A1ED1C /* BaseTableViewCell.swift in Sources */,
 				FA9EFD4D253779DD00A1ED1C /* UITableView-Extension.swift in Sources */,
+				F8B0B27026FFEDAD00108A73 /* MessagesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,7 +1347,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.6;
-				DEVELOPMENT_TEAM = A84738639J;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1309,7 +1371,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.6;
-				DEVELOPMENT_TEAM = A84738639J;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/WingMate_iOS/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

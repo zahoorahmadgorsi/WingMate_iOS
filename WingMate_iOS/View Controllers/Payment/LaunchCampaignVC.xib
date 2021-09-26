@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baloo2-Bold.ttf">
+            <string>Baloo2-Bold</string>
+        </array>
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchCampaignVC" customModule="WingMate_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-tG-tkx">
+                    <rect key="frame" x="53" y="577" width="270" height="50"/>
+                    <color key="backgroundColor" red="0.93710952999999997" green="0.93728482719999995" blue="0.94140571360000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Yz0-Wv-Q6v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" name="LabelDarkBlueColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="continueAction:" destination="-1" eventType="touchUpInside" id="NVA-M9-60y"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baja" translatesAutoresizingMaskIntoConstraints="NO" id="EAB-XI-nhw">
+                    <rect key="frame" x="67.5" y="107" width="240" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Dk9-jf-o7O"/>
+                        <constraint firstAttribute="height" constant="240" id="hkW-BM-N7i"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Campaign" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr3-z6-6Ym">
+                    <rect key="frame" x="45" y="355" width="314" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="F8M-G5-JB1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uum-bC-nDU">
+                    <rect key="frame" x="32" y="400" width="311" height="82"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="h8c-Dw-5C8"/>
+                    </constraints>
+                    <string key="text">We are happy to offer Wingmate free of charge during the launch campaign period. Once the campaign period is over you will be notified by e-mail</string>
+                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.1813883781" green="0.14032006259999999" blue="0.26640257239999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="w3m-tG-tkx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="53" id="25j-7c-zg0"/>
+                <constraint firstItem="EAB-XI-nhw" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="53c-Rw-yGr"/>
+                <constraint firstItem="uum-bC-nDU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Fcu-93-9ps"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pr3-z6-6Ym" secondAttribute="trailing" constant="16" id="NtJ-Ek-GBh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uum-bC-nDU" secondAttribute="trailing" constant="32" id="O48-er-cnJ"/>
+                <constraint firstItem="pr3-z6-6Ym" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="aB1-C7-FMN"/>
+                <constraint firstItem="EAB-XI-nhw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="107" id="an9-xa-uRh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="w3m-tG-tkx" secondAttribute="trailing" constant="52" id="bee-6I-cub"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="w3m-tG-tkx" secondAttribute="bottom" constant="40" id="gz7-RO-N6a"/>
+                <constraint firstItem="uum-bC-nDU" firstAttribute="top" secondItem="pr3-z6-6Ym" secondAttribute="bottom" constant="10" id="lSQ-xF-X8y"/>
+                <constraint firstItem="pr3-z6-6Ym" firstAttribute="top" secondItem="EAB-XI-nhw" secondAttribute="bottom" constant="8" symbolic="YES" id="zK3-0F-t4J"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="87.706146926536732"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="baja" width="242" height="210"/>
+        <namedColor name="LabelDarkBlueColor">
+            <color red="0.067000001668930054" green="0.16099999845027924" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -7,9 +7,9 @@ PODS:
   - NotificationBannerSwift (3.0.2):
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
-  - Parse (1.19.0):
-    - Parse/Core (= 1.19.0)
-  - Parse/Core (1.19.0):
+  - Parse (1.19.1):
+    - Parse/Core (= 1.19.1)
+  - Parse/Core (1.19.1):
     - Bolts/Tasks (= 1.9.1)
   - SDWebImage (5.9.2):
     - SDWebImage/Core (= 5.9.2)
@@ -52,7 +52,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
-  Parse: 0fb5c7cc7ee5900f2434e24607d0496155b8d04f
+  Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
   SimpleImageViewer: 34c3a2cde2d9ac022146772cefc27fca14b0c8b1
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -61,4 +61,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 62038f4f6904794ea8bd09688a73dd15c2478f31
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.2

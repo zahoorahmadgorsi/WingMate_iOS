@@ -320,6 +320,12 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+       
+        let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
+        vc.userObj = user
+        navigationController?.pushViewController(vc, animated: true)
 //        self.getAccountStatus(completion: { (status) in
 //            if status == UserAccountStatus.accepted.rawValue {
 //
@@ -328,6 +334,7 @@ class ProfileVC: BaseViewController {
 //            }
 //        })
     }
+  
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
         self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)

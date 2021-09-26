@@ -25,6 +25,7 @@ class UploadPhotoVideoVC: BaseViewController {
     @IBOutlet weak var constraintHeightTableView: NSLayoutConstraint!
     @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet weak var testimageview: UIImageView!
+    
     var isPhotoMode = true
     var isPhotosUploaded = false
 

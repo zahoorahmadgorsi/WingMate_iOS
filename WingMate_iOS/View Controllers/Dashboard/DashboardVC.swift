@@ -24,7 +24,7 @@ class DashboardVC: BaseViewController {
     var dataUsers = [DashboardData]()
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
-    
+    var isLaunchCampaign = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewFloatingBottom.isHidden = true
@@ -37,6 +37,7 @@ class DashboardVC: BaseViewController {
         self.registerTableViewCells()
         self.presenter.getUsers()
         self.addPullToRefresh()
+        self.launchCampaign()
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetBottomFloatingViewText(notification:)), name: Notification.Name("resetBottomFloatingViewText"), object: nil)
 
         //        self.setViewControllers()
@@ -89,13 +90,20 @@ class DashboardVC: BaseViewController {
                 if isExpired {
                     self.viewFloatingBottom.isHidden = true
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
-                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                        let vc = UploadPhotoInfoVC(nibName: "UploadPhotoInfoVC", bundle: nil)
+                        vc.isExpired = isExpired
+                       // let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
                         self.navigationController?.pushViewController(WaitingVC(), animated: true)
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                        if self.isLaunchCampaign == false {
                         let vc = PaymentVC(isTrialExpired: true)
                         self.navigationController?.pushViewController(vc, animated: true)
+                        }else {
+                            let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
                         let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
                         vc.hidesBottomBarWhenPushed = true
@@ -104,15 +112,23 @@ class DashboardVC: BaseViewController {
                 } else {
                     if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
                         self.labelFloating.text = ValidationStrings.photosVideoRequiredToUpload
-                        let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
+                        let vc = UploadPhotoInfoVC(nibName: "UploadPhotoInfoVC", bundle: nil)
+                        vc.isExpired = isExpired
+                    //    let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: isExpired)
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
                         self.labelFloating.text = ValidationStrings.profileUnderScreening
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
                         if isBottomViewTapped {
-                            let vc = PaymentVC(isTrialExpired: false)
+                         //   let vc = PaymentVC(isTrialExpired: false)
+                            if self.isLaunchCampaign == false {
+                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                             self.navigationController?.pushViewController(vc, animated: true)
+                            }else {
+                                let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue {
                         if !isBottomViewTapped {
@@ -266,6 +282,19 @@ extension DashboardVC: DashboardDelegate {
             self.collectionViewUsers.reloadData()
         } else {
             self.showToast(message: msg)
+        }
+    }
+    
+    
+    func launchCampaign(){
+        let parseObject = PFQuery(className: "LaunchCampaign")
+        parseObject.getObjectInBackground(withId: "NzU48aDCP9") { (object, error) in
+            if error == nil {
+                if let obj = object {
+                    print(obj["launchCampaign"] as! Bool)
+                    self.isLaunchCampaign = obj["launchCampaign"] as! Bool
+                }
+            }
         }
     }
 }

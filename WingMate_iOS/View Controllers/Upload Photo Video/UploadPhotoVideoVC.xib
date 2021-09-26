@@ -9,6 +9,17 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baloo2-Bold.ttf">
+            <string>Baloo2-Bold</string>
+        </array>
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadPhotoVideoVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
@@ -35,13 +46,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZz-N3-kJe">
-                    <rect key="frame" x="20" y="112" width="201" height="35"/>
+                    <rect key="frame" x="20" y="112" width="200.66666666666666" height="35"/>
                     <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum 1 photo is required" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u94-1T-cl3">
-                    <rect key="frame" x="20" y="147" width="179.66666666666666" height="17"/>
+                    <rect key="frame" x="20" y="147" width="179.33333333333334" height="16.333333333333343"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                     <color key="textColor" name="LabelGrayTextColor"/>
                     <nil key="highlightedColor"/>
@@ -126,7 +137,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e62-fw-mbR">
-                    <rect key="frame" x="14" y="184" width="386" height="422"/>
+                    <rect key="frame" x="14" y="183.33333333333334" width="386" height="422.66666666666663"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="753-BC-VvU">
                             <rect key="frame" x="0.0" y="0.0" width="386" height="539"/>

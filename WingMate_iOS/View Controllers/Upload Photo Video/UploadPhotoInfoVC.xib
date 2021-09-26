@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadPhotoInfoVC" customModule="WingMate_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wireframe No. 21 will be added here" translatesAutoresizingMaskIntoConstraints="NO" id="Vcu-xk-UQH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akS-lb-SMC">
+                    <rect key="frame" x="52" y="577" width="270" height="50"/>
+                    <color key="backgroundColor" name="PurpleThemeColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="CQj-hN-V4T"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" red="0.93710952999999997" green="0.93728482719999995" blue="0.94140571360000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="continue:" destination="-1" eventType="touchUpInside" id="fX7-oD-MWG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1l-r1-6cc">
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                    <state key="normal" image="backbutton"/>
+                    <connections>
+                        <action selector="backBtn:" destination="-1" eventType="touchUpInside" id="LCW-LH-xKe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Vcu-xk-UQH" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="0bi-wy-sNl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="akS-lb-SMC" secondAttribute="bottom" constant="40" id="1XP-Tn-jeK"/>
+                <constraint firstItem="akS-lb-SMC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="52" id="1de-WY-2Yo"/>
+                <constraint firstItem="Vcu-xk-UQH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FJn-fd-RbV"/>
+                <constraint firstItem="Vcu-xk-UQH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TNX-2f-Lot"/>
+                <constraint firstItem="i1l-r1-6cc" firstAttribute="top" secondItem="akS-lb-SMC" secondAttribute="bottom" id="a17-yP-bGY"/>
+                <constraint firstItem="Vcu-xk-UQH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="gKG-Ez-Eor"/>
+                <constraint firstItem="i1l-r1-6cc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gQs-ZG-rL1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="i1l-r1-6cc" secondAttribute="bottom" id="iTH-H9-bW5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="akS-lb-SMC" secondAttribute="trailing" constant="53" id="sQT-He-qPW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i1l-r1-6cc" secondAttribute="trailing" id="sod-rd-L4j"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="87.706146926536732"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backbutton" width="47.333332061767578" height="24"/>
+        <image name="wireframe No. 21 will be added here" width="735" height="1294"/>
+        <namedColor name="PurpleThemeColor">
+            <color red="0.28999999165534973" green="0.23899999260902405" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

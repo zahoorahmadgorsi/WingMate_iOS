@@ -9,6 +9,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baloo2-Bold.ttf">
+            <string>Baloo2-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileVC" customModule="WingMate_iOS" customModuleProvider="target">
             <connections>
@@ -84,7 +92,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSp-51-OOi">
-                                    <rect key="frame" x="0.0" y="184" width="53" height="14"/>
+                                    <rect key="frame" x="0.0" y="184" width="52.666666666666664" height="14"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
                                     <color key="textColor" name="Label Gray Text Color"/>
                                     <nil key="highlightedColor"/>

@@ -65,6 +65,19 @@ class DBColumn {
     static let fromUser = "fromUser"
     static let toUser = "toUser"
     static let fanType = "fanType"
+    
+    //instant
+    static let INSTANTS_SENDER = "sender"
+    static let INSTANTS_RECEIVER = "receiver"
+    static let INSTANTS_ID = "instantID"
+    
+    //messages
+   
+    static let MESSAGES_SENDER = "sender"
+    static let MESSAGES_RECEIVER = "receiver"
+    static let MESSAGES_MESSAGE_ID = "messageID"
+    static let MESSAGES_MESSAGE = "message"
+    
 }
 
 class DBCloudFunction {
@@ -84,6 +97,9 @@ class DBTable {
     static let termsConditions  = "TermsConditions"
     static let userProfilePhotoVideo = "UserProfilePhotoVideo"
     static let fans = "Fans"
+    static let instants = "Instants"
+    static let USER_CLASS_NAME = "_User"
+    static let MESSAGES_CLASS_NAME = "Messages"
 }
 
 class QuestionShortTitle {

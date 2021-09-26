@@ -17,6 +17,7 @@
             <string>OpenSans-Bold</string>
         </array>
         <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
             <string>OpenSans-Regular</string>
         </array>
     </customFonts>
