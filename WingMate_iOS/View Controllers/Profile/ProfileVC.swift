@@ -218,8 +218,10 @@ class ProfileVC: BaseViewController {
                     } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
                         self.navigationController?.pushViewController(WaitingVC(), animated: true)
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
-                        let vc = PaymentVC(isTrialExpired: true)
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        //anish
+                        //do the coding here later
+                      //  let vc = PaymentVC(isTrialExpired: true)
+                        //self.navigationController?.pushViewController(vc, animated: true)
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
                         let vc = QuestionnairesVC(isMandatoryQuestionnaires: true)
                         vc.hidesBottomBarWhenPushed = true

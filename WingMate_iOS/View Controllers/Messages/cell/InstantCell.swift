@@ -13,6 +13,7 @@ class InstantCell: UITableViewCell {
     @IBOutlet weak var avatarImg: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
+    @IBOutlet weak var timeLbl : UILabel!
     
     
     override func awakeFromNib() {

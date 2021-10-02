@@ -7,6 +7,8 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
+
 
 class ChatVC: BaseViewController {
 
@@ -48,7 +50,8 @@ class ChatVC: BaseViewController {
     // MARK: - QUERY INSTANTS
     // ------------------------------------------------
     func queryInstants() {
-     //   showHUD()
+    
+        SVProgressHUD.show()
         let currentUser = PFUser.current()!
         
         // Query
@@ -65,7 +68,8 @@ class ChatVC: BaseViewController {
                     self.queryInstants()
                 }
                 
-         //       self.hideHUD()
+         
+                SVProgressHUD.dismiss()
                 
                 if self.instantsArray.count == 0 {
                     self.noResulsLabel.isHidden = false
@@ -76,9 +80,11 @@ class ChatVC: BaseViewController {
                 
             // error
             } else {
-            //    self.hideHUD()
-              //  self.simpleAlert("\(error!.localizedDescription)")
+            
+                SVProgressHUD.dismiss()
+                self.showToast(message:"\(error!.localizedDescription)")
         }}
+
     }
     
     //MARK: - Button Actions
@@ -111,8 +117,8 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         let currentUser = PFUser.current()!
         
         // Date
-        cell.lastMessageLabel.text = "Last message: " + timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
-        
+        cell.timeLbl.text = timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
+        cell.lastMessageLabel.text = "\(iObj["lastMessage"] ?? "")"
         
         // senderUser
         let senderUser = iObj[DBColumn.INSTANTS_SENDER] as! PFUser
@@ -124,11 +130,14 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
                 
                 // Avatar Image of the User you're chatting with
                 if senderUser.objectId == currentUser.objectId {
-                    self.getParseImage(object: receiverUser, colName: DBColumn.profilePic, imageView: cell.avatarImg)
-                    cell.usernameLabel.text = "\(receiverUser[DBColumn.username]!)"
+                    let imageFile = receiverUser[DBColumn.profilePic] as! String
+                    self.setImageWithUrl(imageUrl: imageFile, imageView: cell.avatarImg)
+                    cell.usernameLabel.text = "\(receiverUser[DBColumn.nick]!)"
+                   
                 } else {
-                    self.getParseImage(object: senderUser, colName: DBColumn.profilePic, imageView: cell.avatarImg)
-                    cell.usernameLabel.text = "\(senderUser[DBColumn.username]!)"
+                    let imageFile = senderUser[DBColumn.profilePic] as! String
+                    self.setImageWithUrl(imageUrl: imageFile, imageView: cell.avatarImg)
+                    cell.usernameLabel.text = "\(senderUser[DBColumn.nick]!)"
                 }
                 
             })// ./ receiverUser
@@ -140,7 +149,7 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 86
     }
     
     

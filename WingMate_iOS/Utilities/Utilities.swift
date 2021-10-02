@@ -148,7 +148,9 @@ func getParseImage(object:PFObject, colName:String, imageView:UIImageView) {
         if error == nil {
             if let imageData = imageData {
                 imageView.image = UIImage(data:imageData)
-    }}})
+    }}
+        print(error!.localizedDescription)
+    })
   }
     
 }

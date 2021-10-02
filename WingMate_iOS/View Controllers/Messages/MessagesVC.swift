@@ -11,6 +11,7 @@ import MessageUI
 import CoreServices
 import AssetsLibrary
 
+
 // ------------------------------------------------
 // MARK: - SENDER CELL
 // ------------------------------------------------
@@ -18,6 +19,8 @@ class SenderCell: UITableViewCell {
     /*--- VIEWS ---*/
     @IBOutlet weak var sDateLabel: UILabel!
     @IBOutlet weak var sMessageTextView: UITextView!
+    @IBOutlet weak var messageBg: UIView!
+    @IBOutlet weak var lbl: UILabel!
     
 }
 
@@ -30,11 +33,14 @@ class ReceiverCell: UITableViewCell {
     /*--- VIEWS ---*/
     @IBOutlet weak var rDateLabel: UILabel!
     @IBOutlet weak var rMessageTextView: UITextView!
-   
+    @IBOutlet weak var dp: UIImageView!
+    @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var messageBg: UIView!
+    
 }
 
 
-class MessagesVC: UIViewController {
+class MessagesVC: BaseViewController {
     
     /*--- VIEWS ---*/
     @IBOutlet weak var messagesTableView: UITableView!
@@ -43,7 +49,8 @@ class MessagesVC: UIViewController {
     @IBOutlet weak var writeMessageView: UIView!
     @IBOutlet weak var messageTxt: UITextField!
     @IBOutlet weak var sendMessageButton: UIButton!
- 
+    @IBOutlet weak var typeMessageViewConstraint: NSLayoutConstraint!
+    
     
     /*--- VARIABLES ---*/
     var userObj = PFUser(className: DBTable.USER_CLASS_NAME)
@@ -60,6 +67,7 @@ class MessagesVC: UIViewController {
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
     override func viewDidAppear(_ animated: Bool) {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -70,24 +78,23 @@ class MessagesVC: UIViewController {
     // ------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        messageTxt.layer.cornerRadius = 22
-        messageTxt.layer.borderColor = UIColor.lightGray.cgColor
-        messageTxt.layer.borderWidth = 1
-        // Add Padding left and right to the messageTxt
-        messageTxt.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: messageTxt.frame.height))
-        messageTxt.rightViewMode = .always
-        messageTxt.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: messageTxt.frame.height))
-        messageTxt.leftViewMode = .always
-        
+   
+     
         // Receiver Username
-        receiverUsernameLabel.text = "\(userObj[DBColumn.username]!)"
+        receiverUsernameLabel.text = "\(userObj[DBColumn.nick]!)"
     
         // Call function
         startRefreshTimer()
         
         // Call query
         if PFUser.current() != nil { queryMessages() }
+    }
+    // ------------------------------------------------
+    // MARK: - VIEW WILL APPEAR
+    // ------------------------------------------------
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
     // ------------------------------------------------
     // MARK: - KEYBOARD HIDE AND SHOW OBSERVERS
@@ -98,13 +105,22 @@ class MessagesVC: UIViewController {
             let kHeight = kRect.height
             
             // Move writeMessageView over the top of the keyboard
-            writeMessageView.frame.origin.y = view.frame.size.height - kHeight - writeMessageView.frame.size.height
+       //     writeMessageView.frame.origin.y = view.frame.size.height - kHeight - writeMessageView.frame.size.height
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.typeMessageViewConstraint.constant = kHeight - 40
+                self.view.layoutIfNeeded()
+                })
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
         // Move writeMessageView on the bottom of the screen
-        writeMessageView.frame.origin.y = view.frame.size.height - writeMessageView.frame.size.height
+  //      writeMessageView.frame.origin.y = view.frame.size.height - writeMessageView.frame.size.height - 50
+        UIView.animate(withDuration: 0.5, animations: {
+            self.typeMessageViewConstraint.constant = 20
+            self.view.layoutIfNeeded()
+            })
     }
     
     // ------------------------------------------------
@@ -123,7 +139,7 @@ class MessagesVC: UIViewController {
     // MARK: - START THE REFRESH MESSAGES TIMER
     // ------------------------------------------------
     func startRefreshTimer() {
-        refreshTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(queryMessages), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(queryMessages), userInfo: nil, repeats: true)
     }
     
     
@@ -132,6 +148,7 @@ class MessagesVC: UIViewController {
     // MARK: - QUERY MESSAGES
     // ------------------------------------------------
     @objc func queryMessages() {
+  
         let currentUser = PFUser.current()!
         let messId1 = "\(currentUser.objectId!)\(userObj.objectId!)"
         let messId2 = "\(userObj.objectId!)\(currentUser.objectId!)"
@@ -197,8 +214,9 @@ class MessagesVC: UIViewController {
         mObj[DBColumn.MESSAGES_RECEIVER] = userObj
         mObj[DBColumn.MESSAGES_MESSAGE_ID] = "\(currentUser.objectId!)\(userObj.objectId!)"
         mObj[DBColumn.MESSAGES_MESSAGE] = messageTxt.text!
+       
         lastMessage = messageTxt.text!
-        messageTxt.text = ""
+       
         self.sendMessageButton.isHidden = true
         
         // Saving...
@@ -223,8 +241,10 @@ class MessagesVC: UIViewController {
                 self.startRefreshTimer()
                 
                 
+                
             // error
-            } else {// self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
+            } else {
+                // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
         
     }
@@ -255,10 +275,12 @@ class MessagesVC: UIViewController {
                 iObj[DBColumn.INSTANTS_SENDER] = currentUser
                 iObj[DBColumn.INSTANTS_RECEIVER] = self.userObj
                 iObj[DBColumn.INSTANTS_ID] = "\(currentUser.objectId!)\(self.userObj.objectId!)"
+                iObj["lastMessage"] = self.messageTxt.text ?? ""
                 
                 // Save...
                 iObj.saveInBackground { (success, error) -> Void in
                     if error == nil { print("LAST MESS SAVED!")
+                        self.messageTxt.text = ""
                     } else { //self.simpleAlert("\(error!.localizedDescription)")
                 }}
                 
@@ -312,7 +334,7 @@ extension MessagesVC:UITextFieldDelegate {
     // MARK: - TEXT FIELD DELEGATES
     // ------------------------------------------------
     func textFieldDidEndEditing(_ textField: UITextField) {
-        sendMessageButton.isHidden = true
+       // sendMessageButton.isHidden = true
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
@@ -321,11 +343,12 @@ extension MessagesVC:UITextFieldDelegate {
         if chars != 0 {
             sendMessageButton.isHidden = false
         } else {
-            sendMessageButton.isHidden = true
+            sendMessageButton.isHidden = false
         }
     return true
     }
 }
+
 
 extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
     // ------------------------------------------------
@@ -363,14 +386,18 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                 cell.sDateLabel.text = timeAgoSinceDate(mObj.createdAt!, currentDate: Date(), numericDates: true)
                     
                 // Message
-                cell.sMessageTextView.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
-                cell.sMessageTextView.sizeToFit()
-                cell.sMessageTextView.frame.origin.x = 78
-                cell.sMessageTextView.frame.size.width = cell.frame.size.width - 86
-                cell.sMessageTextView.layer.cornerRadius = 5
+                cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
+                cell.messageBg.cornerRadius = 10
+                cell.messageBg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMinXMaxYCorner]
+//                cell.sMessageTextView.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
+//                cell.sMessageTextView.sizeToFit()
+//                cell.sMessageTextView.frame.origin.x = 78
+//                cell.sMessageTextView.frame.size.width = cell.frame.size.width - 86
+//                cell.sMessageTextView.cornerRadius = 10
+//                cell.sMessageTextView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMinXMaxYCorner]
                 
                 // Set cellHeight
-                self.cellHeight = cell.sMessageTextView.frame.origin.y + cell.sMessageTextView.frame.size.height + 26
+//                self.cellHeight = cell.sMessageTextView.frame.origin.y + cell.sMessageTextView.frame.size.height + 26
    
                 return cell
                     
@@ -381,7 +408,32 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
             // ------------------------------------------------
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiverCell", for: indexPath) as! ReceiverCell
+                // senderUser
+                var iObj = PFObject(className: DBTable.instants)
+                iObj = theMessages[indexPath.row]
+                let currentUser = PFUser.current()!
+                let senderUser = iObj[DBColumn.INSTANTS_SENDER] as! PFUser
+                senderUser.fetchIfNeededInBackground(block: { (up, error) in
                     
+                    // receiverUser
+                    let receiverUser = iObj[DBColumn.INSTANTS_RECEIVER] as! PFUser
+                    receiverUser.fetchIfNeededInBackground(block: { (ou, error) in
+                        
+                        // Avatar Image of the User you're chatting with
+                        if senderUser.objectId == currentUser.objectId {
+                            let imageFile = receiverUser[DBColumn.profilePic] as! String
+                            self.setImageWithUrl(imageUrl: imageFile, imageView: cell.dp)
+                          
+                           
+                        } else {
+                            let imageFile = receiverUser[DBColumn.profilePic] as! String
+                            self.setImageWithUrl(imageUrl: imageFile, imageView: cell.dp)
+                        }
+                        
+                    })// ./ receiverUser
+                    
+                })// ./ senderUser
+
                 // Layouts
                 cell.backgroundColor = UIColor.clear
                 cell.contentView.backgroundColor = UIColor.clear
@@ -392,13 +444,16 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                     
                 // Message
                 cell.rMessageTextView.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
-                cell.rMessageTextView.sizeToFit()
-                cell.rMessageTextView.frame.origin.x = 10
-                cell.rMessageTextView.frame.size.width = cell.frame.size.width - 86
-                cell.rMessageTextView.layer.cornerRadius = 5
-                    
-                // Set cellHeight
-                self.cellHeight = cell.rMessageTextView.frame.origin.y + cell.rMessageTextView.frame.size.height + 26
+                cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
+                cell.messageBg.layer.cornerRadius = 10
+                cell.messageBg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMaxXMaxYCorner]
+//                cell.rMessageTextView.sizeToFit()
+//                //cell.rMessageTextView.frame.origin.x = 10
+//              //  cell.rMessageTextView.frame.size.width = cell.frame.size.width - 86
+//                cell.rMessageTextView.cornerRadius = 10
+//                cell.rMessageTextView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMaxXMaxYCorner]
+//                // Set cellHeight
+//                self.cellHeight = cell.rMessageTextView.frame.origin.y + cell.rMessageTextView.frame.size.height + 50
                     
             
                 return cell
@@ -407,53 +462,9 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeight
+        //return cellHeight
+        return UITableView.automaticDimension
     }
-    
-    
-    
-    
-    // ------------------------------------------------
-    // MARK: - UNSEND MESSAGE BY SWIPING CELL LEFT
-    // ------------------------------------------------
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { }
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        // Parse Object
-        var mObj = PFObject(className: DBTable.MESSAGES_CLASS_NAME)
-        mObj = self.theMessages[indexPath.row]
-        let currentUser = PFUser.current()!
-        
-        // UNSEND ACTION
-        let unsendAction = UITableViewRowAction(style: .default, title: "Unsend") { (action, indexPath) in
-            
-            // User Pointer
-            let userPointer = mObj[DBColumn.MESSAGES_SENDER] as! PFUser
-            userPointer.fetchIfNeededInBackground(block: { (user, error) in
-                if error == nil {
-                    if userPointer.objectId! == currentUser.objectId! {
-                        mObj.deleteInBackground(block: { (succ, error) in
-                            self.theMessages.remove(at: indexPath.row)
-                            tableView.deleteRows(at: [indexPath], with: .fade)
-                            
-                            // Update the Instants class
-                            self.updateInstants()
-                        })
-                        
-                    // error
-                    } else { //self.simpleAlert("You can Unsend only your own messages!")
-                        
-                    }
-                    
-                // error
-                } else { //self.simpleAlert("\(error!.localizedDescription)")
-                    
-                }
-            })// ./ userPointer
-            
-        }
-        unsendAction.backgroundColor = UIColor.darkGray
-        return [unsendAction]
-    }
+ 
     
 }
