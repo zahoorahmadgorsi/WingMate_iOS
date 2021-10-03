@@ -10,7 +10,7 @@ import Parse
 import MessageUI
 import CoreServices
 import AssetsLibrary
-
+import SVProgressHUD
 
 // ------------------------------------------------
 // MARK: - SENDER CELL
@@ -104,9 +104,6 @@ class MessagesVC: BaseViewController {
             let kRect = kFrame.cgRectValue
             let kHeight = kRect.height
             
-            // Move writeMessageView over the top of the keyboard
-       //     writeMessageView.frame.origin.y = view.frame.size.height - kHeight - writeMessageView.frame.size.height
-            
             UIView.animate(withDuration: 0.5, animations: {
                 self.typeMessageViewConstraint.constant = kHeight - 40
                 self.view.layoutIfNeeded()
@@ -116,7 +113,7 @@ class MessagesVC: BaseViewController {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         // Move writeMessageView on the bottom of the screen
-  //      writeMessageView.frame.origin.y = view.frame.size.height - writeMessageView.frame.size.height - 50
+ 
         UIView.animate(withDuration: 0.5, animations: {
             self.typeMessageViewConstraint.constant = 20
             self.view.layoutIfNeeded()
@@ -139,7 +136,7 @@ class MessagesVC: BaseViewController {
     // MARK: - START THE REFRESH MESSAGES TIMER
     // ------------------------------------------------
     func startRefreshTimer() {
-        refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(queryMessages), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(queryMessages), userInfo: nil, repeats: true)
     }
     
     
@@ -149,6 +146,7 @@ class MessagesVC: BaseViewController {
     // ------------------------------------------------
     @objc func queryMessages() {
   
+        SVProgressHUD.show()
         let currentUser = PFUser.current()!
         let messId1 = "\(currentUser.objectId!)\(userObj.objectId!)"
         let messId2 = "\(userObj.objectId!)\(currentUser.objectId!)"
@@ -179,6 +177,7 @@ class MessagesVC: BaseViewController {
                             self.theMessages.append(self.messagesArray[i+temp])
                             let indexP = IndexPath(row: i+temp, section: 0)
                             self.messagesTableView.insertRows(at: [indexP], with: .fade)
+                            SVProgressHUD.dismiss()
                         }// ./ For
                         
                     // Some message has been deleted
@@ -192,6 +191,7 @@ class MessagesVC: BaseViewController {
                     if self.theMessages.count != 0 {
                         Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.scrollTableViewToBottom), userInfo: nil, repeats: false)
                     }
+                    SVProgressHUD.dismiss()
                 }// ./ If
                 
             // error
@@ -239,8 +239,9 @@ class MessagesVC: BaseViewController {
                 // Reset variables
                 self.imageToSend = nil
                 self.startRefreshTimer()
-                
-                
+                // Send Push notification
+                let pushMessage = "\(currentUser[DBColumn.nick]!): '\(self.lastMessage)'"
+                self.pushNotification(title: pushMessage, msg: pushMessage, userId: self.userObj.objectId!)
                 
             // error
             } else {
@@ -249,7 +250,13 @@ class MessagesVC: BaseViewController {
         
     }
     
-    
+    func pushNotification(title: String, msg: String, userId: String) {
+        ParseAPIManager.sendPushNotification(title: title, message: msg, userObjectId: userId) { success, message in
+            print("Push notification sent: \(success). Message: \(message)")
+        } onFailure: { error in
+            print("Push notification error: \(msg)")
+        }
+    }
     
     // ------------------------------------------------
     // MARK: - UPDATE THE INSTANTS CLASS
@@ -389,15 +396,6 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                 cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
                 cell.messageBg.cornerRadius = 10
                 cell.messageBg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMinXMaxYCorner]
-//                cell.sMessageTextView.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
-//                cell.sMessageTextView.sizeToFit()
-//                cell.sMessageTextView.frame.origin.x = 78
-//                cell.sMessageTextView.frame.size.width = cell.frame.size.width - 86
-//                cell.sMessageTextView.cornerRadius = 10
-//                cell.sMessageTextView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMinXMaxYCorner]
-                
-                // Set cellHeight
-//                self.cellHeight = cell.sMessageTextView.frame.origin.y + cell.sMessageTextView.frame.size.height + 26
    
                 return cell
                     
@@ -426,7 +424,8 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                           
                            
                         } else {
-                            let imageFile = receiverUser[DBColumn.profilePic] as! String
+                            print("Receiver userName = \(senderUser[DBColumn.nick] as! String)")
+                            let imageFile = senderUser[DBColumn.profilePic] as! String
                             self.setImageWithUrl(imageUrl: imageFile, imageView: cell.dp)
                         }
                         
@@ -447,15 +446,7 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                 cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
                 cell.messageBg.layer.cornerRadius = 10
                 cell.messageBg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMaxXMaxYCorner]
-//                cell.rMessageTextView.sizeToFit()
-//                //cell.rMessageTextView.frame.origin.x = 10
-//              //  cell.rMessageTextView.frame.size.width = cell.frame.size.width - 86
-//                cell.rMessageTextView.cornerRadius = 10
-//                cell.rMessageTextView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,.layerMaxXMaxYCorner]
-//                // Set cellHeight
-//                self.cellHeight = cell.rMessageTextView.frame.origin.y + cell.rMessageTextView.frame.size.height + 50
-                    
-            
+
                 return cell
                     
             }// ./ If

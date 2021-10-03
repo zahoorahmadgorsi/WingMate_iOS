@@ -1244,7 +1244,7 @@
                                                             </variation>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="qWO-d8-mdQ" secondAttribute="trailing" constant="10" id="Tyh-oG-aGO"/>
                                                         <constraint firstAttribute="trailing" secondItem="MvJ-aq-low" secondAttribute="trailing" constant="10" id="cl0-SI-fL9"/>
@@ -1376,8 +1376,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEX-Hw-guR">
                                 <rect key="frame" x="16" y="666" width="382" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a message..." textAlignment="natural" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kZX-JT-vVX">
-                                        <rect key="frame" x="16" y="6" width="350" height="39"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type something" textAlignment="natural" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kZX-JT-vVX">
+                                        <rect key="frame" x="16" y="6" width="306" height="39"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -1415,7 +1415,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="kZX-JT-vVX" secondAttribute="trailing" constant="16" id="BSP-dm-VGf"/>
+                                    <constraint firstAttribute="trailing" secondItem="kZX-JT-vVX" secondAttribute="trailing" constant="60" id="BSP-dm-VGf"/>
                                     <constraint firstAttribute="height" constant="50" id="CEb-hd-s5f"/>
                                     <constraint firstItem="kZX-JT-vVX" firstAttribute="leading" secondItem="aEX-Hw-guR" secondAttribute="leading" constant="16" id="WRp-rc-wf8"/>
                                     <constraint firstItem="kZX-JT-vVX" firstAttribute="top" secondItem="aEX-Hw-guR" secondAttribute="top" constant="6" id="cKe-bN-tXv"/>

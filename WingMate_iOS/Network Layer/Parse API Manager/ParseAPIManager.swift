@@ -117,7 +117,7 @@ struct ParseAPIManager {
             params = ["alertTitle": title, "alertText": title]
             url = DBCloudFunction.pushToAdmin
         } else {
-            params = ["alertTitle": title, "alertText": title, "userId": userObjectId!]
+            params = ["alertTitle": title, "alertText": message, "userId": userObjectId!]
             url = DBCloudFunction.pushToUser
         }
         PFCloud.callFunction(inBackground: url, withParameters: params!) { (data, error) in
