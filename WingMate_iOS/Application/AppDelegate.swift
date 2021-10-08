@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UserDefaults.standard.setValue(Date(), forKey: UserDefaultKeys.latestDateTime)
+        let center  = UNUserNotificationCenter.current()
+            center.delegate = self
         self.configureParse()
         self.configurePushNotifications()
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -110,7 +112,7 @@ extension AppDelegate: CLLocationManagerDelegate {
 }
 
 //MARK: - Push Notifications Configuration
-extension AppDelegate {
+extension AppDelegate : UNUserNotificationCenterDelegate{
     func configurePushNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {
             (granted, error) in
@@ -139,6 +141,19 @@ extension AppDelegate {
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        let action = response.actionIdentifier
+        let request = response.notification.request
+        let content = request.content
+
+        print("payload data: \(action)\(request)\(content)\n")
+
+        completionHandler()
+    }
+
+    
     
     func createInstallationOnParse(userId: String){
         if let installation = PFInstallation.current(){

@@ -62,7 +62,7 @@ class MessagesVC: BaseViewController {
     var refreshTimer = Timer()
     var lastMessage = ""
     var imageToSend:UIImage?
-    
+    var isLoadFirstTime = false
     // ------------------------------------------------
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
@@ -79,7 +79,7 @@ class MessagesVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
    
-     
+       
         // Receiver Username
         receiverUsernameLabel.text = "\(userObj[DBColumn.nick]!)"
     
@@ -146,7 +146,11 @@ class MessagesVC: BaseViewController {
     // ------------------------------------------------
     @objc func queryMessages() {
   
-        SVProgressHUD.show()
+        if isLoadFirstTime == false{
+            isLoadFirstTime = true
+            SVProgressHUD.show()
+        }
+        
         let currentUser = PFUser.current()!
         let messId1 = "\(currentUser.objectId!)\(userObj.objectId!)"
         let messId2 = "\(userObj.objectId!)\(currentUser.objectId!)"
@@ -154,7 +158,6 @@ class MessagesVC: BaseViewController {
         let predicate = NSPredicate(format:"messageID = '\(messId1)' OR messageID = '\(messId2)'")
         let query = PFQuery(className: DBTable.MESSAGES_CLASS_NAME, predicate: predicate)
         query.order(byAscending: "createdAt")
-        
         query.skip = skip
         query.findObjectsInBackground { (objects, error)-> Void in
             if error == nil {
@@ -208,8 +211,11 @@ class MessagesVC: BaseViewController {
         
         let mObj = PFObject(className: DBTable.MESSAGES_CLASS_NAME)
         let currentUser = PFUser.current()!
-        
+        let profilePic = "\(userObj[DBColumn.profilePic]!)"
         // Save Message to Inbox Class
+        mObj["profilePic"] = profilePic
+        mObj["receiverId"] = userObj.objectId
+        mObj["senderId"] = currentUser.objectId
         mObj[DBColumn.MESSAGES_SENDER] = currentUser
         mObj[DBColumn.MESSAGES_RECEIVER] = userObj
         mObj[DBColumn.MESSAGES_MESSAGE_ID] = "\(currentUser.objectId!)\(userObj.objectId!)"
@@ -241,9 +247,24 @@ class MessagesVC: BaseViewController {
                 self.startRefreshTimer()
                 // Send Push notification
                 let pushMessage = "\(currentUser[DBColumn.nick]!): '\(self.lastMessage)'"
-                self.pushNotification(title: pushMessage, msg: pushMessage, userId: self.userObj.objectId!)
+                let data = [
+                    "badge" : "Increment",
+                    "alert" : pushMessage,
+                    "sound" : "bingbong.aiff"
+                    
+                    
+                ]
+                let request = [
+                    "userObjectID" : self.userObj.objectId!,
+                    "data" : data
+                ] as [String : Any]
+                PFCloud.callFunction(inBackground: "pushiOS", withParameters: request as [String : Any], block: { (results, error) in
+                    if error == nil { print ("\nPUSH NOTIFICATION SENT TO: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
+                    } else { //elf.simpleAlert("\(error!.localizedDescription)")
+                    }})// ./ PFCloud
+                //self.pushNotification(title: pushMessage, msg: pushMessage, userId: self.userObj.objectId!)
                 
-            // error
+                // error
             } else {
                 // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
