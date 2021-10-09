@@ -333,6 +333,22 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
+        let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        
+        if isPaidUser{
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+       
+        let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
+        vc.userObj = user
+        navigationController?.pushViewController(vc, animated: true)
+        }else {
+            self.showAlertTwoButtons(APP_NAME, message: "Pay now to start the chat") { successAction in
+                let vc = PaymentVC()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } failureHandler: { failureAction in
+                
+            }
+        }
 //        self.getAccountStatus(completion: { (status) in
 //            if status == UserAccountStatus.accepted.rawValue {
 //

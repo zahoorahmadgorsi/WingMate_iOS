@@ -110,12 +110,23 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InstantCell
         cell.avatarImg.image = UIImage(named: "ItunesArtwork")
+        cell.newMessage.isHidden = true
         // Parse Object
         var iObj = PFObject(className: DBTable.instants)
         iObj = instantsArray[indexPath.row]
         // currentUser
         let currentUser = PFUser.current()!
-        
+        if let hideLbl = iObj["msgSentBy"] as? String {
+        if hideLbl != currentUser.objectId {
+            let isUnread = iObj["isUnread"] as! Bool
+            if isUnread == true {
+                cell.newMessage.isHidden = false
+            }else {
+                cell.newMessage.isHidden = true
+            }
+          }
+        }
+      
         // Date
         cell.timeLbl.text = timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
         cell.lastMessageLabel.text = "\(iObj["lastMessage"] ?? "")"
@@ -162,7 +173,7 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         iObj = instantsArray[indexPath.row]
         // currentUser
         let currentUser = PFUser.current()!
-        
+        let hideLbl = iObj["msgSentBy"]
         
         // senderUser
         let senderUser = iObj[DBColumn.INSTANTS_SENDER] as! PFUser
@@ -177,11 +188,11 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
                     
                     if senderUser.objectId == currentUser.objectId {
                         vc.userObj = receiverUser
+                        vc.msgSentById = "\(hideLbl ?? "")"
                         self.navigationController?.pushViewController(vc, animated: true)
-                        
-                        
                     } else {
                         vc.userObj = senderUser
+                        vc.msgSentById = "\(hideLbl ?? "")"
                         self.navigationController?.pushViewController(vc, animated: true)
                         
                     }

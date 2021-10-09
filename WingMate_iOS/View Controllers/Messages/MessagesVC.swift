@@ -63,6 +63,7 @@ class MessagesVC: BaseViewController {
     var lastMessage = ""
     var imageToSend:UIImage?
     var isLoadFirstTime = false
+    var msgSentById = ""
     // ------------------------------------------------
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
@@ -189,12 +190,12 @@ class MessagesVC: BaseViewController {
                         self.messagesTableView.reloadData()
                     }
                     
-                    
                     // Scroll TableView down to the bottom
                     if self.theMessages.count != 0 {
                         Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.scrollTableViewToBottom), userInfo: nil, repeats: false)
                     }
-                    SVProgressHUD.dismiss()
+                    self.markedSavedUserMessage()
+                   
                 }// ./ If
                 
             // error
@@ -251,9 +252,8 @@ class MessagesVC: BaseViewController {
                     "badge" : "Increment",
                     "alert" : pushMessage,
                     "sound" : "bingbong.aiff"
-                    
-                    
                 ]
+                
                 let request = [
                     "userObjectID" : self.userObj.objectId!,
                     "data" : data
@@ -262,21 +262,12 @@ class MessagesVC: BaseViewController {
                     if error == nil { print ("\nPUSH NOTIFICATION SENT TO: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
                     } else { //elf.simpleAlert("\(error!.localizedDescription)")
                     }})// ./ PFCloud
-                //self.pushNotification(title: pushMessage, msg: pushMessage, userId: self.userObj.objectId!)
                 
                 // error
             } else {
                 // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
         
-    }
-    
-    func pushNotification(title: String, msg: String, userId: String) {
-        ParseAPIManager.sendPushNotification(title: title, message: msg, userObjectId: userId) { success, message in
-            print("Push notification sent: \(success). Message: \(message)")
-        } onFailure: { error in
-            print("Push notification error: \(msg)")
-        }
     }
     
     // ------------------------------------------------
@@ -304,6 +295,8 @@ class MessagesVC: BaseViewController {
                 iObj[DBColumn.INSTANTS_RECEIVER] = self.userObj
                 iObj[DBColumn.INSTANTS_ID] = "\(currentUser.objectId!)\(self.userObj.objectId!)"
                 iObj["lastMessage"] = self.messageTxt.text ?? ""
+                iObj["isUnread"] = true
+                iObj["msgSentBy"] = "\(currentUser.objectId!)"
                 
                 // Save...
                 iObj.saveInBackground { (success, error) -> Void in
@@ -316,11 +309,40 @@ class MessagesVC: BaseViewController {
             } else { //self.simpleAlert("\(error!.localizedDescription)")
         }}// ./ query
     }
+    func markedSavedUserMessage(){
+        let currentUser = PFUser.current()!
+        
+        if self.msgSentById != currentUser.objectId {
+        let messId1 = "\(currentUser.objectId!)\(userObj.objectId!)"
+        let messId2 = "\(userObj.objectId!)\(currentUser.objectId!)"
+        
+        let predicate = NSPredicate(format:"\(DBColumn.INSTANTS_ID) = '\(messId1)'  OR  \(DBColumn.INSTANTS_ID) = '\(messId2)' ")
+        let query = PFQuery(className: DBTable.instants, predicate: predicate)
+        query.findObjectsInBackground { (objects, error)-> Void in
+            if error == nil {
+                self.instantsArray = objects!
+                // Parse Object
+                var iObj = PFObject(className: DBTable.instants)
+                if self.instantsArray.count != 0 { iObj = self.instantsArray[0] }
+          
+                iObj["isUnread"] = false
+                // Save...
+                iObj.saveInBackground { (success, error) -> Void in
+                    if error == nil { print("unread updated!")
+                    } else { //self.simpleAlert("\(error!.localizedDescription)")
+                }}
+                
+            // error
+            } else { //self.simpleAlert("\(error!.localizedDescription)")
+            }}// ./ query
+        }
+    }
     // ------------------------------------------------
     // MARK: - SCROLL TABLEVIEW TO BOTTOM
     // ------------------------------------------------
     @objc func scrollTableViewToBottom() {
         messagesTableView.scrollToRow(at: IndexPath(row: self.theMessages.count-1, section: 0), at: .bottom, animated: true)
+        SVProgressHUD.dismiss()
     }
     
     

@@ -609,6 +609,16 @@
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-xI-hPe">
+                                                            <rect key="frame" x="310.33333333333331" y="50" width="63.666666666666686" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="14" id="BZX-hy-pIz"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="W51-R0-Yy6"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
+                                                            <color key="textColor" name="RedThemeColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" name="YellowThemeColor"/>
                                                     <constraints>
@@ -619,8 +629,10 @@
                                                         <constraint firstItem="poa-QF-szs" firstAttribute="top" secondItem="dJz-on-90W" secondAttribute="bottom" constant="5" id="Uv7-bs-Bph"/>
                                                         <constraint firstAttribute="trailing" secondItem="dJz-on-90W" secondAttribute="trailing" constant="16" id="bRK-Ll-G4a"/>
                                                         <constraint firstItem="poa-QF-szs" firstAttribute="leading" secondItem="4sa-VF-UMg" secondAttribute="trailing" constant="10" id="lRW-vZ-jtq"/>
+                                                        <constraint firstItem="eCF-xI-hPe" firstAttribute="top" secondItem="IU3-LU-gos" secondAttribute="bottom" constant="5" id="o2n-72-ZkT"/>
                                                         <constraint firstItem="dJz-on-90W" firstAttribute="leading" secondItem="4sa-VF-UMg" secondAttribute="trailing" constant="10" id="oXJ-IP-491"/>
                                                         <constraint firstItem="4sa-VF-UMg" firstAttribute="top" secondItem="zff-gk-94x" secondAttribute="top" constant="8" id="yhd-oU-mIH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eCF-xI-hPe" secondAttribute="trailing" constant="8" id="zdH-Ld-tOY"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -634,6 +646,7 @@
                                         <connections>
                                             <outlet property="avatarImg" destination="4sa-VF-UMg" id="0dC-6W-bvQ"/>
                                             <outlet property="lastMessageLabel" destination="poa-QF-szs" id="DMX-cC-O24"/>
+                                            <outlet property="newMessage" destination="eCF-xI-hPe" id="k66-gU-CxZ"/>
                                             <outlet property="timeLbl" destination="IU3-LU-gos" id="VwM-1h-QuF"/>
                                             <outlet property="usernameLabel" destination="dJz-on-90W" id="v2E-Ve-UcI"/>
                                         </connections>

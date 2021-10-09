@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let center  = UNUserNotificationCenter.current()
+            center.delegate = self
         UserDefaults.standard.setValue(Date(), forKey: UserDefaultKeys.latestDateTime)
         self.configureParse()
         self.configurePushNotifications(application: application)
@@ -33,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
         self.setSVProgressHUD()
         self.getCurrentLocation()
+
         return true
     }
     
@@ -127,9 +130,33 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("mb: PUSH RECEIVED")
+        let request = response.notification.request
+        let userInfo = request.content.userInfo
+       // print("payload data: \(userInfo)\n")
+        guard let aps = userInfo["aps"] as? [String: AnyObject] else {
+            return
+          }
+        if let message = aps["alert"] {
+            print("payload message: \(message)")
+            coordinateToSomeVC()
+        }
+        
+        completionHandler()
     }
-    
+    private func coordinateToSomeVC()
+    {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let yourVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! UITabBarController
+        yourVC.selectedIndex = 3
+        //let navController = UINavigationController(rootViewController: yourVC)
+        //navController.modalPresentationStyle = .fullScreen
+
+        // you can assign your vc directly or push it in navigation stack as follows:
+        window.rootViewController = yourVC
+        window.makeKeyAndVisible()
+    }
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("mb: Presented")
         NotificationCenter.default.post(name: Notification.Name("refreshUserObject"), object: nil)
@@ -156,7 +183,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
     }
-    
+
     func createInstallationOnParse(userId: String){
         if let installation = PFInstallation.current(){
             if let token = self.deviceToken {

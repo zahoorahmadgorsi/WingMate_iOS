@@ -14,7 +14,7 @@ class InstantCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var timeLbl : UILabel!
-    
+    @IBOutlet weak var newMessage : UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
