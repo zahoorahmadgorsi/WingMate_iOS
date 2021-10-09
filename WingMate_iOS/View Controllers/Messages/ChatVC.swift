@@ -73,6 +73,7 @@ class ChatVC: BaseViewController {
                 
                 if self.instantsArray.count == 0 {
                     self.noResulsLabel.isHidden = false
+                    self.instantsTableView.backgroundColor = UIColor.clear
                 } else {
                     self.noResulsLabel.isHidden = true
                     self.instantsTableView.reloadData()
