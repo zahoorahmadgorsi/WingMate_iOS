@@ -162,7 +162,10 @@ class MessagesVC: BaseViewController {
         query.skip = skip
         query.findObjectsInBackground { (objects, error)-> Void in
             if error == nil {
-                for i in 0..<objects!.count { self.messagesArray.append(objects![i]) }
+                for i in 0..<objects!.count {
+                    self.messagesArray.append(objects![i])
+                    
+                }
                 if (objects!.count == 100) {
                     self.skip = self.skip + 100
                     self.queryMessages()
@@ -194,10 +197,11 @@ class MessagesVC: BaseViewController {
                     if self.theMessages.count != 0 {
                         Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.scrollTableViewToBottom), userInfo: nil, repeats: false)
                     }
-                    self.markedSavedUserMessage()
+                   
+                    
                    
                 }// ./ If
-                
+                SVProgressHUD.dismiss()
             // error
             } else {// self.simpleAlert("\(error!.localizedDescription)")
         }}
@@ -310,6 +314,7 @@ class MessagesVC: BaseViewController {
         }}// ./ query
     }
     func markedSavedUserMessage(){
+        
         let currentUser = PFUser.current()!
         
         if self.msgSentById != currentUser.objectId {
@@ -341,6 +346,7 @@ class MessagesVC: BaseViewController {
     // MARK: - SCROLL TABLEVIEW TO BOTTOM
     // ------------------------------------------------
     @objc func scrollTableViewToBottom() {
+        self.markedSavedUserMessage()
         messagesTableView.scrollToRow(at: IndexPath(row: self.theMessages.count-1, section: 0), at: .bottom, animated: true)
         SVProgressHUD.dismiss()
     }
