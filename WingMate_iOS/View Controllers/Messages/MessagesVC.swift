@@ -301,6 +301,7 @@ class MessagesVC: BaseViewController {
                 iObj["lastMessage"] = self.messageTxt.text ?? ""
                 iObj["isUnread"] = true
                 iObj["msgSentBy"] = "\(currentUser.objectId!)"
+                iObj["msgCreateAt"] = Date()
                 
                 // Save...
                 iObj.saveInBackground { (success, error) -> Void in
@@ -419,6 +420,7 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         // Parse Object
+        
         var mObj = PFObject(className: DBTable.MESSAGES_CLASS_NAME)
         mObj = theMessages[indexPath.row]
         let currentuser = PFUser.current()!

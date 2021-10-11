@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "44E8E330-F646-4641-9D85-84C794B257D4"
-            shouldBeEnabled = "Yes"
+            uuid = "83AC96F3-8CEE-4ABA-93A5-BD9D68E8667F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WingMate_iOS/View Controllers/Messages/MessagesVC.swift"
+            filePath = "WingMate_iOS/Utilities/Utilities.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
-            landmarkName = "scrollTableViewToBottom()"
-            landmarkType = "7">
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "timeAgoSinceDate(_:currentDate:numericDates:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

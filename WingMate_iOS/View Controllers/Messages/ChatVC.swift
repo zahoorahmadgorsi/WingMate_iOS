@@ -9,6 +9,7 @@ import UIKit
 import Parse
 import SVProgressHUD
 
+var firstTimeLoader = true
 
 class ChatVC: BaseViewController {
 
@@ -20,11 +21,15 @@ class ChatVC: BaseViewController {
     var instantsArray = [PFObject]()
     var skip = 0
     var  username = String()
+    var refreshControl = UIRefreshControl()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.instantsTableView.tableFooterView = UIView()
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        self.addPullToRefresh()
   
     }
     
@@ -46,12 +51,25 @@ class ChatVC: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
     }
+    func addPullToRefresh() {
+        self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.instantsTableView.refreshControl = refreshControl
+    }
+    @objc func refresh(_ sender: AnyObject) {
+        queryInstants()
+    }
     // ------------------------------------------------
     // MARK: - QUERY INSTANTS
     // ------------------------------------------------
     func queryInstants() {
-    
-        SVProgressHUD.show()
+        refreshControl.endRefreshing()
+        instantsArray.removeAll()
+        
+        if firstTimeLoader == true {
+            firstTimeLoader = false
+            SVProgressHUD.show()
+        }
+        
         let currentUser = PFUser.current()!
         
         // Query
@@ -112,6 +130,7 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InstantCell
         cell.avatarImg.image = UIImage(named: "ItunesArtwork")
         cell.newMessage.isHidden = true
+        cell.timeLbl.text = "..."
         // Parse Object
         var iObj = PFObject(className: DBTable.instants)
         iObj = instantsArray[indexPath.row]
@@ -129,7 +148,21 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         }
       
         // Date
-        cell.timeLbl.text = timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
+        print("Updated At time is = \(iObj.updatedAt!)")
+        print("Updated At date is = \(Date())")
+        
+        // cell.timeLbl.text = timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
+        if let pastDate = iObj["msgCreateAt"] as? Date  {
+
+        cell.timeLbl.text = timeAgoSinceDate(pastDate, currentDate: Date(), numericDates: false)
+        
+        }
+       
+        
+        
+
+       
+        
         cell.lastMessageLabel.text = "\(iObj["lastMessage"] ?? "")"
         
         // senderUser
@@ -204,6 +237,7 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
             
         })// ./ senderUser
     }
-    
-    
+
 }
+
+

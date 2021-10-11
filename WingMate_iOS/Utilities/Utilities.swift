@@ -97,12 +97,13 @@ class Utilities {
 // MARK: - FORMAT DATE BY TIME AGO SINCE DATE
 // ------------------------------------------------
 func timeAgoSinceDate(_ date:Date, currentDate:Date, numericDates:Bool) -> String {
+    
     let calendar = Calendar.current
     let now = currentDate
     let earliest = (now as NSDate).earlierDate(date)
     let latest = (earliest == now) ? date : now
     let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
-    
+  
     if (components.year! >= 2) {
         return "\(components.year!) years ago"
     } else if (components.year! >= 1){
