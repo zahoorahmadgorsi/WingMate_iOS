@@ -25,7 +25,7 @@ class DashboardVC: BaseViewController {
     var refreshControl = UIRefreshControl()
     var myUserOptions = [PFObject]()
     var isTrialExpired = false
-    
+    var isLaunchCampaign = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewFloatingBottom.isHidden = true
@@ -38,6 +38,7 @@ class DashboardVC: BaseViewController {
         self.registerTableViewCells()
         self.presenter.getUsers()
         self.addPullToRefresh()
+        self.launchCampaign()
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetBottomFloatingViewText(notification:)), name: Notification.Name("resetBottomFloatingViewText"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserObject(notification:)), name: Notification.Name("refreshUserObject"), object: nil)
 
@@ -109,8 +110,10 @@ class DashboardVC: BaseViewController {
                             self.navigationController?.pushViewController(WaitingVC(), animated: true)
                         }
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
-                        self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
-                            let vc = PaymentVC(isTrialExpired: true)
+                        if self.isLaunchCampaign == false {
+                        //SHOW PAYMENT SCREEN HERE
+                        }else {
+                            let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                             self.navigationController?.pushViewController(vc, animated: true)
                         }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
@@ -132,11 +135,13 @@ class DashboardVC: BaseViewController {
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.labelFloating.text = "\(daysLeft) \(ValidationStrings.daysLeftForTrialExpiry)"
                         if isBottomViewTapped {
-                            self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNow) { action in
-                                let vc = PaymentVC(isTrialExpired: false)
+                            if self.isLaunchCampaign == false {
+                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            }else {
+                                let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                                 self.navigationController?.pushViewController(vc, animated: true)
-                            }
-                        }
+                            }                        }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue {
                         if !isBottomViewTapped {
                             self.showAlertOK(APP_NAME, message: ValidationStrings.needToFillMandatoryQuestionnaires) { action in
@@ -294,6 +299,21 @@ extension DashboardVC: DashboardDelegate {
             self.showToast(message: msg)
         }
     }
+    func launchCampaign(){
+        let parseObject = PFQuery(className: "LaunchCampaign")
+        parseObject.getObjectInBackground(withId: "NzU48aDCP9") { (object, error) in
+            if error == nil {
+                if let obj = object {
+                    print(obj["launchCampaign"] as! Bool)
+                    self.isLaunchCampaign = obj["launchCampaign"] as! Bool
+                    let val = obj["launchCampaign"] as! Bool
+                    UserDefaults.standard.setValue(val, forKey: UserDefaultKeys.launchCampaign)
+                    
+                }
+            }
+        }
+    }
+
 }
 
 

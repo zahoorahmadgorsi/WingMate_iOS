@@ -148,7 +148,6 @@ class MessagesVC: BaseViewController {
     @objc func queryMessages() {
   
         if isLoadFirstTime == false{
-            isLoadFirstTime = true
             SVProgressHUD.show()
         }
         
@@ -195,7 +194,13 @@ class MessagesVC: BaseViewController {
                     
                     // Scroll TableView down to the bottom
                     if self.theMessages.count != 0 {
-                        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.scrollTableViewToBottom), userInfo: nil, repeats: false)
+                        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.emptyFunc), userInfo: nil, repeats: false)
+                        
+                        if self.isLoadFirstTime == false{
+                            self.isLoadFirstTime = true
+                            self.scrollTableViewToBottom()
+                        }
+                       
                     }
                    
                     
@@ -206,7 +211,7 @@ class MessagesVC: BaseViewController {
             } else {// self.simpleAlert("\(error!.localizedDescription)")
         }}
     }
-    
+    @objc func emptyFunc(){}
     // ------------------------------------------------
     // MARK: - SEND MESSAGE BUTTON
     // ------------------------------------------------
@@ -216,7 +221,7 @@ class MessagesVC: BaseViewController {
         
         let mObj = PFObject(className: DBTable.MESSAGES_CLASS_NAME)
         let currentUser = PFUser.current()!
-        let profilePic = "\(userObj[DBColumn.profilePic]!)"
+        let profilePic = APP_MANAGER.session?.value(forKey: DBColumn.profilePic) as? String ?? ""
         // Save Message to Inbox Class
         mObj["profilePic"] = profilePic
         mObj["receiverId"] = userObj.objectId
@@ -260,7 +265,9 @@ class MessagesVC: BaseViewController {
                 
                 let request = [
                     "userObjectID" : self.userObj.objectId!,
-                    "data" : data
+                    "data" : data,
+                    "senderId" : "\(currentUser.objectId!)",
+                    "senderName": currentUser.username!
                 ] as [String : Any]
                 PFCloud.callFunction(inBackground: "pushiOS", withParameters: request as [String : Any], block: { (results, error) in
                     if error == nil { print ("\nPUSH NOTIFICATION SENT TO: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
@@ -346,7 +353,7 @@ class MessagesVC: BaseViewController {
     // ------------------------------------------------
     // MARK: - SCROLL TABLEVIEW TO BOTTOM
     // ------------------------------------------------
-    @objc func scrollTableViewToBottom() {
+     func scrollTableViewToBottom() {
         self.markedSavedUserMessage()
         messagesTableView.scrollToRow(at: IndexPath(row: self.theMessages.count-1, section: 0), at: .bottom, animated: true)
         SVProgressHUD.dismiss()

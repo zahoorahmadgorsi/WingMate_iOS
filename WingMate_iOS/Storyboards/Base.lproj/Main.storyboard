@@ -580,7 +580,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-on-90W">
-                                                            <rect key="frame" x="70" y="20" width="296" height="21"/>
+                                                            <rect key="frame" x="70" y="20" width="232" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="I2v-02-sl6"/>
                                                             </constraints>
@@ -628,7 +628,7 @@
                                                         <constraint firstItem="IU3-LU-gos" firstAttribute="top" secondItem="zff-gk-94x" secondAttribute="top" constant="31" id="I6V-vd-gX3"/>
                                                         <constraint firstItem="4sa-VF-UMg" firstAttribute="leading" secondItem="zff-gk-94x" secondAttribute="leading" id="Nhj-vw-xTS"/>
                                                         <constraint firstItem="poa-QF-szs" firstAttribute="top" secondItem="dJz-on-90W" secondAttribute="bottom" constant="5" id="Uv7-bs-Bph"/>
-                                                        <constraint firstAttribute="trailing" secondItem="dJz-on-90W" secondAttribute="trailing" constant="16" id="bRK-Ll-G4a"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dJz-on-90W" secondAttribute="trailing" constant="80" id="bRK-Ll-G4a"/>
                                                         <constraint firstItem="poa-QF-szs" firstAttribute="leading" secondItem="4sa-VF-UMg" secondAttribute="trailing" constant="10" id="lRW-vZ-jtq"/>
                                                         <constraint firstItem="dJz-on-90W" firstAttribute="leading" secondItem="4sa-VF-UMg" secondAttribute="trailing" constant="10" id="oXJ-IP-491"/>
                                                         <constraint firstItem="IU3-LU-gos" firstAttribute="top" secondItem="eCF-xI-hPe" secondAttribute="bottom" constant="5" id="u94-Nb-Kbt"/>

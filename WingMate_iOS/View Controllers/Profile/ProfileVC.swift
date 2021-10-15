@@ -52,7 +52,7 @@ class ProfileVC: BaseViewController {
     var maybeObject: PFObject?
     var refreshFansList:(()->Void)?
     var isTrialExpired = false
-    
+    var isLaunchCampaign = false
     convenience init(user: PFUser) {
         self.init()
         self.user = user
@@ -60,6 +60,9 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let launchPay = UserDefaults.standard.object(forKey: UserDefaultKeys.userObjectKeyUserDefaults){
+            self.isLaunchCampaign = launchPay as! Bool
+        }
         self.processUserState()
         self.presenter.attach(vc: self)
         self.registerTableViewCells()
@@ -225,8 +228,13 @@ class ProfileVC: BaseViewController {
                         }
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
-                            let vc = PaymentVC(isTrialExpired: true)
+                            if self.isLaunchCampaign == false {
+                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                             self.navigationController?.pushViewController(vc, animated: true)
+                            }else {
+                                let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     } else if isPaidUser && !isMandatoryQuestionsFilled && status == UserAccountStatus.accepted.rawValue{
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToFillMandatoryQuestionnaires) { action in
@@ -295,8 +303,13 @@ class ProfileVC: BaseViewController {
             self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
         } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
             self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
-                let vc = PaymentVC(isTrialExpired: self.isTrialExpired)
+                if self.isLaunchCampaign == false {
+                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                 self.navigationController?.pushViewController(vc, animated: true)
+                }else {
+                    let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             } failureHandler: { leftButtonAction in
                 
             }
@@ -334,28 +347,38 @@ class ProfileVC: BaseViewController {
     
     @IBAction func messageButtonPressed(_ sender: Any) {
         let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+        let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+        let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+        let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue
         
-        if isPaidUser{
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-       
-        let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
-        vc.userObj = user
-        navigationController?.pushViewController(vc, animated: true)
-        }else {
-            self.showAlertTwoButtons(APP_NAME, message: "Pay now to start the chat") { successAction in
-                let vc = PaymentVC()
+        if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaAndBecomePaidToInteract, rightBtnText: ValidationStrings.uploadNow, leftBtnText: ValidationStrings.uploadLater) { rightButtonAction in
+                let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: self.isTrialExpired)
                 self.navigationController?.pushViewController(vc, animated: true)
-            } failureHandler: { failureAction in
+            } failureHandler: { leftButtonAction in
                 
             }
+        } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+            self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
+        } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+            self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
+                if self.isLaunchCampaign == false {
+                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
+                }else {
+                    let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } failureHandler: { leftButtonAction in
+                
+            }
+        }else {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
+            vc.userObj = user
+            navigationController?.pushViewController(vc, animated: true)
         }
-//        self.getAccountStatus(completion: { (status) in
-//            if status == UserAccountStatus.accepted.rawValue {
-//
-//            } else {
-//                self.showAlertOK(APP_NAME, message: ValidationStrings.kAccountPending)
-//            }
-//        })
+
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
@@ -389,8 +412,13 @@ class ProfileVC: BaseViewController {
                 self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
             } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                 self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
-                    let vc = PaymentVC()
+                    if self.isLaunchCampaign == false {
+                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                     self.navigationController?.pushViewController(vc, animated: true)
+                    }else {
+                        let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 } failureHandler: { failureAction in
                     
                 }

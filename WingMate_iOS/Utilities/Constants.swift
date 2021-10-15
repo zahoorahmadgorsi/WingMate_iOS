@@ -62,6 +62,7 @@ class ValidationStrings {
 class UserDefaultKeys {
     static let userObjectKeyUserDefaults = "userObjectKeyUserDefaults"
     static let latestDateTime = "latestDateTime"
+    static let launchCampaign = "launchCampaign"
 }
 
 struct Constants {

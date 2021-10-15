@@ -11,8 +11,6 @@
 		041B3F0226B52E150086D893 /* QuestionsSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041B3F0026B52E150086D893 /* QuestionsSuccessVC.xib */; };
 		0421198D26736F9C0056A737 /* CongratsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421198B26736F9C0056A737 /* CongratsVC.swift */; };
 		0421198E26736F9C0056A737 /* CongratsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0421198C26736F9C0056A737 /* CongratsVC.xib */; };
-		042650AA2650F246009E6451 /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042650A82650F245009E6451 /* PaymentVC.swift */; };
-		042650AB2650F246009E6451 /* PaymentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042650A92650F245009E6451 /* PaymentVC.xib */; };
 		044DCAC02671D3C20093F5B1 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DCABE2671D3C20093F5B1 /* WaitingVC.swift */; };
 		044DCAC12671D3C20093F5B1 /* WaitingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044DCABF2671D3C20093F5B1 /* WaitingVC.xib */; };
 		04FFB7EB260D04FD000CA37D /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB7E9260D04FD000CA37D /* SliderTableViewCell.swift */; };
@@ -160,8 +158,6 @@
 		041B3F0026B52E150086D893 /* QuestionsSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsSuccessVC.xib; sourceTree = "<group>"; };
 		0421198B26736F9C0056A737 /* CongratsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsVC.swift; sourceTree = "<group>"; };
 		0421198C26736F9C0056A737 /* CongratsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CongratsVC.xib; sourceTree = "<group>"; };
-		042650A82650F245009E6451 /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
-		042650A92650F245009E6451 /* PaymentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentVC.xib; sourceTree = "<group>"; };
 		044DCABC266A57950093F5B1 /* WingMate_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WingMate_iOS.entitlements; sourceTree = "<group>"; };
 		044DCABE2671D3C20093F5B1 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		044DCABF2671D3C20093F5B1 /* WaitingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingVC.xib; sourceTree = "<group>"; };
@@ -350,8 +346,6 @@
 				F8EDD8832710B65700E848D0 /* SelectPaymentOptionVC.xib */,
 				F8EDD87F2710B65600E848D0 /* ThirdPartyPaymentVC.swift */,
 				F8EDD8822710B65700E848D0 /* ThirdPartyPaymentVC.xib */,
-				042650A82650F245009E6451 /* PaymentVC.swift */,
-				042650A92650F245009E6451 /* PaymentVC.xib */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1003,7 +997,6 @@
 				FA0765392594425200D48366 /* TermsConditionsTableViewCell.xib in Resources */,
 				F8EDD8862710B65700E848D0 /* DoneVC.xib in Resources */,
 				FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */,
-				042650AB2650F246009E6451 /* PaymentVC.xib in Resources */,
 				F8EDD88A2710B65700E848D0 /* ThirdPartyPaymentVC.xib in Resources */,
 				FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */,
 				FAF4EF7725B2B267006E0830 /* EditProfileVC.xib in Resources */,
@@ -1089,7 +1082,6 @@
 				FAD8BE6625919B35009AA7AB /* UploadPhotoVideoVC.swift in Sources */,
 				F8EDD8872710B65700E848D0 /* ThirdPartyPaymentVC.swift in Sources */,
 				04FFB7EB260D04FD000CA37D /* SliderTableViewCell.swift in Sources */,
-				042650AA2650F246009E6451 /* PaymentVC.swift in Sources */,
 				F8EDD8842710B65700E848D0 /* DoneVC.swift in Sources */,
 				52A35B54254C9F0D00D1A56A /* ParseAPIManager.swift in Sources */,
 				FAA016262546C9C6004D35BB /* EmailVerificationVC.swift in Sources */,

@@ -15,6 +15,8 @@ class SettingsVC: BaseViewController {
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var labelVersion: UILabel!
 
+    var isLaunchCampaign = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -22,6 +24,9 @@ class SettingsVC: BaseViewController {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             print("\(version).\(build)")
             self.labelVersion.text = "Version \(version).\(build)"
+        }
+        if let launchPay = UserDefaults.standard.object(forKey: UserDefaultKeys.userObjectKeyUserDefaults){
+            self.isLaunchCampaign = launchPay as! Bool
         }
     }
     
@@ -73,8 +78,13 @@ class SettingsVC: BaseViewController {
                         }
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
-                            let vc = PaymentVC(isTrialExpired: true)
+                            if self.isLaunchCampaign == false {
+                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                             self.navigationController?.pushViewController(vc, animated: true)
+                            }else {
+                                let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     }
                 } else {
@@ -89,8 +99,13 @@ class SettingsVC: BaseViewController {
                         self.showToast(message: ValidationStrings.profileUnderScreening)
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNow) { action in
-                            let vc = PaymentVC(isTrialExpired: false)
+                            if self.isLaunchCampaign == false {
+                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
                             self.navigationController?.pushViewController(vc, animated: true)
+                            }else {
+                                let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                     }
                 }
