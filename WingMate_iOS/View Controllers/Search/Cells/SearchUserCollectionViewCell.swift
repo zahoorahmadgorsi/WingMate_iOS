@@ -111,6 +111,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
                 let frmUsr = i.value(forKey: DBColumn.fromUser) as? PFUser
                 let toUsr = i.value(forKey: DBColumn.toUser) as? PFUser
                 let fanType = i.value(forKey: DBColumn.fanType) as? String ?? ""
+                
                 if (frmUsr!.objectId! == PFUser.current()?.objectId!) && (toUsr!.objectId! == fromUser!.objectId!) && (fanType == self.selectedFanType.rawValue) {
                     isFound = true
                 }
