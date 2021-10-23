@@ -64,6 +64,7 @@ class MessagesVC: BaseViewController {
     var imageToSend:UIImage?
     var isLoadFirstTime = false
     var msgSentById = ""
+    var presenter = ProfilePresenter()
     // ------------------------------------------------
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
@@ -256,6 +257,7 @@ class MessagesVC: BaseViewController {
                 self.imageToSend = nil
                 self.startRefreshTimer()
                 // Send Push notification
+                
                 let pushMessage = "\(currentUser[DBColumn.nick]!): '\(self.lastMessage)'"
                 let data = [
                     "badge" : "Increment",
@@ -269,8 +271,19 @@ class MessagesVC: BaseViewController {
                     "senderId" : "\(currentUser.objectId!)",
                     "senderName": currentUser.username!
                 ] as [String : Any]
+                
                 PFCloud.callFunction(inBackground: "pushiOS", withParameters: request as [String : Any], block: { (results, error) in
                     if error == nil { print ("\nPUSH NOTIFICATION SENT TO: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
+                    } else { //elf.simpleAlert("\(error!.localizedDescription)")
+                    }})// ./ PFCloud
+                let requestAndriod = [
+                    "userObjectID" : self.userObj.objectId!,
+                    "data" : pushMessage,
+                    "senderId" : "\(currentUser.objectId!)",
+                    "senderName": DBColumn.nick
+                ] as [String : Any]
+                PFCloud.callFunction(inBackground: "pushAndroid", withParameters: requestAndriod as [String : Any], block: { (results, error) in
+                    if error == nil { print ("\nPUSH NOTIFICATION SENT TO ANDRIOD: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
                     } else { //elf.simpleAlert("\(error!.localizedDescription)")
                     }})// ./ PFCloud
                 
@@ -278,7 +291,8 @@ class MessagesVC: BaseViewController {
             } else {
                 // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
-        
+        //pushAndroid
+      
     }
     
     // ------------------------------------------------
