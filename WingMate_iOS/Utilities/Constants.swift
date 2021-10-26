@@ -56,7 +56,7 @@ class ValidationStrings {
     static let needToFillMandatoryQuestionnaires = "You need to fill mandatory questionnaires"
     static let needToUploadPhotosVideoTrialExpired = "Your trial period has been expired. You need to upload photos/video"
     static let needToPayNowTrialExpired = "Your trial period has been expired. You need to pay now"
-    static let needToWaitTrialExpired = "Your trial period has been expired. Your profile is being reviewed by the admin"
+    static let needToWaitTrialExpired = "Your 7 days trial period has been ended. To enjoy full access to all Blinqui features, you will be directed to the payment page"
 }
 
 class UserDefaultKeys {
