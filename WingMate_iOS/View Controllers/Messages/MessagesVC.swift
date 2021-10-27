@@ -466,10 +466,10 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
 //                let dateFormatter = DateFormatter()
 //                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
 //                let stringDate = dateFormatter.date(from: "\(mObj)")
-                let date = utcToLocal(dateStr: "\(mObj.createdAt!)")
+            //    let date = utcToLocal(dateStr: "\(mObj.createdAt!)")
              //   print("sender Date is = \(date)")
-               // cell.sDateLabel.text = timeAgoSinceDate(mObj.createdAt!, currentDate: Date(), numericDates: false)
-                cell.sDateLabel.text = date!
+                cell.sDateLabel.text = timeAgoSinceDate2(mObj.createdAt!, currentDate: Date(), numericDates: false)
+        //        cell.sDateLabel.text = date!
                 // Message
                 cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
                 cell.messageBg.cornerRadius = 10
@@ -515,10 +515,10 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                 cell.backgroundColor = UIColor.clear
                 cell.contentView.backgroundColor = UIColor.clear
               
-                let date = utcToLocal(dateStr: "\(mObj.createdAt!)")
-                cell.rDateLabel.text = date!
+              //  let date = utcToLocal(dateStr: "\(mObj.createdAt!)")
+               // cell.rDateLabel.text = date!
                 // Get Date
-           //     cell.rDateLabel.text = timeAgoSinceDate(mObj.createdAt!, currentDate: Date(), numericDates: true)
+                cell.rDateLabel.text = timeAgoSinceDate2(mObj.createdAt!, currentDate: Date(), numericDates: true)
                     
                 // Message
                 cell.rMessageTextView.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
@@ -536,17 +536,5 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
         return UITableView.automaticDimension
     }
  
-    func utcToLocal(dateStr: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        
-        if let date = dateFormatter.date(from: dateStr) {
-            dateFormatter.timeZone = TimeZone.current
-            dateFormatter.dateFormat = "HH:mm"
-        
-            return dateFormatter.string(from: date)
-        }
-        return nil
-    }
+
 }

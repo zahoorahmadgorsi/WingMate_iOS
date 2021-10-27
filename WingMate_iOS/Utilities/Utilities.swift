@@ -92,7 +92,32 @@ class Utilities {
         return distanceString
     }
 }
-
+func utcToLocal(dateStr: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+    dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+    
+    if let date = dateFormatter.date(from: dateStr) {
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "HH:mm"
+    
+        return dateFormatter.string(from: date)
+    }
+    return nil
+}
+func utcToLocalTimeAndDate(dateStr: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+    dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+    
+    if let date = dateFormatter.date(from: dateStr) {
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+    
+        return dateFormatter.string(from: date)
+    }
+    return nil
+}
 // ------------------------------------------------
 // MARK: - FORMAT DATE BY TIME AGO SINCE DATE
 // ------------------------------------------------
@@ -103,7 +128,6 @@ func timeAgoSinceDate(_ date:Date, currentDate:Date, numericDates:Bool) -> Strin
     let earliest = (now as NSDate).earlierDate(date)
     let latest = (earliest == now) ? date : now
     let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
-  
     if (components.year! >= 2) {
         return "\(components.year!) years ago"
     } else if (components.year! >= 1){
@@ -137,8 +161,55 @@ func timeAgoSinceDate(_ date:Date, currentDate:Date, numericDates:Bool) -> Strin
     } else if (components.second! >= 3) {
         return "\(components.second!) seconds ago"
     } else { return "Just now" }
+    
+    
 }
-
+func timeAgoSinceDate2(_ date:Date, currentDate:Date, numericDates:Bool) -> String {
+    
+    let calendar = Calendar.current
+    let now = currentDate
+    let earliest = (now as NSDate).earlierDate(date)
+    let latest = (earliest == now) ? date : now
+    let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
+    let time = utcToLocal(dateStr: "\(date)")
+    let timeAndDate = utcToLocalTimeAndDate(dateStr: "\(date)")
+    if (components.year! >= 2) {
+        return "\(components.year!) years ago"
+    } else if (components.year! >= 1){
+        if (numericDates){ return "1 year ago"
+        } else { return "\(timeAndDate!)" }
+    } else if (components.month! >= 2) {
+        return "\(timeAndDate!)"
+    } else if (components.month! >= 1){
+        if (numericDates){ return "\(timeAndDate!)"
+        } else { return "\(timeAndDate!)" }
+    } else if (components.weekOfYear! >= 2) {
+        return "\(timeAndDate!)"
+    } else if (components.weekOfYear! >= 1){
+        if (numericDates){ return "\(timeAndDate!)"
+        } else { return "\(timeAndDate!)" }
+    } else if (components.day! >= 2) {
+        return "\(timeAndDate!)"
+    } else if (components.day! >= 1){
+        if (numericDates){ return "\(timeAndDate!)"
+        } else { return "\(timeAndDate!)" }
+    } else if (components.hour! >= 2) {
+        return "\(time!)"
+    } else if (components.hour! >= 1){
+        if (numericDates){ return "\(time!)"
+        } else { return "\(time!)" }
+    } else if (components.minute! >= 2) {
+        return "\(time!)"
+        
+    } else if (components.minute! >= 1){
+        if (numericDates){ return "\(time!)"
+        } else { return "\(time!)" }
+    } else if (components.second! >= 3) {
+        return "\(time!)"
+    } else { return "\(time!)" }
+    
+    
+}
 extension UIViewController {
 // ------------------------------------------------
 // MARK: - GET PARSE IMAGE - FOR IMAGE VIEW
