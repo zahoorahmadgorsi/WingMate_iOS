@@ -462,14 +462,8 @@ extension MessagesVC : UITableViewDataSource,UITableViewDelegate {
                
                     
                 // Get Date
-               
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-//                let stringDate = dateFormatter.date(from: "\(mObj)")
-            //    let date = utcToLocal(dateStr: "\(mObj.createdAt!)")
-             //   print("sender Date is = \(date)")
                 cell.sDateLabel.text = timeAgoSinceDate2(mObj.createdAt!, currentDate: Date(), numericDates: false)
-        //        cell.sDateLabel.text = date!
+        
                 // Message
                 cell.lbl.text = "\(mObj[DBColumn.MESSAGES_MESSAGE]!)"
                 cell.messageBg.cornerRadius = 10
