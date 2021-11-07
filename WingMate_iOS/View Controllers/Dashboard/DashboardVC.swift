@@ -26,6 +26,9 @@ class DashboardVC: BaseViewController {
     var myUserOptions = [PFObject]()
     var isTrialExpired = false
     var isLaunchCampaign = false
+    var quotes = [String]()
+    var timer = Timer()
+    var timerCounter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewFloatingBottom.isHidden = true
@@ -41,7 +44,8 @@ class DashboardVC: BaseViewController {
         self.launchCampaign()
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetBottomFloatingViewText(notification:)), name: Notification.Name("resetBottomFloatingViewText"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserObject(notification:)), name: Notification.Name("refreshUserObject"), object: nil)
-
+         getAllQuotes()
+        
         //        self.setViewControllers()
         
     }
@@ -49,6 +53,7 @@ class DashboardVC: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
     }
+
     
     @objc func refreshUserObject(notification: Notification) {
         self.processUserState(isBottomViewTapped: false)
@@ -313,9 +318,51 @@ extension DashboardVC: DashboardDelegate {
             }
         }
     }
-
+    func getAllQuotes() {
+     
+        let parseObject = PFQuery(className:"Quotes")
+        parseObject.selectKeys(["quote"])
+        parseObject.findObjectsInBackground { (object, error) in
+            if error == nil {
+                for obj in object! {
+                    let quote = obj["quote"] as! String
+                    self.quotes.append(quote)
+                }
+            }
+            let randomQuote = self.quotes.randomItem()
+            let slit = randomQuote?.components(separatedBy: ".")
+            self.labelQuote.text = slit![0]
+            self.labelAuthor.text = slit![1]
+            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
+     
+    }
+    @objc func timerAction() {
+        self.timerCounter += 1
+        
+        if self.timerCounter == 60 {
+            let randomQuote = self.quotes.randomItem()
+            let slit = randomQuote?.components(separatedBy: ".")
+            self.labelQuote.text = slit![0]
+            self.labelAuthor.text = slit![1]
+        }else if self.timerCounter == 70 {
+            timer.invalidate()
+            self.timerCounter = 0
+            let randomQuote = self.quotes.randomItem()
+            let slit = randomQuote?.components(separatedBy: ".")
+            self.labelQuote.text = slit![0]
+            self.labelAuthor.text = slit![1]
+        }
+        print("Task is Running...")
+    }
 }
-
+extension Array {
+    func randomItem() -> Element? {
+        if isEmpty { return nil }
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return self[index]
+    }
+}
 
 class DashboardData {
     var user: PFUser?

@@ -548,7 +548,6 @@ extension ProfileVC: ProfileDelegate {
     
     func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {
       //  let nickName = self.user.value(forKey: DBColumn.nick) as? String ?? ""
-        let cUser = PFUser(className: DBTable.USER_CLASS_NAME)
         let nickName = APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? ""
         if isDeleted == false { //saving case
 //            self.showToast(message: msg)
