@@ -330,7 +330,7 @@ extension DashboardVC: DashboardDelegate {
                 }
             }
             let randomQuote = self.quotes.randomItem()
-            let slit = randomQuote?.components(separatedBy: ".")
+            let slit = randomQuote?.components(separatedBy: "@")
             self.labelQuote.text = slit![0]
             self.labelAuthor.text = slit![1]
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
@@ -342,16 +342,17 @@ extension DashboardVC: DashboardDelegate {
         
         if self.timerCounter == 900 {
             let randomQuote = self.quotes.randomItem()
-            let slit = randomQuote?.components(separatedBy: ".")
+            let slit = randomQuote?.components(separatedBy: "@")
             self.labelQuote.text = slit![0]
             self.labelAuthor.text = slit![1]
         }else if self.timerCounter == 1800 {
-            timer.invalidate()
-            self.timerCounter = 0
+            
             let randomQuote = self.quotes.randomItem()
-            let slit = randomQuote?.components(separatedBy: ".")
+            let slit = randomQuote?.components(separatedBy: "@")
             self.labelQuote.text = slit![0]
             self.labelAuthor.text = slit![1]
+            timer.invalidate()
+            self.timerCounter = 0
         }
         print("Task is Running...")
     }

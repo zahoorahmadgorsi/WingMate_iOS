@@ -31,13 +31,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rv2-Sy-aRt">
-                                <rect key="frame" x="20" y="200" width="92.5" height="47.5"/>
+                                <rect key="frame" x="20" y="200" width="94" height="35"/>
                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-c8-Ndt">
-                                <rect key="frame" x="20" y="247.5" width="374" height="447.5"/>
+                                <rect key="frame" x="20" y="235" width="374" height="460"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="OdZ-1V-e1E" id="Q8k-In-puo"/>
@@ -57,7 +57,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-eS-VS5">
-                                <rect key="frame" x="12" y="247.5" width="390" height="447.5"/>
+                                <rect key="frame" x="12" y="235" width="390" height="460"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="TO3-WO-DyK">
                                     <size key="itemSize" width="128" height="128"/>
@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-Cm-EUH">
-                                <rect key="frame" x="101.5" y="365" width="211" height="213"/>
+                                <rect key="frame" x="101.5" y="358.5" width="211" height="213"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_results" translatesAutoresizingMaskIntoConstraints="NO" id="LZP-2N-NKK">
                                         <rect key="frame" x="0.0" y="0.0" width="211" height="184"/>
@@ -201,7 +201,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Fans" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFE-pg-BhU">
-                                <rect key="frame" x="20" y="200" width="109" height="47.5"/>
+                                <rect key="frame" x="20" y="200" width="114.5" height="35"/>
                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -225,19 +225,19 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9X-Kt-flv">
-                                <rect key="frame" x="202.5" y="200" width="65" height="50.5"/>
+                                <rect key="frame" x="188.5" y="200" width="70.5" height="37.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAA-LV-1uR">
-                                        <rect key="frame" x="0.0" y="0.0" width="65" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="20"/>
                                         <color key="textColor" name="PurpleThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKW-QN-JlJ">
-                                        <rect key="frame" x="0.0" y="31.5" width="65" height="19"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="70.5" height="14"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY LIKES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL4-Zl-8r9">
-                                                <rect key="frame" x="8" y="0.0" width="49" height="19"/>
+                                                <rect key="frame" x="8" y="0.0" width="54.5" height="14"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,7 +263,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfM-h3-izR">
-                                        <rect key="frame" x="0.0" y="0.0" width="65" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="37.5"/>
                                         <connections>
                                             <action selector="myLikesButtonPressed:" destination="bIO-i8-XcP" eventType="touchUpInside" id="ZMe-5H-bIa"/>
                                         </connections>
@@ -285,19 +285,19 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yl-Ne-Ao9">
-                                <rect key="frame" x="277.5" y="200" width="53" height="50.5"/>
+                                <rect key="frame" x="269" y="200" width="58" height="37.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSz-tt-lRb">
-                                        <rect key="frame" x="0.0" y="0.0" width="53" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="20"/>
                                         <color key="textColor" name="PurpleThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fis-Py-jKb">
-                                        <rect key="frame" x="0.0" y="31.5" width="53" height="19"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="58" height="14"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRUSH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoc-N4-rf5">
-                                                <rect key="frame" x="8" y="0.0" width="37" height="19"/>
+                                                <rect key="frame" x="8" y="0.0" width="42" height="14"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="12"/>
                                                 <color key="textColor" name="PurpleThemeColor"/>
@@ -323,7 +323,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSg-IL-vRn">
-                                        <rect key="frame" x="0.0" y="0.0" width="53" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="37.5"/>
                                         <connections>
                                             <action selector="crushButtonPressed:" destination="bIO-i8-XcP" eventType="touchUpInside" id="ibv-qf-gSm"/>
                                         </connections>
@@ -345,7 +345,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cAg-MV-o1G">
-                                <rect key="frame" x="10" y="270.5" width="394" height="542.5"/>
+                                <rect key="frame" x="10" y="257.5" width="394" height="555.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="kg2-pS-vDI">
                                     <size key="itemSize" width="128" height="128"/>
@@ -359,19 +359,19 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcl-XR-QCU">
-                                <rect key="frame" x="340.5" y="200" width="53.5" height="50.5"/>
+                                <rect key="frame" x="337" y="200" width="57" height="37.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X22-fl-N7m">
-                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="20"/>
                                         <color key="textColor" name="PurpleThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dM4-2k-4f7">
-                                        <rect key="frame" x="0.0" y="31.5" width="53.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="57" height="14"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAYBE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abj-XK-ysc">
-                                                <rect key="frame" x="8" y="0.0" width="37.5" height="19"/>
+                                                <rect key="frame" x="8" y="0.0" width="41" height="14"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="12"/>
                                                 <color key="textColor" name="PurpleThemeColor"/>
@@ -397,7 +397,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAU-PX-csD">
-                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="37.5"/>
                                         <connections>
                                             <action selector="maybeButtonPressed:" destination="bIO-i8-XcP" eventType="touchUpInside" id="lAL-Qc-0u3"/>
                                         </connections>
@@ -419,7 +419,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-ew-P7s">
-                                <rect key="frame" x="101.5" y="435.5" width="211" height="213"/>
+                                <rect key="frame" x="101.5" y="429" width="211" height="213"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_results" translatesAutoresizingMaskIntoConstraints="NO" id="yFj-by-IdX">
                                         <rect key="frame" x="0.0" y="0.0" width="211" height="184"/>
@@ -513,7 +513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZ8-zy-37t">
-                                <rect key="frame" x="20" y="200" width="133" height="47.5"/>
+                                <rect key="frame" x="20" y="200" width="137" height="35"/>
                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -554,7 +554,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W21-wM-vAU">
-                                <rect key="frame" x="0.0" y="257.5" width="414" height="555.5"/>
+                                <rect key="frame" x="0.0" y="245" width="414" height="568"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="86" id="7U8-ni-M5Q" customClass="InstantCell" customModule="WingMate_iOS" customModuleProvider="target">
@@ -699,7 +699,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg6-eu-cKk">
-                                <rect key="frame" x="62" y="287.5" width="290" height="50"/>
+                                <rect key="frame" x="62" y="275" width="290" height="50"/>
                                 <color key="backgroundColor" name="PurpleThemeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Cn-S0-PxV"/>
@@ -752,7 +752,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZ8-RP-Obh">
-                                <rect key="frame" x="62" y="357.5" width="290" height="50"/>
+                                <rect key="frame" x="62" y="345" width="290" height="50"/>
                                 <color key="backgroundColor" name="PurpleThemeColor"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                 <state key="normal" title="Logout">
@@ -768,7 +768,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pyl-Mj-ZEv">
-                                <rect key="frame" x="20" y="200" width="113" height="47.5"/>
+                                <rect key="frame" x="20" y="200" width="110.5" height="35"/>
                                 <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -972,16 +972,16 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pw-cN-mE0">
-                                <rect key="frame" x="12" y="769.5" width="390" height="35.5"/>
+                                <rect key="frame" x="12" y="772.5" width="390" height="32.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkX-KF-NtD">
-                                        <rect key="frame" x="8" y="8" width="374" height="19.5"/>
+                                        <rect key="frame" x="8" y="8" width="374" height="16.5"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ua2-jk-y3A">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="32.5"/>
                                         <connections>
                                             <action selector="redViewButtonPressed:" destination="XPq-7P-Acs" eventType="touchUpInside" id="pFr-LH-I4z"/>
                                         </connections>
@@ -1231,7 +1231,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="863-AZ-eN3">
-                                                            <rect key="frame" x="328.5" y="5" width="55.5" height="50"/>
+                                                            <rect key="frame" x="329.5" y="5" width="54.5" height="50"/>
                                                             <subviews>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="••••••" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pni-ci-Sjn">
                                                                     <rect key="frame" x="10" y="10" width="280" height="30"/>
@@ -1241,7 +1241,7 @@
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iST-Kv-4k0">
-                                                                    <rect key="frame" x="10" y="10" width="35.5" height="30"/>
+                                                                    <rect key="frame" x="10" y="10" width="34.5" height="30"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1323,10 +1323,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUz-XW-A9u">
-                                                            <rect key="frame" x="10" y="10" width="55.5" height="49"/>
+                                                            <rect key="frame" x="10" y="10" width="54.5" height="49"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cI-YQ-oxL">
-                                                                    <rect key="frame" x="10" y="10" width="35.5" height="29"/>
+                                                                    <rect key="frame" x="10" y="10" width="34.5" height="29"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                                     <nil key="textColor"/>
