@@ -340,12 +340,12 @@ extension DashboardVC: DashboardDelegate {
     @objc func timerAction() {
         self.timerCounter += 1
         
-        if self.timerCounter == 60 {
+        if self.timerCounter == 900 {
             let randomQuote = self.quotes.randomItem()
             let slit = randomQuote?.components(separatedBy: ".")
             self.labelQuote.text = slit![0]
             self.labelAuthor.text = slit![1]
-        }else if self.timerCounter == 70 {
+        }else if self.timerCounter == 1800 {
             timer.invalidate()
             self.timerCounter = 0
             let randomQuote = self.quotes.randomItem()
