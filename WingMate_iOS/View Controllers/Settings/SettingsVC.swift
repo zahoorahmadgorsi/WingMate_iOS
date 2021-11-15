@@ -12,7 +12,7 @@ import SVProgressHUD
 class SettingsVC: BaseViewController {
 
     @IBOutlet weak var imageViewProfile: UIImageView!
-    @IBOutlet weak var payNowButton: UIButton!
+  //  @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var labelVersion: UILabel!
 
     var isLaunchCampaign = false
@@ -34,9 +34,9 @@ class SettingsVC: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
         if PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false == true {
-            self.payNowButton.isHidden = true
+           // self.payNowButton.isHidden = true
         } else {
-            self.payNowButton.isHidden = false
+           // self.payNowButton.isHidden = false
         }
     }
     
@@ -120,6 +120,61 @@ class SettingsVC: BaseViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    @IBAction func changePassword(_ sender: Any) {
+        let alert = UIAlertController(title: "Blinqui",
+            message: "Type the email address you've used to sign up.\n(Please note that if you've signed in with Facebook, you will not be able to reset your password)",
+            preferredStyle: .alert)
+        
+        let reset = UIAlertAction(title: "Reset Password", style: .default, handler: { (action) -> Void in
+            // TextField
+            let textField = alert.textFields!.first!
+            let txtStr = textField.text!
+            
+            PFUser.requestPasswordResetForEmail(inBackground: txtStr, block: { (succ, error) in
+                if error == nil {
+                    self.simpleAlert("Thanks, you are going to shortly get an email with a link to reset your password!")
+            }})
+        })
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in })
+        
+        // Add textField
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardType = .default
+            textField.autocorrectionType = .no
+        }
+        
+        alert.addAction(reset)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    func simpleAlert(_ mess:String) {
+        let alert = UIAlertController(title: APP_NAME,
+            message: mess, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func termsAndCondition(_ sender: Any) {
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "tnc")
+            self.present(vc!, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+       
+    }
+    
+    
+    
+    
     
     @IBAction func payNowButtonPressed(_ sender: Any) {
         self.processUserState()
