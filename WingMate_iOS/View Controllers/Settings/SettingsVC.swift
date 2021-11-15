@@ -14,7 +14,9 @@ class SettingsVC: BaseViewController {
     @IBOutlet weak var imageViewProfile: UIImageView!
   //  @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var labelVersion: UILabel!
-
+    @IBOutlet weak var msgSwitch: UISwitch!
+    @IBOutlet weak var likeSwitch: UISwitch!
+    
     var isLaunchCampaign = false
     
     override func viewDidLoad() {
@@ -27,6 +29,18 @@ class SettingsVC: BaseViewController {
         }
         if let launchPay = UserDefaults.standard.object(forKey: UserDefaultKeys.userObjectKeyUserDefaults){
             self.isLaunchCampaign = launchPay as! Bool
+        }
+        let msgDisabled = PFUser.current()?.value(forKey:"messageDisabled") as? Bool ?? false
+        let likeDisabled = PFUser.current()?.value(forKey:"likeDisabled") as? Bool ?? false
+        if msgDisabled == true{
+            msgSwitch.isOn = true
+        }else{
+            msgSwitch.isOn = false
+        }
+        if likeDisabled == true{
+            likeSwitch.isOn = true
+        }else{
+            likeSwitch.isOn = false
         }
     }
     
@@ -172,8 +186,52 @@ class SettingsVC: BaseViewController {
        
     }
     
+    @IBAction func privacy(_ sender: Any) {
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "privacy")
+            self.present(vc!, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
     
+    @IBAction func disableMsgSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            let currentUser = PFUser.current()
+            if currentUser != nil {
+                currentUser!["messageDisabled"] = true
+
+                currentUser!.saveInBackground()
+            }
+        }else {
+            let currentUser = PFUser.current()
+            if currentUser != nil {
+                currentUser!["messageDisabled"] = false
+
+                currentUser!.saveInBackground()
+            }
+        }
+       
+    }
     
+    @IBAction func disableLikeSwitch(_ sender: UISwitch) {
+        if sender.isOn{
+            let currentUser = PFUser.current()
+            if currentUser != nil {
+              currentUser!["likeDisabled"] = true
+
+              currentUser!.saveInBackground()
+            }
+        }else {
+            let currentUser = PFUser.current()
+            if currentUser != nil {
+              currentUser!["likeDisabled"] = false
+
+              currentUser!.saveInBackground()
+            }
+        }
+      
+    }
     
     
     @IBAction func payNowButtonPressed(_ sender: Any) {

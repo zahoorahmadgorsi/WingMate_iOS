@@ -25,6 +25,8 @@
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
 		F89845C12741AC270089A735 /* tou.html in Resources */ = {isa = PBXBuildFile; fileRef = F89845C02741AC270089A735 /* tou.html */; };
 		F89845C32741AE760089A735 /* TermsAndConditionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89845C22741AE760089A735 /* TermsAndConditionVC.swift */; };
+		F8E529F32742FFB500A52057 /* privacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = F8E529F22742FFB500A52057 /* privacyPolicy.html */; };
+		F8E529F52743038E00A52057 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */; };
 		F8EDD8842710B65700E848D0 /* DoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDD87C2710B65600E848D0 /* DoneVC.swift */; };
 		F8EDD8852710B65700E848D0 /* SelectPaymentOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDD87D2710B65600E848D0 /* SelectPaymentOptionVC.swift */; };
 		F8EDD8862710B65700E848D0 /* DoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8EDD87E2710B65600E848D0 /* DoneVC.xib */; };
@@ -182,6 +184,8 @@
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F89845C02741AC270089A735 /* tou.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = tou.html; sourceTree = "<group>"; };
 		F89845C22741AE760089A735 /* TermsAndConditionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionVC.swift; sourceTree = "<group>"; };
+		F8E529F22742FFB500A52057 /* privacyPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacyPolicy.html; sourceTree = "<group>"; };
+		F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		F8EDD87C2710B65600E848D0 /* DoneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneVC.swift; sourceTree = "<group>"; };
 		F8EDD87D2710B65600E848D0 /* SelectPaymentOptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPaymentOptionVC.swift; sourceTree = "<group>"; };
 		F8EDD87E2710B65600E848D0 /* DoneVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoneVC.xib; sourceTree = "<group>"; };
@@ -607,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				F89845C02741AC270089A735 /* tou.html */,
+				F8E529F22742FFB500A52057 /* privacyPolicy.html */,
 				FA9EFD262537793700A1ED1C /* Enums.swift */,
 				FA9EFD242537793700A1ED1C /* GlobalVariables.swift */,
 				FA9EFD222537793700A1ED1C /* Constants.swift */,
@@ -788,6 +793,7 @@
 			children = (
 				FACCBE5725D53FA40097554A /* SettingsVC.swift */,
 				F89845C22741AE760089A735 /* TermsAndConditionVC.swift */,
+				F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1004,6 +1010,7 @@
 				F8EDD8862710B65700E848D0 /* DoneVC.xib in Resources */,
 				FAE553AA25A95B0500C765F2 /* ProfileVC.xib in Resources */,
 				F8EDD88A2710B65700E848D0 /* ThirdPartyPaymentVC.xib in Resources */,
+				F8E529F32742FFB500A52057 /* privacyPolicy.html in Resources */,
 				F89845C12741AC270089A735 /* tou.html in Resources */,
 				FAF4EF6F25B287B8006E0830 /* MyProfileTableViewCell.xib in Resources */,
 				FAF4EF7725B2B267006E0830 /* EditProfileVC.xib in Resources */,
@@ -1122,6 +1129,7 @@
 				FAF13CF2253C26B800D1499A /* ForgotPasswordVC.swift in Sources */,
 				041B3F0126B52E150086D893 /* QuestionsSuccessVC.swift in Sources */,
 				FA285E94253B663100A5303E /* SplashVC.swift in Sources */,
+				F8E529F52743038E00A52057 /* PrivacyPolicyVC.swift in Sources */,
 				FA700299255D37B3000052F4 /* User.swift in Sources */,
 				FAF4EF7625B2B267006E0830 /* EditProfileVC.swift in Sources */,
 				FA00F0B625DBD0DD00D38E88 /* FansVC.swift in Sources */,

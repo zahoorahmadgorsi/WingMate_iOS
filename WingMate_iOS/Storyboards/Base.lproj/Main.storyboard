@@ -851,6 +851,9 @@
                                                 <state key="normal" title="Privacy Policy">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="privacy:" destination="5dY-Ne-mfy" eventType="touchUpInside" id="RSV-oX-aTM"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-Zr-hcZ">
                                                 <rect key="frame" x="16" y="355" width="382" height="1"/>
@@ -944,21 +947,27 @@
                                                     <constraint firstAttribute="height" constant="1" id="j3o-ob-gcq"/>
                                                 </constraints>
                                             </view>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-KU-tTk">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-KU-tTk">
                                                 <rect key="frame" x="349" y="436" width="49" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="47" id="PV9-h0-CZa"/>
                                                     <constraint firstAttribute="height" constant="31" id="Ryd-Kv-tHH"/>
                                                 </constraints>
                                                 <color key="onTintColor" name="RedThemeColor"/>
+                                                <connections>
+                                                    <action selector="disableMsgSwitch:" destination="5dY-Ne-mfy" eventType="valueChanged" id="bXm-s8-PFz"/>
+                                                </connections>
                                             </switch>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sI5-Sh-mAT">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sI5-Sh-mAT">
                                                 <rect key="frame" x="349" y="497" width="49" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="R6U-Bx-zVc"/>
                                                     <constraint firstAttribute="width" constant="47" id="n27-Bc-VIr"/>
                                                 </constraints>
                                                 <color key="onTintColor" name="RedThemeColor"/>
+                                                <connections>
+                                                    <action selector="disableLikeSwitch:" destination="5dY-Ne-mfy" eventType="valueChanged" id="vz2-ru-AVj"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1084,6 +1093,8 @@
                     <connections>
                         <outlet property="imageViewProfile" destination="nxh-2l-dyb" id="xwq-h6-3dE"/>
                         <outlet property="labelVersion" destination="Pvt-pR-LrQ" id="b8a-hQ-1U9"/>
+                        <outlet property="likeSwitch" destination="sI5-Sh-mAT" id="lON-V8-tpC"/>
+                        <outlet property="msgSwitch" destination="tUD-KU-tTk" id="du2-Jf-LwM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKV-T9-SWm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1797,6 +1808,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0L-cg-ce3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="550.72463768115949" y="1572.554347826087"/>
+        </scene>
+        <!--Privacy PolicyVC-->
+        <scene sceneID="Cej-jf-QaI">
+            <objects>
+                <viewController storyboardIdentifier="privacy" id="egm-fy-Mxy" customClass="PrivacyPolicyVC" customModule="WingMate_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0b8-zr-pMF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBe-7T-g99">
+                                <rect key="frame" x="16" y="196" width="188" height="48"/>
+                                <fontDescription key="fontDescription" name="Baloo2-Bold" family="Baloo 2" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-heart" translatesAutoresizingMaskIntoConstraints="NO" id="pgC-nJ-nAY">
+                                <rect key="frame" x="16" y="104" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="a5F-iE-nMB"/>
+                                    <constraint firstAttribute="width" constant="72" id="vDw-eS-iZg"/>
+                                </constraints>
+                            </imageView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDW-iq-dJ1">
+                                <rect key="frame" x="16" y="264" width="382" height="598"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YRU-6w-Iwk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XDW-iq-dJ1" firstAttribute="leading" secondItem="YRU-6w-Iwk" secondAttribute="leading" constant="16" id="5rI-fi-U7i"/>
+                            <constraint firstItem="XDW-iq-dJ1" firstAttribute="bottom" secondItem="YRU-6w-Iwk" secondAttribute="bottom" id="6Wq-vU-2KC"/>
+                            <constraint firstItem="aBe-7T-g99" firstAttribute="top" secondItem="pgC-nJ-nAY" secondAttribute="bottom" constant="20" id="Agq-MN-zbK"/>
+                            <constraint firstItem="pgC-nJ-nAY" firstAttribute="top" secondItem="YRU-6w-Iwk" secondAttribute="top" constant="60" id="MdK-nh-yQ9"/>
+                            <constraint firstItem="aBe-7T-g99" firstAttribute="leading" secondItem="YRU-6w-Iwk" secondAttribute="leading" constant="16" id="RnY-uY-Y1h"/>
+                            <constraint firstItem="pgC-nJ-nAY" firstAttribute="leading" secondItem="YRU-6w-Iwk" secondAttribute="leading" constant="16" id="ZaG-F6-lXt"/>
+                            <constraint firstItem="XDW-iq-dJ1" firstAttribute="top" secondItem="aBe-7T-g99" secondAttribute="bottom" constant="20" id="cTs-Ma-gqs"/>
+                            <constraint firstItem="YRU-6w-Iwk" firstAttribute="trailing" secondItem="XDW-iq-dJ1" secondAttribute="trailing" constant="16" id="zar-mx-ipB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="XDW-iq-dJ1" id="R8b-Gc-XhB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwk-37-bWx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2775" y="848"/>
         </scene>
     </scenes>
     <resources>
