@@ -139,7 +139,7 @@ class SettingsVC: BaseViewController {
     
     @IBAction func changePassword(_ sender: Any) {
         let alert = UIAlertController(title: "Blinqui",
-            message: "Type the email address you've used to sign up.\n(Please note that if you've signed in with Facebook, you will not be able to reset your password)",
+            message: "Type the email address you've used to sign up.",
             preferredStyle: .alert)
         
         let reset = UIAlertAction(title: "Reset Password", style: .default, handler: { (action) -> Void in
@@ -149,7 +149,11 @@ class SettingsVC: BaseViewController {
             
             PFUser.requestPasswordResetForEmail(inBackground: txtStr, block: { (succ, error) in
                 if error == nil {
+                    if txtStr !=  PFUser.current()?.email {
+                        self.simpleAlert("Incorrect email")
+                    }else{
                     self.simpleAlert("Thanks, you are going to shortly get an email with a link to reset your password!")
+                    }
             }})
         })
         

@@ -288,6 +288,61 @@ class ProfileVC: BaseViewController {
     @IBAction func maybeButtonPressed(_ sender: Any) {
         self.interactWithUsers(interactionType: .maybe)
     }
+
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+            self.showAlertOK("Blinqui", message: "User like is disabled")
+        }else {
+            self.interactWithUsers(interactionType: .like)
+        }
+       
+    }
+    
+    @IBAction func crushButtonPressed(_ sender: Any) {
+        self.interactWithUsers(interactionType: .crush)
+    }
+    
+    @IBAction func messageButtonPressed(_ sender: Any) {
+        if self.user.value(forKey:"messageDisabled") as? Bool == true {
+            self.showAlertOK("Blinqui", message: "User message is disabled")
+        }else {
+            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
+            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
+            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
+            let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue
+            
+            if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaAndBecomePaidToInteract, rightBtnText: ValidationStrings.uploadNow, leftBtnText: ValidationStrings.uploadLater) { rightButtonAction in
+                    let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: self.isTrialExpired)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } failureHandler: { leftButtonAction in
+                    
+                }
+            } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
+                self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
+            } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
+                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
+                    if self.isLaunchCampaign == false {
+                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    }else {
+                        let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } failureHandler: { leftButtonAction in
+                    
+                }
+            }else {
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
+                vc.userObj = user
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+
+
+    }
     
     func interactWithUsers(interactionType: InteractionType) {
         let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
@@ -338,60 +393,6 @@ class ProfileVC: BaseViewController {
                 }
             }
         }
-    }
-    
-    @IBAction func likeButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"likeDisabled") as? Bool == true {
-            
-        }else {
-            self.interactWithUsers(interactionType: .like)
-        }
-       
-    }
-    
-    @IBAction func crushButtonPressed(_ sender: Any) {
-        self.interactWithUsers(interactionType: .crush)
-    }
-    
-    @IBAction func messageButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"messageDisabled") as? Bool == true {
-            self.showAlertOK("Blinqui", message: "User message is disabled")
-        }else {
-            let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
-            let isPhotosSubmitted = PFUser.current()?.value(forKey: DBColumn.isPhotosSubmitted) as? Bool ?? false
-            let isVideoSubmitted = PFUser.current()?.value(forKey: DBColumn.isVideoSubmitted) as? Bool ?? false
-            let status = PFUser.current()?.value(forKey: DBColumn.accountStatus) as? Int ?? UserAccountStatus.pending.rawValue
-            
-            if status == UserAccountStatus.pending.rawValue && (!isPhotosSubmitted || !isVideoSubmitted) {
-                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.uploadMediaAndBecomePaidToInteract, rightBtnText: ValidationStrings.uploadNow, leftBtnText: ValidationStrings.uploadLater) { rightButtonAction in
-                    let vc = UploadPhotoVideoVC(shouldGetData: true, isTrialExpired: self.isTrialExpired)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } failureHandler: { leftButtonAction in
-                    
-                }
-            } else if (isPhotosSubmitted && isVideoSubmitted) && status == UserAccountStatus.pending.rawValue {
-                self.showAlertOK(APP_NAME, message: ValidationStrings.accountInReviewForInteraction)
-            } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
-                self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
-                    if self.isLaunchCampaign == false {
-                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    }else {
-                        let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                } failureHandler: { leftButtonAction in
-                    
-                }
-            }else {
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let vc = storyboard.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
-                vc.userObj = user
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        }
-
-
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {

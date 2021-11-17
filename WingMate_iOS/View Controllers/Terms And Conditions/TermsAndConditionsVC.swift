@@ -7,20 +7,26 @@
 
 import UIKit
 import Parse
+import WebKit
 
 class TermsAndConditionsVC: BaseViewController {
     
     var user = PFUser()
     var registerPresenter = RegisterPresenter()
     
+    @IBOutlet weak var webView: WKWebView!
+    
     convenience init(user: PFUser) {
         self.init()
         self.user = user
+     
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerPresenter.attach(vc: self)
+        let url = Bundle.main.url(forResource: "tou", withExtension: "html")
+        webView.load(URLRequest(url: url!))
     }
 
     @IBAction func agreeButtonPressed(_ sender: Any) {
