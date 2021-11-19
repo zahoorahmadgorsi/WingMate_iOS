@@ -218,8 +218,9 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
             receiverUser.fetchIfNeededInBackground(block: { (ou, error) in
                 if error == nil {
                     // Chat with receiverUser
+                    let chatNotification = receiverUser["allowChatNotification"] as! Bool
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
-                    
+                    vc.chatNotification = chatNotification
                     if senderUser.objectId == currentUser.objectId {
                         vc.userObj = receiverUser
                         vc.msgSentById = "\(hideLbl ?? "")"

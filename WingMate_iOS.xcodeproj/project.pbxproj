@@ -25,6 +25,7 @@
 		882EDB532532230A009E8C46 /* WingMate_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EDB522532230A009E8C46 /* WingMate_iOSUITests.swift */; };
 		F89845C12741AC270089A735 /* tou.html in Resources */ = {isa = PBXBuildFile; fileRef = F89845C02741AC270089A735 /* tou.html */; };
 		F89845C32741AE760089A735 /* TermsAndConditionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89845C22741AE760089A735 /* TermsAndConditionVC.swift */; };
+		F8DC004F274813E4004F9F1A /* NotificationsSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DC004E274813E4004F9F1A /* NotificationsSettingsVC.swift */; };
 		F8E529F32742FFB500A52057 /* privacyPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = F8E529F22742FFB500A52057 /* privacyPolicy.html */; };
 		F8E529F52743038E00A52057 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */; };
 		F8EDD8842710B65700E848D0 /* DoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDD87C2710B65600E848D0 /* DoneVC.swift */; };
@@ -184,6 +185,7 @@
 		882EDB542532230A009E8C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F89845C02741AC270089A735 /* tou.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = tou.html; sourceTree = "<group>"; };
 		F89845C22741AE760089A735 /* TermsAndConditionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionVC.swift; sourceTree = "<group>"; };
+		F8DC004E274813E4004F9F1A /* NotificationsSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsVC.swift; sourceTree = "<group>"; };
 		F8E529F22742FFB500A52057 /* privacyPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacyPolicy.html; sourceTree = "<group>"; };
 		F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		F8EDD87C2710B65600E848D0 /* DoneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneVC.swift; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 				FACCBE5725D53FA40097554A /* SettingsVC.swift */,
 				F89845C22741AE760089A735 /* TermsAndConditionVC.swift */,
 				F8E529F42743038E00A52057 /* PrivacyPolicyVC.swift */,
+				F8DC004E274813E4004F9F1A /* NotificationsSettingsVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				FA9EFD7F25377BA200A1ED1C /* BaseVC.swift in Sources */,
 				FA9EFD42253779DD00A1ED1C /* NSObject-Extension.swift in Sources */,
 				FACCBE5825D53FA40097554A /* SettingsVC.swift in Sources */,
+				F8DC004F274813E4004F9F1A /* NotificationsSettingsVC.swift in Sources */,
 				FAA41162259475F800DD9177 /* TermsConditionsCollectionViewCell.swift in Sources */,
 				FAC5FEFC2558309B00F06B33 /* QuestionnairePresenter.swift in Sources */,
 				FA9EFD4A253779DD00A1ED1C /* FileManager-Extension.swift in Sources */,

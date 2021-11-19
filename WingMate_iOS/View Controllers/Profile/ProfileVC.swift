@@ -53,6 +53,7 @@ class ProfileVC: BaseViewController {
     var refreshFansList:(()->Void)?
     var isTrialExpired = false
     var isLaunchCampaign = false
+    
     convenience init(user: PFUser) {
         self.init()
         self.user = user
@@ -286,7 +287,12 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func maybeButtonPressed(_ sender: Any) {
-        self.interactWithUsers(interactionType: .maybe)
+        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+            self.showAlertOK("Blinqui", message: "User maybe is disabled")
+        }else {
+            self.interactWithUsers(interactionType: .maybe)
+        }
+       
     }
 
     
@@ -300,7 +306,13 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-        self.interactWithUsers(interactionType: .crush)
+        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+            self.showAlertOK("Blinqui", message: "User crush is disabled")
+        }else {
+            self.interactWithUsers(interactionType: .crush)
+        }
+
+       
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {

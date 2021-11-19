@@ -199,6 +199,17 @@ class SettingsVC: BaseViewController {
         }
     }
     
+    
+    @IBAction func gotoNotifications(_ sender: Any) {
+     
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "NotificationsSettingsVC")
+            self.present(vc!, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
     @IBAction func disableMsgSwitch(_ sender: UISwitch) {
         if sender.isOn{
             let currentUser = PFUser.current()

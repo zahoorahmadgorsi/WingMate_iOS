@@ -65,6 +65,7 @@ class MessagesVC: BaseViewController {
     var isLoadFirstTime = false
     var msgSentById = ""
     var presenter = ProfilePresenter()
+    var chatNotification = false
     // ------------------------------------------------
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
@@ -97,6 +98,8 @@ class MessagesVC: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+       
+    
     }
     // ------------------------------------------------
     // MARK: - KEYBOARD HIDE AND SHOW OBSERVERS
@@ -151,10 +154,23 @@ class MessagesVC: BaseViewController {
         if isLoadFirstTime == false{
             SVProgressHUD.show()
         }
-        
+     
         let currentUser = PFUser.current()!
         let messId1 = "\(currentUser.objectId!)\(userObj.objectId!)"
         let messId2 = "\(userObj.objectId!)\(currentUser.objectId!)"
+        let notificationsQuery = PFUser.query()
+        
+        notificationsQuery!.whereKey("objectId", equalTo:userObj.objectId!)
+        notificationsQuery?.findObjectsInBackground(block: { (object, error) in
+            if error == nil {
+                for item in object! {
+                    let noti = item["allowChatNotification"] as! Bool
+                    self.chatNotification = noti
+                }
+            }
+        })
+      
+        
         
         let predicate = NSPredicate(format:"messageID = '\(messId1)' OR messageID = '\(messId2)'")
         let query = PFQuery(className: DBTable.MESSAGES_CLASS_NAME, predicate: predicate)
@@ -235,7 +251,6 @@ class MessagesVC: BaseViewController {
         lastMessage = messageTxt.text!
        
         self.sendMessageButton.isHidden = true
-        
         // Saving...
         mObj.saveInBackground { (success, error) -> Void in
             if error == nil {
@@ -272,6 +287,7 @@ class MessagesVC: BaseViewController {
                     "senderName": currentUser.username!
                 ] as [String : Any]
                 
+                if self.chatNotification == true {
                 PFCloud.callFunction(inBackground: "pushiOS", withParameters: request as [String : Any], block: { (results, error) in
                     if error == nil { print ("\nPUSH NOTIFICATION SENT TO: \(self.userObj[DBColumn.nick]!)\nMESSAGE: \(pushMessage)")
                     } else { //elf.simpleAlert("\(error!.localizedDescription)")
@@ -292,6 +308,7 @@ class MessagesVC: BaseViewController {
                 // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
         //pushAndroid
+        }
       
     }
     
