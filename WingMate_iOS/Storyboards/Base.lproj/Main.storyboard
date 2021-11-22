@@ -778,7 +778,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="dL2-8G-8iQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="Help">
+                                                <state key="normal" title="Help &amp; FAQ">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -795,7 +795,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="UdP-Y0-JF0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="About US">
+                                                <state key="normal" title="About us">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -812,7 +812,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="2by-h2-kD9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="Term And Conditions">
+                                                <state key="normal" title="Terms of Use">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -852,7 +852,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="L6l-oY-0bi"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="Notification">
+                                                <state key="normal" title="Notifications">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -906,7 +906,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="TkW-o4-6Re"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="Change Saved Creadit Cards">
+                                                <state key="normal" title="Change Saved Credit Cards">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>

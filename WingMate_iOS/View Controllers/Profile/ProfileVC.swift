@@ -53,6 +53,8 @@ class ProfileVC: BaseViewController {
     var refreshFansList:(()->Void)?
     var isTrialExpired = false
     var isLaunchCampaign = false
+    var isLikeDisabled = false
+    var isMessageDisabled = false
     
     convenience init(user: PFUser) {
         self.init()
@@ -80,6 +82,24 @@ class ProfileVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        self.updateBoolValuesOfLikeAndMessage()
+            
+            }
+    func updateBoolValuesOfLikeAndMessage() {
+        let valueQuery = PFUser.query()
+        valueQuery!.whereKey("objectId", equalTo:self.user.objectId!)
+        valueQuery?.findObjectsInBackground(block: { (object, error) in
+            if error == nil {
+                for item in object! {
+                    let likeValue = item["likeDisabled"] as? Bool ?? false
+                    let msgValue = item["messageDisabled"] as? Bool ?? false
+                    
+                    self.isLikeDisabled = likeValue
+                    self.isMessageDisabled = msgValue
+                }
+            }
+        })
+
     }
 
     //MARK: - Helper Methods
@@ -287,7 +307,8 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func maybeButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+        
+        if self.isLikeDisabled == true {
             self.showAlertOK("Blinqui", message: "User maybe is disabled")
         }else {
             self.interactWithUsers(interactionType: .maybe)
@@ -297,7 +318,8 @@ class ProfileVC: BaseViewController {
 
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+       
+        if self.isLikeDisabled == true {
             self.showAlertOK("Blinqui", message: "User like is disabled")
         }else {
             self.interactWithUsers(interactionType: .like)
@@ -306,7 +328,8 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"likeDisabled") as? Bool == true {
+       
+        if self.isLikeDisabled == true {
             self.showAlertOK("Blinqui", message: "User crush is disabled")
         }else {
             self.interactWithUsers(interactionType: .crush)
@@ -316,7 +339,8 @@ class ProfileVC: BaseViewController {
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
-        if self.user.value(forKey:"messageDisabled") as? Bool == true {
+      
+        if self.isMessageDisabled == true {
             self.showAlertOK("Blinqui", message: "User message is disabled")
         }else {
             let isPaidUser = PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false
