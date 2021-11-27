@@ -302,10 +302,12 @@ struct ParseAPIManager {
     }
     
     static func markUserFanType(user: PFUser, fanType: String, onSuccess: @escaping (Bool, PFObject?) -> Void, onFailure:@escaping (String) -> Void) {
+        let isTouserIsUnsub = user["isUserUnsubscribed"] as? Bool ?? false
         let fan = PFObject(className: DBTable.fans)
         fan[DBColumn.fromUser] = ApplicationManager.shared.session
         fan[DBColumn.toUser] = user
         fan[DBColumn.fanType] = fanType
+        fan["istoUserIsUnsub"] = isTouserIsUnsub
         
         fan.saveEventually { (success, error) in
             if let error = error {
@@ -399,6 +401,7 @@ struct ParseAPIManager {
                 }
                 else {
                     if let objs = objects {
+                        
                         onSuccess(true, objs)
                     } else {
                         onFailure("No objects found")

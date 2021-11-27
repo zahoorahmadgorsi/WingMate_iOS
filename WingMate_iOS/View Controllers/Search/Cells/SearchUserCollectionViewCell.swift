@@ -92,6 +92,7 @@ class SearchUserCollectionViewCell: BaseCollectionViewCell {
     var selectedFanType: FanType = .like
     var dataFans: PFObject? {
         didSet {
+            
             let fromUser = dataFans?.value(forKey: DBColumn.fromUser) as? PFUser
             self.setImageWithUrl(imgUrl: fromUser?.value(forKey: DBColumn.profilePic) as? String ?? "", imageView: self.imageViewPhoto, placeholderImage: UIImage(named: "default_placeholder"))
 //            let ageString = self.getAge(otherUser: fromUser!)

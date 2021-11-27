@@ -80,6 +80,7 @@ class SearchPresenter {
         var searchArray = [PFObject]()
         var totalQuestionsMarkedByUser = 0
         for i in dataQuestions ?? [] {
+            
             if i.userAnswerObject != nil {
                 totalQuestionsMarkedByUser = totalQuestionsMarkedByUser + 1
                 for j in i.searchedRecords ?? [] {

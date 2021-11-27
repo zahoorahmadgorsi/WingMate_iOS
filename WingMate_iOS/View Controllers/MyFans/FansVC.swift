@@ -130,7 +130,7 @@ class FansVC: BaseViewController {
 extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as! SearchUserCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchUserCollectionViewCell.className, for: indexPath) as!SearchUserCollectionViewCell
         cell.myUserOptions = self.myUserOptions
         cell.selectedFanType = self.selectedFanType
         cell.fromUsers = self.fromUsers
@@ -184,21 +184,38 @@ extension FansVC: FansDelegate {
                 let fromUserObjId = fromUser?.value(forKey: DBColumn.objectId) as? String ?? ""
                 let currentUserObjId = PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? ""
                 let fromIsActiveUser = fromUser?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+                let subUser = i.value(forKey:"istoUserIsUnsub") as? Bool
+            // jisko maine like kia wo unsub hai or wo sender mai uske object id hai 
+                if toUserObjId == fromUserObjId {
+                    print(i.value(forKey:"istoUserIsUnsub") as? Bool)
+                    print(i.value(forKey:"toUser") as? String)
+                    print(i.value(forKey:"fromUser") as? String)
+                    print(i.value(forKey:"objectId") as? String)
+                }
+                
+               
+                
+                
                 if (toUserObjId == currentUserObjId) {
                     if fromIsActiveUser == UserAccountStatus.accepted.rawValue {
                         self.dataUsers.append(i)
                     }
                 }
+                
                 if (fromUserObjId == currentUserObjId) {
                     self.fromUsers.append(i)
-                }
+                   }
+                
+                
             }
             
             for i in self.dataUsers {
                 let fanType = i.value(forKey: DBColumn.fanType) as? String
-                
+               
                 switch fanType {
                 case FanType.like.rawValue:
+                    
+                    
                     self.dataLikeUsers.append(i)
                 case FanType.maybe.rawValue:
                     self.dataMaybeUsers.append(i)
@@ -232,6 +249,7 @@ extension FansVC: FansDelegate {
             self.labelMaybe.text = "\(self.dataMaybeUsers.count)"
             self.labelCrush.text = "\(self.dataCrushUsers.count)"
             self.collectionViewUsers.reloadData()
+                        
             
         
         } else {

@@ -10,12 +10,13 @@ import Parse
 import SVProgressHUD
 
 class SettingsVC: BaseViewController {
-
+    
     @IBOutlet weak var imageViewProfile: UIImageView!
-  //  @IBOutlet weak var payNowButton: UIButton!
+    //  @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var labelVersion: UILabel!
     @IBOutlet weak var msgSwitch: UISwitch!
     @IBOutlet weak var likeSwitch: UISwitch!
+    @IBOutlet weak var unsubSwift: UISwitch!
     
     var isLaunchCampaign = false
     
@@ -32,6 +33,7 @@ class SettingsVC: BaseViewController {
         }
         let msgDisabled = PFUser.current()?.value(forKey:"messageDisabled") as? Bool ?? false
         let likeDisabled = PFUser.current()?.value(forKey:"likeDisabled") as? Bool ?? false
+        let isUsersusbscribed = PFUser.current()?.value(forKey:"isUserUnsubscribed") as? Bool ?? false
         if msgDisabled == true{
             msgSwitch.isOn = true
         }else{
@@ -42,15 +44,22 @@ class SettingsVC: BaseViewController {
         }else{
             likeSwitch.isOn = false
         }
+        if isUsersusbscribed == true{
+            unsubSwift.isOn = true
+        }else{
+            unsubSwift.isOn = false
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         self.setProfileImage(imageViewProfile: self.imageViewProfile)
         if PFUser.current()?.value(forKey: DBColumn.isPaidUser) as? Bool ?? false == true {
-           // self.payNowButton.isHidden = true
+            // self.payNowButton.isHidden = true
         } else {
-           // self.payNowButton.isHidden = false
+            // self.payNowButton.isHidden = false
         }
     }
     
@@ -93,8 +102,8 @@ class SettingsVC: BaseViewController {
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
                             if self.isLaunchCampaign == false {
-                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                            self.navigationController?.pushViewController(vc, animated: true)
+                                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }else {
                                 let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                                 self.navigationController?.pushViewController(vc, animated: true)
@@ -114,8 +123,8 @@ class SettingsVC: BaseViewController {
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNow) { action in
                             if self.isLaunchCampaign == false {
-                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                            self.navigationController?.pushViewController(vc, animated: true)
+                                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }else {
                                 let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                                 self.navigationController?.pushViewController(vc, animated: true)
@@ -129,7 +138,7 @@ class SettingsVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func profilePictureButtonPressed(_ sender: Any) {
-//        self.previewImage(imageView: self.imageViewProfile)
+        //        self.previewImage(imageView: self.imageViewProfile)
         let vc = ProfileVC(user: APP_MANAGER.session!)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -139,8 +148,8 @@ class SettingsVC: BaseViewController {
     
     @IBAction func changePassword(_ sender: Any) {
         let alert = UIAlertController(title: "Blinqui",
-            message: "Type the email address you've used to sign up.",
-            preferredStyle: .alert)
+                                      message: "Type the email address you've used to sign up.",
+                                      preferredStyle: .alert)
         
         let reset = UIAlertAction(title: "Reset Password", style: .default, handler: { (action) -> Void in
             // TextField
@@ -148,13 +157,13 @@ class SettingsVC: BaseViewController {
             let txtStr = textField.text!
             
             PFUser.requestPasswordResetForEmail(inBackground: txtStr, block: { (succ, error) in
-                if error == nil {
-                    if txtStr !=  PFUser.current()?.email {
-                        self.simpleAlert("Incorrect email")
-                    }else{
-                    self.simpleAlert("Thanks, you are going to shortly get an email with a link to reset your password!")
-                    }
-            }})
+                                                    if error == nil {
+                                                        if txtStr !=  PFUser.current()?.email {
+                                                            self.simpleAlert("Incorrect email")
+                                                        }else{
+                                                            self.simpleAlert("Thanks, you are going to shortly get an email with a link to reset your password!")
+                                                        }
+                                                    }})
         })
         
         // Cancel button
@@ -172,7 +181,7 @@ class SettingsVC: BaseViewController {
     }
     func simpleAlert(_ mess:String) {
         let alert = UIAlertController(title: APP_NAME,
-            message: mess, preferredStyle: .alert)
+                                      message: mess, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
@@ -187,7 +196,7 @@ class SettingsVC: BaseViewController {
         } else {
             // Fallback on earlier versions
         }
-       
+        
     }
     
     @IBAction func privacy(_ sender: Any) {
@@ -201,7 +210,7 @@ class SettingsVC: BaseViewController {
     
     
     @IBAction func gotoNotifications(_ sender: Any) {
-     
+        
         if #available(iOS 13.0, *) {
             let vc = storyboard?.instantiateViewController(identifier: "NotificationsSettingsVC")
             self.present(vc!, animated: true, completion: nil)
@@ -215,39 +224,65 @@ class SettingsVC: BaseViewController {
             let currentUser = PFUser.current()
             if currentUser != nil {
                 currentUser!["messageDisabled"] = true
-
+                
                 currentUser!.saveInBackground()
             }
         }else {
             let currentUser = PFUser.current()
             if currentUser != nil {
                 currentUser!["messageDisabled"] = false
-
+                
                 currentUser!.saveInBackground()
             }
         }
-       
+        
     }
     
     @IBAction func disableLikeSwitch(_ sender: UISwitch) {
         if sender.isOn{
             let currentUser = PFUser.current()
             if currentUser != nil {
-              currentUser!["likeDisabled"] = true
-
-              currentUser!.saveInBackground()
+                currentUser!["likeDisabled"] = true
+                
+                currentUser!.saveInBackground()
             }
         }else {
             let currentUser = PFUser.current()
             if currentUser != nil {
-              currentUser!["likeDisabled"] = false
-
-              currentUser!.saveInBackground()
+                currentUser!["likeDisabled"] = false
+                
+                currentUser!.saveInBackground()
             }
         }
-      
+        
     }
     
+    @IBAction func subUnsub(_ sender: UISwitch) {
+        if sender.isOn {
+            let alert = UIAlertController(title: APP_NAME, message: "Are you sure you want to unsubscribe", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Unsubscribe", style: .default) { (action) in
+                sender.isOn = true
+                let currentUser = PFUser.current()
+                if currentUser != nil {
+                    currentUser!["isUserUnsubscribed"] = true
+                    currentUser!.saveInBackground()
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                sender.isOn = false
+            }
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+        }else {
+            let currentUser = PFUser.current()
+            if currentUser != nil {
+                currentUser!["isUserUnsubscribed"] = false
+                currentUser!.saveInBackground()
+            }
+        }
+        
+    }
     
     @IBAction func payNowButtonPressed(_ sender: Any) {
         self.processUserState()

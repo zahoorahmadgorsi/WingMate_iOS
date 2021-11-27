@@ -984,6 +984,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jVY-0h-2Vn">
+                                                <rect key="frame" x="349" y="619" width="49" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="47" id="0R7-Yq-XME"/>
+                                                    <constraint firstAttribute="height" constant="31" id="cJj-PU-8yf"/>
+                                                </constraints>
+                                                <color key="onTintColor" name="RedThemeColor"/>
+                                                <connections>
+                                                    <action selector="subUnsub:" destination="5dY-Ne-mfy" eventType="valueChanged" id="Evm-bJ-Eo9"/>
+                                                </connections>
+                                            </switch>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -994,6 +1005,7 @@
                                             <constraint firstItem="PAZ-mU-PCr" firstAttribute="top" secondItem="TIh-TM-w5d" secondAttribute="bottom" constant="10" id="2Gq-dm-1bA"/>
                                             <constraint firstItem="k1o-Yr-Imq" firstAttribute="top" secondItem="gz5-Zj-PON" secondAttribute="bottom" constant="20" id="4OV-Uw-zLt"/>
                                             <constraint firstItem="WcE-Z5-vT2" firstAttribute="top" secondItem="zHp-A3-xgT" secondAttribute="bottom" constant="20" id="4y4-L1-hHG"/>
+                                            <constraint firstItem="jVY-0h-2Vn" firstAttribute="top" secondItem="gz5-Zj-PON" secondAttribute="bottom" constant="19" id="5AD-8W-EOy"/>
                                             <constraint firstItem="cmy-x9-2E3" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="5iK-Wb-C6A"/>
                                             <constraint firstItem="zHp-A3-xgT" firstAttribute="top" secondItem="8jx-XE-s3T" secondAttribute="bottom" constant="10" id="6LY-Nt-pkB"/>
                                             <constraint firstItem="zHp-A3-xgT" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="8ot-Tn-T47"/>
@@ -1030,6 +1042,7 @@
                                             <constraint firstItem="PAZ-mU-PCr" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="dVy-P8-e0k"/>
                                             <constraint firstItem="sI5-Sh-mAT" firstAttribute="top" secondItem="Ykg-H3-PEO" secondAttribute="bottom" constant="19" id="dYB-Pq-Tjg"/>
                                             <constraint firstAttribute="trailing" secondItem="qAd-aq-8JD" secondAttribute="trailing" constant="16" id="eIA-16-Dxs"/>
+                                            <constraint firstAttribute="trailing" secondItem="jVY-0h-2Vn" secondAttribute="trailing" constant="18" id="eTx-fv-WkC"/>
                                             <constraint firstItem="FZ8-RP-Obh" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="fQf-Qz-pig"/>
                                             <constraint firstItem="GtT-em-Aoz" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="gEn-jS-fR0"/>
                                             <constraint firstItem="Kpv-VW-a5s" firstAttribute="leading" secondItem="Uvh-Wg-bLW" secondAttribute="leading" constant="16" id="htV-Us-Usd"/>
@@ -1101,6 +1114,7 @@
                         <outlet property="labelVersion" destination="Pvt-pR-LrQ" id="b8a-hQ-1U9"/>
                         <outlet property="likeSwitch" destination="sI5-Sh-mAT" id="lON-V8-tpC"/>
                         <outlet property="msgSwitch" destination="tUD-KU-tTk" id="du2-Jf-LwM"/>
+                        <outlet property="unsubSwift" destination="jVY-0h-2Vn" id="8y7-h1-xOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKV-T9-SWm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -354,7 +354,7 @@ extension DashboardVC: DashboardDelegate {
             timer.invalidate()
             self.timerCounter = 0
         }
-        print("Task is Running...")
+       
     }
 }
 extension Array {

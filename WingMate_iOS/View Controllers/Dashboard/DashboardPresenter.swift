@@ -32,7 +32,10 @@ class DashboardPresenter {
             if success {
                 var dataUsers = [PFUser]()
                 for i in data {
+                    let isUserUnsubscribed = i["isUserUnsubscribed"] as? Bool ?? false
+                    if isUserUnsubscribed == false {
                     dataUsers.append(i as! PFUser)
+                    }
                 }
                 self.delegate?.dashboard(isSuccess: true, msg: "", users: dataUsers)
             } else {
