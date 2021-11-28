@@ -13,4 +13,6 @@ target 'WingMate_iOS' do
   pod 'UICircularProgressRing'
   pod 'SimpleImageViewer', '~> 1.1.1'
   pod 'ImageSlideShowSwift'
+pod 'Alamofire', '~> 4.8.0' 
+pod 'SwiftyJSON'
 end

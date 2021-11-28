@@ -22,6 +22,7 @@ class SearchPresenter {
     func attach(vc: SearchDelegate) {
         self.delegate = vc
     }
+    var filterUsers = [PFObject]()
     
     func getQuestions(questionType: QuestionType, shouldShowLoader: Bool? = true) {
         if shouldShowLoader ?? false {
@@ -51,11 +52,42 @@ class SearchPresenter {
     }
     
     func searchUsers(data: UserProfileQuestion, index: Int) {
+        let serialQueue = DispatchQueue(label: "searchSerialQueue")
         SVProgressHUD.show()
+        
         ParseAPIManager.searchUsers(data: data) { (success, data) in
             SVProgressHUD.dismiss()
+            
             if success {
-                self.delegate?.search(isSuccess: true, msg: "", searchResults: data, index: index)
+               
+                for users in data {
+                    serialQueue.async {
+                        print("task 1 start")
+                        
+                        let user = users.value(forKey: "userId") as? PFUser
+                        let userObjectId = user?.value(forKey: "objectId") as? String
+                        let query = PFUser.query()
+                        if let userObi = userObjectId {
+                        query?.whereKey("objectId", equalTo: userObi)
+                        query?.getObjectInBackground(withId: userObi, block: { (object, error) in
+                            if error == nil {
+                                let sub = object?.value(forKey: "isUserUnsubscribed") as? Bool
+                                if sub == false {
+                                    self.filterUsers.append(users)
+                                }
+                            }
+                          })
+                        }
+                        print("task 1 end")
+                    }
+                }
+               
+                serialQueue.asyncAfter(deadline: .now() + 2) {
+                    print("task 2 start")
+                    self.delegate?.search(isSuccess: true, msg: "", searchResults: self.filterUsers, index: index)
+                    print("task 2 end")
+                }
+                
             } else {
                 self.delegate?.search(isSuccess: false, msg: "No questions found", searchResults: [], index: index)
             }

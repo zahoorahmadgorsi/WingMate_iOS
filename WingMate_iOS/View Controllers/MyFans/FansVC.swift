@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
 
 class FansVC: BaseViewController {
     
@@ -168,6 +169,7 @@ extension FansVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
 extension FansVC: FansDelegate {
     func fans(isSuccess: Bool, msg: String, users: [PFObject]) {
+        let serialQueue = DispatchQueue(label: "fansSerialQueue")
         self.refreshControl.endRefreshing()
         if isSuccess {
             self.viewNoResults.isHidden = true
@@ -177,78 +179,99 @@ extension FansVC: FansDelegate {
             self.dataUsers.removeAll()
             self.fromUsers.removeAll()
             
+            
             for i in users {
-                let toUser = i.value(forKey: DBColumn.toUser) as? PFUser
-                let fromUser = i.value(forKey: DBColumn.fromUser) as? PFUser
-                let toUserObjId = toUser?.value(forKey: DBColumn.objectId) as? String ?? ""
-                let fromUserObjId = fromUser?.value(forKey: DBColumn.objectId) as? String ?? ""
-                let currentUserObjId = PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? ""
-                let fromIsActiveUser = fromUser?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
-                let subUser = i.value(forKey:"istoUserIsUnsub") as? Bool
-            // jisko maine like kia wo unsub hai or wo sender mai uske object id hai 
-                if toUserObjId == fromUserObjId {
-                    print(i.value(forKey:"istoUserIsUnsub") as? Bool)
-                    print(i.value(forKey:"toUser") as? String)
-                    print(i.value(forKey:"fromUser") as? String)
-                    print(i.value(forKey:"objectId") as? String)
+                serialQueue.async {
+                    print("task 1 start")
+                    let toUser = i.value(forKey: DBColumn.toUser) as? PFUser
+                    let fromUser = i.value(forKey: DBColumn.fromUser) as? PFUser
+                    let toUserObjId = toUser?.value(forKey: DBColumn.objectId) as? String ?? ""
+                    let fromUserObjId = fromUser?.value(forKey: DBColumn.objectId) as? String ?? ""
+                    let currentUserObjId = PFUser.current()?.value(forKey: DBColumn.objectId) as? String ?? ""
+                    let fromIsActiveUser = fromUser?.value(forKey: DBColumn.accountStatus) as? Int ?? 0
+                    
+                    // jisko maine like kia wo unsub hai or wo sender mai uske object id hai
+                    let query = PFUser.query()
+                    query?.whereKey("objectId", equalTo: fromUserObjId)
+                    query?.getObjectInBackground(withId: fromUserObjId, block: { (object, error) in
+                        
+                        if error == nil {
+                            let sub = object?.value(forKey: "isUserUnsubscribed") as? Bool
+                            if (fromUserObjId == currentUserObjId) {
+                                if sub == false {
+                                self.fromUsers.append(i)
+                                }
+                            }
+                            if (toUserObjId == currentUserObjId) {
+                                if fromIsActiveUser == UserAccountStatus.accepted.rawValue {
+                                    if sub == false {
+                                    self.dataUsers.append(i)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    print("task 1 end")
                 }
-                
-               
-                
-                
-                if (toUserObjId == currentUserObjId) {
-                    if fromIsActiveUser == UserAccountStatus.accepted.rawValue {
-                        self.dataUsers.append(i)
-                    }
-                }
-                
-                if (fromUserObjId == currentUserObjId) {
-                    self.fromUsers.append(i)
-                   }
-                
-                
+                print("outside que body")
             }
             
-            for i in self.dataUsers {
-                let fanType = i.value(forKey: DBColumn.fanType) as? String
-               
-                switch fanType {
-                case FanType.like.rawValue:
-                    
-                    
-                    self.dataLikeUsers.append(i)
-                case FanType.maybe.rawValue:
-                    self.dataMaybeUsers.append(i)
-                case FanType.crush.rawValue:
-                    self.dataCrushUsers.append(i)
-                default:
+            print("outside 1st loop")
+            
+            serialQueue.asyncAfter(deadline: .now() + 2.0) {
+                print("task 2 start")
+                for i in self.dataUsers {
+                    let fanType = i.value(forKey: DBColumn.fanType) as? String
+                   
+                    switch fanType {
+                    case FanType.like.rawValue:
+                        self.dataLikeUsers.append(i)
+                    case FanType.maybe.rawValue:
+                        self.dataMaybeUsers.append(i)
+                    case FanType.crush.rawValue:
+                        self.dataCrushUsers.append(i)
+                    default:
+                        break
+                    }
+                }
+                switch self.selectedFanType {
+                case .like:
+                    self.dataUsers = self.dataLikeUsers
+                    if self.dataUsers.count == 0 {
+                        DispatchQueue.main.async {
+                        self.viewNoResults.isHidden = false
+                        }
+                    }
+                    break
+                case .maybe:
+                    self.dataUsers = self.dataMaybeUsers
+                    if self.dataUsers.count == 0 {
+                        DispatchQueue.main.async {
+                        self.viewNoResults.isHidden = false
+                        }
+                    }
+                    break
+                case .crush:
+                    self.dataUsers = self.dataCrushUsers
+                    if self.dataUsers.count == 0 {
+                        DispatchQueue.main.async {
+                        self.viewNoResults.isHidden = false
+                        }
+                    }
                     break
                 }
+                DispatchQueue.main.async {
+                    self.labelMyLikes.text = "\(self.dataLikeUsers.count)"
+                    self.labelMaybe.text = "\(self.dataMaybeUsers.count)"
+                    self.labelCrush.text = "\(self.dataCrushUsers.count)"
+                    self.collectionViewUsers.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+                
+                print("task 2 end")
             }
-            switch self.selectedFanType {
-            case .like:
-                self.dataUsers = self.dataLikeUsers
-                if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = false
-                }
-                break
-            case .maybe:
-                self.dataUsers = self.dataMaybeUsers
-                if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = false
-                }
-                break
-            case .crush:
-                self.dataUsers = self.dataCrushUsers
-                if self.dataUsers.count == 0 {
-                    self.viewNoResults.isHidden = false
-                }
-                break
-            }
-            self.labelMyLikes.text = "\(self.dataLikeUsers.count)"
-            self.labelMaybe.text = "\(self.dataMaybeUsers.count)"
-            self.labelCrush.text = "\(self.dataCrushUsers.count)"
-            self.collectionViewUsers.reloadData()
+            
+
                         
             
         

@@ -8,6 +8,8 @@
 import UIKit
 import Parse
 import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 var firstTimeLoader = true
 
@@ -66,6 +68,7 @@ class ChatVC: BaseViewController {
     // ------------------------------------------------
     // MARK: - QUERY INSTANTS
     // ------------------------------------------------
+    let serialQueue = DispatchQueue(label: "mySerialQueue")
     func queryInstants() {
         refreshControl.endRefreshing()
         instantsArray.removeAll()
@@ -84,25 +87,42 @@ class ChatVC: BaseViewController {
         query.order(byDescending: "updatedAt")
         query.findObjectsInBackground { (objects, error)-> Void in
             if error == nil {
+                
                 for i in 0..<objects!.count {
-                    print("in I loop")
-                    self.instantsArray.append(objects![i])
+                    self.serialQueue.async {
+                        print("task 1 starts")
+                        self.instantsArray.append(objects![i])
+                        print("task 1 finish")
+                        
+                        print("task 2 start")
+                        let resUser = objects![i].value(forKey: "receiver") as? PFUser
+                        self.alamo(objectId: (resUser?.objectId)!, item: objects![i])
+                        print("task 2 finish")
+                    }
+                  
+                   
              
                 }
                 if (objects!.count == 100) {
                     self.skip = self.skip + 100
                     self.queryInstants()
                 }
-                SVProgressHUD.dismiss()
+                
+               
                 if self.instantsArray.count == 0 {
-                    self.noResulsLabel.isHidden = false
-                    self.instantsTableView.backgroundColor = UIColor.clear
+                   // SVProgressHUD.dismiss()
+                 //   self.noResulsLabel.isHidden = false
+               //     self.instantsTableView.backgroundColor = UIColor.clear
                 } else {
                    
-                    self.noResulsLabel.isHidden = true
-                    self.instantsTableView.reloadData()
+               //     self.noResulsLabel.isHidden = true
+                  
+                   
+//                    for item in self.instantsArray {
+//                        let resUser = item.value(forKey: "receiver") as? PFUser
+//                    //    self.alamo(objectId: (resUser?.objectId)!, item: item)
+//                    }
                 }
-                
             // error
             } else {
                 SVProgressHUD.dismiss()
@@ -113,69 +133,53 @@ class ChatVC: BaseViewController {
 
     }
     
-    func removeUnsubUsers(){
-        for item in self.instantsArray {
-            let sender = item["sender"] as? PFUser
-            let reciver = item["receiver"] as? PFUser
-            let currentUser = PFUser.current()
-            let valueQuery = PFUser.query()
-            valueQuery!.whereKey("objectId", equalTo:sender!.objectId!)
-            valueQuery?.getObjectInBackground(withId: (reciver?.objectId)!, block: { (object, error) in
-               
-             
-                if error == nil {
-                    let subs = object!["isUserUnsubscribed"] as? Bool
-                    if subs == false {
-                    self.usubUsersArray.append(object!)
-                    }
-                    SVProgressHUD.dismiss()
-                    if self.instantsArray.count == 0 {
-                        self.noResulsLabel.isHidden = false
-                        self.instantsTableView.backgroundColor = UIColor.clear
-                    } else {
-                        self.instantsArray.removeAll()
-                        self.instantsArray = self.usubUsersArray
-                        self.noResulsLabel.isHidden = true
-                        self.instantsTableView.reloadData()
-                    }
-                }
-                
-            })
-//            valueQuery?.findObjectsInBackground(block: { (object, error) in
-//
-//                if error == nil {
-//                    for item in object! {
-//                        if item.objectId != currentUser!.objectId {
-//                            let subs = item["isUserUnsubscribed"] as? Bool ?? false
-//                            if subs == false {
-//                                self.usubUsersArray.append(item)
-//
-//                            }
-//                        }
-//
-//                    }
-//                }
-//            })
-//
-//            let valueQuery2 = PFUser.query()
-//            valueQuery2!.whereKey("objectId", equalTo:reciver!.objectId!)
-//            valueQuery2?.findObjectsInBackground(block: { (object, error) in
-//                if error == nil {
-//                    for item in object! {
-//                        if item.objectId != currentUser!.objectId {
-//                            let subs = item["isUserUnsubscribed"] as? Bool ?? false
-//                            if subs == false {
-//                                self.usubUsersArray.append(item)
-//
-//                            }
-//                        }
-//
-//                    }
-//                }
-//            })
-            
+    func alamo(objectId:String,item:PFObject){
+        let header = ["X-Parse-Application-Id": "D7Vyy11JKs7lpEpMwAHxKbRV0RAdFWI5SzEjZ8r3",
+                      "X-Parse-REST-API-Key": "F5kMHsZSREkLWqFxUY5YWfsAg0pGW7CDdG7jcsuS"]
+        Alamofire.request("https://parseapi.back4app.com/users/\(objectId)", method: .get,headers: header).responseJSON { (response) in
+            if response.result.isSuccess {
+                let myResponse:JSON = JSON(response.result.value!)
+                self.parseValue(json: myResponse, item: item)
+            }
         }
- 
+    }
+    func parseValue(json:JSON,item:PFObject) {
+        let subs = json["isUserUnsubscribed"].bool
+        let itemObjectid = item.value(forKey: "objectId") as! String
+        self.serialQueue.async {
+            print("Task 3 started")
+            if subs != false {
+                self.instantsArray = self.instantsArray.filter { $0.objectId != itemObjectid }
+            
+                print("in loop")
+            }
+            print("Task 3 finished")
+           
+        }
+        self.serialQueue.asyncAfter(deadline:.now() + 2.0) {
+            print("task 4 starts")
+            DispatchQueue.main.async {
+                if self.instantsArray.count == 0 {
+                    SVProgressHUD.dismiss()
+                    self.noResulsLabel.isHidden = false
+                    self.instantsTableView.backgroundColor = UIColor.clear
+                } else {
+                   
+                self.noResulsLabel.isHidden = true
+                SVProgressHUD.dismiss()
+                self.instantsArray = self.instantsArray.sorted(by: {$0.createdAt! < $1.createdAt!})
+                self.instantsTableView.reloadData()
+                }
+            }
+            print("task 4 finish")
+        }
+//        self.serialQueue.async {
+//            print("Task 2 started")
+//            DispatchQueue.main.async {
+//                self.instantsTableView.reloadData()
+//            }
+//            print("Task 2 finished")
+//        }
     }
     
     //MARK: - Button Actions
@@ -333,3 +337,4 @@ extension UIViewController{
         self.present(alert, animated: true, completion: nil)
     }
 }
+

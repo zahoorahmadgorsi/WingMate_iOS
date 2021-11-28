@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-WingMate_iOS/Pods-WingMate_iOS-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AAPickerView/AAPickerView.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/ImageSlideShowSwift/ImageSlideShowSwift.framework
@@ -10,4 +11,5 @@ ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/SimpleImageViewer/SimpleImageViewer.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework

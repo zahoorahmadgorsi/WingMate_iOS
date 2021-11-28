@@ -26,15 +26,9 @@ class FansPresenter {
             SVProgressHUD.show()
         }
         ParseAPIManager.getMyFans { (success, data) in
-            SVProgressHUD.dismiss()
+            //SVProgressHUD.dismiss()
             if success {
-                var subUser = [PFObject]()
-                for item in data {
-                    let istoUserIsUnsub = item.value(forKey:"istoUserIsUnsub")as? Bool
-                    if istoUserIsUnsub == false {
-                        subUser.append(item)
-                    }
-                }
+               
                 self.delegate?.fans(isSuccess: true, msg: "", users: data)
                 
             } else {
