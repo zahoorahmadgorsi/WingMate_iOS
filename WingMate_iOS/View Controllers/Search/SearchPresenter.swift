@@ -54,16 +54,12 @@ class SearchPresenter {
     func searchUsers(data: UserProfileQuestion, index: Int) {
         let serialQueue = DispatchQueue(label: "searchSerialQueue")
         SVProgressHUD.show()
-        
+        filterUsers.removeAll()
         ParseAPIManager.searchUsers(data: data) { (success, data) in
-            SVProgressHUD.dismiss()
-            
             if success {
-               
                 for users in data {
                     serialQueue.async {
                         print("task 1 start")
-                        
                         let user = users.value(forKey: "userId") as? PFUser
                         let userObjectId = user?.value(forKey: "objectId") as? String
                         let query = PFUser.query()
@@ -73,7 +69,7 @@ class SearchPresenter {
                             if error == nil {
                                 let sub = object?.value(forKey: "isUserUnsubscribed") as? Bool
                                 if sub == false {
-                                    self.filterUsers.append(users)
+                                self.filterUsers.append(users)
                                 }
                             }
                           })
@@ -81,11 +77,12 @@ class SearchPresenter {
                         print("task 1 end")
                     }
                 }
-               
+
                 serialQueue.asyncAfter(deadline: .now() + 2) {
                     print("task 2 start")
                     self.delegate?.search(isSuccess: true, msg: "", searchResults: self.filterUsers, index: index)
                     print("task 2 end")
+                    SVProgressHUD.dismiss()
                 }
                 
             } else {

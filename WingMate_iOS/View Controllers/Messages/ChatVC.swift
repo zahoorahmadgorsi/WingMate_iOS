@@ -70,8 +70,8 @@ class ChatVC: BaseViewController {
     // ------------------------------------------------
     let serialQueue = DispatchQueue(label: "mySerialQueue")
     func queryInstants() {
-        refreshControl.endRefreshing()
-        instantsArray.removeAll()
+       
+       
         
         if firstTimeLoader == true {
             firstTimeLoader = false
@@ -87,7 +87,9 @@ class ChatVC: BaseViewController {
         query.order(byDescending: "updatedAt")
         query.findObjectsInBackground { (objects, error)-> Void in
             if error == nil {
-                
+                self.instantsArray.removeAll()
+                self.instantsTableView.dataSource = nil
+                self.instantsTableView.delegate = nil
                 for i in 0..<objects!.count {
                     self.serialQueue.async {
                         print("task 1 starts")
@@ -99,30 +101,13 @@ class ChatVC: BaseViewController {
                         self.alamo(objectId: (resUser?.objectId)!, item: objects![i])
                         print("task 2 finish")
                     }
-                  
-                   
-             
+
                 }
                 if (objects!.count == 100) {
                     self.skip = self.skip + 100
                     self.queryInstants()
                 }
-                
-               
-                if self.instantsArray.count == 0 {
-                   // SVProgressHUD.dismiss()
-                 //   self.noResulsLabel.isHidden = false
-               //     self.instantsTableView.backgroundColor = UIColor.clear
-                } else {
-                   
-               //     self.noResulsLabel.isHidden = true
-                  
-                   
-//                    for item in self.instantsArray {
-//                        let resUser = item.value(forKey: "receiver") as? PFUser
-//                    //    self.alamo(objectId: (resUser?.objectId)!, item: item)
-//                    }
-                }
+
             // error
             } else {
                 SVProgressHUD.dismiss()
@@ -168,7 +153,10 @@ class ChatVC: BaseViewController {
                 self.noResulsLabel.isHidden = true
                 SVProgressHUD.dismiss()
                 self.instantsArray = self.instantsArray.sorted(by: {$0.createdAt! < $1.createdAt!})
+                self.instantsTableView.dataSource = self
+                self.instantsTableView.delegate = self
                 self.instantsTableView.reloadData()
+                self.refreshControl.endRefreshing()
                 }
             }
             print("task 4 finish")
@@ -209,7 +197,10 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         cell.timeLbl.text = "..."
         // Parse Object
         var iObj = PFObject(className: DBTable.instants)
-        iObj = instantsArray[indexPath.row]
+        if instantsArray.count > 0 {
+            iObj = instantsArray[indexPath.row]
+        }
+        
         // currentUser
         let currentUser = PFUser.current()!
         if let hideLbl = iObj["msgSentBy"] as? String {
@@ -222,11 +213,6 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
             }
           }
         }
-      
-        // Date
-        print("Updated At time is = \(iObj.updatedAt!)")
-        print("Updated At date is = \(Date())")
-        
         // cell.timeLbl.text = timeAgoSinceDate(iObj.updatedAt!, currentDate: Date(), numericDates: true)
         if let pastDate = iObj["msgCreateAt"] as? Date  {
 
@@ -236,7 +222,9 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         cell.lastMessageLabel.text = "\(iObj["lastMessage"] ?? "")"
         
         // senderUser
-        let senderUser = iObj[DBColumn.INSTANTS_SENDER] as! PFUser
+        guard let senderUser = iObj[DBColumn.INSTANTS_SENDER] as? PFUser else {
+            return UITableViewCell()
+        }
         senderUser.fetchIfNeededInBackground(block: { (up, error) in
             
             // receiverUser

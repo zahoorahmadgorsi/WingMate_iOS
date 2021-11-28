@@ -73,7 +73,8 @@ class BaseViewController: UIViewController {
     func setImageWithUrl(imageUrl: String, imageView: UIImageView, placeholderImage: UIImage? = nil) {
         imageView.sd_imageIndicator?.startAnimatingIndicator()
         if let url = URL(string: imageUrl) {
-            imageView.sd_setImage(with: url, placeholderImage: placeholderImage, options: SDWebImageOptions.highPriority) { (image, error, sdImageCacheType, url) in
+            let image = UIImage(named: "path")
+            imageView.sd_setImage(with: url, placeholderImage: image, options: SDWebImageOptions.scaleDownLargeImages) { (image, error, sdImageCacheType, url) in
                 
             }
         }

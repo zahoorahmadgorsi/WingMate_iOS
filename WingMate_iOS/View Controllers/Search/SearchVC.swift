@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
 
 class SearchVC: BaseViewController {
     
@@ -17,6 +18,7 @@ class SearchVC: BaseViewController {
     @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var viewNoResults: UIView!
     @IBOutlet weak var buttonSearch: UIButton!
+    
     var presenter = SearchPresenter()
     var dataQuestions: [UserProfileQuestion]?
     var searchedUsers = [PFUser]()
@@ -115,6 +117,7 @@ class SearchVC: BaseViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
+        
         self.isFiltersMode = !self.isFiltersMode
         if self.isFiltersMode {
             self.buttonSearch.setTitle("Search", for: .normal)
@@ -219,11 +222,12 @@ extension SearchVC: SearchDelegate {
         self.refreshControl.endRefreshing()
         self.dataQuestions = self.presenter.mapQuestionsToModel(questions: questions)
         self.tableViewFilters.reloadData()
+        SVProgressHUD.dismiss()
     }
     
     func search(isSuccess: Bool, msg: String, searchResults: [PFObject], index: Int) {
         if isSuccess {
-            print(searchResults)
+           // print(searchResults)
             self.dataQuestions?[index].searchedRecords = searchResults
         } else {
             self.showToast(message: msg)
@@ -236,6 +240,7 @@ extension SearchVC: SearchDelegate {
             self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: searchResultsByLocation, isDistanceRangeApplied: true)
             if self.searchedUsers.count > 0 {
                 self.showSearchedRecordsTableView()
+                SVProgressHUD.dismiss()
             } else {
                 self.showNoRecordsView()
             }

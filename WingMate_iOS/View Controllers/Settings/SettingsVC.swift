@@ -266,6 +266,7 @@ class SettingsVC: BaseViewController {
                 if currentUser != nil {
                     currentUser!["isUserUnsubscribed"] = true
                     currentUser!.saveInBackground()
+                    self.showToast(message: "You have unsubscribed successfully")
                 }
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -279,6 +280,7 @@ class SettingsVC: BaseViewController {
             if currentUser != nil {
                 currentUser!["isUserUnsubscribed"] = false
                 currentUser!.saveInBackground()
+                showToast(message: "You have subscribed successfully")
             }
         }
         
