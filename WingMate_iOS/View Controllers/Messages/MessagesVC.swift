@@ -272,7 +272,7 @@ class MessagesVC: BaseViewController {
                 self.imageToSend = nil
                 self.startRefreshTimer()
                 // Send Push notification
-                
+                //payload message: GoLujo: 'u there '
                 let pushMessage = "\(currentUser[DBColumn.nick]!): '\(self.lastMessage)'"
                 let data = [
                     "badge" : "Increment",

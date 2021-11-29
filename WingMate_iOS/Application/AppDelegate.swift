@@ -138,7 +138,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
           }
         if let message = aps["alert"] {
             print("payload message: \(message)")
-            coordinateToSomeVC()
+            if message.contains(":") {
+                print("this is message")
+                coordinateToSomeVC()
+            }
+            else {
+                print("this is like etc")
+            }
+           
         }
         
         completionHandler()

@@ -71,8 +71,6 @@ class ChatVC: BaseViewController {
     let serialQueue = DispatchQueue(label: "mySerialQueue")
     func queryInstants() {
        
-       
-        
         if firstTimeLoader == true {
             firstTimeLoader = false
             SVProgressHUD.show()
@@ -93,6 +91,7 @@ class ChatVC: BaseViewController {
                 for i in 0..<objects!.count {
                     self.serialQueue.async {
                         print("task 1 starts")
+                        print(objects![i])
                         self.instantsArray.append(objects![i])
                         print("task 1 finish")
                         
@@ -135,7 +134,6 @@ class ChatVC: BaseViewController {
             print("Task 3 started")
             if subs != false {
                 self.instantsArray = self.instantsArray.filter { $0.objectId != itemObjectid }
-            
                 print("in loop")
             }
             print("Task 3 finished")
@@ -152,13 +150,17 @@ class ChatVC: BaseViewController {
                    
                 self.noResulsLabel.isHidden = true
                 SVProgressHUD.dismiss()
-                self.instantsArray = self.instantsArray.sorted(by: {$0.createdAt! < $1.createdAt!})
+                self.instantsArray = self.instantsArray.sorted(by: {$0.updatedAt! > $1.updatedAt!})
                 self.instantsTableView.dataSource = self
                 self.instantsTableView.delegate = self
                 self.instantsTableView.reloadData()
                 self.refreshControl.endRefreshing()
+                    for item in self.instantsArray {
+                        print(item)
+                    }
                 }
             }
+           
             print("task 4 finish")
         }
 //        self.serialQueue.async {
@@ -270,9 +272,10 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
         // Parse Object
         
         if self.msgsDisable == true {
-            showalert(message: "Your messages are disabled")
+            self.showToast(message: "Your messages are disabled")
+            
         }else if self.isUsersubscribe == true {
-            showalert(message: "You are in unsubscribed mode")
+            self.showToast(message: "You are in unsubscribed mode")
         }else {
             
             var iObj = PFObject(className: DBTable.instants)
@@ -290,19 +293,26 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
                 receiverUser.fetchIfNeededInBackground(block: { (ou, error) in
                     if error == nil {
                         // Chat with receiverUser
-                        let chatNotification = receiverUser["allowChatNotification"] as! Bool
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
-                        vc.chatNotification = chatNotification
-                        if senderUser.objectId == currentUser.objectId {
-                            vc.userObj = receiverUser
-                            vc.msgSentById = "\(hideLbl ?? "")"
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        } else {
-                            vc.userObj = senderUser
-                            vc.msgSentById = "\(hideLbl ?? "")"
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            
+                        let chatNotification = receiverUser["allowChatNotification"] as? Bool ?? false
+                        let receiverMsgsState = receiverUser["messageDisabled"] as? Bool ?? false
+                        if receiverMsgsState == true {
+                            let name = receiverUser["nick"] as? String ?? ""
+                            self.showToast(message: "\(name) messages are disabled")
+                        }else {
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
+                            vc.chatNotification = chatNotification
+                            if senderUser.objectId == currentUser.objectId {
+                                vc.userObj = receiverUser
+                                vc.msgSentById = "\(hideLbl ?? "")"
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            } else {
+                                vc.userObj = senderUser
+                                vc.msgSentById = "\(hideLbl ?? "")"
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                
+                            }
                         }
+                      
                         
                     // error
                     } else { //elf.simpleAlert("\(error!.localizedDescription)")
