@@ -144,6 +144,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
             else {
                 print("this is like etc")
+                guard let window = UIApplication.shared.keyWindow else { return }
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let yourVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! UITabBarController
+                yourVC.selectedIndex = 2
+                window.rootViewController = yourVC
+                window.makeKeyAndVisible()
             }
            
         }
@@ -157,10 +164,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let yourVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! UITabBarController
         yourVC.selectedIndex = 3
-        //let navController = UINavigationController(rootViewController: yourVC)
-        //navController.modalPresentationStyle = .fullScreen
-
-        // you can assign your vc directly or push it in navigation stack as follows:
         window.rootViewController = yourVC
         window.makeKeyAndVisible()
     }

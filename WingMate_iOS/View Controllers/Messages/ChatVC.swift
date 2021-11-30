@@ -295,12 +295,10 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
                         // Chat with receiverUser
                         let chatNotification = receiverUser["allowChatNotification"] as? Bool ?? false
                         let receiverMsgsState = receiverUser["messageDisabled"] as? Bool ?? false
-                        if receiverMsgsState == true {
-                            let name = receiverUser["nick"] as? String ?? ""
-                            self.showToast(message: "\(name) messages are disabled")
-                        }else {
+                       
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "Messages") as! MessagesVC
                             vc.chatNotification = chatNotification
+                        vc.receiverMsgsState = receiverMsgsState
                             if senderUser.objectId == currentUser.objectId {
                                 vc.userObj = receiverUser
                                 vc.msgSentById = "\(hideLbl ?? "")"
@@ -311,7 +309,7 @@ extension ChatVC:UITableViewDataSource, UITableViewDelegate {
                                 self.navigationController?.pushViewController(vc, animated: true)
                                 
                             }
-                        }
+                        
                       
                         
                     // error

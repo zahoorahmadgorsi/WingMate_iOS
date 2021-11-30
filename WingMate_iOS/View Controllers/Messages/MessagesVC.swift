@@ -66,6 +66,7 @@ class MessagesVC: BaseViewController {
     var msgSentById = ""
     var presenter = ProfilePresenter()
     var chatNotification = false
+    var receiverMsgsState = false
     // ------------------------------------------------
     // MARK: - VIEW DID APPEAR
     // ------------------------------------------------
@@ -234,6 +235,9 @@ class MessagesVC: BaseViewController {
     // ------------------------------------------------
     @IBAction func sendMessageButt(_ sender: Any) {
         // Stop the refresh timer
+        if receiverMsgsState == true {
+            showToast(message: "This person has disabled messages")
+        }else {
         refreshTimer.invalidate()
         
         let mObj = PFObject(className: DBTable.MESSAGES_CLASS_NAME)
@@ -272,7 +276,7 @@ class MessagesVC: BaseViewController {
                 self.imageToSend = nil
                 self.startRefreshTimer()
                 // Send Push notification
-                //payload message: GoLujo: 'u there '
+               
                 let pushMessage = "\(currentUser[DBColumn.nick]!): '\(self.lastMessage)'"
                 let data = [
                     "badge" : "Increment",
@@ -308,6 +312,8 @@ class MessagesVC: BaseViewController {
                 // self.hideHUD(); self.simpleAlert("\(error!.localizedDescription)")
         }}
         //pushAndroid
+        }
+            
         }
       
     }

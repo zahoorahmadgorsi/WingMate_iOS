@@ -52,11 +52,14 @@ class SearchPresenter {
     }
     
     func searchUsers(data: UserProfileQuestion, index: Int) {
-        let serialQueue = DispatchQueue(label: "searchSerialQueue")
+        //let serialQueue = DispatchQueue(label: "searchSerialQueue")
         SVProgressHUD.show()
-        filterUsers.removeAll()
+       // filterUsers.removeAll()
         ParseAPIManager.searchUsers(data: data) { (success, data) in
             if success {
+                self.delegate?.search(isSuccess: true, msg: "", searchResults: data, index: index)
+                SVProgressHUD.dismiss()
+                /*
                 for users in data {
                     serialQueue.async {
                         print("task 1 start")
@@ -84,7 +87,7 @@ class SearchPresenter {
                     print("task 2 end")
                     SVProgressHUD.dismiss()
                 }
-                
+                */
             } else {
                 self.delegate?.search(isSuccess: false, msg: "No questions found", searchResults: [], index: index)
             }
@@ -108,6 +111,7 @@ class SearchPresenter {
     func getCommonUsersAppearedInAllQueries(dataQuestions: [UserProfileQuestion]?, dataUsersWithLocation: [PFObject]?, isDistanceRangeApplied: Bool) -> [PFUser] {
         var searchArray = [PFObject]()
         var totalQuestionsMarkedByUser = 0
+        
         for i in dataQuestions ?? [] {
             
             if i.userAnswerObject != nil {

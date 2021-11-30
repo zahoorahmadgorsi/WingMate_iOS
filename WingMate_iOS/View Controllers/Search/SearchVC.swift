@@ -127,6 +127,13 @@ class SearchVC: BaseViewController {
                 self.buttonSearch.setTitle("Search Again", for: .normal)
                 self.searchedUsers = self.presenter.getCommonUsersAppearedInAllQueries(dataQuestions: self.dataQuestions, dataUsersWithLocation: [], isDistanceRangeApplied: false)
                 if self.searchedUsers.count > 0 {
+                    for item in self.searchedUsers {
+                        let subs = item["isUserUnsubscribed"] as? Bool ?? false
+                        let searchUserObjectId = item.objectId
+                        if subs == true {
+                            self.searchedUsers = self.searchedUsers.filter { $0.objectId != searchUserObjectId }
+                        }
+                    }
                     self.showSearchedRecordsTableView()
                 } else {
                     self.showNoRecordsView()
