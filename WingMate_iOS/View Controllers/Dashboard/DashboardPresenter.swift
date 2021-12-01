@@ -31,10 +31,15 @@ class DashboardPresenter {
             SVProgressHUD.dismiss()
             if success {
                 var dataUsers = [PFUser]()
+                let myUser = PFUser.current()
                 for i in data {
                     let isUserUnsubscribed = i["isUserUnsubscribed"] as? Bool ?? false
+                    let usersGender = i["gender"] as? String ?? ""
+                    
                     if isUserUnsubscribed == false {
-                    dataUsers.append(i as! PFUser)
+                        if usersGender != myUser?.value(forKey: "gender") as! String {
+                            dataUsers.append(i as! PFUser)
+                        }
                     }
                 }
                 self.delegate?.dashboard(isSuccess: true, msg: "", users: dataUsers)

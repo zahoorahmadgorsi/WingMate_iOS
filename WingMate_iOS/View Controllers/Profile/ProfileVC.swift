@@ -84,7 +84,8 @@ class ProfileVC: BaseViewController {
         self.tabBarController?.tabBar.isHidden = true
         self.updateBoolValuesOfLikeAndMessage()
             
-            }
+        }
+    
     func updateBoolValuesOfLikeAndMessage() {
         let valueQuery = PFUser.query()
         valueQuery!.whereKey("objectId", equalTo:self.user.objectId!)
