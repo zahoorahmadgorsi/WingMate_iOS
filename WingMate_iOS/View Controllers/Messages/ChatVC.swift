@@ -82,7 +82,8 @@ class ChatVC: BaseViewController {
         let query = PFQuery(className: DBTable.instants)
         query.includeKey(DBTable.USER_CLASS_NAME)
         query.whereKey(DBColumn.INSTANTS_ID, contains: "\(currentUser.objectId!)")
-        query.order(byDescending: "updatedAt")
+    //    query.order(byDescending: "updatedAt")
+        query.order(byDescending: "msgCreateAt")
         query.findObjectsInBackground { (objects, error)-> Void in
             if error == nil {
                 self.instantsArray.removeAll()
@@ -97,7 +98,7 @@ class ChatVC: BaseViewController {
                         
                         print("task 2 start")
                         let resUser = objects![i].value(forKey: "receiver") as? PFUser
-                        self.alamo(objectId: (resUser?.objectId)!, item: objects![i])
+                        self.alamo(objectId: (resUser?.objectId)!, item: objects![i], index: i)
                         print("task 2 finish")
                     }
 
@@ -117,17 +118,17 @@ class ChatVC: BaseViewController {
 
     }
     
-    func alamo(objectId:String,item:PFObject){
+    func alamo(objectId:String,item:PFObject,index:Int){
         let header = ["X-Parse-Application-Id": "D7Vyy11JKs7lpEpMwAHxKbRV0RAdFWI5SzEjZ8r3",
                       "X-Parse-REST-API-Key": "F5kMHsZSREkLWqFxUY5YWfsAg0pGW7CDdG7jcsuS"]
         Alamofire.request("https://parseapi.back4app.com/users/\(objectId)", method: .get,headers: header).responseJSON { (response) in
             if response.result.isSuccess {
                 let myResponse:JSON = JSON(response.result.value!)
-                self.parseValue(json: myResponse, item: item)
+                self.parseValue(json: myResponse, item: item, index: index)
             }
         }
     }
-    func parseValue(json:JSON,item:PFObject) {
+    func parseValue(json:JSON,item:PFObject,index:Int) {
         let subs = json["isUserUnsubscribed"].bool
         let itemObjectid = item.value(forKey: "objectId") as! String
         self.serialQueue.async {
@@ -150,13 +151,16 @@ class ChatVC: BaseViewController {
                    
                 self.noResulsLabel.isHidden = true
                 SVProgressHUD.dismiss()
-                self.instantsArray = self.instantsArray.sorted(by: {$0.updatedAt! > $1.updatedAt!})
+           ///2021-11-29 21:14:16 +0000 date format
+                  
+               //     self.instantsArray = self.instantsArray.sorted(by: {$0.value(forKey: "msgCreateAt") as! Date < $1.timeIntervalSince1970})
+       //         self.instantsArray = self.instantsArray.sorted(by: {$0.updatedAt! > $1.updatedAt!})
                 self.instantsTableView.dataSource = self
                 self.instantsTableView.delegate = self
                 self.instantsTableView.reloadData()
                 self.refreshControl.endRefreshing()
                     for item in self.instantsArray {
-                        print(item)
+                        print(item.value(forKey: "msgCreateAt") as! Date)
                     }
                 }
             }

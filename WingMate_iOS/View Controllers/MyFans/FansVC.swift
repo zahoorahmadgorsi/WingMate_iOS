@@ -74,26 +74,26 @@ class FansVC: BaseViewController {
     }
     
     func updateUI() {
-        self.viewBgCrush.backgroundColor = UIColor.clear
-        self.viewBgMyLikes.backgroundColor = UIColor.clear
-        self.viewBgMaybe.backgroundColor = UIColor.clear
-        self.labelStaticCrush.textColor = UIColor.appThemePurpleColor
-        self.labelStaticMaybe.textColor = UIColor.appThemePurpleColor
-        self.labelStaticMyLikes.textColor = UIColor.appThemePurpleColor
-        switch self.selectedFanType {
-        case .like:
-            self.labelStaticMyLikes.textColor = UIColor.white
-            self.viewBgMyLikes.backgroundColor = UIColor.appThemePurpleColor
-            break
-        case .crush:
-            self.labelStaticCrush.textColor = UIColor.white
-            self.viewBgCrush.backgroundColor = UIColor.appThemePurpleColor
-            break
-        case .maybe:
-            self.labelStaticMaybe.textColor = UIColor.white
-            self.viewBgMaybe.backgroundColor = UIColor.appThemePurpleColor
-            break
-        }
+//        self.viewBgCrush.backgroundColor = UIColor.clear
+//        self.viewBgMyLikes.backgroundColor = UIColor.clear
+//        self.viewBgMaybe.backgroundColor = UIColor.clear
+//        self.labelStaticCrush.textColor = UIColor.appThemePurpleColor
+//        self.labelStaticMaybe.textColor = UIColor.appThemePurpleColor
+//        self.labelStaticMyLikes.textColor = UIColor.appThemePurpleColor
+//        switch self.selectedFanType {
+//        case .like:
+//            self.labelStaticMyLikes.textColor = UIColor.white
+//            self.viewBgMyLikes.backgroundColor = UIColor.appThemePurpleColor
+//            break
+//        case .crush:
+//            self.labelStaticCrush.textColor = UIColor.white
+//            self.viewBgCrush.backgroundColor = UIColor.appThemePurpleColor
+//            break
+//        case .maybe:
+//            self.labelStaticMaybe.textColor = UIColor.white
+//            self.viewBgMaybe.backgroundColor = UIColor.appThemePurpleColor
+//            break
+//        }
         self.presenter.getUsers()
     }
     
@@ -122,7 +122,7 @@ class FansVC: BaseViewController {
     
     @IBAction func maybeButtonPressed(_ sender: Any) {
         self.selectedFanType = .maybe
-        self.updateUI()
+       self.updateUI()
     }
     
 }
