@@ -138,12 +138,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
           }
         if let message = aps["alert"] {
             print("payload message: \(message)")
-            if message.contains(":") {
-                print("this is message")
-                coordinateToSomeVC()
-            }
-            else {
-                print("this is like etc")
+       //     print("this is title for fans notification : \(message["title"] as! String)")
+            
+            if (message["title"]) != nil {
                 guard let window = UIApplication.shared.keyWindow else { return }
 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -151,9 +148,22 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 yourVC.selectedIndex = 2
                 window.rootViewController = yourVC
                 window.makeKeyAndVisible()
+            }else {
+                coordinateToSomeVC()
             }
+            /*
+             ///old code
+            if message.contains(":") {
+                print("this is message")
+               
+            }
+            else {
+                print("this is like etc")
            
+            }
+           */
         }
+        
         
         completionHandler()
     }

@@ -78,7 +78,7 @@ class RegisterStepTwoVC: BaseViewController {
     
     @IBAction func submitButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        self.registerPresenter.validateFieldsOnStepThree(email: self.textFieldEmail.text ?? "", password: self.textFieldPassword.text ?? "", isValidAge: self.isValidAge)
+        self.registerPresenter.validateFieldsOnStepThree(email: self.textFieldEmail.text?.lowercased() ?? "", password: self.textFieldPassword.text ?? "", isValidAge: self.isValidAge)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
