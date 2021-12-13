@@ -39,6 +39,7 @@ class ProfileVC: BaseViewController {
     @IBOutlet weak var buttonMaybe: UIButton!
     @IBOutlet weak var buttonCrush: UIButton!
     @IBOutlet weak var buttonLike: UIButton!
+    
     var mainDataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserPhotosVideo = [UserPhotoVideoModel]()
     var dataUserSavedQuestions = [PFObject]()
@@ -63,28 +64,26 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewBlocker.isHidden = true
+        self.registerTableViewCells()
+        self.presenter.attach(vc: self)
         if let launchPay = UserDefaults.standard.object(forKey: UserDefaultKeys.userObjectKeyUserDefaults){
             self.isLaunchCampaign = launchPay as! Bool
         }
         self.processUserState()
-        self.presenter.attach(vc: self)
-        self.registerTableViewCells()
         self.presenter.getAllUploadedFilesForUser(currentUserId: user.objectId ?? "", shouldShowLoader: true, isFromViewDidLoad: true)
         self.presenter.getUserSavedQuestions(user: self.user, shouldShowLoader: false)
         if APP_MANAGER.session != self.user {
             self.disableUserInteractionButtons()
             self.presenter.getFansMarkedByMe(user: self.user)
         }
-       
-      
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.updateBoolValuesOfLikeAndMessage()
-            
-        }
+        
+    }
     
     func updateBoolValuesOfLikeAndMessage() {
         let valueQuery = PFUser.query()
@@ -100,9 +99,9 @@ class ProfileVC: BaseViewController {
                 }
             }
         })
-
+        
     }
-
+    
     //MARK: - Helper Methods
     func registerTableViewCells() {
         self.tableViewUserQuestions.register(UINib(nibName: MyProfileTableViewCell.className, bundle: nil), forCellReuseIdentifier: MyProfileTableViewCell.className)
@@ -143,7 +142,6 @@ class ProfileVC: BaseViewController {
     
     func setProfileInfo() {
         self.labelName.text = self.user.value(forKey: DBColumn.nick) as? String ?? ""
-        
         self.tableViewUserQuestions.reloadData {
             self.cstHeightTableView.constant = self.tableViewUserQuestions.contentSize.height
             self.tableViewUserQuestions.layoutIfNeeded()
@@ -254,8 +252,8 @@ class ProfileVC: BaseViewController {
                     } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                         self.showAlertOK(APP_NAME, message: ValidationStrings.needToPayNowTrialExpired) { action in
                             if self.isLaunchCampaign == false {
-                            let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                            self.navigationController?.pushViewController(vc, animated: true)
+                                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }else {
                                 let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                                 self.navigationController?.pushViewController(vc, animated: true)
@@ -278,17 +276,17 @@ class ProfileVC: BaseViewController {
     
     //MARK: - Button Actions
     @IBAction func image1ButtonPressed(_ sender: Any) {
-//        self.previewImage(imageView: self.imageViewProfile1)
+        //        self.previewImage(imageView: self.imageViewProfile1)
         self.showImagesInSlider(indexSelected: 0)
     }
     
     @IBAction func image2ButtonPressed(_ sender: Any) {
-//        self.previewImage(imageView: self.imageViewProfile2)
+        //        self.previewImage(imageView: self.imageViewProfile2)
         self.showImagesInSlider(indexSelected: 1)
     }
     
     @IBAction func image3ButtonPressed(_ sender: Any) {
-//        self.previewImage(imageView: self.imageViewProfile3)
+        //        self.previewImage(imageView: self.imageViewProfile3)
         self.showImagesInSlider(indexSelected: 2)
     }
     
@@ -314,33 +312,33 @@ class ProfileVC: BaseViewController {
         }else {
             self.interactWithUsers(interactionType: .maybe)
         }
-       
+        
     }
-
+    
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-       
+        
         if self.isLikeDisabled == true {
             self.showAlertOK("Blinqui", message: "User like is disabled")
         }else {
             self.interactWithUsers(interactionType: .like)
         }
-       
+        
     }
     
     @IBAction func crushButtonPressed(_ sender: Any) {
-       
+        
         if self.isLikeDisabled == true {
             self.showAlertOK("Blinqui", message: "User crush is disabled")
         }else {
             self.interactWithUsers(interactionType: .crush)
         }
-
-       
+        
+        
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
-      
+        
         if self.isMessageDisabled == true {
             self.showAlertOK("Blinqui", message: "User message is disabled")
         }else {
@@ -361,8 +359,8 @@ class ProfileVC: BaseViewController {
             } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                 self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
                     if self.isLaunchCampaign == false {
-                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                        let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }else {
                         let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -377,8 +375,8 @@ class ProfileVC: BaseViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
-
-
+        
+        
     }
     
     func interactWithUsers(interactionType: InteractionType) {
@@ -399,8 +397,8 @@ class ProfileVC: BaseViewController {
         } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
             self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.becomePaidUser, rightBtnText: ValidationStrings.payNow, leftBtnText: ValidationStrings.payLater) { rightButtonAction in
                 if self.isLaunchCampaign == false {
-                let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }else {
                     let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -464,8 +462,8 @@ class ProfileVC: BaseViewController {
             } else if !isPaidUser && status == UserAccountStatus.accepted.rawValue {
                 self.showAlertTwoButtons(APP_NAME, message: ValidationStrings.payNowToCompleteProfile) { successAction in
                     if self.isLaunchCampaign == false {
-                    let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                        let vc = SelectPaymentOptionVC(nibName: "SelectPaymentOptionVC", bundle: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }else {
                         let vc = LaunchCampaignVC(nibName: "LaunchCampaignVC", bundle: nil)
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -598,10 +596,10 @@ extension ProfileVC: ProfileDelegate {
     }
     
     func profile(isSuccess: Bool, msg: String, markedUnmarkedUserFanType: FanType, isDeleted: Bool, object: PFObject?) {
-      //  let nickName = self.user.value(forKey: DBColumn.nick) as? String ?? ""
+        //  let nickName = self.user.value(forKey: DBColumn.nick) as? String ?? ""
         let nickName = APP_MANAGER.session?.value(forKey: DBColumn.nick) as? String ?? ""
         if isDeleted == false { //saving case
-//            self.showToast(message: msg)
+            //            self.showToast(message: msg)
             if isSuccess {
                 switch markedUnmarkedUserFanType {
                 case .like:
@@ -639,7 +637,7 @@ extension ProfileVC: ProfileDelegate {
                 self.enableUserInteractionButtons()
                 self.refreshFansList?()
             } else {
-//                self.showToast(message: msg)
+                //                self.showToast(message: msg)
             }
         }
     }
