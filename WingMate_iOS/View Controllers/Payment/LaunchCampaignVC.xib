@@ -70,7 +70,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="82" id="h8c-Dw-5C8"/>
                     </constraints>
-                    <string key="text">We are happy to offer Wingmate free of charge during the launch campaign period. Once the campaign period is over you will be notified by e-mail</string>
+                    <string key="text">We are happy to offer Blinqui free of charge during the launch campaign period. Once the campaign period is over you will be notified by e-mail</string>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

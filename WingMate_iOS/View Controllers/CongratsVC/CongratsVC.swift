@@ -28,7 +28,7 @@ class CongratsVC: BaseViewController {
             self.labelSubHeading.text = "Thankyou for uploading your media"
             self.imageViewMain.image = UIImage(named: "media_success")
         } else {
-            self.labelHeading.text = "Congratulations! Now you have full access to Wingmate"
+            self.labelHeading.text = "Congratulations! Now you have full access to Blinqui"
             self.labelSubHeading.text = ""
             self.imageViewMain.image = UIImage(named: "payment_success")
         }
