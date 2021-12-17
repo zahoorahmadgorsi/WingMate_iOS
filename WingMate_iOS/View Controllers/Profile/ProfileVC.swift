@@ -64,6 +64,10 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.labelName.text = self.user.value(forKey: DBColumn.nick) as? String ?? ""
+        if let url = URL(string:self.user.value(forKey: DBColumn.profilePic) as? String ?? "" ){
+            imageViewProfile1.sd_setImage(with: url, completed: nil)
+        }
         self.viewBlocker.isHidden = true
         self.registerTableViewCells()
         self.presenter.attach(vc: self)
