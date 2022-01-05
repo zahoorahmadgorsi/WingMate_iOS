@@ -78,7 +78,9 @@ class RegisterStepTwoVC: BaseViewController {
     
     @IBAction func submitButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
-        self.registerPresenter.validateFieldsOnStepThree(email: self.textFieldEmail.text?.lowercased() ?? "", password: self.textFieldPassword.text ?? "", isValidAge: self.isValidAge)
+        let lowerdEmail = self.textFieldEmail.text?.lowercased()
+        
+        self.registerPresenter.validateFieldsOnStepThree(email: lowerdEmail  ?? "", password: self.textFieldPassword.text ?? "", isValidAge: self.isValidAge)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -137,7 +139,7 @@ extension RegisterStepTwoVC: RegisterDelegate {
         if validationSuccessStepThree {
             //make user object and pass to terms and conditions
             let user = PFUser()
-            user.email = self.textFieldEmail.text ?? ""
+            user.email = self.textFieldEmail.text?.lowercased() ?? ""
             user.password = self.textFieldPassword.text ?? ""
             user.username = self.textFieldEmail.text ?? ""
             user.setValue(self.nickName, forKey: DBColumn.nick)

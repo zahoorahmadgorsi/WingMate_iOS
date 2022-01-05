@@ -159,7 +159,10 @@ class ProfileVC: BaseViewController {
     func setPhotosVideo() {
         switch self.dataUserPhotosVideo.count {
         case 1:
-            self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+           // self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+            if let url = URL(string:self.user.value(forKey: DBColumn.profilePic) as? String ?? "" ){
+                imageViewProfile1.sd_setImage(with: url, completed: nil)
+            }
             self.imageViewProfile2.image = UIImage()
             self.imageViewProfile3.image = UIImage()
             self.buttonProfileImage1.isHidden = false
@@ -167,7 +170,10 @@ class ProfileVC: BaseViewController {
             self.buttonProfileImage3.isHidden = true
             break
         case 2:
-            self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+          //  self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+            if let url = URL(string:self.user.value(forKey: DBColumn.profilePic) as? String ?? "" ){
+                imageViewProfile1.sd_setImage(with: url, completed: nil)
+            }
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[1].uploadFileUrl ?? "", imageView: self.imageViewProfile2, placeholderImage: UIImage(named: "default_placeholder"))
             self.imageViewProfile3.image = UIImage()
             self.buttonProfileImage1.isHidden = false
@@ -175,7 +181,10 @@ class ProfileVC: BaseViewController {
             self.buttonProfileImage3.isHidden = true
             break
         case 3:
-            self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+          //  self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[0].uploadFileUrl ?? "", imageView: self.imageViewProfile1, placeholderImage: UIImage(named: "default_placeholder"))
+            if let url = URL(string:self.user.value(forKey: DBColumn.profilePic) as? String ?? "" ){
+                imageViewProfile1.sd_setImage(with: url, completed: nil)
+            }
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[1].uploadFileUrl ?? "", imageView: self.imageViewProfile2, placeholderImage: UIImage(named: "default_placeholder"))
             self.setImageWithUrl(imageUrl: self.dataUserPhotosVideo[2].uploadFileUrl ?? "", imageView: self.imageViewProfile3, placeholderImage: UIImage(named: "default_placeholder"))
             self.buttonProfileImage1.isHidden = false
