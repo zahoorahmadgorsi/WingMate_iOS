@@ -1633,7 +1633,7 @@
                                                             <rect key="frame" x="329.5" y="5" width="54.5" height="50"/>
                                                             <subviews>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="••••••" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pni-ci-Sjn">
-                                                                    <rect key="frame" x="10" y="10" width="280" height="30"/>
+                                                                    <rect key="frame" x="10" y="10" width="35.5" height="30"/>
                                                                     <color key="backgroundColor" name="PurpleThemeColor"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
